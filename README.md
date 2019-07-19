@@ -1,2 +1,2 @@
 # DariusCogs
-Probably bad stuff for Red
+Everything here is work in progress. Also it probably doesn't work as intended. 
