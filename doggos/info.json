@@ -1,0 +1,10 @@
+{
+    "author" : "Originally: Eslyium (Eslyium#1949) and Yukirin (Yukirin#0048)",
+    "install_msg" : "Sorry, Dido2, had to merge stuffs. Type `[p]help Doggos` for more information.",
+    "name" : "Doggos",
+    "short" : "Posts different doggos",
+    "description" : "Post Golden Retriever / German Shepherd pics from dog.ceo API",
+    "disabled" : false,
+    "tags" : ["animal", "image", "picture", "shepherd", "dog", "retriever"],
+    "min_python_version": [3, 6, 0]
+}

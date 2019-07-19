@@ -1,0 +1,10 @@
+{
+    "author" : "Xarx (Darius#0069)",
+    "install_msg" : "I am the lucid dream, the monster in your nightmares, the Fiend of a Thousand Faces, Cower before my true form! BOW DOWN BEFORE THE GOD OF DEATH!! MADNESS WILL CONSUME YOU!!",
+    "name" : "Oldgods",
+    "short" : "Your friends will abandon you",
+    "description" : "Your heart will explode",
+    "disabled" : false,
+    "tags" : ["warcraft", "quotes", "text"],
+    "min_python_version": [3, 6, 0]
+}
