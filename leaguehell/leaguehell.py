@@ -8,13 +8,15 @@ import asyncio
 import datetime
 import random
 # League stuffs
-import cassiopeia
+import cassiopeia as cass
+from cassiopeia import Summoner
 
 class Leaguehell(commands.Cog):
     """The League Cog for Hell"""
 
     def __init__(self, bot):
         self.bot = bot
+        default_global = {"Leaguehell_API_Key": None}
         default_member = {
             "Region": None,
             "Summoner": None,
@@ -25,3 +27,30 @@ class Leaguehell(commands.Cog):
         self.config = Config.get_conf(self, identifier=690430666, force_registration=True)
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
+
+    @checks.is_owner()
+    @commands.command(name="leagueapi")
+    async def leagueapi(self, ctx, key: str):
+        """Sets the league API key."""
+        if key:
+            await self.config.Leaguehell_API_Key.set(key)
+            await cass.set_riot_api_key(key)
+            await ctx.send("Good fucking job.")
+
+    @commands.command(name="summoner")
+    async def summoner(self, ctx, name: str, region: str):
+        """Use !!summoner <name> <region>"""
+        summoner = Summoner(name=name, region=region)
+        sumname = summoner.name
+        sumid = summoner.id
+        sumaccid = summoner.account_id
+        sumlvl = summoner.level
+        sumrevdate = summoner.revision_date
+        sumico = summoner.profile_icon.image
+        em = discord.Embed(colour=15158332)
+        emdes = ("Vafli")
+        em.description = emdes
+        em.set_thumbnail(url=sumico)
+        em.add_field(name=(f"{sumname}, level {sumlvl}"), value=(f"ID: {sumid}, Account ID: {sumaccid}, Revision date: {sumrevdate}"))
+        em.set_footer(text="Powered by HELL")
+        await ctx.send(embed=em)
