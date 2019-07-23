@@ -30,12 +30,11 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="leagueapi")
-    async def leagueapi(self, ctx, key: str):
-        """Sets the league API key."""
-        if key:
-            await self.config.Leaguehell_API_Key.set(key)
-            await cass.set_riot_api_key(key)
-            await ctx.send("Good fucking job.")
+    async def leagueapi(self, ctx, *, key):
+        """Set a key to use the league api"""
+        config_boards = await self.config.Leaguehell_API_Key()
+        await self.config.Leaguehell_API_Key.set(key)
+        await ctx.send("gj we")
 
     @commands.command(name="summoner")
     async def summoner(self, ctx, name: str, region: str):
