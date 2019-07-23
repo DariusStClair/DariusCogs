@@ -33,6 +33,7 @@ class Leaguehell(commands.Cog):
     async def leagueapi(self, ctx, *, key):
         """Set a key to use the league api"""
         await self.config.leagueapikey.set(key)
+        await self.self.cass.set_riot_api_key(key)
         await ctx.send("gj we")
 
     @commands.command(name="summoner")
