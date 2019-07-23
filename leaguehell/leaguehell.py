@@ -29,7 +29,7 @@ class Leaguehell(commands.Cog):
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
         cassiopeia.set_default_region("EUNE")
-        cassiopeia.set_riot_api_key()
+        cassiopeia.set_riot_api_key(None)
 
     @checks.is_owner()
     @commands.command(name="leagueapi")
