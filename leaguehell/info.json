@@ -1,0 +1,10 @@
+{
+    "author" : "Darius",
+    "install_msg" : "Brao we",
+    "name" : "Leaguehell",
+    "short" : "League Hell",
+    "description" : "League Hell",
+    "disabled" : false,
+    "tags" : ["profile"],
+    "min_python_version": [3, 7, 0]
+}
