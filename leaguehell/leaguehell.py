@@ -16,7 +16,7 @@ class Leaguehell(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        default_global = {"Leaguehell_API_Key": None}
+        default_global = {"leagueapikey": None}
         default_member = {
             "Region": None,
             "Summoner": None,
@@ -32,8 +32,7 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leagueapi")
     async def leagueapi(self, ctx, *, key):
         """Set a key to use the league api"""
-        config_boards = await self.config.Leaguehell_API_Key()
-        await self.config.Leaguehell_API_Key.set(key)
+        await self.config.leagueapikey.set(key)
         await ctx.send("gj we")
 
     @commands.command(name="summoner")
