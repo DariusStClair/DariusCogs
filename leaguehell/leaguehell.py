@@ -25,6 +25,7 @@ class Leaguehell(commands.Cog):
             "db": []
         }
         self.config = Config.get_conf(self, identifier=690430666, force_registration=True)
+        self.config.register_global(**default_global)
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
 
