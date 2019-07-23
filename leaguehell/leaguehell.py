@@ -28,8 +28,8 @@ class Leaguehell(commands.Cog):
         self.config.register_global(**default_global)
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
-        self.cassiopeia.set_default_region("EUNE")
-        self.cassiopeia.set_riot_api_key()
+        cassiopeia.set_default_region("EUNE")
+        cassiopeia.set_riot_api_key()
 
     @checks.is_owner()
     @commands.command(name="leagueapi")
@@ -37,7 +37,7 @@ class Leaguehell(commands.Cog):
         """Set a key to use the league api"""
         config_boards = await self.config.leagueapikey()
         await self.config.leagueapikey.set(key)
-        await self.cassiopeia.set_riot_api_key(key)
+        await cassiopeia.set_riot_api_key(key)
         await ctx.send("gj we")
 
     @commands.command(name="summoner")
