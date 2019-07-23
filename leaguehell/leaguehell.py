@@ -8,7 +8,7 @@ import asyncio
 import datetime
 import random
 # League stuffs
-import cassiopeia as cass
+import cassiopeia
 from cassiopeia import Summoner
 
 class Leaguehell(commands.Cog):
@@ -35,7 +35,7 @@ class Leaguehell(commands.Cog):
         """Set a key to use the league api"""
         config_boards = await self.config.leagueapikey()
         await self.config.leagueapikey.set(key)
-        await self.cass.set_riot_api_key(key)
+        await self.cassiopeia.set_riot_api_key(key)
         await ctx.send("gj we")
 
     @commands.command(name="summoner")
