@@ -10,6 +10,7 @@ import random
 # League stuffs
 import cassiopeia as cass
 from cassiopeia import Division, Summoner, Rank, MatchHistory
+from datapipelines import NotFoundError
 
 cass.set_default_region("EUNE")
 
@@ -43,12 +44,22 @@ class Leaguehell(commands.Cog):
     @commands.command(name="champs")
     async def champs(self, ctx, name: str):
         """Use !!summoner <name>\nCurrently works with EUNE only"""
+        usr = ctx.author
         try:
             summ = cass.Summoner(name=name)
-        except AttributeError:
-            await ctx.send("'SummonerData' object has no attribute 'id'")
+        except (AttributeError, TypeError, NotFoundError):
+            await ctx.send(">Shitter's clogged, buddy")
         else:
+            dnname = usr.display_name
+            em = discord.Embed(colour=15158332)
+            av = usr.avatar_url
+            avstr = str(av)
+            emdesc = (f"{dnname}'s champions at level 6+'")
+            em.description = emdesc
+            em.url = avstr
+            em.set_footer(text="Powered by HELL", icon_url=avstr)
             gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
             for cm in gwith:
-                await ctx.send(cm.champion.name)
-            await ctx.send("Done.")
+                chname = cm.champion.name
+                em.add_field(name=chname, value=u'\u200b', inline=True)
+            await ctx.send(embed=em)
