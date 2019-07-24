@@ -51,9 +51,10 @@ class Leaguehell(commands.Cog):
             await ctx.send(f">DEBUG: Reg is defaulting ({xreg})")
             pass
         elif region in regchecks:
-            xreg = region.capitalize()
+            xreg = region.upper()
             await ctx.send(f">DEBUG: Reg is {xreg}")
         else:
+            xreg = region.upper()
             await ctx.send(f">DEBUG: Invalid region ({xreg}).\n>Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.")
         try:
             summ = cass.Summoner(name=name, region=xreg)
