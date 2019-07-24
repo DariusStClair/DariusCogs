@@ -87,8 +87,8 @@ class Leaguehell(commands.Cog):
         except:
             await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
 
-    @commands.command(name="lolprofile", aliases=["lprofile"])
-    async def lolprofile(self, ctx, name: str, *, region=None):
+    @commands.command(name="lhistory", aliases=["lolhistory"])
+    async def lhistory(self, ctx, name: str, *, region=None):
         """Vafli"""
         #usr = ctx.author 
         if region is None:
@@ -103,16 +103,8 @@ class Leaguehell(commands.Cog):
             return
         #try:
         summ = cass.Summoner(name=name, region=xreg)
-        vafid = summ.account_id 
-        vaflgs = summ.leagues
-        vaflgsp = summ.league_positions
-        vaflvl = summ.level
-        vafranks = summ.ranks
+        mhistory = MatchHistory(summoner=name, region=xreg, end_index=10)
         await ctx.send(f"summ:\n {summ}\n")
-        await ctx.send(f"vafid:\n {vafid}\n")
-        await ctx.send(f"vaflgs:\n {vaflgs}\n")
-        await ctx.send(f"vaflgsp:\n {vaflgsp}\n")
-        await ctx.send(f"vaflvl:\n {vaflvl}\n")
-        await ctx.send(f"vafranks:\n {vafranks}")
+        await ctx.send(f"mhistory:\n {MatchHistory}\n")
         #except:
         #    await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
