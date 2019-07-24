@@ -103,7 +103,7 @@ class Leaguehell(commands.Cog):
             return
         #try:
         summ = cass.Summoner(name=name, region=xreg)
-        mhistory = MatchHistory(summoner=summ, end_index=10)
+        mhistory = MatchHistory(summoner=summ['name'], end_index=10)
         await ctx.send(f"summ:\n {summ}\n")
         await ctx.send(f"mhistory:\n {mhistory}\n")
         #except:
