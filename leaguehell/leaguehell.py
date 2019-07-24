@@ -61,7 +61,7 @@ class Leaguehell(commands.Cog):
         try:
             summ = cass.Summoner(name=name, region=xreg)
             dnname = usr.display_name
-            sumname = str(summ.name).upper()
+            sumname = str(summ.name).capitalize()
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
@@ -75,10 +75,15 @@ class Leaguehell(commands.Cog):
                 chname = cm.champion.name
                 cpoints = cm.points
                 clvl = cm.level
+                cchest = cm.chest_granted
+                if cchest is True:
+                    chest = "Yes"
+                else:
+                    chest = "No"
                 cmtokens = cm.tokens
                 cmlpx = str(cm.last_played)
                 cmlp = cmlpx[:10]
-                em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points. \nLevel **{clvl}**. \n**{cmtokens}** tokens.\nLast played: **{cmlp}**"), inline=True)
+                em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? {chest}.\nLast played: **{cmlp}**."), inline=True)
             await ctx.send(embed=em)
         except:
             await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
