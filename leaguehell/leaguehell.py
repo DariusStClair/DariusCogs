@@ -53,6 +53,7 @@ class Leaguehell(commands.Cog):
         elif region in regchecks:
             xreg = region.upper()
             await ctx.send(f">DEBUG: Reg is {xreg}")
+            pass
         else:
             xreg = region.upper()
             await ctx.send(f">DEBUG: Invalid region ({xreg}).\n>Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.")
