@@ -63,7 +63,7 @@ class Leaguehell(commands.Cog):
                 cpoints = cm.points
                 clvl = cm.level
                 cmtokens = cm.tokens
-                em.add_field(name=(f"{chname} lvl {clvl}"), value=(f"At {cpoints} points. {cmtokens}"), inline=True)
+                em.add_field(name=(f"{chname} lvl {clvl}"), value=(f"At {cpoints} points. {cmtokens} tokens"), inline=True)
             await ctx.send(embed=em)
         except:
             await ctx.send(">Shitter's clogged, buddy")
