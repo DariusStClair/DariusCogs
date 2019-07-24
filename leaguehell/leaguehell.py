@@ -104,8 +104,10 @@ class Leaguehell(commands.Cog):
         #try:
         summ = cass.Summoner(name=name, region=xreg)
         summn = summ.name
-        mhistory = summ.match_history.end_index(10)
+        mhistory = summ.match_history[0]
+        champplayed = summ.match.participants[summ].champion
         await ctx.send(f"summn:\n {summn}\n")
         await ctx.send(f"mhistory:\n {mhistory}\n")
+        await ctx.send(f"champplayed:\n {champplayed}\n")
         #except:
         #    await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
