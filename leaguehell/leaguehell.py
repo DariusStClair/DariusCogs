@@ -9,7 +9,7 @@ import datetime
 import random
 # League stuffs
 import cassiopeia as cass
-from cassiopeia import Division, Summoner, Rank, MatchHistory, Champion, Champions, ChampionMastery
+from cassiopeia import Division, Summoner, Rank, MatchHistory, Champion, Champions, ChampionMastery, Settings
 
 regchecks = ['BR', 'EUNE', 'EUW', 'JP', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'TR', 'RU']
 
@@ -47,11 +47,13 @@ class Leaguehell(commands.Cog):
         """Use !!champs <name> [region]\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.**"""
         usr = ctx.author
         if region is None:
-            xreg = "EUNE"
+            await ctx.send(">Reg is defaulting")
+            pass
         elif region in regchecks:
             xreg = region
+            await ctx.send(f">Reg is {xreg}")
         else:
-            "Invalid region.\nValid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE."
+            await ctx.send(">Invalid region.\nValid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.")
         try:
             summ = cass.Summoner(name=name, region=xreg)
             dnname = usr.display_name
