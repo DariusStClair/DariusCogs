@@ -43,7 +43,12 @@ class Leaguehell(commands.Cog):
     async def champs(self, ctx, name: str):
         """Use !!summoner <name>\nCurrently works with EUNE only"""
         summ = cass.Summoner(name=name)
-        gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
-        for cm in gwith:
-            await ctx.send(cm.champion.name)
-        await ctx.send("Done.")
+        try:
+            summ = cass.Summoner(name=name)
+        except:
+            await ctx.send("Well there ain't such summoner")
+        else:
+            gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
+            for cm in gwith:
+                await ctx.send(cm.champion.name)
+            await ctx.send("Done.")
