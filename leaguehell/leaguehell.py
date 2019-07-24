@@ -48,15 +48,15 @@ class Leaguehell(commands.Cog):
         usr = ctx.author 
         if region is None:
             xreg = "EUNE"
-            await ctx.send(f">DEBUG: Reg is set as: ({xreg}) = ({region})")
+            #await ctx.send(f">DEBUG: Reg is set as: ({xreg}) = ({region})")
             pass
         elif region.upper() in regchecks:
             xreg = region.upper()
-            await ctx.send(f">DEBUG: Reg is set as: ({xreg}) = ({region})")
+            #await ctx.send(f">DEBUG: Reg is set as: ({xreg}) = ({region})")
             pass
         else:
             xreg = region.upper()
-            await ctx.send(f">DEBUG: Invalid region ({xreg}).\n>Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \n>If no [region] is specified it defaults to EUNE.")
+            await ctx.send(f">Invalid region ({xreg}).\n>Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \n>If no [region] is specified it defaults to EUNE.")
             return
         try:
             summ = cass.Summoner(name=name, region=xreg)
@@ -83,7 +83,7 @@ class Leaguehell(commands.Cog):
                 cmtokens = cm.tokens
                 cmlpx = str(cm.last_played)
                 cmlp = cmlpx[:10]
-                em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? {chest}.\nLast played: **{cmlp}**."), inline=True)
+                em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."), inline=True)
             await ctx.send(embed=em)
         except:
             await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
