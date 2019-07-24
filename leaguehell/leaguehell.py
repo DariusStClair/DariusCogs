@@ -10,7 +10,7 @@ import random
 # League stuffs
 import cassiopeia as cass
 
-cass.set_default_region("EUN1")
+cass.set_default_region("EUNE")
 
 class Leaguehell(commands.Cog):
     """The League Cog for Hell"""
