@@ -63,8 +63,7 @@ class Leaguehell(commands.Cog):
             for cm in gwith:
                 chname = cm.champion.name
                 cpoints = cm.points
-                cpointstoding = cm.points_until_next_level 
                 clvl = cm.level
-                cthing = cm.icon_url
-                em.add_field(name=(f"{chname} lvl {clvl}"), value=(f"At {cpoints} points. [test]({cthing})"), inline=True)
+                cthing = ChampionMastery.chest_granted
+                em.add_field(name=(f"{chname} lvl {clvl}"), value=(f"At {cpoints} points. [Chest granted?]({cthing})"), inline=True)
             await ctx.send(embed=em)
