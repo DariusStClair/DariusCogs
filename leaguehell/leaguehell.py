@@ -44,4 +44,6 @@ class Leaguehell(commands.Cog):
         """Use !!summoner <name>\nCurrently works with EUNE only"""
         summ = cass.Summoner(name=name)
         gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
-        await ctx.send((cm.champion.name) for cm in gwith)
+        for cm in gwith:
+            await ctx.send(cm.champion.name)
+        await ctx.send("Done.")
