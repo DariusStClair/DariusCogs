@@ -105,7 +105,7 @@ class Leaguehell(commands.Cog):
         summ = cass.Summoner(name=name, region=xreg)
         summn = summ.name
         mhistory = summ.match_history[0]
-        champplayed = summ.match.participants[summ].champion
+        champplayed = summ.mhistory.participants[summ].champion
         await ctx.send(f"summn:\n {summn}\n")
         await ctx.send(f"mhistory:\n {mhistory}\n")
         await ctx.send(f"champplayed:\n {champplayed}\n")
