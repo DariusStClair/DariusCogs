@@ -43,7 +43,7 @@ class Leaguehell(commands.Cog):
         await ctx.send(config_boards)
 
     @commands.command(name="champs", aliases=["champions"])
-    async def champs(self, ctx, *, name: str, region=None):
+    async def champs(self, ctx, name: str, region=None):
         """Use !!champs <name> [region]\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.**"""
         usr = ctx.author
         if region is None:
