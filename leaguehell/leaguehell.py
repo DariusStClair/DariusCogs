@@ -62,7 +62,7 @@ class Leaguehell(commands.Cog):
             gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
             for cm in gwith:
                 chname = cm.champion.name
-                cpoints = ChampionMastery.points
-                cpointstoding = ChampionMastery.points_until_next_level 
+                cpoints = cm.ChampionMastery.points
+                cpointstoding = cm.ChampionMastery.points_until_next_level 
                 em.add_field(name=chname, value=(f"At {cpoints} points, {cpointstoding} to level up"), inline=True)
             await ctx.send(embed=em)
