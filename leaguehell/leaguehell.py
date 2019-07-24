@@ -58,7 +58,7 @@ class Leaguehell(commands.Cog):
             emdesc = (f"{sumname}'s  champions at level 6+'")
             em.description = emdesc
             em.url = avstr
-            em.set_footer(text=(f"Requested by {dname}| Powered by HELL"), icon_url=avstr)
+            em.set_footer(text=(f"Requested by {dnname}| Powered by HELL"), icon_url=avstr)
             gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
             for cm in gwith:
                 chname = cm.champion.name
