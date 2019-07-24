@@ -9,8 +9,8 @@ import datetime
 import random
 # League stuffs
 import cassiopeia as cass
-from cassiopeia import Division, Summoner, Rank, MatchHistory
-from datapipelines import NotFoundError
+from cassiopeia import Division, Summoner, Rank, MatchHistory, Champion, Champions, ChampionMastery
+
 
 cass.set_default_region("EUNE")
 
@@ -62,5 +62,7 @@ class Leaguehell(commands.Cog):
             gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
             for cm in gwith:
                 chname = cm.champion.name
-                em.add_field(name=chname, value=u'\u200b', inline=True)
+                cpoints = ChampionMastery.points
+                cpointstoding = ChampionMastery.points_until_next_level 
+                em.add_field(name=chname, value=(f"At {cpoints} points, {cpointstoding} to level up"), inline=True)
             await ctx.send(embed=em)
