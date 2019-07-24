@@ -9,6 +9,7 @@ import datetime
 import random
 # League stuffs
 import cassiopeia as cass
+from cassiopeia import Division, Summoner, Rank, MatchHistory
 
 cass.set_default_region("EUNE")
 
@@ -44,8 +45,8 @@ class Leaguehell(commands.Cog):
         """Use !!summoner <name>\nCurrently works with EUNE only"""
         try:
             summ = cass.Summoner(name=name)
-        except:
-            await ctx.send("Well there ain't such summoner")
+        except AttributeError:
+            await ctx.send("'SummonerData' object has no attribute 'id'")
         else:
             gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
             for cm in gwith:
