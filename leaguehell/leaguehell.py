@@ -64,8 +64,8 @@ class Leaguehell(commands.Cog):
                 clvl = cm.level
                 cmtokens = cm.tokens
                 cmlpx = str(cm.last_played)
-                cmlp = cmlpx[:9]
-                em.add_field(name=(f"{chname}"), value=(f"At {cpoints} points. \nLevel {clvl}. \n{cmtokens} tokens.\nLast played: {cmlp}"), inline=True)
+                cmlp = cmlpx[:10]
+                em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points. \nLevel **{clvl}**. \n**{cmtokens}** tokens.\nLast played: {cmlp}"), inline=True)
             await ctx.send(embed=em)
         except:
             await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
