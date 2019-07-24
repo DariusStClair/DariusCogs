@@ -51,10 +51,11 @@ class Leaguehell(commands.Cog):
             await ctx.send(">Shitter's clogged, buddy")
         else:
             dnname = usr.display_name
+            sumname = summ.name
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
-            emdesc = (f"{dnname}'s champions at level 6+'")
+            emdesc = (f"{dnname}'s ({sumname}) champions at level 6+'")
             em.description = emdesc
             em.url = avstr
             em.set_footer(text="Powered by HELL", icon_url=avstr)
