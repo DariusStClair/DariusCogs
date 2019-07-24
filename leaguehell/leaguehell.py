@@ -46,11 +46,11 @@ class Leaguehell(commands.Cog):
     async def champs(self, ctx, name: str, *, region=None):
         """Use !!champs <name> [region]\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.**"""
         usr = ctx.author 
-        if xreg is None:
+        if region is None:
             xreg = "EUNE"
             await ctx.send(f">DEBUG: Reg is set as: ({xreg}) = ({region})")
             pass
-        elif xreg in regchecks:
+        elif region.upper() in regchecks:
             xreg = region.upper()
             await ctx.send(f">DEBUG: Reg is set as: ({xreg}) = ({region})")
             pass
