@@ -52,18 +52,19 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
-            emdesc = (f"{sumname}'s  champions at level 5+'")
+            emdesc = (f"{sumname}'s  champions at level 6 and above.'")
             em.description = emdesc
             em.url = avstr
             em.set_footer(text=(f"Requested by {dnname} | Powered by HELL"), icon_url=avstr)
             Summoner.champion_masteries
-            gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 5)
+            gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
             for cm in gwith:
                 chname = cm.champion.name
                 cpoints = cm.points
                 clvl = cm.level
                 cmtokens = cm.tokens
-                cmlp = cm.last_played
+                cmlpx = cm.last_played
+                cmlp = cmlpx[:9]
                 em.add_field(name=(f"{chname}"), value=(f"At {cpoints} points. \nLevel {clvl}. \n{cmtokens} tokens.\nLast played: {cmlp}"), inline=True)
             await ctx.send(embed=em)
         except:
