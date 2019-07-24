@@ -10,7 +10,7 @@ import random
 # League stuffs
 import cassiopeia as cass
 
-
+cass.set_default_region("EUN1")
 
 class Leaguehell(commands.Cog):
     """The League Cog for Hell"""
@@ -40,6 +40,8 @@ class Leaguehell(commands.Cog):
         await ctx.send(config_boards)
 
     @commands.command(name="summoner")
-    async def summoner(self, ctx, name: str, server: str):
-        """Use !!summoner <name> <region> \n Valid regions are: **EUN1** / **EUW1** etc"""
-
+    async def summoner(self, ctx, name: str):
+        """Use !!summoner <name>\nCurrently works with EUNE only"""
+        summ = cass.Summoner(name=name)
+        gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
+        await ctx.send(cm.champion.name for cm in gwith)
