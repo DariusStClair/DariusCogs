@@ -63,7 +63,7 @@ class Leaguehell(commands.Cog):
                 cpoints = cm.points
                 clvl = cm.level
                 cmtokens = cm.tokens
-                cmlpx = cm.last_played
+                cmlpx = str(cm.last_played)
                 cmlp = cmlpx[:9]
                 em.add_field(name=(f"{chname}"), value=(f"At {cpoints} points. \nLevel {clvl}. \n{cmtokens} tokens.\nLast played: {cmlp}"), inline=True)
             await ctx.send(embed=em)
