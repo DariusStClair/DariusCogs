@@ -90,7 +90,7 @@ class Leaguehell(commands.Cog):
     @commands.command(name="lolprofile", aliases=["lprofile"])
     async def lolprofile(self, ctx, name: str, *, region=None):
         """Vafli"""
-        usr = ctx.author 
+        #usr = ctx.author 
         if region is None:
             xreg = "EUNE"
             pass
@@ -101,20 +101,15 @@ class Leaguehell(commands.Cog):
             xreg = region.upper()
             await ctx.send(f">Invalid region ({xreg}).\n>Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \n>If no [region] is specified it defaults to EUNE.")
             return
-        try:
-            summ = cass.Summoner(name=name, region=xreg)
-            vafid = summ.account_id 
-            vaflgs = summ.leagues
-            vaflgsp = summ.league_positions
-            vaflast = summ.rank_last_season
-            vaflvl = summ.level
-            vafranks = summ.ranks
-            await ctx.send(f"summ:\n {summ}")
-            await ctx.send(f"vafid:\n {vafid}")
-            await ctx.send(f"vaflgs:\n {vaflgs}")
-            await ctx.send(f"vaflgsp:\n {vaflgsp}")
-            await ctx.send(f"vaflast:\n {vaflast}")
-            await ctx.send(f"vaflvl:\n {vaflvl}")
-            await ctx.send(f"vafranks:\n {vafranks}")
-        except:
-            await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
+        #try:
+        summ = cass.Summoner(name=name, region=xreg)
+        vafid = summ.account_id 
+        vaflgs = summ.leagues
+        vaflgsp = summ.league_positions
+        vaflast = summ.rank_last_season
+        vaflvl = summ.level
+        vafranks = summ.ranks
+        await ctx.send(f"summ:\n {summ}\n", f"vafid:\n {vafid}\n", f"vaflgs:\n {vaflgs}\n", f"vaflgsp:\n {vaflgsp}\n")
+        await ctx.send(f"vaflast:\n {vaflast}\n", f"vaflvl:\n {vaflvl}\n", f"vafranks:\n {vafranks}")
+        #except:
+            #await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
