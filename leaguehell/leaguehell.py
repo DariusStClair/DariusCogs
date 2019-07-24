@@ -11,6 +11,7 @@ import random
 import cassiopeia as cass
 from cassiopeia import Division, Summoner, Rank, MatchHistory, Champion, Champions, ChampionMastery
 
+regchecks = ['BR', 'EUNE', 'EUW', 'JP', 'KR', 'LAN', 'LAS', 'NA', 'OCE', 'TR', 'RU']
 
 cass.set_default_region("EUNE")
 
@@ -41,12 +42,18 @@ class Leaguehell(commands.Cog):
         cass.set_riot_api_key(key)
         await ctx.send(config_boards)
 
-    @commands.command(name="champs")
-    async def champs(self, ctx, *, name: str):
-        """Use !!champs <Summoner name>\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Currently works with EUNE only**"""
+    @commands.command(name="champs", aliases=["champions"])
+    async def champs(self, ctx, name: str, region: str):
+        """Use !!champs <name> [region]\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.**"""
         usr = ctx.author
+        if region is None:
+            xreg = "EUNE"
+        elif region in regchecks:
+            xreg = region
+        else:
+            "Invalid region.\nValid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE."
         try:
-            summ = cass.Summoner(name=name)
+            summ = cass.Summoner(name=name, region=xreg)
             dnname = usr.display_name
             sumname = str(summ.name).capitalize()
             em = discord.Embed(colour=15158332)
