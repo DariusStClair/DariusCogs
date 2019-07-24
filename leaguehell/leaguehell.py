@@ -43,7 +43,7 @@ class Leaguehell(commands.Cog):
 
     @commands.command(name="champs")
     async def champs(self, ctx, name: str):
-        """Use !!summoner <name>\nCurrently works with EUNE only"""
+        """Use !!champs <Summoner name>\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Currently works with EUNE only**"""
         usr = ctx.author
         try:
             summ = cass.Summoner(name=name)
@@ -52,12 +52,12 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
-            emdesc = (f"{sumname}'s  champions at level 6+'")
+            emdesc = (f"{sumname}'s  champions at level 5+'")
             em.description = emdesc
             em.url = avstr
             em.set_footer(text=(f"Requested by {dnname} | Powered by HELL"), icon_url=avstr)
             Summoner.champion_masteries
-            gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
+            gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 5)
             for cm in gwith:
                 chname = cm.champion.name
                 cpoints = cm.points
