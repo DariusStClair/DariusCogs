@@ -43,28 +43,24 @@ class Leaguehell(commands.Cog):
         await ctx.send(config_boards)
 
     @commands.command(name="champs", aliases=["champions"])
-    async def champs(self, ctx, name: str, region=None):
+    async def champs(self, ctx, name: str, *, region=None):
         """Use !!champs <name> [region]\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.**"""
         usr = ctx.author
-        if region is None:
-            xreg = "EUNE"
-            await ctx.send(f">DEBUG: Reg is defaulting ({xreg})")
-            pass
-        elif region in regchecks:
-            xreg = region.upper()
-            await ctx.send(f">DEBUG: Reg is {xreg}")
-            pass
+        if region is None or in regchecks:
+            if None: xreg = "EUNE" else: xreg = region.upper()
+            await ctx.send(f">DEBUG: Reg is set as: ({xreg}) = ({region})")
         else:
             xreg = region.upper()
-            await ctx.send(f">DEBUG: Invalid region ({xreg}).\n>Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.")
+            await ctx.send(f">DEBUG: Invalid region ({xreg}).\n>Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \n>If no [region] is specified it defaults to EUNE.")
         try:
             summ = cass.Summoner(name=name, region=xreg)
+            sreg = summ.region
             dnname = usr.display_name
             sumname = str(summ.name).upper()
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
-            emdesc = (f"{sumname}'s  champions at level 6 and above.'")
+            emdesc = (f"{sumname}'s  champions at level 6 and above in {sreg}:")
             em.description = emdesc
             em.url = avstr
             em.set_footer(text=(f"Requested by {dnname} | Powered by HELL"), icon_url=avstr)
