@@ -60,13 +60,12 @@ class Leaguehell(commands.Cog):
             return
         try:
             summ = cass.Summoner(name=name, region=xreg)
-            sreg = summ.region
             dnname = usr.display_name
             sumname = str(summ.name).upper()
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
-            emdesc = (f"{sumname}'s  champions at level 6 and above in {sreg}:")
+            emdesc = (f"{sumname}'s  champions at level 6 and above in {xreg}:")
             em.description = emdesc
             em.url = avstr
             em.set_footer(text=(f"Requested by {dnname} | Powered by HELL"), icon_url=avstr)
