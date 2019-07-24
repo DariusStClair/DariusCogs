@@ -29,7 +29,6 @@ class Leaguehell(commands.Cog):
         self.config.register_global(**default_global)
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
-        self.cass.set_riot_api_key()
 
 
     @checks.is_owner()
@@ -37,7 +36,7 @@ class Leaguehell(commands.Cog):
     async def leagueapi(self, ctx, *, key):
         """Set a key to use the league api"""
         config_boards = await self.config.leagueapikey()
-        await self.cass.set_riot_api_key(key)
+        cass.set_riot_api_key(key)
         await ctx.send(config_boards)
 
     @commands.command(name="summoner")
