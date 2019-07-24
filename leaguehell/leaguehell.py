@@ -42,7 +42,6 @@ class Leaguehell(commands.Cog):
     @commands.command(name="champs")
     async def champs(self, ctx, name: str):
         """Use !!summoner <name>\nCurrently works with EUNE only"""
-        summ = cass.Summoner(name=name)
         try:
             summ = cass.Summoner(name=name)
         except:
