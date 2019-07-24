@@ -106,10 +106,13 @@ class Leaguehell(commands.Cog):
         vafid = summ.account_id 
         vaflgs = summ.leagues
         vaflgsp = summ.league_positions
-        #vaflast = summ.rank_last_season
         vaflvl = summ.level
         vafranks = summ.ranks
-        await ctx.send(f"summ:\n {summ}\n", f"vafid:\n {vafid}\n", f"vaflgs:\n {vaflgs}\n", f"vaflgsp:\n {vaflgsp}\n")
-        await ctx.send(f"vaflvl:\n {vaflvl}\n", f"vafranks:\n {vafranks}")
+        await ctx.send(f"summ:\n {summ}\n")
+        await ctx.send(f"vafid:\n {vafid}\n")
+        await ctx.send(f"vaflgs:\n {vaflgs}\n")
+        await ctx.send(f"vaflgsp:\n {vaflgsp}\n")
+        await ctx.send(f"vaflvl:\n {vaflvl}\n")
+        await ctx.send(f"vafranks:\n {vafranks}")
         #except:
-            #await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
+        #    await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
