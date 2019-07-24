@@ -42,7 +42,7 @@ class Leaguehell(commands.Cog):
         await ctx.send(config_boards)
 
     @commands.command(name="champs")
-    async def champs(self, ctx, name: str):
+    async def champs(self, *, ctx, name: str):
         """Use !!champs <Summoner name>\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Currently works with EUNE only**"""
         usr = ctx.author
         try:
