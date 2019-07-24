@@ -105,6 +105,6 @@ class Leaguehell(commands.Cog):
         summ = cass.Summoner(name=name, region=xreg)
         mhistory = MatchHistory(summoner=summ, end_index=10)
         await ctx.send(f"summ:\n {summ}\n")
-        await ctx.send(f"mhistory:\n {MatchHistory}\n")
+        await ctx.send(f"mhistory:\n {mhistory}\n")
         #except:
         #    await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
