@@ -66,4 +66,4 @@ class Leaguehell(commands.Cog):
                 em.add_field(name=(f"{chname} lvl {clvl}"), value=(f"At {cpoints} points. {cmtokens} tokens"), inline=True)
             await ctx.send(embed=em)
         except:
-            await ctx.send(">Shitter's clogged, buddy")
+            await ctx.send(">Shitter's clogged, buddy\n>**Protip: If your summoner name has special symbols (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".")
