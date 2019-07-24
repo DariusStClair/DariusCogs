@@ -47,17 +47,18 @@ class Leaguehell(commands.Cog):
         """Use !!champs <name> [region]\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.**"""
         usr = ctx.author
         if region is None:
-            await ctx.send(">Reg is defaulting")
+            xreg = "EUNE"
+            await ctx.send(f">DEBUG: Reg is defaulting ({xreg})")
             pass
         elif region in regchecks:
             xreg = region.capitalize()
-            await ctx.send(f">Reg is {xreg}")
+            await ctx.send(f">DEBUG: Reg is {xreg}")
         else:
-            await ctx.send(">Invalid region.\nValid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.")
+            await ctx.send(f">DEBUG: Invalid region ({xreg}).\n>Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.")
         try:
             summ = cass.Summoner(name=name, region=xreg)
             dnname = usr.display_name
-            sumname = str(summ.name).capitalize()
+            sumname = str(summ.name).upper()
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
