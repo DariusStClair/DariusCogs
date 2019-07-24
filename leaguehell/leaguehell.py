@@ -55,10 +55,10 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
-            emdesc = (f"{dnname} ({sumname})'s  champions at level 6+'")
+            emdesc = (f"{sumname}'s  champions at level 6+'")
             em.description = emdesc
             em.url = avstr
-            em.set_footer(text="Powered by HELL", icon_url=avstr)
+            em.set_footer(text=(f"Requested by {dname}| Powered by HELL"), icon_url=avstr)
             gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
             for cm in gwith:
                 chname = cm.champion.name
