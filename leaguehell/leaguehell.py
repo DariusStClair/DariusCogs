@@ -66,5 +66,5 @@ class Leaguehell(commands.Cog):
                 cpointstoding = cm.points_until_next_level 
                 clvl = cm.level
                 cthing = cm.icon_url
-                em.add_field(name=(f"{chname} lvl {clvl}"), value=(f"At {cpoints} points. [test]({cthing} 'test')", inline=True)
+                em.add_field(name=(f"{chname} lvl {clvl}"), value=(f"At {cpoints} points. [test]({cthing})", inline=True)
             await ctx.send(embed=em)
