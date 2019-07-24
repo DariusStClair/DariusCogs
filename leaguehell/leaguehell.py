@@ -39,8 +39,8 @@ class Leaguehell(commands.Cog):
         cass.set_riot_api_key(key)
         await ctx.send(config_boards)
 
-    @commands.command(name="summoner")
-    async def summoner(self, ctx, name: str):
+    @commands.command(name="champs")
+    async def champs(self, ctx, name: str):
         """Use !!summoner <name>\nCurrently works with EUNE only"""
         summ = cass.Summoner(name=name)
         gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
