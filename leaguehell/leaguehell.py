@@ -47,9 +47,6 @@ class Leaguehell(commands.Cog):
         usr = ctx.author
         try:
             summ = cass.Summoner(name=name)
-        except (AttributeError, TypeError, NotFoundError):
-            await ctx.send(">Shitter's clogged, buddy")
-        else:
             dnname = usr.display_name
             sumname = str(summ.name).capitalize()
             em = discord.Embed(colour=15158332)
@@ -59,6 +56,7 @@ class Leaguehell(commands.Cog):
             em.description = emdesc
             em.url = avstr
             em.set_footer(text=(f"Requested by {dnname} | Powered by HELL"), icon_url=avstr)
+            Summoner.champion_masteries
             gwith = summ.champion_masteries.filter(lambda cm: cm.level >= 6)
             for cm in gwith:
                 chname = cm.champion.name
@@ -66,3 +64,5 @@ class Leaguehell(commands.Cog):
                 clvl = cm.level
                 em.add_field(name=(f"{chname} lvl {clvl}"), value=(f"At {cpoints} points."), inline=True)
             await ctx.send(embed=em)
+        except:
+            await ctx.send(">Shitter's clogged, buddy")
