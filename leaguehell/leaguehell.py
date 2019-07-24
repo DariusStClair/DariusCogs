@@ -51,7 +51,7 @@ class Leaguehell(commands.Cog):
             await ctx.send(">Shitter's clogged, buddy")
         else:
             dnname = usr.display_name
-            sumname = summ.name
+            sumname = str(summ.name).capitalize()
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
