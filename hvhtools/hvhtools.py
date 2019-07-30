@@ -82,8 +82,8 @@ class Hvhtools(commands.Cog):
         emen += linken
         emen += ")"
         embed = discord.Embed(colour=15158332)
+        embed.add_field(name=":flag_us:", value=emen)
         embed.add_field(name=":flag_ru:", value=emgru)
         embed.add_field(name=":flag_bg:", value=embg)
-        embed.add_field(name=":flag_us:", value=emen)
         embed.set_footer(text=footer)
         await ctx.send (embed=embed)
