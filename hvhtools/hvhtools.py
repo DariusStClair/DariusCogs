@@ -70,11 +70,20 @@ class Hvhtools(commands.Cog):
     @hvh.command()
     async def links(self, ctx, linkru = None, linkbg = None, linken = None):
         emgru = "[Нажмите здесь, чтобы перейти к правилам на русском языке]"
+        emgru += "("
+        emgru += linkru
+        emgru += ")"
         embg = "[Щракнете тук, за да преминете към правилата на български език]"
-        emen = "[ :flag_en: Click here to jump to the rules in English]"
+        embg += "("
+        embg += linkbg
+        embg += ")"
+        emen = "[Click here to jump to the rules in English]"
+        emen += "("
+        emen += linken
+        emen += ")"
         embed = discord.Embed(colour=15158332, description=u'\u200b')
-        embed.add_field(name=":flag_ru:", value=emgru + (linkru))
-        embed.add_field(name=":flag_bg:", value=embg + (linkbg))
-        embed.add_field(name=":flag_en:", value=emen + (linken))
+        embed.add_field(name=":flag_ru:", value=emgru)
+        embed.add_field(name=":flag_bg:", value=embg)
+        embed.add_field(name=":flag_en:", value=emen)
         embed.set_footer(text=footer)
         await ctx.send (embed=embed)
