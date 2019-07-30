@@ -1,6 +1,7 @@
 # Discord
 import discord
 # Red
+from discord import Message, message
 from redbot.core import checks, Config, commands
 from redbot.core.utils.chat_formatting import bold, box, inline
 # Libs
@@ -66,3 +67,14 @@ class Hvhtools(commands.Cog):
         emen.add_field(name="9. Забранено е да поствате  във всички канали  / хакове, включително, но не само, DLL файлове, EXE, инжектори, грабъри и т.н. Това ще се наказва със БАН или МЮТ.", value=u'\u200b', inline=False)
         emen.set_footer(text=footer)
         await ctx.send(embed=emen)
+    @hvh.command()
+    async def links(self, ctx, linkru = None, linkbg = None, linken = None):
+        emgru = "[Нажмите здесь, чтобы перейти к правилам на русском языке]"
+        embg = "[Щракнете тук, за да преминете към правилата на български език]"
+        emen = "[ :flag_en: Click here to jump to the rules in English]"
+        embed = discord.Embed(colour=15158332, description=u'\u200b')
+        embed.add_field(name=":flag_ru:", value=emgru + (linkru))
+        embed.add_field(name=":flag_bg:", value=embg + (linkbg))
+        embed.add_field(name=":flag_en:", value=emen + (linken))
+        embed.set_footer(text=footer)
+        await ctx.send (embed=embed)
