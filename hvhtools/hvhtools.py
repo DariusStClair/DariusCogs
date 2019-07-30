@@ -25,7 +25,7 @@ class Hvhtools(commands.Cog):
         emen = discord.Embed(colour=15158332, description=":flag_us:")
         emen.add_field(name="1. Be respectful and act civil.", value=u'\u200b', inline=False)
         emen.set_footer(text=footer)
-        await ctx.send(emen)
+        await ctx.send(embed=emen)
 
     @hvh.command()
     async def rulesru(self, ctx):
