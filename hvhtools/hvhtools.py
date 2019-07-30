@@ -19,18 +19,15 @@ class Hvhtools(commands.Cog):
 
     @hvh.command()
     async def rulesen(self, ctx):
-        """Embeds the rules in:
-        English"""
+        """Embeds the rules in: **English**"""
         await ctx.send('Test en')
 
     @hvh.command()
     async def rulesru(self, ctx):
-        """Embeds the rules in:
-        Russian"""
+        """Embeds the rules in: **Russian**"""
         await ctx.send('Test ru')
 
     @hvh.command()
     async def rulesbg(self, ctx):
-        """Embeds the rules in:
-        Bulgarian"""
+        """Embeds the rules in: **Bulgarian**"""
         await ctx.send('Test bg')
