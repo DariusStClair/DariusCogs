@@ -1,0 +1,10 @@
+{
+    "author" : "Darius#0069",
+    "install_msg" : "If you aren't installing this in the HVH server idk what the fuck are you doing",
+    "name" : "Hvhtools",
+    "short" : "HVH Tools",
+    "description" : "Tools for the HVH server",
+    "disabled" : false,
+    "tags" : ["tools"],
+    "min_python_version": [3, 7, 0]
+}
