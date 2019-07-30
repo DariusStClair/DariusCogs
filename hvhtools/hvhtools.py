@@ -68,7 +68,7 @@ class Hvhtools(commands.Cog):
         emen.set_footer(text=footer)
         await ctx.send(embed=emen)
     @hvh.command()
-    async def links(self, ctx, linkru = None, linkbg = None, linken = None):
+    async def links(self, ctx, linken = None, linkru = None, linkbg = None):
         emgru = "[Нажмите здесь, чтобы перейти к правилам на русском языке.]"
         emgru += "("
         emgru += linkru
