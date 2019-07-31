@@ -28,4 +28,4 @@ Credits
 
 [The entirety of the support server. They can never have enough appreciation for the amount of things they're doing as a community.](https://discord.gg/GET4DVk)
 
-[All the cog creators, because I ain't not even remotely close to a beginner and had to learn from somewhere.](https://github.com/Cog-Creators)
+[All the cog creators, because I ain't even remotely close to a beginner and had to learn from somewhere.](https://github.com/Cog-Creators)
