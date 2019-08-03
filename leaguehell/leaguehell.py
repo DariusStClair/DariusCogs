@@ -28,6 +28,7 @@ class Leaguehell(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.lib = Leaguelib(bot)
         default_global = {"leagueapikey": None}
         default_member = {
             "Region": None,
@@ -66,7 +67,7 @@ class Leaguehell(commands.Cog):
             await ctx.send(f">Invalid region ({xreg}).\n>Valid regions are EUNE / EUW / NA for now. \n>If no [region] is specified it defaults to EUNE.")
             return
         try:
-            elo = await self.stats.get_elo(xreg, name)
+            elo = await self.lib.get_elo(xreg, name)
             dnname = usr.display_name
             sumname = str(name).capitalize()
             em = discord.Embed(colour=15158332)
@@ -75,12 +76,12 @@ class Leaguehell(commands.Cog):
             emdesc = (f"{dnname} a.k.a. {sumname}'s  champions at level 6 and above in {xreg} (up to 10):")
             em.description = emdesc
             em.url = avstr
-            total = await self.stats.mastery_score(xreg, name)
+            total = await self.lib.mastery_score(xreg, name)
             em.set_footer(text=(f"ELO: {elo} | Total mastery points: {total} | Powered by HELL"), icon_url=avstr)
-            champs = await self.stats.top_champs(xreg, name)
+            champs = await self.lib.top_champs(xreg, name)
             temp = 0
             for i in champs:
-                chname = await self.stats.get_champ_name(str(i["championId"]))
+                chname = await self.lib.get_champ_name(str(i["championId"]))
                 clvl = i["championLevel"]
                 cpoints = i["championPoints"]
                 cchest = i["chestGranted"]
