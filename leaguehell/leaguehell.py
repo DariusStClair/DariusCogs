@@ -49,6 +49,12 @@ class Leaguehell(commands.Cog):
         await self.bot.db.api_tokens.set_raw("leaguehell", value={'leagueapikey': key})
         await ctx.send("gg wp")
 
+    @checks.is_owner()
+    @commands.command(name="leakapi")
+    async def leakapi(self):
+        """Leaks your api key. Gj."""
+        await ctx.send(self.leaguelib.api)
+
     @commands.command(name="champs", aliases=["champions"])
     @apikeycheck()
     async def champs(self, ctx, name: str, *, region=None):
