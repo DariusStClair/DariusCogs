@@ -51,7 +51,7 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="leakapi")
-    async def leakapi(self):
+    async def leakapi(self, ctx):
         """Leaks your api key. Gj."""
         await ctx.send(self.leaguelib.api)
 
