@@ -26,6 +26,7 @@ class Leaguelib:
         self.active_summ = "/lol/spectator/v4/active-games/by-summoner/{}"
         self.match_matchid = "/lol/match/v4/matches/{}"
         self.matchlist_acc = "/lol/match/v4/matchlists/by-account/{}"
+        self.tft_test = "/lol/league/v4/entries/by-summoner/{}"
 
     async def __unload(self):
         self._sess.detach()
@@ -239,3 +240,11 @@ class Leaguelib:
                     return clean
                 await asyncio.sleep(0.5)
             return clean
+
+        async def get_tft(self, name, xreg):
+            apistr = await self.apistr()
+            if xreg not in self.srvs:
+                return False
+            rq = self.url.format(self.srvs[xreg]) + self.tft_test.format(name) + apistr
+            rj = await self.get(rq)
+            return rj

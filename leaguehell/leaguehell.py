@@ -111,5 +111,5 @@ class Leaguehell(commands.Cog):
         if xreg.lower() == "none":
             xreg = "eun1"
             return xreg
-        uhelo = await self.lib.get_elo(name, xreg)
+        uhelo = await self.lib.get_tft(name, xreg)
         await ctx.send(f"> DEBUG: {uhelo}")
