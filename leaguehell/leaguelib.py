@@ -47,7 +47,7 @@ class Leaguelib:
         return rj["puuid"]
 
     async def get_aid(self, name, xreg):
-        apistr - await self.apistr()
+        apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
         rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
@@ -55,7 +55,7 @@ class Leaguelib:
         return rj["accountId"]
 
     async def get_sid(self, name, xreg):
-        apistr - await self.apistr()
+        apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
         rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
@@ -64,7 +64,7 @@ class Leaguelib:
     
     async def get_champ_masteries(self, name, xreg):
         summid = await self.get_sid(xreg, name)
-        apistr - await self.apistr()
+        apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
         rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/champion-masteries/by-summoner/{}".format(summid) + apistr()
@@ -73,7 +73,7 @@ class Leaguelib:
 
     async def get_mastery(self, name, xreg):
         summid = await self.get_sid(xreg, name)
-        apistr - await self.apistr()
+        apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
         rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/scores/by-summoner/{}".format(summid) + apistr()
