@@ -118,14 +118,14 @@ class Leaguelib:
         return res
 
     async def get_elo(self, name, xreg):
-        summid = await self.get_sid(xreg, name)
+        summid = await self.get_sid(name, xreg)
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
         rq = self.url.format(self.srvs[xreg]) + "/lol/league/v4/positions/by-summoner/{}".format(summid) + apistr
         rj = await self.get(rq)
         if rj != []:
-            dct = js[0]
+            dct = rj[0]
             res = dct["tier"] + " " + dct["rank"] + " " + str(dct["leaguepoints"]) + " LP"
         else:
             res = "Unranked"
@@ -145,7 +145,7 @@ class Leaguelib:
                 gamemode = "Normal 5vs5"
 
         else:
-            gamemode = " ".join([js["gameMode"], js["gameType"]])
+            gamemode = " ".join([rj["gameMode"], rj["gameType"]])
         res = {}
         res["gamemode"] = "{} is currently playing {}".format(name, gamemode)
         res["team1"] = {}

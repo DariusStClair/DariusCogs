@@ -56,15 +56,15 @@ class Leaguehell(commands.Cog):
         usr = ctx.author 
         if region is None:
             xreg = "EUNE"
-            await ctx.send(f">DEBUG: Reg is set as: ({xreg}) = ({region})")
+            await ctx.send(f"> DEBUG: Reg is set as: ({xreg}) = ({region})")
             pass
         elif region.upper() in regchecks:
             xreg = region.upper()
-            await ctx.send(f">DEBUG: Reg is set as: ({xreg}) = ({region})")
+            await ctx.send(f"> DEBUG: Reg is set as: ({xreg}) = ({region})")
             pass
         else:
             xreg = region.upper()
-            await ctx.send(f">Invalid region ({xreg}).\n>Valid regions are EUNE / EUW / NA for now. \n>If no [region] is specified it defaults to EUNE.")
+            await ctx.send(f"> Invalid region ({xreg}).\n> Valid regions are EUNE / EUW / NA for now. \n> If no [region] is specified it defaults to EUNE.")
             return
         try:
             elo = await self.lib.get_elo(xreg, name)
@@ -97,4 +97,13 @@ class Leaguehell(commands.Cog):
                 await asyncio.sleep(0.5)
             await ctx.send(embed=em)
         except:
-            await ctx.send(">Shitter's clogged, buddy. \n>Yes, that's an error.\n>**Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
+            await ctx.send("> Shitter's clogged, buddy. \n> Yes, that's an error.\n> **Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
+
+    @commands.command(name="lhtest")
+    async def lhtest(self, ctx, name, xreg):
+        usr = ctx.author
+        if xreg.lower() == "none":
+            xreg = "EUNE"
+            return xreg
+        uhelo = await self.get_elo(name, xreg)
+        await ctx.send(f"> DEBUG: {uhelo}")
