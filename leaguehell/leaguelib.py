@@ -243,6 +243,10 @@ class Leaguelib:
 
     async def get_tft(self, name, xreg):
         apistr = await self.apistr()
+        summid = await self.get_aid(xreg, name)
+        failure = "Failure to fetch summoner id"
+        if not summid:
+            return failure
         if xreg not in self.srvs:
             return False
         rq = self.url.format(self.srvs[xreg]) + self.tft_test.format(name) + apistr
