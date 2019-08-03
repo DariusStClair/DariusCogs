@@ -55,8 +55,7 @@ class Leaguelib:
             return False
         rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
         rj = await self.get(rq)
-        #return rj["puuid"]
-        return rq
+        return rj["puuid"]
 
     async def get_aid(self, name, xreg):
         apistr = await self.apistr()
@@ -75,7 +74,7 @@ class Leaguelib:
         return rj["id"]
     
     async def get_champ_masteries(self, name, xreg):
-        summid = await self.get_sid(xreg, name)
+        summid = await self.get_sid(name, xreg)
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
@@ -84,7 +83,7 @@ class Leaguelib:
         return rj
 
     async def get_mastery(self, name, xreg):
-        summid = await self.get_sid(xreg, name)
+        summid = await self.get_sid(name, xreg)
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
@@ -118,7 +117,7 @@ class Leaguelib:
         return "Wtf champ we"
 
     async def get_champ_mastery(self, name, xreg, idchamp):
-        summid = await self.get_sid(xreg, name)
+        summid = await self.get_sid(name, xreg)
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
@@ -145,7 +144,7 @@ class Leaguelib:
         #return res
     
     async def game_info(self, name, xreg):
-        summid = await self.get_sid(xreg, name)
+        summid = await self.get_sid(name, xreg)
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
