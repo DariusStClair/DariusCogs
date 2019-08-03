@@ -53,7 +53,7 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leakapi")
     async def leakapi(self, ctx):
         """Leaks your api key. Gj."""
-        await ctx.send(self.lib.api)
+        await ctx.send(self.lib._getapi)
 
     @commands.command(name="champs", aliases=["champions"])
     @apikeycheck()
