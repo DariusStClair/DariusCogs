@@ -125,7 +125,7 @@ class Leaguelib:
         rq = self.url.format(self.srvs[xreg]) + "/lol/league/v4/positions/by-summoner/{}".format(summid) + apistr
         rj = await self.get(rq)
         if rj != []:
-            dct = rj[0]
+            dct = rj['0']
             res = dct["tier"] + " " + dct["rank"] + " " + str(dct["leaguepoints"]) + " LP"
         else:
             res = "Unranked"
