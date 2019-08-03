@@ -38,45 +38,45 @@ class Leaguelib:
         async with self._sess.get(url) as r:
             return await r.json()
 
-    async def get_puuid(self, name, region):
+    async def get_puuid(self, name, xreg):
         apistr = await self.apistr()
-        if region not in self.srvs:
+        if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[region]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
         rj = await self.get(rq)
         return rj["puuid"]
 
-    async def get_aid(self, name, region):
+    async def get_aid(self, name, xreg):
         apistr - await self.apistr()
-        if region not in self.srvs:
+        if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[region]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
         rj = await self.get(rq)
         return rj["accountId"]
 
-    async def get_sid(self, name, region):
+    async def get_sid(self, name, xreg):
         apistr - await self.apistr()
-        if region not in self.srvs:
+        if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[region]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
         rj = await self.get(rq)
         return rj["id"]
     
-    async def get_champ_masteries(self, summoner, region):
-        summid = await self.get_sid(region, summoner)
+    async def get_champ_masteries(self, name, xreg):
+        summid = await self.get_sid(xreg, name)
         apistr - await self.apistr()
-        if region not in self.srvs:
+        if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[region]) + "/lol/summoner/v4/summoners/champion-masteries/by-summoner/{}".format(summid) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/champion-masteries/by-summoner/{}".format(summid) + apistr()
         rj = await self.get(rq)
         return rj
 
-    async def get_mastery(self, summoner, region):
-        summid = await self.get_sid(region, summoner)
+    async def get_mastery(self, name, xreg):
+        summid = await self.get_sid(xreg, name)
         apistr - await self.apistr()
-        if region not in self.srvs:
+        if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[region]) + "/lol/summoner/v4/summoners/scores/by-summoner/{}".format(summid) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/scores/by-summoner/{}".format(summid) + apistr()
         rj = await self.get(rq)
         return rj
 
@@ -105,24 +105,24 @@ class Leaguelib:
                 return champ[i]["key"]
         return "Wtf champ we"
 
-    async def get_champ_mastery(self, summoner, region, idchamp):
-        summid = await self.get_sid(region, summoner)
+    async def get_champ_mastery(self, name, xreg, idchamp):
+        summid = await self.get_sid(xreg, name)
         apistr = await self.apistr()
-        if region not in self.srvs:
+        if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[region]) + "/lol/champion-mastery/v4/champion-masteries/by-summoner/{}/by-champion/{}".format(summid, champid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + "/lol/champion-mastery/v4/champion-masteries/by-summoner/{}/by-champion/{}".format(summid, champid) + apistr
         rj = await self.get(rq)
         res = {}
         res["mastery"] = rj["championLevel"]
         res["points"] = rj["championPoints"]
         return res
 
-    async def get_elo(self, summoner, region):
-        summid = await self.get_sid(region, summoner)
+    async def get_elo(self, name, xreg):
+        summid = await self.get_sid(xreg, name)
         apistr = await self.apistr()
-        if region not in self.srvs:
+        if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[region]) + "/lol/league/v4/positions/by-summoner/{}".format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + "/lol/league/v4/positions/by-summoner/{}".format(summid) + apistr
         rj = await self.get(rq)
         if rj != []:
             dct = js[0]
@@ -131,12 +131,12 @@ class Leaguelib:
             res = "Unranked"
         return res
     
-    async def game_info(self, summoner, region):
-        summid = await self.get_sid(region, summoner)
+    async def game_info(self, name, xreg):
+        summid = await self.get_sid(xreg, name)
         apistr = await self.apistr()
-        if region not in self.srvs:
+        if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[region]) + "/lol/spectator/v4/active-games/by-summoner/{}".format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + "/lol/spectator/v4/active-games/by-summoner/{}".format(summid) + apistr
         rj = await self.get(rq)
         if rj["gameMode"] == "CLASSIC":
             if rj["gameType"] == "MATCHED_GAME":
@@ -147,7 +147,7 @@ class Leaguelib:
         else:
             gamemode = " ".join([js["gameMode"], js["gameType"]])
         res = {}
-        res["gamemode"] = "{} is currently playing {}".format(summoner, gamemode)
+        res["gamemode"] = "{} is currently playing {}".format(name, gamemode)
         res["team1"] = {}
         res["team2"] = {}
         res["team1"]["bans"] = {}
@@ -166,29 +166,29 @@ class Leaguelib:
             sumname = i["summonerName"]
             champ = await self.get_champ_name(str(i["championId"]))
             name = sumname + ": " + champ
-            elo = await self.get_elo(region, sumname)
+            elo = await self.get_elo(xreg, sumname)
             if i["teamId"] == 100:
                 res["team1"]["players"][name] = elo
             else:
                 res["team2"]["players"][name] = elo
         return res
 
-        async def get_match(self, region, matchid):
+        async def get_match(self, xreg, matchid):
             apistr = await self.apistr()
-            if region not in self.srvs:
+            if xreg not in self.srvs:
                 return False
-            rq = self.url.format(self.srvs[region]) + "/lol/match/v4/matches/{}".format(matchid) + apistr
+            rq = self.url.format(self.srvs[xreg]) + "/lol/match/v4/matches/{}".format(matchid) + apistr
             rj = await self.get(rq)
             return rj
         
-        async def get_history(self, cpt, summoner, region):
-            summid = await self.get_aid(region, summoner)
+        async def get_history(self, cpt, name, xreg):
+            summid = await self.get_aid(xreg, name)
             if not summid:
                 return False
             apistr = await self.apistr()
-            if region not in self.srvs:
+            if xreg not in self.srvs:
                 return False
-            rq = self.url.format(self.srvs[region]) + "/lol/match/v4/matchlists/by-account/{}".format(sumid) + apistr
+            rq = self.url.format(self.srvs[xreg]) + "/lol/match/v4/matchlists/by-account/{}".format(sumid) + apistr
             rj = await self.get(rq)
             clean = {}
             count = 0
@@ -198,7 +198,7 @@ class Leaguelib:
                 temp["role"] = i["lane"]
                 if temp["role"].lower() == "none":
                     temp["role"] = i["role"]
-                match = await self.get_match(region, i["gameId"])
+                match = await self.get_match(xreg, i["gameId"])
                 osf = floor((match["gameDuration"])/60)
                 temp["Duration"] = str(osf) + ":" + str(match["gameDuration"] - (osf*60))
                 temp["Gamemode"] = match["gameMode"]
