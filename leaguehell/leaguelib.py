@@ -42,7 +42,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr
         rj = await self.get(rq)
         return rj["puuid"]
 
@@ -50,7 +50,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr
         rj = await self.get(rq)
         return rj["accountId"]
 
@@ -58,7 +58,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr
         rj = await self.get(rq)
         return rj["id"]
     
@@ -67,7 +67,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/champion-masteries/by-summoner/{}".format(summid) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/champion-masteries/by-summoner/{}".format(summid) + apistr
         rj = await self.get(rq)
         return rj
 
@@ -76,7 +76,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/scores/by-summoner/{}".format(summid) + apistr()
+        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/scores/by-summoner/{}".format(summid) + apistr
         rj = await self.get(rq)
         return rj
 
