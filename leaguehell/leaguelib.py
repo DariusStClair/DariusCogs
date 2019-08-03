@@ -9,7 +9,7 @@ class Leaguelib:
         self.bot = bot
         self.api = None
         self.champs = None
-        self._sess = aiohtttp.ClientSession()
+        self._sess = aiohttp.ClientSession()
         self.srvs = {
             "eune": "eun1",
             "euw": "euw1",
