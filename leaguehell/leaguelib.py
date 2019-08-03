@@ -242,12 +242,12 @@ class Leaguelib:
             return clean
 
     async def get_tft(self, name, xreg):
-        summid = await self.get_sid(xreg, name)
+        summid = await self.get_sid(name, xreg)
         if not summid:
             return False
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + self.tft_test.format(name) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.tft_test.format(summid) + apistr
         rj = await self.get(rq)
         return rj
