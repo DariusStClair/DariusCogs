@@ -55,7 +55,8 @@ class Leaguelib:
             return False
         rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
         rj = await self.get(rq)
-        return rj["puuid"]
+        #return rj["puuid"]
+        return rq
 
     async def get_aid(self, name, xreg):
         apistr = await self.apistr()

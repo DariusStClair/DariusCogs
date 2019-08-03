@@ -108,9 +108,8 @@ class Leaguehell(commands.Cog):
 
     @commands.command(name="lhtest")
     async def lhtest(self, ctx, name, xreg):
-        usr = ctx.author
         if xreg.lower() == "none":
-            xreg = "EUNE"
+            xreg = "eun1"
             return xreg
-        uhelo = await self.lib.get_elo(name, xreg)
+        uhelo = await self.lib.get_puuid(name, xreg)
         await ctx.send(f"> DEBUG: {uhelo}")
