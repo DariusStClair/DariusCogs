@@ -45,7 +45,7 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leagueapi")
     async def leagueapi(self, ctx, *, key):
         """Set a key to use the league api"""
-        await self.bot.db.api_tokens.set_raw("leaguehell", value={'api_key': key})
+        await self.bot.db.api_tokens.set_raw("leaguehell", value={'leagueapikey': key})
         await ctx.send("gg wp")
 
     @commands.command(name="champs", aliases=["champions"])
@@ -72,11 +72,11 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             av = usr.avatar_url
             avstr = str(av)
-            emdesc = (f"{sumname}'s  champions at level 6 and above in {xreg} (up to 10):")
+            emdesc = (f"{dnname} a.k.a. {sumname}'s  champions at level 6 and above in {xreg} (up to 10):")
             em.description = emdesc
             em.url = avstr
             total = await self.stats.mastery_score(xreg, name)
-            em.set_footer(text=(f"Total mastery points: {total} | Powered by HELL"), icon_url=avstr)
+            em.set_footer(text=(f"ELO: {elo} | Total mastery points: {total} | Powered by HELL"), icon_url=avstr)
             champs = await self.stats.top_champs(xreg, name)
             temp = 0
             for i in champs:
