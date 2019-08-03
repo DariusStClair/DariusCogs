@@ -77,7 +77,7 @@ class Leaguehell(commands.Cog):
             em.url = avstr
             total = await self.stats.mastery_score(xreg, name)
             em.set_footer(text=(f"Total mastery points: {total} | Powered by HELL"), icon_url=avstr)
-            champs = await.self.stats.top_champs(xreg, name)
+            champs = await self.stats.top_champs(xreg, name)
             temp = 0
             for i in champs:
                 chname = await self.stats.get_champ_name(str(i["championId"]))
