@@ -241,10 +241,10 @@ class Leaguelib:
                 await asyncio.sleep(0.5)
             return clean
 
-        async def get_tft(self, name, xreg):
-            apistr = await self.apistr()
-            if xreg not in self.srvs:
-                return False
-            rq = self.url.format(self.srvs[xreg]) + self.tft_test.format(name) + apistr
-            rj = await self.get(rq)
-            return rj
+    async def get_tft(self, name, xreg):
+        apistr = await self.apistr()
+        if xreg not in self.srvs:
+            return False
+        rq = self.url.format(self.srvs[xreg]) + self.tft_test.format(name) + apistr
+        rj = await self.get(rq)
+        return rj
