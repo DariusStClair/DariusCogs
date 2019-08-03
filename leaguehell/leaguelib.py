@@ -53,7 +53,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + summ_name.format(name) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
         rj = await self.get(rq)
         return rj["puuid"]
 
@@ -61,7 +61,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + summ_name.format(name) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
         rj = await self.get(rq)
         return rj["accountId"]
 
@@ -69,7 +69,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + summ_name.format(name) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
         rj = await self.get(rq)
         return rj["id"]
     
@@ -78,7 +78,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + mastery_summ.format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.mastery_summ.format(summid) + apistr
         rj = await self.get(rq)
         return rj
 
@@ -87,7 +87,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + scores_summ.format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.scores_summ.format(summid) + apistr
         rj = await self.get(rq)
         return rj
 
@@ -121,7 +121,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + mastery_summchamp.format(summid, champid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.mastery_summchamp.format(summid, champid) + apistr
         rj = await self.get(rq)
         res = {}
         res["mastery"] = rj["championLevel"]
@@ -133,9 +133,9 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + positions_summid.format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.positions_summid.format(summid) + apistr
         rj = await self.get(rq)
-        return = rj
+        return rj
         #if rj != []:
         #    dct = rj[0]
         #    res = dct["tier"] + " " + dct["rank"] + " " + str(dct["leaguepoints"]) + " LP"
@@ -148,7 +148,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + active_summ.format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.active_summ.format(summid) + apistr
         rj = await self.get(rq)
         if rj["gameMode"] == "CLASSIC":
             if rj["gameType"] == "MATCHED_GAME":
@@ -189,7 +189,7 @@ class Leaguelib:
             apistr = await self.apistr()
             if xreg not in self.srvs:
                 return False
-            rq = self.url.format(self.srvs[xreg]) + match_matchid.format(matchid) + apistr
+            rq = self.url.format(self.srvs[xreg]) + self.match_matchid.format(matchid) + apistr
             rj = await self.get(rq)
             return rj
         
@@ -200,7 +200,7 @@ class Leaguelib:
             apistr = await self.apistr()
             if xreg not in self.srvs:
                 return False
-            rq = self.url.format(self.srvs[xreg]) + matchlist_acc.format(sumid) + apistr
+            rq = self.url.format(self.srvs[xreg]) + self.matchlist_acc.format(sumid) + apistr
             rj = await self.get(rq)
             clean = {}
             count = 0
