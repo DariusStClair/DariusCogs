@@ -107,7 +107,7 @@ class Leaguehell(commands.Cog):
             await ctx.send("> Shitter's clogged, buddy. \n> Yes, that's an error.\n> **Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
 
     @commands.command(name="lhtest")
-    async def lhtest(self, ctx, name, xreg : None):
+    async def lhtest(self, ctx, name, xreg):
         if xreg.lower() == "none":
             xreg = "eun1"
             return xreg
