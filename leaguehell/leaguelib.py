@@ -3,6 +3,9 @@ import asyncio
 from math import floor, ceil
 import datetime
 
+
+
+
 class Leaguelib:
     def __init__(self, bot):
         self.url = "https://{}.api.riotgames.com"
@@ -15,6 +18,14 @@ class Leaguelib:
             "euw": "euw1",
             "na": "na1"
         }
+        self.summ_name = "/lol/summoner/v4/summoners/by-name/{}"
+        self.mastery_summ = "/lol/summoner/v4/summoners/champion-masteries/by-summoner/{}"
+        self.scores_summ = "/lol/summoner/v4/summoners/scores/by-summoner/{}"
+        self.mastery_summchamp = "/lol/champion-mastery/v4/champion-masteries/by-summoner/{}/by-champion/{}"
+        self.positions_summid = "/lol/league/v4/positions/by-summoner/{}"
+        self.active_summ = "/lol/spectator/v4/active-games/by-summoner/{}"
+        self.match_matchid = "/lol/match/v4/matches/{}"
+        self.matchlist_acc = "/lol/match/v4/matchlists/by-account/{}"
 
     async def __unload(self):
         self._sess.detach()
@@ -42,7 +53,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr
+        rq = self.url.format(self.srvs[xreg]) + summ_name.format(name) + apistr
         rj = await self.get(rq)
         return rj["puuid"]
 
@@ -50,7 +61,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr
+        rq = self.url.format(self.srvs[xreg]) + summ_name.format(name) + apistr
         rj = await self.get(rq)
         return rj["accountId"]
 
@@ -58,7 +69,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/by-name/{}".format(name) + apistr
+        rq = self.url.format(self.srvs[xreg]) + summ_name.format(name) + apistr
         rj = await self.get(rq)
         return rj["id"]
     
@@ -67,7 +78,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/champion-masteries/by-summoner/{}".format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + mastery_summ.format(summid) + apistr
         rj = await self.get(rq)
         return rj
 
@@ -76,7 +87,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/summoner/v4/summoners/scores/by-summoner/{}".format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + scores_summ.format(summid) + apistr
         rj = await self.get(rq)
         return rj
 
@@ -110,7 +121,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/champion-mastery/v4/champion-masteries/by-summoner/{}/by-champion/{}".format(summid, champid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + mastery_summchamp.format(summid, champid) + apistr
         rj = await self.get(rq)
         res = {}
         res["mastery"] = rj["championLevel"]
@@ -122,21 +133,22 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/league/v4/positions/by-summoner/{}".format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + positions_summid.format(summid) + apistr
         rj = await self.get(rq)
-        if rj != []:
-            dct = rj['0']
-            res = dct["tier"] + " " + dct["rank"] + " " + str(dct["leaguepoints"]) + " LP"
-        else:
-            res = "Unranked"
-        return res
+        return = rj
+        #if rj != []:
+        #    dct = rj[0]
+        #    res = dct["tier"] + " " + dct["rank"] + " " + str(dct["leaguepoints"]) + " LP"
+        #else:
+        #    res = "Unranked"
+        #return res
     
     async def game_info(self, name, xreg):
         summid = await self.get_sid(xreg, name)
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + "/lol/spectator/v4/active-games/by-summoner/{}".format(summid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + active_summ.format(summid) + apistr
         rj = await self.get(rq)
         if rj["gameMode"] == "CLASSIC":
             if rj["gameType"] == "MATCHED_GAME":
@@ -177,7 +189,7 @@ class Leaguelib:
             apistr = await self.apistr()
             if xreg not in self.srvs:
                 return False
-            rq = self.url.format(self.srvs[xreg]) + "/lol/match/v4/matches/{}".format(matchid) + apistr
+            rq = self.url.format(self.srvs[xreg]) + match_matchid.format(matchid) + apistr
             rj = await self.get(rq)
             return rj
         
@@ -188,7 +200,7 @@ class Leaguelib:
             apistr = await self.apistr()
             if xreg not in self.srvs:
                 return False
-            rq = self.url.format(self.srvs[xreg]) + "/lol/match/v4/matchlists/by-account/{}".format(sumid) + apistr
+            rq = self.url.format(self.srvs[xreg]) + matchlist_acc.format(sumid) + apistr
             rj = await self.get(rq)
             clean = {}
             count = 0
