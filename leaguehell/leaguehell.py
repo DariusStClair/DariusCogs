@@ -113,17 +113,12 @@ class Leaguehell(commands.Cog):
             xreg = "eun1"
             return xreg
         uhelo = await self.lib.get_ranked(name, xreg)
-        #summid = await self.lib.sid(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
-        #for i in uhelo:
-        #    await ctx.send(i)
-        #    await asyncio.sleep(0.5)
         em = discord.Embed(colour=15158332)
         em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
         em.description = (f"**{propername}**'s shit:'")
         picon = str(await self.lib.summ_icon(name, xreg))
         em.set_thumbnail(url=picon)
-        #temp = 0
         for i in uhelo:
             queuetype = i["queueType"]
             wins = i["wins"]
@@ -134,5 +129,12 @@ class Leaguehell(commands.Cog):
             em.add_field(name=(f"{queuetype}"), value=(f"**{tier}** {rank} :white_small_square: **{leaguepnts}** LP :white_small_square: Wins/losses: **{wins}**/**{losses}**"), inline=False)
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
-            
-        #await ctx.send(f"> DEBUG: {uhelo}")
+    
+    @commands.command(name="lhistory")
+    async def lhistory(self, ctx, cpt, name, xreg):
+        #author = ctx.author
+        if xreg.lower() == "none":
+            xreg = "eun1"
+            return xreg
+        hstry = await self.lib.get_history(cpt, name, xreg)
+        await ctx.send(hstry)

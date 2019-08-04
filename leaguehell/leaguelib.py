@@ -3,9 +3,6 @@ import asyncio
 from math import floor, ceil
 import datetime
 
-
-
-
 class Leaguelib:
     def __init__(self, bot):
         self.url = "https://{}.api.riotgames.com"
@@ -211,60 +208,60 @@ class Leaguelib:
                 res["team2"]["players"][name] = elo
         return res
 
-        async def get_match(self, xreg, matchid):
-            apistr = await self.apistr()
-            if xreg not in self.srvs:
-                return False
-            rq = self.url.format(self.srvs[xreg]) + self.match_matchid.format(matchid) + apistr
-            rj = await self.get(rq)
-            return rj
+    async def get_match(self, xreg, matchid):
+        apistr = await self.apistr()
+        if xreg not in self.srvs:
+            return False
+        rq = self.url.format(self.srvs[xreg]) + self.match_matchid.format(matchid) + apistr
+        rj = await self.get(rq)
+        return rj
         
-        async def get_history(self, cpt, name, xreg):
-            summid = await self.get_aid(xreg, name)
-            if not summid:
-                return False
-            apistr = await self.apistr()
-            if xreg not in self.srvs:
-                return False
-            rq = self.url.format(self.srvs[xreg]) + self.matchlist_acc.format(sumid) + apistr
-            rj = await self.get(rq)
-            clean = {}
-            count = 0
-            for i in rj["matches"]:
-                temp = {}
-                temp["champ"] = await self.get_champ_name(str(i["champion"]))
-                temp["role"] = i["lane"]
-                if temp["role"].lower() == "none":
-                    temp["role"] = i["role"]
-                match = await self.get_match(xreg, i["gameId"])
-                osf = floor((match["gameDuration"])/60)
-                temp["Duration"] = str(osf) + ":" + str(match["gameDuration"] - (osf*60))
-                temp["Gamemode"] = match["gameMode"]
-                ts = i["timestamp"] /1000
-                temp["hour"] = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y %H:%M:%S')
-                champid = i["champion"]
-                for k in match["participants"]:
-                    if k["championId"] == champid:
-                        tempvar = k
-                        team = k["teamId"]
-                        break
-                for p in match["teams"]:
-                    if p["teamId"] == team:
-                        reslt = p["win"]
-                        break
-                if reslt == "win":
-                    temp["result"] = reslt
-                else:
-                    temp["result"] = "loss"
-                stat = tempvar["stats"]
-                temp["kda"] = str(stat["kills"]) + " kills / " + str(stat["deaths"]) + " deaths / " + str(stat["assists"]) + " assists."
-                temp["gold"] = str(stat["goldEarned"]) + " gold earned."
-                clean[count] = temp
-                count += 1
-                if count == cpt:
-                    return clean
-                await asyncio.sleep(0.5)
-            return clean
+    async def get_history(self, cpt, name, xreg):
+        summid = await self.get_aid(xreg, name)
+        if not summid:
+            return False
+        apistr = await self.apistr()
+        if xreg not in self.srvs:
+            return False
+        rq = self.url.format(self.srvs[xreg]) + self.matchlist_acc.format(sumid) + apistr
+        rj = await self.get(rq)
+        clean = {}
+        count = 0
+        for i in rj["matches"]:
+            temp = {}
+            temp["champ"] = await self.get_champ_name(str(i["champion"]))
+            temp["role"] = i["lane"]
+            if temp["role"].lower() == "none":
+                temp["role"] = i["role"]
+            match = await self.get_match(xreg, i["gameId"])
+            osf = floor((match["gameDuration"])/60)
+            temp["Duration"] = str(osf) + ":" + str(match["gameDuration"] - (osf*60))
+            temp["Gamemode"] = match["gameMode"]
+            ts = i["timestamp"] /1000
+            temp["hour"] = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y %H:%M:%S')
+            champid = i["champion"]
+            for k in match["participants"]:
+                if k["championId"] == champid:
+                    tempvar = k
+                    team = k["teamId"]
+                    break
+            for p in match["teams"]:
+                if p["teamId"] == team:
+                    reslt = p["win"]
+                    break
+            if reslt == "win":
+                temp["result"] = reslt
+            else:
+                temp["result"] = "loss"
+            stat = tempvar["stats"]
+            temp["kda"] = str(stat["kills"]) + " kills / " + str(stat["deaths"]) + " deaths / " + str(stat["assists"]) + " assists."
+            temp["gold"] = str(stat["goldEarned"]) + " gold earned."
+            clean[count] = temp
+            count += 1
+            if count == cpt:
+                return clean
+            await asyncio.sleep(0.5)
+        return clean
 
     async def get_ranked(self, name, xreg):
         summid = await self.get_sid(name, xreg)
