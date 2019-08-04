@@ -137,4 +137,15 @@ class Leaguehell(commands.Cog):
             xreg = "eun1"
             return xreg
         hstry = await self.lib.get_history(name, xreg)
-        await ctx.send(hstry)
+        for i in hstry:
+            champ = i["champ"]
+            role = i["role"]
+            duration = i["Duration"]
+            gamemode = i["Gamemode"]
+            when = i["hour"]
+            result = i["result"]
+            kda = i["kda"]
+            gold = i["gold"]
+            em.add_field(name=(f"{gamemode} on {when} | {duration} long"), value=(f"**{champ}** | {role} | {result} | {kda} | {gold}"), inline=False)
+            await asyncio.sleep(0.5)
+        await ctx.send(embed=em)
