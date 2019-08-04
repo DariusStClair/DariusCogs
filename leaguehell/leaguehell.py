@@ -61,7 +61,7 @@ class Leaguehell(commands.Cog):
     async def champs(self, ctx, name: str, *, xreg=None):
         usr = ctx.author
         if xreg == "None":
-            xreg = "eun1"
+            xreg = "eune"
             return xreg
         #try:
         elo = "Temporarything"
