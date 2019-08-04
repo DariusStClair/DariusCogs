@@ -73,6 +73,14 @@ class Leaguelib:
         rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
         rj = await self.get(rq)
         return rj["id"]
+
+    async def get_prname(self, name, xreg):
+        apistr = await self.apistr()
+        if xreg not in self.srvs:
+            return False
+        rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
+        rj = await self.get(rq)
+        return rj["summonerName"]
     
     async def get_champ_masteries(self, name, xreg):
         summid = await self.get_sid(name, xreg)
@@ -249,5 +257,5 @@ class Leaguelib:
         if xreg not in self.srvs:
             return False
         rq = self.url.format(self.srvs[xreg]) + self.ranked_test.format(summid) + apistr
-        rj = list(await self.get(rq))
+        rj = await self.get(rq)
         return rj

@@ -113,11 +113,12 @@ class Leaguehell(commands.Cog):
             xreg = "eun1"
             return xreg
         uhelo = await self.lib.get_ranked(name, xreg)
+        propername = await self.lib.get_prname(name, xreg)
         #for i in uhelo:
         #    await ctx.send(i)
         #    await asyncio.sleep(0.5)
         em = discord.Embed(colour=15158332)
-        em.set_footer(text="Powered by HELL | version: ***0.00***")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
         em.description = (f"{author}'s shit:'")
         #temp = 0
         for i in uhelo:
