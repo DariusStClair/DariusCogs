@@ -113,11 +113,8 @@ class Leaguehell(commands.Cog):
             xreg = "eun1"
             return xreg
         uhelo = await self.lib.get_ranked(name, xreg)
-        for i in uhelo["tier"]:
-            ugh = {}
-            ugh["w"] = i["wins"]
-            ugh["l"] = i["losses"]
-            await ctx.send(ugh)
+        for i in uhelo:
+            await ctx.send(i)
             await asyncio.sleep(0.5)
         #em = discord.Embed(colour=15158332)
         #em.set_footer(text="Powered by HELL | version: ***0.00***")
