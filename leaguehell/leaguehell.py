@@ -69,12 +69,12 @@ class Leaguehell(commands.Cog):
         sumname = str(name).capitalize()
         em = discord.Embed(colour=15158332)
         av = usr.avatar_url
-        avstr = str(av)
+        icostr = str(await self.lib.summ_icon(name, xreg))
         emdesc = (f"{dnname} a.k.a. {sumname}'s top 6 champions by mastery in {xreg}:")
         em.description = emdesc
-        em.url = avstr
+        em.url = icostr
         total = await self.lib.get_mastery(name, xreg)
-        em.set_footer(text=(f"fffffff: {elo} | Total mastery: {total} | Powered by HELL"), icon_url=avstr)
+        em.set_footer(text=(f"fffffff: {elo} | Total mastery: {total} | Powered by HELL"), icon_url=icostr)
         champs = await self.lib.get_champ_masteries(name, xreg)
         temp = 0
         for i in champs:
@@ -89,7 +89,7 @@ class Leaguehell(commands.Cog):
             cmtokens = "__*WIP*__"
             cmlp = "__*WIP*__"
             em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."), inline=True)
-            if temp >= 6:
+            if temp >= 5:
                 break
             temp += 1
             await asyncio.sleep(0.5)
