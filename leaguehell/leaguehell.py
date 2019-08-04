@@ -114,10 +114,8 @@ class Leaguehell(commands.Cog):
             return xreg
         uhelo = await self.lib.get_ranked(name, xreg)
         for i in uhelo:
-            q = uhelo[i]["tier"]
-            r = uhelo[i]["rank"]
-            lp = uhelo[i]["leaguePoints"]
-            await ctx.send(f"{q} {r} with like {lp} lp.")        
+            await ctx.send(uhelo[i])
+            await asyncio.sleep(0.5)
         #em = discord.Embed(colour=15158332)
         #em.set_footer(text="Powered by HELL | version: ***0.00***")
         #em.description = (f"{author}'s shit:'")
