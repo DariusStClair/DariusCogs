@@ -131,8 +131,9 @@ class Leaguehell(commands.Cog):
         await ctx.send(embed=em)
     
     @commands.command(name="lhistory")
-    async def lhistory(self, ctx, cpt, name, xreg):
+    async def lhistory(self, ctx, name, xreg):
         #author = ctx.author
+        cput = 10
         if xreg.lower() == "none":
             xreg = "eun1"
             return xreg
