@@ -91,6 +91,7 @@ class Leaguehell(commands.Cog):
             em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."), inline=True)
             if temp >= 10:
                 break
+            temp += 1
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
         #except:
