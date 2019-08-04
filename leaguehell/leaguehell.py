@@ -68,7 +68,6 @@ class Leaguehell(commands.Cog):
         dnname = usr.display_name
         sumname = str(name).capitalize()
         em = discord.Embed(colour=15158332)
-        av = usr.avatar_url
         icostr = str(await self.lib.summ_icon(name, xreg))
         emdesc = (f"{dnname} a.k.a. {sumname}'s top 6 champions by mastery in {xreg}:")
         em.description = emdesc
@@ -86,9 +85,9 @@ class Leaguehell(commands.Cog):
                 chest = "Yes"
             else:
                 chest = "No"
-            cmtokens = "__*WIP*__"
-            cmlp = "__*WIP*__"
-            em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."), inline=True)
+            cmtokens = i["tokensEarned"]
+            cmlp = i["lastPlayTime"]
+            em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}** /disregard this for now/."), inline=True)
             if temp >= 5:
                 break
             temp += 1
