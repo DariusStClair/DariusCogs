@@ -118,7 +118,7 @@ class Leaguehell(commands.Cog):
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
         em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
-        xregc.upper()
+        xregc = xreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
         picon = str(await self.lib.summ_icon(name, xreg))
         em.set_thumbnail(url=picon)
