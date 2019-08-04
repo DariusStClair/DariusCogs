@@ -274,3 +274,15 @@ class Leaguelib:
         rq = self.url.format(self.srvs[xreg]) + self.ranked_test.format(summid) + apistr
         rj = await self.get(rq)
         return rj
+
+    async def ranked_q(self, uhelo):
+        rankeds =	{
+        "RANKED_SOLO_5x5": "Solo/duo",
+        "RANKED_TEAM_5x5": "Flex",
+        "RANKED_TEAM_3x3": "3vs3"
+        }
+        try:
+            qtype = uhelo[rankeds["queueType"]]
+        except KeyError:
+            return "Shit happened"
+        return qtype
