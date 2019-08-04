@@ -151,6 +151,7 @@ class Leaguelib:
         res["mastery"] = rj["championLevel"]
         res["points"] = rj["championPoints"]
         return res
+        #return rj
 
     async def get_elo(self, name, xreg):
         summid = await self.get_sid(name, xreg)
