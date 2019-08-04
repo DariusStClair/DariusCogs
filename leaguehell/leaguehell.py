@@ -127,7 +127,7 @@ class Leaguehell(commands.Cog):
         em.description = (f"{xregc} **{propername}** Ranked stats")
         picon = str(await self.lib.summ_icon(name, xreg))
         em.set_thumbnail(url=picon)
-        #uhelo = await self.lib.ranked_q(uhelo)
+        uhelo = await self.lib.ranked_q(uhelo)
         for i in uhelo:
             queuetype = i["queueType"]
             wins = i["wins"]
