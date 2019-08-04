@@ -101,10 +101,10 @@ class Leaguelib:
         if self.champs is None:
             await self.upd_champs()
         champ = self.champs["data"]
-        if idchamp == -1:
+        if champid == -1:
             return "Wut"
         for i in champ:
-            if champ[i]["key"] == idchamp:
+            if champ[i]["key"] == champid:
                 return champ[i]["name"]
 
     async def upd_champs(self):
@@ -139,7 +139,7 @@ class Leaguelib:
                 return champ[i]["key"]
         return "Wtf champ we"
 
-    async def get_champ_mastery(self, name, xreg, idchamp):
+    async def get_champ_mastery(self, name, xreg, champid):
         summid = await self.get_sid(name, xreg)
         apistr = await self.apistr()
         if xreg not in self.srvs:
@@ -240,9 +240,9 @@ class Leaguelib:
             temp["Gamemode"] = match["gameMode"]
             ts = i["timestamp"] /1000
             temp["hour"] = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y %H:%M:%S')
-            champid = i["champion"]
+            achampid = i["champion"]
             for k in match["participants"]:
-                if k["championId"] == champid:
+                if k["championId"] == achampid:
                     tempvar = k
                     team = k["teamId"]
                     break
