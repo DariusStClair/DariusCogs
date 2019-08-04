@@ -20,7 +20,7 @@ BaseCog = getattr(commands, "Cog", object)
 emtitleretriever = "Here, have the goodest doggo"
 emtitleshepherd = "Bork bork something"
 emtitlehusky = "Where's Moon Moon"
-emtitlecoon = "Was it so hard to get here?"
+emtitlecoon = "Here, have a Maine Coon"
 emcolor = 15158332
 
 class Doggos(BaseCog):
