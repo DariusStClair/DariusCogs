@@ -285,7 +285,7 @@ class Leaguelib:
                 i["queueType"] = "Teamfight Tactics"
             if i["queueType"] == "RANKED_FLEX_SR":
                 i["queueType"] = "Flex 5vs5"
-            if i["queueType"] == "RANKED_FLEX_TT"
+            if i["queueType"] == "RANKED_FLEX_TT":
                 i["queueType"] = "Flex 3vs3"
         return rj
 
