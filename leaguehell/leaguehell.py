@@ -24,7 +24,7 @@ def apikeycheck():
     return commands.check(predicate)
 
 class Leaguehell(commands.Cog):
-    """The League Cog for Hell"""
+    """The (__very unfinished__) Hell League Cog"""
 
     def __init__(self, bot):
         self.bot = bot
