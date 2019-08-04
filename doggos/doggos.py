@@ -14,11 +14,13 @@ import aiohttp
 goldenapi = "https://dog.ceo/api/breed/retriever/golden/images/random"
 shepherdapi = "https://dog.ceo/api/breed/germanshepherd/images/random"
 huskyapi = "https://dog.ceo/api/breed/husky/images/random"
+coonapi = "https://api.thecatapi.com/v1/images/search?breed_ids=mcoo"
 
 BaseCog = getattr(commands, "Cog", object)
 emtitleretriever = "Here, have the goodest doggo"
 emtitleshepherd = "Bork bork something"
 emtitlehusky = "Where's Moon Moon"
+emtitlehusky = "Was it so hard to get here?"
 emcolor = 15158332
 
 class Doggos(BaseCog):
@@ -108,6 +110,21 @@ class Doggos(BaseCog):
         embed.set_image(url=emimg)
         embed.description = bold(("[Click to view it in your browser]({url})")).format(url=emimg)
         embed.set_footer(text="               Hell's Doggos are powered by dog.ceo, mozuk Chris")
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    @commands.cooldown(1, 15, commands.BucketType.guild)
+    async def coon(self, ctx):
+        """Shows a random maine coon photo"""
+        async with self.session.get(self.mcooapi) as r:
+            result = await r.json()
+        emimg = str(result[0]['url'])
+        embed = discord.Embed(title=emtitlecoon)
+        embed.url = emimg
+        embed.colour = emcolor
+        embed.set_image(url=emimg)
+        embed.description = bold(("[Click to view it in your browser]({url})")).format(url=emimg)
+        embed.set_footer(text="               Hell's Mialos are powered by thecatapi.com, gj Caine Moon")
         await ctx.send(embed=embed)
 
     @commands.command()
