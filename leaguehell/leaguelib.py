@@ -280,11 +280,13 @@ class Leaguelib:
             if i["queueType"] == "RANKED_TEAM_5x5":
                 i["queueType"] = "Team 5vs5"
             if i["queueType"] == "RANKED_TEAM_3x3":
-                i["queueType"] = "3vs3"
+                i["queueType"] = "Team 3vs3"
             if i["queueType"] == "RANKED_TFT":
                 i["queueType"] = "Teamfight Tactics"
             if i["queueType"] == "RANKED_FLEX_SR":
-                i["queueType"] = "Flex"
+                i["queueType"] = "Flex 5vs5"
+            if i["queueType"] == "RANKED_FLEX_TT"
+                i["queueType"] = "Flex 3vs3"
         return rj
 
     async def ranked_q(self, uhelo):
