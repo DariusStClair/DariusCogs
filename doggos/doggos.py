@@ -32,6 +32,7 @@ class Doggos(BaseCog):
         self.goldenapi = goldenapi
         self.shepherdapi = shepherdapi
         self.huskyapi = huskyapi
+        self.coonapi = coonapi
 
     @commands.command()
     @commands.cooldown(1, 10, commands.BucketType.guild)
