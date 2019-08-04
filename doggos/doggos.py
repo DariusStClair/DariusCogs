@@ -119,7 +119,7 @@ class Doggos(BaseCog):
         """Shows a random maine coon photo"""
         async with self.session.get(self.coonapi) as r:
             result = await r.json()
-        emimg = str(result[0]['url'])
+        emimg = str(result[0]["breeds"][0]['url'])
         embed = discord.Embed(title=emtitlecoon)
         embed.url = emimg
         embed.colour = emcolor
