@@ -69,7 +69,7 @@ class Leaguelib:
             return False
         rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
         rj = await self.get(rq)
-        return rj
+        return rj["id"]
         #return rj["id"]
 
     async def get_prname(self, name, xreg):
