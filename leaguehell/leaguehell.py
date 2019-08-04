@@ -142,7 +142,7 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="gettests")
     async def gettests(self, ctx, name, xreg):
-        wtfwe = await self.lib.get_mastery(name, xreg)
+        wtfwe = await self.lib.get_champ_masteries(name, xreg)
         await ctx.send(wtfwe)
     
     @checks.is_owner()
