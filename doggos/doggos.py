@@ -20,7 +20,7 @@ BaseCog = getattr(commands, "Cog", object)
 emtitleretriever = "Here, have the goodest doggo"
 emtitleshepherd = "Bork bork something"
 emtitlehusky = "Where's Moon Moon"
-emtitlehusky = "Was it so hard to get here?"
+emtitlecoon = "Was it so hard to get here?"
 emcolor = 15158332
 
 class Doggos(BaseCog):
@@ -116,7 +116,7 @@ class Doggos(BaseCog):
     @commands.cooldown(1, 15, commands.BucketType.guild)
     async def coon(self, ctx):
         """Shows a random maine coon photo"""
-        async with self.session.get(self.mcooapi) as r:
+        async with self.session.get(self.coonapi) as r:
             result = await r.json()
         emimg = str(result[0]['url'])
         embed = discord.Embed(title=emtitlecoon)
