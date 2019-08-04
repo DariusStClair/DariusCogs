@@ -138,6 +138,12 @@ class Leaguehell(commands.Cog):
             em.add_field(name=(f"{queuetype}"), value=(f"**{tier}** {rank} :white_small_square: **{leaguepnts}** LP :white_small_square: Wins/losses: **{wins}**/**{losses}**"), inline=False)
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
+
+    @checks.is_owner()
+    @commands.command(name="getid")
+    async def getid(self, ctx, name, xreg):
+        wtfwe = await self.lib.get_sid(name, xreg)
+        await ctx.send(wtfwe)
     
     @checks.is_owner()
     @commands.command(name="lhistory")
