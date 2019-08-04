@@ -110,6 +110,11 @@ class Leaguehell(commands.Cog):
     @commands.command(name="lhtest")
     async def lhtest(self, ctx, name, xreg):
         """... I'm doing something wrong"""
+        #try:
+        #    not_mumbojumbo_anymore_biatch = other_dict[this_dict["queueType"]]
+        #except KeyError:
+        #    await ctx.send("ABORT MISSION! I REPEAT! ABORT MISSION!")
+        #    return
         author = ctx.author
         if xreg.lower() == "none":
             xreg = "eun1"
