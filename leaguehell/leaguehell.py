@@ -130,6 +130,6 @@ class Leaguehell(commands.Cog):
         #   if temp >= 5:
         #        break
         #   await asyncio.sleep(0.5)
-        await ctx.send(embed=em)
+        #await ctx.send(embed=em)
             
         #await ctx.send(f"> DEBUG: {uhelo}")
