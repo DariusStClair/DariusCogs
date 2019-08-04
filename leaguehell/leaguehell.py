@@ -56,56 +56,57 @@ class Leaguehell(commands.Cog):
         db = await self.bot.db.api_tokens.get_raw("leaguehell", default=None)
         await ctx.send(db["leagueapikey"])
 
-    @commands.command(name="champs", aliases=["champions"])
-    @apikeycheck()
-    async def champs(self, ctx, name: str, *, region=None):
-        """Use !!champs <name> [region]\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.**"""
-        usr = ctx.author 
-        if region is None:
-            xreg = "EUNE"
-            await ctx.send(f"> DEBUG: Reg is set as: ({xreg}) = ({region})")
-            pass
-        elif region.upper() in regchecks:
-            xreg = region.upper()
-            await ctx.send(f"> DEBUG: Reg is set as: ({xreg}) = ({region})")
-            pass
-        else:
-            xreg = region.upper()
-            await ctx.send(f"> Invalid region ({xreg}).\n> Valid regions are EUNE / EUW / NA for now. \n> If no [region] is specified it defaults to EUNE.")
-            return
-        try:
-            elo = await self.lib.get_elo(xreg, name)
-            dnname = usr.display_name
-            sumname = str(name).capitalize()
-            em = discord.Embed(colour=15158332)
-            av = usr.avatar_url
-            avstr = str(av)
-            emdesc = (f"{dnname} a.k.a. {sumname}'s  champions at level 6 and above in {xreg} (up to 10):")
-            em.description = emdesc
-            em.url = avstr
-            total = await self.lib.mastery_score(xreg, name)
-            em.set_footer(text=(f"ELO: {elo} | Total mastery points: {total} | Powered by HELL"), icon_url=avstr)
-            champs = await self.lib.top_champs(xreg, name)
-            temp = 0
-            for i in champs:
-                chname = await self.lib.get_champ_name(str(i["championId"]))
-                clvl = i["championLevel"]
-                cpoints = i["championPoints"]
-                cchest = i["chestGranted"]
-                if cchest is True:
-                    chest = "Yes"
-                else:
-                    chest = "No"
-                cmtokens = "__*WIP*__"
-                cmlp = "__*WIP*__"
-                em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."), inline=True)
-                if temp >= 10:
-                    break
-                await asyncio.sleep(0.5)
-            await ctx.send(embed=em)
-        except:
-            await ctx.send("> Shitter's clogged, buddy. \n> Yes, that's an error.\n> **Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
+    #@commands.command(name="champs", aliases=["champions"])
+    #@apikeycheck()
+    #async def champs(self, ctx, name: str, *, region=None):
+    #    """Use !!champs <name> [region]\nIf the summoner name has a lot of special characters use quotes ("Summoner name").\n\n**Valid regions are BR / EUNE / EUW / JP / KR / LAN / LAS / NA / OCE / TR / RU. \nIf no [region] is specified it defaults to EUNE.**"""
+    #    usr = ctx.author 
+    #    if region is None:
+    #        xreg = "EUNE"
+    #        await ctx.send(f"> DEBUG: Reg is set as: ({xreg}) = ({region})")
+    #        pass
+    #    elif region.upper() in regchecks:
+    #        xreg = region.upper()
+    #        await ctx.send(f"> DEBUG: Reg is set as: ({xreg}) = ({region})")
+    #        pass
+    #    else:
+    #        xreg = region.upper()
+    #        await ctx.send(f"> Invalid region ({xreg}).\n> Valid regions are EUNE / EUW / NA for now. \n> If no [region] is specified it defaults to EUNE.")
+    #        return
+    #    try:
+    #        elo = await self.lib.get_elo(xreg, name)
+    #        dnname = usr.display_name
+    #        sumname = str(name).capitalize()
+    #        em = discord.Embed(colour=15158332)
+    #        av = usr.avatar_url
+    #        avstr = str(av)
+    #        emdesc = (f"{dnname} a.k.a. {sumname}'s  champions at level 6 and above in {xreg} (up to 10):")
+    #        em.description = emdesc
+    #        em.url = avstr
+    #        total = await self.lib.mastery_score(xreg, name)
+    #        em.set_footer(text=(f"ELO: {elo} | Total mastery points: {total} | Powered by HELL"), icon_url=avstr)
+    #        champs = await self.lib.top_champs(xreg, name)
+    #        temp = 0
+    #        for i in champs:
+    #            chname = await self.lib.get_champ_name(str(i["championId"]))
+    #            clvl = i["championLevel"]
+    #            cpoints = i["championPoints"]
+    #            cchest = i["chestGranted"]
+    #            if cchest is True:
+    #                chest = "Yes"
+    #            else:
+    #                chest = "No"
+    #            cmtokens = "__*WIP*__"
+    #            cmlp = "__*WIP*__"
+    #            em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."), inline=True)
+    #            if temp >= 10:
+    #                break
+    #            await asyncio.sleep(0.5)
+    #        await ctx.send(embed=em)
+    #    except:
+    #        await ctx.send("> Shitter's clogged, buddy. \n> Yes, that's an error.\n> **Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
 
+    @checks.is_owner()
     @commands.command(name="lhtest")
     async def lhtest(self, ctx, name, xreg):
         author = ctx.author
@@ -130,6 +131,7 @@ class Leaguehell(commands.Cog):
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
     
+    @checks.is_owner()
     @commands.command(name="lhistory")
     async def lhistory(self, ctx, name, xreg):
         author = ctx.author
@@ -146,10 +148,9 @@ class Leaguehell(commands.Cog):
             role = hstry[i]["role"]
             duration = hstry[i]["Duration"]
             gamemode = hstry[i]["Gamemode"]
-            when = hstry[i]["hour"]
             result = hstry[i]["result"]
             kda = hstry[i]["kda"]
             gold = hstry[i]["gold"]
-            em.add_field(name=(f"{gamemode} on {when} | {duration} long"), value=(f"**{champ}** | {role} | {result} | {kda} | {gold}"), inline=False)
+            em.add_field(name=(f"{gamemode} | {duration} minutes"), value=(f"**{champ}** | {role} | {result} | {kda} | {gold}"), inline=False)
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
