@@ -224,7 +224,7 @@ class Leaguelib:
         apistr = await self.apistr()
         if xreg not in self.srvs:
             return False
-        rq = self.url.format(self.srvs[xreg]) + self.matchlist_acc.format(sumid) + apistr
+        rq = self.url.format(self.srvs[xreg]) + self.matchlist_acc.format(summid) + apistr
         rj = await self.get(rq)
         clean = {}
         count = 0
