@@ -114,9 +114,8 @@ class Leaguehell(commands.Cog):
             return xreg
         uhelo = await self.lib.get_tft(name, xreg)
         em = discord.Embed(colour=15158332)
-        emdesc = (f"{author}'s shit:'")
         em.set_footer(text="Powered by HELL | version: ***0.00***")
-        em.description(emdesc)
+        em.description = (f"{author}'s shit:'")
         temp = 0
         for i in uhelo:
             queuetype = uhelo[i]["queueType"]
