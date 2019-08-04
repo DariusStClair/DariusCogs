@@ -109,7 +109,7 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="lhtest")
     async def lhtest(self, ctx, name, xreg):
-        """uh"""
+        """I mean. If I'm reading the help on my own command..."""
         author = ctx.author
         if xreg.lower() == "none":
             xreg = "eun1"
@@ -135,7 +135,7 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="lhistory")
     async def lhistory(self, ctx, name, xreg):
-        """I mean. If I'm reading the help on my own command I'm doing something wrong"""
+        """... I'm doing something wrong"""
         author = ctx.author
         if xreg.lower() == "none":
             xreg = "eun1"
