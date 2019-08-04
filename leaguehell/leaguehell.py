@@ -87,7 +87,7 @@ class Leaguehell(commands.Cog):
                 chest = "No"
             cmtokens = i["tokensEarned"]
             cmlpunix = (i["lastPlayTime"]/1000)
-            cmlp = await self.datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
+            cmlp = await datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
             em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}** /disregard this for now/."), inline=True)
             if temp >= 5:
                 break
