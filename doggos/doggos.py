@@ -119,7 +119,7 @@ class Doggos(BaseCog):
         """Shows a random maine coon photo"""
         async with self.session.get(self.coonapi) as r:
             result = await r.json()
-        emimg = str(result[0]["breeds"][0]['url'])
+        emimg = str(result[0]['url'])
         embed = discord.Embed(title=emtitlecoon)
         embed.url = emimg
         embed.colour = emcolor
@@ -127,6 +127,7 @@ class Doggos(BaseCog):
         embed.description = bold(("[Click to view it in your browser]({url})")).format(url=emimg)
         embed.set_footer(text="               Hell's Mialos are powered by thecatapi.com, gj Caine Moon")
         await ctx.send(embed=embed)
+        await self.session.close()
 
     @commands.command()
     @commands.cooldown(1, 10, commands.BucketType.guild)
