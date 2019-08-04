@@ -121,6 +121,14 @@ class Leaguelib:
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/profileicon/{iconid}.png"
         return rq
 
+    async def ddragon_champico(self, champid):
+        ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
+        version = await self.get(ddragonv)
+        iconid = await self.get_champ_name(champid)
+        rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/{iconid}.png"
+        return rq
+
+
     async def summ_icon(self, name, xreg):
         apistr = await self.apistr()
         if xreg not in self.srvs:
