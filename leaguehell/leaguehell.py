@@ -126,7 +126,7 @@ class Leaguehell(commands.Cog):
             losses = i["losses"]
             tier = i["tier"]
             rank = i["rank"]
-            leaguepnts = i["leaguepoints"]
+            leaguepnts = i["leaguePoints"]
             em.add_field(name=(f"{queuetype}"), value=(f"{tier} {rank} | {leaguepnts} | {wins} {losses}"))
             await asyncio.sleep(0.5)
         #await ctx.send(embed=em)
