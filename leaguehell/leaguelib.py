@@ -216,8 +216,9 @@ class Leaguelib:
         rj = await self.get(rq)
         return rj
         
-    async def get_history(self, cpt, name, xreg):
+    async def get_history(self, name, xreg):
         summid = await self.get_aid(xreg, name)
+        cpt = 5
         if not summid:
             return False
         apistr = await self.apistr()

@@ -133,9 +133,8 @@ class Leaguehell(commands.Cog):
     @commands.command(name="lhistory")
     async def lhistory(self, ctx, name, xreg):
         #author = ctx.author
-        cpt = 5
         if xreg.lower() == "none":
             xreg = "eun1"
             return xreg
-        hstry = await self.lib.get_history(cpt, name, xreg)
+        hstry = await self.lib.get_history(name, xreg)
         await ctx.send(hstry)
