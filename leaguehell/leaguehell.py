@@ -108,15 +108,15 @@ class Leaguehell(commands.Cog):
 
     @commands.command(name="lhtest")
     async def lhtest(self, ctx, name, xreg):
-        author = ctx.author
+        #author = ctx.author
         if xreg.lower() == "none":
             xreg = "eun1"
             return xreg
-        uhelo = await self.lib.get_tft(name, xreg)
-        for i in uhelo():
-            q = uhelo["tier"]
-            r = uhelo["rank"]
-            lp = uhelo["leaguePoints"]
+        uhelo = await self.lib.get_ranked(name, xreg)
+        for i in uhelo:
+            q = uhelo[i]["tier"]
+            r = uhelo[i]["rank"]
+            lp = uhelo[i]["leaguePoints"]
             await ctx.send(f"{q} {r} with like {lp} lp.")        
         #em = discord.Embed(colour=15158332)
         #em.set_footer(text="Powered by HELL | version: ***0.00***")
