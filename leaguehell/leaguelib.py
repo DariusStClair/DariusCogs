@@ -16,7 +16,7 @@ class Leaguelib:
             "na": "na1"
         }
         self.summ_name = "/lol/summoner/v4/summoners/by-name/{}"
-        self.mastery_summ = "/lol/summoner/v4/summoners/champion-masteries/by-summoner/{}"
+        self.mastery_summ = "/lol/champion-mastery/v4/champion-masteries/by-summoner/{}"
         self.scores_summ = "/lol/summoner/v4/summoners/scores/by-summoner/{}"
         self.mastery_summchamp = "/lol/champion-mastery/v4/champion-masteries/by-summoner/{}/by-champion/{}"
         self.positions_summid = "/lol/league/v4/positions/by-summoner/{}"
