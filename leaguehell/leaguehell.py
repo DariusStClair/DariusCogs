@@ -113,7 +113,11 @@ class Leaguehell(commands.Cog):
             xreg = "eun1"
             return xreg
         uhelo = await self.lib.get_tft(name, xreg)
-        await ctx.send(uhelo[0]["rank"])
+        for i in uhelo():
+            q = uhelo["tier"]
+            r = uhelo["rank"]
+            lp = uhelo["leaguePoints"]
+            await ctx.send(f"{q} {r} with like {lp} lp.")        
         #em = discord.Embed(colour=15158332)
         #em.set_footer(text="Powered by HELL | version: ***0.00***")
         #em.description = (f"{author}'s shit:'")
