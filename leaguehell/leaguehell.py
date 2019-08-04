@@ -113,6 +113,7 @@ class Leaguehell(commands.Cog):
             xreg = "eun1"
             return xreg
         uhelo = await self.lib.get_ranked(name, xreg)
+        #summid = await self.lib.sid(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
         #for i in uhelo:
         #    await ctx.send(i)
@@ -120,6 +121,8 @@ class Leaguehell(commands.Cog):
         em = discord.Embed(colour=15158332)
         em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
         em.description = (f"**{propername}**'s shit:'")
+        picon = str(await self.lib.summ_icon(name, xreg))
+        em.set_thumbnail(url=picon)
         #temp = 0
         for i in uhelo:
             queuetype = i["queueType"]

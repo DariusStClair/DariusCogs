@@ -80,7 +80,7 @@ class Leaguelib:
             return False
         rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
         rj = await self.get(rq)
-        return rj["summonerName"]
+        return rj["name"]
     
     async def get_champ_masteries(self, name, xreg):
         summid = await self.get_sid(name, xreg)
@@ -115,6 +115,23 @@ class Leaguelib:
         version = await self.get(ddragonv)
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/data/en_US/champion.json"
         self.champs = await self.get(rq)
+
+    async def ddragon_icon(self, pid):
+        ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
+        version = await self.get(ddragonv)
+        iconid = pid
+        rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/profileicon/{iconid}.png"
+        return rq
+
+    async def summ_icon(self, name, xreg):
+        apistr = await self.apistr()
+        if xreg not in self.srvs:
+            return False
+        rq = self.url.format(self.srvs[xreg]) + self.summ_name.format(name) + apistr
+        rj = await self.get(rq)
+        pid = rj["profileIconId"]
+        iconimg = await self.ddragon_icon(pid)
+        return iconimg
 
     async def get_champid(self, *name):
         if self.champs is None:
