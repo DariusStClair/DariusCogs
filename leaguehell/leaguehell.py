@@ -116,7 +116,7 @@ class Leaguehell(commands.Cog):
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
         em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
-        em.description = (f"**{propername}**'s shit:'")
+        em.description = (f"**{propername}**'s shit:")
         picon = str(await self.lib.summ_icon(name, xreg))
         em.set_thumbnail(url=picon)
         for i in uhelo:
@@ -132,20 +132,24 @@ class Leaguehell(commands.Cog):
     
     @commands.command(name="lhistory")
     async def lhistory(self, ctx, name, xreg):
-        #author = ctx.author
+        author = ctx.author
         if xreg.lower() == "none":
             xreg = "eun1"
             return xreg
         hstry = await self.lib.get_history(name, xreg)
+        propername = await self.lib.get_prname(name, xreg)
+        em = discord.Embed(colour=15158332)
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
+        em.description = (f"**{propername}**'s shit:")
         for i in hstry:
-            champ = i["champ"]
-            role = i["role"]
-            duration = i["Duration"]
-            gamemode = i["Gamemode"]
-            when = i["hour"]
-            result = i["result"]
-            kda = i["kda"]
-            gold = i["gold"]
+            champ = hstry[i]["champ"]
+            role = hstry[i]["role"]
+            duration = hstry[i]["Duration"]
+            gamemode = hstry[i]["Gamemode"]
+            when = hstry[i]["hour"]
+            result = hstry[i]["result"]
+            kda = hstry[i]["kda"]
+            gold = hstry[i]["gold"]
             em.add_field(name=(f"{gamemode} on {when} | {duration} long"), value=(f"**{champ}** | {role} | {result} | {kda} | {gold}"), inline=False)
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
