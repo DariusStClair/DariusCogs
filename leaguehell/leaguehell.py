@@ -60,7 +60,7 @@ class Leaguehell(commands.Cog):
     @apikeycheck()
     async def champs(self, ctx, name: str, *, xreg=None):
         usr = ctx.author
-        if xreg.lower() == "none":
+        if xreg == "None":
             xreg = "eun1"
             return xreg
         #try:
