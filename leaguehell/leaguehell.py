@@ -113,7 +113,7 @@ class Leaguehell(commands.Cog):
             xreg = "eun1"
             return xreg
         uhelo = await self.lib.get_tft(name, xreg)
-        await ctx.send(uhelo[0])
+        await ctx.send(uhelo[0]["rank"])
         #em = discord.Embed(colour=15158332)
         #em.set_footer(text="Powered by HELL | version: ***0.00***")
         #em.description = (f"{author}'s shit:'")
@@ -127,9 +127,9 @@ class Leaguehell(commands.Cog):
         #    leaguepnts = uhelo[i]["leaguepoints"]
         #    em.add_field(name=(f"{queuetype}"), value=(f"{tier} {rank} | {leaguepnts} | {wins} {losses}"))
         #    temp += 1
-        #    if temp >= 5:
+        #   if temp >= 5:
         #        break
-        #    await asyncio.sleep(0.5)
-        #await ctx.send(embed=em)
-        #    
+        #   await asyncio.sleep(0.5)
+        await ctx.send(embed=em)
+            
         #await ctx.send(f"> DEBUG: {uhelo}")
