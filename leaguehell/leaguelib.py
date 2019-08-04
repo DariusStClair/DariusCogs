@@ -274,6 +274,15 @@ class Leaguelib:
             return False
         rq = self.url.format(self.srvs[xreg]) + self.ranked_test.format(summid) + apistr
         rj = await self.get(rq)
+        for i in rj:
+            if i["queueType"] == "RANKED_SOLO_5x5":
+                i["queueType"] = "Solo/duo"
+            if i["queueType"] == "RANKED_TEAM_5x5":
+                i["queueType"] = "Flex"
+            if i["queueType"] == "RANKED_TEAM_3x3":
+                i["queueType"] = "3vs3"
+            if i["queueType"] == "RANKED_TFT":
+                i["queueType"] = "Teamfight Tactics"
         return rj
 
     async def ranked_q(self, uhelo):

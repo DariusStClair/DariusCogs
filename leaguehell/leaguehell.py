@@ -127,7 +127,7 @@ class Leaguehell(commands.Cog):
         em.description = (f"{xregc} **{propername}** Ranked stats")
         picon = str(await self.lib.summ_icon(name, xreg))
         em.set_thumbnail(url=picon)
-        uhelo = await self.lib.ranked_q(uhelo)
+        #uhelo = await self.lib.ranked_q(uhelo)
         for i in uhelo:
             queuetype = i["queueType"]
             wins = i["wins"]
@@ -141,8 +141,8 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="getid")
-    async def getid(self, ctx, name, xreg):
-        wtfwe = await self.lib.get_sid(name, xreg)
+    async def gettests(self, ctx, name, xreg):
+        wtfwe = await self.lib.get_ranked(name, xreg)
         await ctx.send(wtfwe)
     
     @checks.is_owner()
