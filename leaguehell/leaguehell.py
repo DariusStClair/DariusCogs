@@ -59,12 +59,14 @@ class Leaguehell(commands.Cog):
         """Tell us about yourself. Or type in some bullshit, I don't care"""
         server = ctx.guild
         author = ctx.author
-        author_is_mod = self.bot.is_mod(author)
-        if not user:
-            user = author
-        await ctx.send(author)
-        asyncio.sleep(0.5)
-        await ctx.send(author_is_mod)
+        if await self.bot.is_mod(author):
+            if not user:
+                user = author
+                return user
+            else:
+                await ctx.send("You can't set other people's nicknames")
+                break
+        await ctx.send(user)
         #db = await self.config.guild(server).db()
         #if user.id in db:
         #    await self.config.member(user).Name.set(name)
