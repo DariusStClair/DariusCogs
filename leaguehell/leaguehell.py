@@ -112,6 +112,7 @@ class Leaguehell(commands.Cog):
         db = await self.bot.db.api_tokens.get_raw("leaguehell", default=None)
         await ctx.send(db["leagueapikey"])
 
+    @checks.is_owner()
     @commands.command(name="champs", aliases=["champions"])
     @apikeycheck()
     async def champs(self, ctx, name: str, *, xreg=None):
