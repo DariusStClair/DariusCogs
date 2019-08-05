@@ -70,12 +70,12 @@ class Leaguehell(commands.Cog):
     #######################
     # League Name subgroup
     #######################
-    @league.group()
-    async def name(self, ctx, user: discord.Member=None):
-        author = ctx.author
-        if not user:
-            tar = author
-        
+    #@league.group()
+    #async def name(self, ctx, user: discord.Member=None):
+    #    author = ctx.author
+    #    if not user:
+    #        tar = author
+    #    
     # 
     @league.group()
     async def update(self, ctx):
