@@ -63,11 +63,12 @@ class Leaguehell(commands.Cog):
 
     @commands.group(name="league", no_pm=True)
     async def league(self, ctx):
-        """Update the things in your profile"""
+        """Check / update the things in your profile"""
         pass
 
     @league.group()
     async def update(self, ctx):
+        """Update the things in your profile"""
         pass
 
     @update.command(pass_context=True, no_pm=True)
@@ -75,6 +76,7 @@ class Leaguehell(commands.Cog):
         """Set your league nickname"""
         server = ctx.guild
         author = ctx.author
+        anick = author.nickname
         tar = None
         checkmod = await self.check_modadmin(author)
         if not user:
@@ -93,14 +95,14 @@ class Leaguehell(commands.Cog):
             if tar.id in db:
                 await self.config.member(tar).Name.set(name)
                 data = discord.Embed(colour=0xff0000)
-                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value="wip")
+                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {anick}")
                 await ctx.send(embed=data)
             else:
                 db.append(tar.id)
                 await self.config.guild(server).db.set(db)
                 await self.config.member(tar).Name.set(name)
                 data = discord.Embed(colour=0xff0000)
-                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value="wip")
+                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {anick}")
                 await ctx.send(embed=data)
         except:
             pass
