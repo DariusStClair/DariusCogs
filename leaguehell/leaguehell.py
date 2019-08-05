@@ -65,7 +65,8 @@ class Leaguehell(commands.Cog):
                 return user
             else:
                 await ctx.send("You can't set other people's nicknames")
-        await ctx.send(user)
+        resp = f"This should set **{name}** to **{user}**"
+        await ctx.send(resp)
         #db = await self.config.guild(server).db()
         #if user.id in db:
         #    await self.config.member(user).Name.set(name)
