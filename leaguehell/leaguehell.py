@@ -66,7 +66,11 @@ class Leaguehell(commands.Cog):
         """Update the things in your profile"""
         pass
 
-    @league.command(pass_context=True, no_pm=True)
+    @league.group()
+    async def update(self, ctx):
+        pass
+
+    @update.command(pass_context=True, no_pm=True)
     async def name(self, ctx, name, user: discord.Member=None):
         """Tell us about yourself. Or type in some bullshit, I don't care"""
         server = ctx.guild
@@ -84,19 +88,22 @@ class Leaguehell(commands.Cog):
                 else:
                     await ctx.send("You can't set other people's nicknames")
         #await ctx.send(f"> __**DEBUG**__ \nTar is set to {tar}\nCaller is {author}\nCheck is {checkmod}\nVar is set to {name}")
-        db = await self.config.guild(server).db()
-        if tar.id in db:
-            await self.config.member(tar).Name.set(name)
-            data = discord.Embed(colour=0xff0000)
-            data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value="wip")
-            await ctx.send(embed=data)
-        else:
-            db.append(tar.id)
-            await self.config.guild(server).db.set(db)
-            await self.config.member(tar).Name.set(name)
-            data = discord.Embed(colour=0xff0000)
-            data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value="wip")
-            await ctx.send(embed=data)
+        try:
+            db = await self.config.guild(server).db()
+            if tar.id in db:
+                await self.config.member(tar).Name.set(name)
+                data = discord.Embed(colour=0xff0000)
+                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value="wip")
+                await ctx.send(embed=data)
+            else:
+                db.append(tar.id)
+                await self.config.guild(server).db.set(db)
+                await self.config.member(tar).Name.set(name)
+                data = discord.Embed(colour=0xff0000)
+                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value="wip")
+                await ctx.send(embed=data)
+        except:
+            pass
 
     @checks.is_owner()
     @commands.command(name="leakapi")
