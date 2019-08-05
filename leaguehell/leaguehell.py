@@ -61,11 +61,22 @@ class Leaguehell(commands.Cog):
         await self.bot.db.api_tokens.set_raw("leaguehell", value={'leagueapikey': key})
         await ctx.send("gg wp")
 
+    # League group
     @commands.group(name="league", no_pm=True)
     async def league(self, ctx):
         """Check / update the things in your profile"""
         pass
 
+    #######################
+    # League Name subgroup
+    #######################
+    @league.group()
+    async def name(self, ctx, user: discord.Member=None):
+        author = ctx.author
+        if not user:
+            tar = author
+        
+    # 
     @league.group()
     async def update(self, ctx):
         """Update the things in your profile"""
@@ -76,7 +87,6 @@ class Leaguehell(commands.Cog):
         """Set your league nickname"""
         server = ctx.guild
         author = ctx.author
-        anick = author.nickname
         tar = None
         checkmod = await self.check_modadmin(author)
         if not user:
@@ -95,7 +105,7 @@ class Leaguehell(commands.Cog):
             if tar.id in db:
                 await self.config.member(tar).Name.set(name)
                 data = discord.Embed(colour=0xff0000)
-                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {anick}")
+                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {author}")
                 await ctx.send(embed=data)
             else:
                 db.append(tar.id)
