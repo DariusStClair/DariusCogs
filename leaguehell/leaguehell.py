@@ -72,7 +72,7 @@ class Leaguehell(commands.Cog):
 
     @update.command(pass_context=True, no_pm=True)
     async def name(self, ctx, name, user: discord.Member=None):
-        """Tell us about yourself. Or type in some bullshit, I don't care"""
+        """Set your league nickname"""
         server = ctx.guild
         author = ctx.author
         tar = None
