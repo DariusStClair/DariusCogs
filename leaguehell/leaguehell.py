@@ -83,30 +83,20 @@ class Leaguehell(commands.Cog):
                     tar = author
                 else:
                     await ctx.send("You can't set other people's nicknames")
-        await ctx.send(f"> __**DEBUG**__ \nTar is set to {tar}\nCaller is {author}\nCheck is {checkmod}\nVar is set to {name}")
-        #if not user:
-        #    tar = author
-        #if await self.check_modadmin(author) is False and tar not author:
-        #    You 
-        #
-        #else:
-        #    await ctx.send("You can't set other people's nicknames")
-        #resp = f"This should assign **{name}** to **{tar}**"
-        #resp = checkmod
-        #await ctx.send(resp)
-        #db = await self.config.guild(server).db()
-        #if tar.id in db:
-        #    await self.config.member(tar).Name.set(name)
-        #    data = discord.Embed(colour=0xff0000)
-        #    data.add_field(name="You've successfuly added your nickname",value="You have updated your About Me: \n\n'**{}**'".format(name))
-        #    await ctx.send(embed=data)
-        #else:
-        #    db.append(tar.id)
-        #    await self.config.guild(server).db.set(db)
-        #    await self.config.member(tar).Name.set(name)
-        #    data = discord.Embed(colour=0xff0000)
-        #    data.add_field(name="You've successfuly added your nickname",value="You have updated your About Me: \n\n'**{}**'".format(name))
-        #    await ctx.send(embed=data)
+        #await ctx.send(f"> __**DEBUG**__ \nTar is set to {tar}\nCaller is {author}\nCheck is {checkmod}\nVar is set to {name}")
+        db = await self.config.guild(server).db()
+        if tar.id in db:
+            await self.config.member(tar).Name.set(name)
+            data = discord.Embed(colour=0xff0000)
+            data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value="wip")
+            await ctx.send(embed=data)
+        else:
+            db.append(tar.id)
+            await self.config.guild(server).db.set(db)
+            await self.config.member(tar).Name.set(name)
+            data = discord.Embed(colour=0xff0000)
+            data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value="wip")
+            await ctx.send(embed=data)
 
     @checks.is_owner()
     @commands.command(name="leakapi")
