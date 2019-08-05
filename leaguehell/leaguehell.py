@@ -31,8 +31,8 @@ class Leaguehell(commands.Cog):
         self.lib = Leaguelib(bot)
         default_global = {"leagueapikey": None}
         default_member = {
-            "Region": None,
-            "Summoner": None,
+            "Name": None,
+            "Region": "eune",
         }
         default_guild = {
             "db": []
@@ -48,6 +48,36 @@ class Leaguehell(commands.Cog):
         """Set a key to use the league api"""
         await self.bot.db.api_tokens.set_raw("leaguehell", value={'leagueapikey': key})
         await ctx.send("gg wp")
+
+    @commands.group(name="league", no_pm=True)
+    async def league(self, ctx):
+        """Update the things in your profile"""
+        pass
+
+    @league.command(pass_context=True, no_pm=True)
+    async def name(self, ctx, *, user: discord.Member=None, name):
+        """Tell us about yourself. Or type in some bullshit, I don't care"""
+        server = ctx.guild
+        author = ctx.author
+        author_is_mod = self.bot.is_mod(author)
+        if not user:
+            user = author
+        await ctx.send(author)
+        asyncio.sleep(0.5)
+        await ctx.send(author_is_mod)
+        #db = await self.config.guild(server).db()
+        #if user.id in db:
+        #    await self.config.member(user).Name.set(name)
+        #    data = discord.Embed(colour=0xff0000)
+        #    data.add_field(name="You've successfuly added your nickname",value="You have updated your About Me: \n\n'**{}**'".format(name))
+        #    await ctx.send(embed=data)
+        #else:
+        #    db.append(user.id)
+        #    await self.config.guild(server).db.set(db)
+        #    await self.config.member(user).Name.set(name)
+        #    data = discord.Embed(colour=0xff0000)
+        #    data.add_field(name="You've successfuly added your nickname",value="You have updated your About Me: \n\n'**{}**'".format(name))
+        #    await ctx.send(embed=data)
 
     @checks.is_owner()
     @commands.command(name="leakapi")
