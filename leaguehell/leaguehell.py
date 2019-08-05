@@ -55,7 +55,7 @@ class Leaguehell(commands.Cog):
         pass
 
     @league.command(pass_context=True, no_pm=True)
-    async def name(self, ctx, user: discord.Member=None, name):
+    async def name(self, ctx, name, user: discord.Member=None):
         """Tell us about yourself. Or type in some bullshit, I don't care"""
         server = ctx.guild
         author = ctx.author
