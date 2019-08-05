@@ -72,6 +72,14 @@ class Leaguehell(commands.Cog):
         server = ctx.guild
         author = ctx.author
         checkmod = await self.check_modadmin(author)
+        if not user:
+            tar author
+        else:
+            if checkmod is True:
+                tar = user
+            else:
+                await ctx.send("You can't set other people's nicknames")
+        await ctx.send(f"> DEBUG \nVar is set to {tar}\nCaller is {author}\nCheck is {checkmod}")
         #if not user:
         #    tar = author
         #if await self.check_modadmin(author) is False and tar not author:
@@ -80,8 +88,8 @@ class Leaguehell(commands.Cog):
         #else:
         #    await ctx.send("You can't set other people's nicknames")
         #resp = f"This should assign **{name}** to **{tar}**"
-        resp = checkmod
-        await ctx.send(resp)
+        #resp = checkmod
+        #await ctx.send(resp)
         #db = await self.config.guild(server).db()
         #if tar.id in db:
         #    await self.config.member(tar).Name.set(name)
