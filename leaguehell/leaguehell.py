@@ -79,8 +79,11 @@ class Leaguehell(commands.Cog):
             if checkmod is True:
                 tar = user
             else:
-                await ctx.send("You can't set other people's nicknames")
-        await ctx.send(f"> __**DEBUG**__ \nVar is set to {tar}\nCaller is {author}\nCheck is {checkmod}")
+                if user == author:
+                    tar = author
+                else:
+                    await ctx.send("You can't set other people's nicknames")
+        await ctx.send(f"> __**DEBUG**__ \nTar is set to {tar}\nCaller is {author}\nCheck is {checkmod}\nVar is set to {name}")
         #if not user:
         #    tar = author
         #if await self.check_modadmin(author) is False and tar not author:
