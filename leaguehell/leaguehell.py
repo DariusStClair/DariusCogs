@@ -59,24 +59,24 @@ class Leaguehell(commands.Cog):
         """Tell us about yourself. Or type in some bullshit, I don't care"""
         server = ctx.guild
         author = ctx.author
-        if await self.bot.is_mod(author):
-            if not user:
-                user = author
-                return user
-            else:
-                await ctx.send("You can't set other people's nicknames")
-        resp = f"This should set **{name}** to **{user}**"
+        if not user:
+            tar = author
+        if user != None and await self.bot.is_mod(author):
+            tar = user
+        else:
+            await ctx.send("You can't set other people's nicknames")
+        resp = f"This should assign **{name}** to **{tar}**"
         await ctx.send(resp)
         #db = await self.config.guild(server).db()
-        #if user.id in db:
-        #    await self.config.member(user).Name.set(name)
+        #if tar.id in db:
+        #    await self.config.member(tar).Name.set(name)
         #    data = discord.Embed(colour=0xff0000)
         #    data.add_field(name="You've successfuly added your nickname",value="You have updated your About Me: \n\n'**{}**'".format(name))
         #    await ctx.send(embed=data)
         #else:
-        #    db.append(user.id)
+        #    db.append(tar.id)
         #    await self.config.guild(server).db.set(db)
-        #    await self.config.member(user).Name.set(name)
+        #    await self.config.member(tar).Name.set(name)
         #    data = discord.Embed(colour=0xff0000)
         #    data.add_field(name="You've successfuly added your nickname",value="You have updated your About Me: \n\n'**{}**'".format(name))
         #    await ctx.send(embed=data)
