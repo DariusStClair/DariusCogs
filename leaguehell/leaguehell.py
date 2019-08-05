@@ -71,6 +71,7 @@ class Leaguehell(commands.Cog):
         """Tell us about yourself. Or type in some bullshit, I don't care"""
         server = ctx.guild
         author = ctx.author
+        tar = None
         checkmod = await self.check_modadmin(author)
         if not user:
             tar = author
