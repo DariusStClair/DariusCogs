@@ -3,6 +3,7 @@ import discord
 # Red stuffs
 from redbot.core import checks, Config, bank, commands
 from redbot.core.utils import mod
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.chat_formatting import bold, box, inline
 # Libs
 import aiohttp
@@ -156,7 +157,8 @@ class Leaguehell(commands.Cog):
         """Leaks your api key. Gj."""
         db = await self.bot.db.api_tokens.get_raw("leaguehell", default=None)
         await ctx.send(db["leagueapikey"])
-
+    
+    # One embed
     @checks.is_owner()
     @league.command(name="champs", aliases=["champions"])
     @apikeycheck()
@@ -165,7 +167,6 @@ class Leaguehell(commands.Cog):
         if not xreg:
             xreg = "eune"
             return xreg
-        #try:
         dnname = usr.display_name
         sumname = str(name).capitalize()
         em = discord.Embed(colour=15158332)
@@ -195,8 +196,41 @@ class Leaguehell(commands.Cog):
             temp += 1
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
-        #except:
-        #    await ctx.send("> Shitter's clogged, buddy. \n> Yes, that's an error.\n> **Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
+        # End of one embed
+
+    # Paginated mastery
+    @checks.is_owner()
+    @league.command(name="pchamps", aliases=["champions"])
+    @apikeycheck()
+    async def pchamps(self, ctx, name, *, xreg=None):
+        usr = ctx.author
+        if not xreg:
+            xreg = "eune"
+            return xreg
+        icostr = str(await self.lib.summ_icon(name, xreg))
+        clist = []
+        dnname = usr.display_name
+        total = await self.lib.get_mastery(name, xreg)
+        champs = await self.lib.get_champ_masteries(name, xreg)
+        for i in champs:
+            em = discord.Embed(colour=15158332)
+            chname = await self.lib.get_champ_name(str(i["championId"]))
+            chname = await self.lib.get_champ_name(str(i["championId"]))
+            clvl = i["championLevel"]
+            cpoints = i["championPoints"]
+            cchest = i["chestGranted"]
+            if cchest is True:
+                chest = "Yes"
+            else:
+                chest = "No"
+            cmtokens = i["tokensEarned"]
+            cmlpunix = (i["lastPlayTime"]/1000)
+            cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
+            emdesc = f"__**{chname}**__ \nAt **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."
+            em.set_footer(text=(f"/temp/ Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
+            em.description = emdesc
+            clist.append(em)
+        await menu(ctx, clist, DEFAULT_CONTROLS)
 
     @checks.is_owner()
     @league.command(name="lhtest")
