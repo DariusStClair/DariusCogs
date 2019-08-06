@@ -78,15 +78,18 @@ class Leaguehell(commands.Cog):
         db = await self.config.guild(server).db()
         #await ctx.send(box(text=db, lang="py"))
         asyncio.sleep(1)
+        #ugh = await self.config.member().Name
+        tlist = []
         temp = 0
         for i in db:
-            usr = await self.config.member(db(temp)).Name()
-            await ctx.send(box(text=usr, lang="py"))
+            await ctx.send(box(text=i, lang="py"))
+            tlist.append(i)
             asyncio.sleep(1)
             temp += 1
             if temp >= 10:
                 break
-
+        asyncio.sleep(1)
+        await ctx.send(box(text=tlist, lang="py"))
 
     #######################
     # League Name subgroup
