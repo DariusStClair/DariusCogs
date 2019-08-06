@@ -79,13 +79,14 @@ class Leaguehell(commands.Cog):
         #await ctx.send(box(text=db, lang="py"))
         asyncio.sleep(1)
         #ugh = await self.config.member().Name
-        tdict = {}
+        tlist = []
         temp = 0
         for i in db:
             lookupuser = discord.utils.get(ctx.guild.members, id=i)
+            #lookupnick = await self.config.member(lookupuser[])
             #await ctx.send(box(text=i, lang="py"))
             if lookupuser:
-                tdict.update( {i : lookupuser} )
+                tlist.append(lookupuser)
             else:
                 pass
             asyncio.sleep(1)
@@ -93,7 +94,7 @@ class Leaguehell(commands.Cog):
             if temp >= 10:
                 break
         asyncio.sleep(1)
-        await ctx.send(box(text=tdict, lang="py"))
+        await ctx.send(box(text=tlist, lang="py"))
 
     #######################
     # League Name subgroup
