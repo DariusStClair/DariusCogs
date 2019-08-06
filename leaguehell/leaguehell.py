@@ -104,8 +104,8 @@ class Leaguehell(commands.Cog):
         if not user:
             tar = author
         aname = await self.config.member(tar).Name()
-        await ctx.send(box(text=aname, lang="ruby")
-        
+        await ctx.send(box(text=aname, lang="ruby"))
+
     #######################
     # League Name subgroup
     #######################
