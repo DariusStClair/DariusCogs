@@ -212,7 +212,7 @@ class Leaguehell(commands.Cog):
         dnname = usr.display_name
         total = await self.lib.get_mastery(name, xreg)
         champs = await self.lib.get_champ_masteries(name, xreg)
-        #cpage = 1
+        cpage = 1
         #tpages = 0
         for i in champs:
             em = discord.Embed(colour=15158332)
@@ -229,9 +229,10 @@ class Leaguehell(commands.Cog):
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
             emdesc = f"__**{chname}**__ \nAt **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."
-            em.set_footer(text=(f"/Page {i}/ Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
+            em.set_footer(text=(f"/Page {cpage}/ Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
+            cpage += 1
             await asyncio.sleep(0.5)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
