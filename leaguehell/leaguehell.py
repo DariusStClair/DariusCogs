@@ -82,9 +82,12 @@ class Leaguehell(commands.Cog):
         tdict = {}
         temp = 0
         for i in db:
-            lookupuser = await discord.Client.get_user(self, i)
-            await ctx.send(box(text=i, lang="py"))
-            tdict.update( {i : lookupuser} )
+            lookupuser = discord.utils.get(ctx.guild.members, id=i)
+            #await ctx.send(box(text=i, lang="py"))
+            if lookupuser:
+                tdict.update( {i : lookupuser} )
+            else:
+                pass
             asyncio.sleep(1)
             temp += 1
             if temp >= 10:
