@@ -80,7 +80,7 @@ class Leaguehell(commands.Cog):
         asyncio.sleep(1)
         temp = 0
         for i in db:
-            usr = await self.config.member(db[f"{temp}"]).Name()
+            usr = await self.config.member(db(temp)).Name()
             await ctx.send(box(text=usr, lang="py"))
             asyncio.sleep(1)
             temp += 1
