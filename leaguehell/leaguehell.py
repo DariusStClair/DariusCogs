@@ -230,7 +230,9 @@ class Leaguehell(commands.Cog):
             em.set_footer(text=(f"/temp/ Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
-        await menu(ctx, clist, DEFAULT_CONTROLS)
+            await asyncio.sleep(0.5)
+        await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
+
 
     @checks.is_owner()
     @league.command(name="lhtest")
