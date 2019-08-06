@@ -97,6 +97,15 @@ class Leaguehell(commands.Cog):
         asyncio.sleep(1)
         await ctx.send(box(text=tlist, lang="py"))
 
+    @league.command(pass_context=True, no_pm=True)
+    async def name(self, ctx, user: discord.Member=None):
+        server = ctx.guild
+        author = ctx.author
+        if not user:
+            tar = author
+        aname = await self.config.member(tar).Name()
+        await ctx.send(box(text=aname, lang="ruby")
+        
     #######################
     # League Name subgroup
     #######################
@@ -107,13 +116,9 @@ class Leaguehell(commands.Cog):
     #        tar = author
     #    
     # 
-    @league.group()
-    async def update(self, ctx):
-        """Update the things in your profile"""
-        pass
 
-    @update.command(pass_context=True, no_pm=True)
-    async def name(self, ctx, name, user: discord.Member=None):
+    @league.command(pass_context=True, no_pm=True)
+    async def setname(self, ctx, name, user: discord.Member=None):
         """Set your league nickname"""
         server = ctx.guild
         author = ctx.author
@@ -155,7 +160,7 @@ class Leaguehell(commands.Cog):
         await ctx.send(db["leagueapikey"])
 
     @checks.is_owner()
-    @commands.command(name="champs", aliases=["champions"])
+    @league.command(name="champs", aliases=["champions"])
     @apikeycheck()
     async def champs(self, ctx, name: str, *, xreg=None):
         usr = ctx.author
@@ -196,8 +201,8 @@ class Leaguehell(commands.Cog):
         #    await ctx.send("> Shitter's clogged, buddy. \n> Yes, that's an error.\n> **Protip: If your summoner name has special characters (ó / Ø / Θ etc) put it in quotes like \"TóóΘpki\".**")
 
     @checks.is_owner()
-    @commands.command(name="lhtest")
-    async def lhtest(self, ctx, name, xreg):
+    @league.command(name="lhtest")
+    async def ranked(self, ctx, name, xreg):
         """... I'm doing something wrong"""
         #try:
         #    not_mumbojumbo_anymore_biatch = other_dict[this_dict["queueType"]]
@@ -235,8 +240,8 @@ class Leaguehell(commands.Cog):
         await ctx.send(wtfwe)
     
     @checks.is_owner()
-    @commands.command(name="lhistory")
-    async def lhistory(self, ctx, name, xreg):
+    @league.command(name="lhistory")
+    async def history(self, ctx, name, xreg):
         """I mean. If I'm reading the help on my own command..."""
         author = ctx.author
         if xreg.lower() == "none":
