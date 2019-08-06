@@ -82,7 +82,8 @@ class Leaguehell(commands.Cog):
         tlist = []
         temp = 0
         for i in db:
-            lookupuser = discord.utils.get(ctx.guild.members, id=i)
+            #lookupuser = discord.utils.get(ctx.guild.members, id=i)
+            lookupuser = self.bot.get_user(i)
             #lookupnick = await self.config.member(lookupuser[])
             #await ctx.send(box(text=i, lang="py"))
             if lookupuser:
