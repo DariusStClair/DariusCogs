@@ -160,9 +160,9 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @league.command(name="champs", aliases=["champions"])
     @apikeycheck()
-    async def champs(self, ctx, name: str, *, xreg=None):
+    async def champs(self, ctx, name, *, xreg=None):
         usr = ctx.author
-        if xreg == "None":
+        if not xreg:
             xreg = "eune"
             return xreg
         #try:
