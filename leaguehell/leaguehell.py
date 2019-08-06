@@ -71,7 +71,7 @@ class Leaguehell(commands.Cog):
         """Check / update the things in your profile"""
         pass
 
-    # Drophere db
+    # Drophere db gg
     @checks.is_owner()
     @league.command(pass_context=True, no_pm=True)
     async def drophere(self, ctx):
