@@ -99,11 +99,9 @@ class Leaguehell(commands.Cog):
 
     @league.command(pass_context=True, no_pm=True)
     async def name(self, ctx, user: discord.Member=None):
-        server = ctx.guild
-        author = ctx.author
         if not user:
-            tar = author
-        aname = await self.config.member(tar).Name()
+            user = ctx.author
+        aname = await self.config.member(user).Name()
         await ctx.send(box(text=aname, lang="ruby"))
 
     #######################
