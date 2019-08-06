@@ -235,7 +235,7 @@ class Leaguehell(commands.Cog):
             em.description = emdesc
             clist.append(em)
             await asyncio.sleep(0.5)
-        await menu(ctx, clist, 30, DEFAULT_CONTROLS)
+        await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
 
     @checks.is_owner()
