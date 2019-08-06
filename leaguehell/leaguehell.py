@@ -76,12 +76,12 @@ class Leaguehell(commands.Cog):
     async def drophere(self, ctx):
         server = ctx.guild
         db = await self.config.guild(server).db()
-        await ctx.send(box(text=db, lang="py"))
+        #await ctx.send(box(text=db, lang="py"))
         asyncio.sleep(0.5)
         temp = 0
         for i in db:
-            usr = await self.config.member(i).Name()
-            await ctx.send(box(text=usr, lang="py"))
+            #usr = await self.config.member(i).Name()
+            await ctx.send(box(text=i, lang="py"))
             asyncio.sleep(0.5)
             temp += 1
             if temp >= 10:
