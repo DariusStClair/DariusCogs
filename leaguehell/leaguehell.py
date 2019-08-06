@@ -213,7 +213,7 @@ class Leaguehell(commands.Cog):
         total = await self.lib.get_mastery(name, xreg)
         champs = await self.lib.get_champ_masteries(name, xreg)
         cpage = 1
-        tpages = 10
+        #tpages = 10
         for i in champs:
             em = discord.Embed(colour=15158332)
             chname = await self.lib.get_champ_name(str(i["championId"]))
@@ -234,7 +234,7 @@ class Leaguehell(commands.Cog):
             clist.append(em)
             cpage += 1
             await asyncio.sleep(0.5)
-            if cpage == tpages:
+            if cpage == 10:
                 break
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
