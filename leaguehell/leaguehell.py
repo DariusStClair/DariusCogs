@@ -82,7 +82,7 @@ class Leaguehell(commands.Cog):
         tdict = {}
         temp = 0
         for i in db:
-            lookupuser = await ctx.discord.Member.name(i)
+            lookupuser = await discord.Client.get_user(self, i)
             await ctx.send(box(text=i, lang="py"))
             tdict.update( {i : lookupuser} )
             asyncio.sleep(1)
