@@ -77,12 +77,12 @@ class Leaguehell(commands.Cog):
         server = ctx.guild
         db = await self.config.guild(server).db()
         #await ctx.send(box(text=db, lang="py"))
-        asyncio.sleep(0.5)
+        asyncio.sleep(1)
         temp = 0
         for i in db:
-            #usr = await self.config.member(i).Name()
+            usr = await self.config.member(i).Name
             await ctx.send(box(text=i, lang="py"))
-            asyncio.sleep(0.5)
+            asyncio.sleep(1)
             temp += 1
             if temp >= 10:
                 break
