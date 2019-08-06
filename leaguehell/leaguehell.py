@@ -80,8 +80,8 @@ class Leaguehell(commands.Cog):
         asyncio.sleep(1)
         temp = 0
         for i in db:
-            usr = await self.config.member(i).Name
-            await ctx.send(box(text=i, lang="py"))
+            usr = await self.config.member(i).Name()
+            await ctx.send(box(text=usr, lang="py"))
             asyncio.sleep(1)
             temp += 1
             if temp >= 10:
