@@ -17,7 +17,10 @@ regchecks = ["EUNE", "EUW", "NA"]
 def apikeycheck():
     async def predicate(ctx):
         key = await ctx.bot.db.api_tokens.get_raw("leaguehell", default=None)
-        result = True if key["leagueapikey"] else False
+        try:
+            result = True if key["leagueapikey"] else False
+        except:
+            result = False
         if not result and ctx.invoked_with in dir(ctx.bot.get_cog("Leaguehell")):
             await ctx.send("Yo, api key gotta be set first with the 'leagueapi <key>' command")
         return result
@@ -66,6 +69,14 @@ class Leaguehell(commands.Cog):
     async def league(self, ctx):
         """Check / update the things in your profile"""
         pass
+
+    # Drophere db
+    @checks.is_owner()
+    @league.command(pass_context=True, no_pm=True)
+    async def drophere(self, ctx):
+        server = ctx.guild
+        db = await self.config.guild(server).db()
+        await ctx.send(box(text=db, lang="py"))
 
     #######################
     # League Name subgroup
