@@ -129,6 +129,10 @@ class Leaguelib:
         iconid = chnametempr.capitalize()
         if iconid == "Reksai":
             iconid = "RekSai"
+        if iconid == "Jarvan iv":
+            iconid = "JarvanIV"
+        if iconid == "Master yi":
+            iconid = "MasterYi"
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/{iconid}.png"
         return rq
 
