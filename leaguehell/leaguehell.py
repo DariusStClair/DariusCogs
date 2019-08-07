@@ -234,7 +234,7 @@ class Leaguehell(commands.Cog):
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
             em.set_thumbnail(url=chico)
             emdesc = f"__**{chname}**__ \nAt **{cpoints}** points."
-            em.set_footer(text=(f"/Page {cpage}/ Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
+            em.set_footer(text=(f"Page **{cpage}/10** | Total mastery: **{total}** | Requested by **{dnname}** | Powered by HELL"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
             em.add_field(name=f"Level **{clvl}**", value=f"**{cmtokens}** tokens.", inline=False)
