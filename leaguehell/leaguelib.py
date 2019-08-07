@@ -148,8 +148,8 @@ class Leaguelib:
             splashid = "JarvanIV"
         if splashid == "Master yi":
             splashid = "MasterYi"
-        #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.png"
-        rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{splashid}_0.png"
+        #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{splashid}_0.jpg"
         return rq
 
 
