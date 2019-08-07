@@ -233,7 +233,7 @@ class Leaguehell(commands.Cog):
             cmtokens = i["tokensEarned"]
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
-            em.set_thumbnail(url=chico)
+            em.set_thumbnail(url=cload)
             #emdesc = f"__**{chname}**__ \n\nAt **{cpoints}** points."
             emdesc = f"**{cpoints}** points."
             em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
