@@ -282,8 +282,9 @@ class Leaguehell(commands.Cog):
             rank = i["rank"]
             leaguepnts = i["leaguePoints"]
             totalgames = int(wins)+int(losses)
-            ratio = (int(wins)/totalgames)*100
-            em.add_field(name=(f"{queuetype}"), value=(f"**{tier}** {rank} :white_small_square: **{leaguepnts}** LP :white_small_square: Wins/losses: **{wins}**/**{losses}** ({totalgames} total games, {ratio}% winrate)"), inline=False)
+            calcratio = (int(wins)/totalgames)*100
+            ratio = round(calcratio, 2)
+            em.add_field(name=(f"{queuetype}"), value=(f"**{tier}** {rank} :white_small_square: **{leaguepnts}** LP :white_small_square: Wins/losses: **{wins}**/**{losses}** \n({totalgames} total games, {ratio}% winrate)\n**Note:** *Winratio is not really realistic in TFT, as RIOT counts only 1st place for a win (2nd to 8th are all counted as losses).*"), inline=False)
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
 
