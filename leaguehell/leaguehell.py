@@ -232,11 +232,14 @@ class Leaguehell(commands.Cog):
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
             em.set_thumbnail(url=chico)
-            emdesc = f"__**{chname}**__ \nAt **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."
+            emdesc = f"__**{chname}**__ \nAt **{cpoints}** points."
             em.set_footer(text=(f"/Page {cpage}/ Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
-            em.add_field(name="Debug ch ico", value=chico)
+            em.add_field(name=f"Level **{clvl}**", value=f"**{cmtokens}** tokens.")
+            em.add_field(name="Chest granted?", value=f"**{chest}**")
+            em.add_field(name="Last played:", value=f"**{cmlp}**")
+            em.add_field(name="tempn", value="tempv")
             await asyncio.sleep(0.3)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
