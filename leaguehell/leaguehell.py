@@ -220,8 +220,7 @@ class Leaguehell(commands.Cog):
                 break
             em = discord.Embed(colour=15158332)
             chname = await self.lib.get_champ_name(str(i["championId"]))
-            getchico = str(await self.lib.ddragon_champico(str(i["championId"])))
-            chico = getchico.replace("'", "")
+            chico = str(await self.lib.ddragon_champico(str(i["championId"])))
             clvl = i["championLevel"]
             cpoints = i["championPoints"]
             cchest = i["chestGranted"]

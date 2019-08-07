@@ -124,7 +124,9 @@ class Leaguelib:
     async def ddragon_champico(self, champid):
         ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
         version = await self.get(ddragonv)
-        iconid = await self.get_champ_name(champid)
+        chnametemp = str(await self.get_champ_name(champid))
+        chnametempr = str(chnametemp.replace("'", ""))
+        iconid = chnametempr.capitalize()
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/{iconid}.png"
         return rq
 
