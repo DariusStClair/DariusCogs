@@ -251,7 +251,7 @@ class Leaguehell(commands.Cog):
 
 
     @checks.is_owner()
-    @league.command(name="lhtest")
+    @league.command(name="ranked")
     async def ranked(self, ctx, name, xreg):
         """... I'm doing something wrong"""
         #try:
@@ -263,9 +263,11 @@ class Leaguehell(commands.Cog):
         if xreg.lower() == "none":
             xreg = "eun1"
             return xreg
+        icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
+        em.set_author(name=f"{propername}", url=f"{icostr}", icon_url=f"https://{xreg}.op.gg/summoner/userName={nane}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
         xregc = xreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
@@ -279,7 +281,9 @@ class Leaguehell(commands.Cog):
             tier = i["tier"]
             rank = i["rank"]
             leaguepnts = i["leaguePoints"]
-            em.add_field(name=(f"{queuetype}"), value=(f"**{tier}** {rank} :white_small_square: **{leaguepnts}** LP :white_small_square: Wins/losses: **{wins}**/**{losses}**"), inline=False)
+            totalgames = int(wins)+int(losses)
+            ratio = (int(wins)/totalgames)*100
+            em.add_field(name=(f"{queuetype}"), value=(f"**{tier}** {rank} :white_small_square: **{leaguepnts}** LP :white_small_square: Wins/losses: **{wins}**/**{losses}** ({totalgames} total games, {ratio}% winrate)"), inline=False)
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
 
