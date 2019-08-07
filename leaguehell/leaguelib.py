@@ -126,14 +126,20 @@ class Leaguelib:
         version = await self.get(ddragonv)
         chnametemp = str(await self.get_champ_name(champid))
         chnametempr = str(chnametemp.replace("'", ""))
-        iconid = chnametempr.capitalize()
-        if iconid == "Reksai":
-            iconid = "RekSai"
-        if iconid == "Jarvan iv":
-            iconid = "JarvanIV"
-        if iconid == "Master yi":
-            iconid = "MasterYi"
-        rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/{iconid}.png"
+        temp = chnametempr.capitalize()
+        if temp == "Reksai":
+            temp = "RekSai"
+        if temp == "Jarvan iv":
+            temp = "JarvanIV"
+        if temp == "Master yi":
+            temp = "MasterYi"
+        if temp == "Miss fortune":
+            temp = "MissFortune"
+        if temp == "Kogmaw":
+            temp = "KogMaw"
+        if temp == "Leblanc":
+            temp = "LeBlanc"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/{temp}.png"
         return rq
 
     async def ddragon_champsplash(self, champid):
@@ -142,14 +148,20 @@ class Leaguelib:
         chnametemp = str(await self.get_champ_name(champid))
         chnametempr = str(chnametemp.replace("'", ""))
         splashid = chnametempr.capitalize()
-        if splashid == "Reksai":
-            splashid = "RekSai"
-        if splashid == "Jarvan iv":
-            splashid = "JarvanIV"
-        if splashid == "Master yi":
-            splashid = "MasterYi"
+        if temp == "Reksai":
+            temp = "RekSai"
+        if temp == "Jarvan iv":
+            temp = "JarvanIV"
+        if temp == "Master yi":
+            temp = "MasterYi"
+        if temp == "Miss fortune":
+            temp = "MissFortune"
+        if temp == "Kogmaw":
+            temp = "KogMaw"
+        if temp == "Leblanc":
+            temp = "LeBlanc"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
-        rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{splashid}_0.jpg"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{temp}_0.jpg"
         return rq
 
 
