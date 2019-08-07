@@ -220,6 +220,7 @@ class Leaguehell(commands.Cog):
                 break
             em = discord.Embed(colour=15158332)
             chname = await self.lib.get_champ_name(str(i["championId"]))
+            chtitle = await self.lib.get_champ_title(str(i["championId"]))
             chico = str(await self.lib.ddragon_champico(str(i["championId"])))
             csplash = str(await self.lib.ddragon_champsplash(str(i["championId"])))
             cload = str(await self.lib.ddragon_champsloading(str(i["championId"])))
@@ -239,7 +240,7 @@ class Leaguehell(commands.Cog):
             em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
-            em.set_author(name=f"{chname}", url=f"{chico}", icon_url=f"{chico}")
+            em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
             em.add_field(name=f"Level **{clvl}**", value=f"**{cmtokens}** tokens.", inline=True)
             em.add_field(name="Chest granted?", value=f"**{chest}**", inline=True)
             em.add_field(name="Last played:", value=f"**{cmlp}**", inline=True)

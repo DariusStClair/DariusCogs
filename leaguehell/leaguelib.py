@@ -108,6 +108,16 @@ class Leaguelib:
             if champ[i]["key"] == champid:
                 return champ[i]["name"]
 
+    async def get_champ_title(self, champid):
+        if self.champs is None:
+            await self.upd_champs()
+        champ = self.champs["data"]
+        if champid == -1:
+            return "Wut"
+        for i in champ:
+            if champ[i]["key"] == champid:
+                return champ[i]["title"]
+
     async def upd_champs(self):
         ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
         version = await self.get(ddragonv)
