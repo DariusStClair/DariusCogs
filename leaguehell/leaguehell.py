@@ -267,7 +267,7 @@ class Leaguehell(commands.Cog):
         uhelo = await self.lib.get_ranked(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
-        em.set_author(name=f"{propername}", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
+        em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
         xregc = xreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
@@ -284,7 +284,7 @@ class Leaguehell(commands.Cog):
             totalgames = int(wins)+int(losses)
             calcratio = (int(wins)/totalgames)*100
             ratio = round(calcratio, 2)
-            em.add_field(name=(f"{queuetype}"), value=(f" :white_small_square: **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
+            em.add_field(name=(f"{queuetype} \n\n**Note:** *Winratio is not really realistic in TFT, as RIOT counts only 1st place for a win (2nd to 8th are all counted as losses).*"), value=(f" :white_small_square: **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
 
