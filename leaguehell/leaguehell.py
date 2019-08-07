@@ -216,10 +216,11 @@ class Leaguehell(commands.Cog):
         #tpages = 10
         for i in champs:
             cpage += 1
-            if cpage >= 9:
+            if cpage >= 11:
                 break
             em = discord.Embed(colour=15158332)
             chname = await self.lib.get_champ_name(str(i["championId"]))
+            chico = str(await self.lib.ddragon_champico(chname))
             clvl = i["championLevel"]
             cpoints = i["championPoints"]
             cchest = i["chestGranted"]
@@ -230,6 +231,7 @@ class Leaguehell(commands.Cog):
             cmtokens = i["tokensEarned"]
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
+            em.set_thumbnail(url=chico)
             emdesc = f"__**{chname}**__ \nAt **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."
             em.set_footer(text=(f"/Page {cpage}/ Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
             em.description = emdesc
