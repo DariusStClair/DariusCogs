@@ -359,7 +359,7 @@ class Leaguelib:
             if i["queueType"] == "RANKED_TEAM_3x3":
                 i["queueType"] = "Team 3vs3"
             if i["queueType"] == "RANKED_TFT":
-                i["queueType"] = "Teamfight Tactics \n\n**Note:** *Winratio is not really realistic in TFT, as RIOT counts only 1st place for a win (2nd to 8th are all counted as losses).*"
+                i["queueType"] = "Teamfight Tactics"
             if i["queueType"] == "RANKED_FLEX_SR":
                 i["queueType"] = "Flex 5vs5"
             if i["queueType"] == "RANKED_FLEX_TT":
