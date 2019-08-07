@@ -138,7 +138,7 @@ class Leaguelib:
         if temp == "Kogmaw":
             temp = "KogMaw"
         if temp == "Lee sin":
-            temp -"LeeSin"
+            temp = "LeeSin"
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/{temp}.png"
         return rq
 
@@ -159,7 +159,7 @@ class Leaguelib:
         if temp == "Kogmaw":
             temp = "KogMaw"
         if temp == "Lee sin":
-            temp -"LeeSin"
+            temp = "LeeSin"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
         rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{temp}_0.jpg"
         return rq
