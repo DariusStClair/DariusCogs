@@ -203,6 +203,7 @@ class Leaguehell(commands.Cog):
     @league.command(name="pchamps", aliases=["pchampions"])
     @apikeycheck()
     async def pchamps(self, ctx, name, *, xreg=None):
+        """/gonna set help when I can/"""
         usr = ctx.author
         if not xreg:
             xreg = "eune"
@@ -250,10 +251,10 @@ class Leaguehell(commands.Cog):
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
 
-    @checks.is_owner()
+    #@checks.is_owner()
     @league.command(name="ranked")
     async def ranked(self, ctx, name, xreg):
-        """... I'm doing something wrong"""
+        """/gonna set help when I can/"""
         #try:
         #    not_mumbojumbo_anymore_biatch = other_dict[this_dict["queueType"]]
         #except KeyError:
