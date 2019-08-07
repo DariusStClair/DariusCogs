@@ -244,6 +244,7 @@ class Leaguehell(commands.Cog):
             em.add_field(name="Chest granted?", value=f"**{chest}**", inline=False)
             em.add_field(name="Last played:", value=f"**{cmlp}**", inline=False)
             em.add_field(name="Default splash art", value=f"[Click here to view]({csplash})", inline=False)
+            em.set_image(url=csplash)
             await asyncio.sleep(0.3)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
