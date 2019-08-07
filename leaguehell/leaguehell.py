@@ -199,7 +199,7 @@ class Leaguehell(commands.Cog):
         # End of one embed
 
     # Paginated mastery
-    @checks.is_owner()
+    #@checks.is_owner()
     @league.command(name="pchamps", aliases=["pchampions"])
     @apikeycheck()
     async def pchamps(self, ctx, name, *, xreg=None):
