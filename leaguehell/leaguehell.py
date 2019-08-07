@@ -267,7 +267,7 @@ class Leaguehell(commands.Cog):
         uhelo = await self.lib.get_ranked(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
-        em.set_author(name=f"{propername}", url=f"{icostr}", icon_url=f"https://{xreg}.op.gg/summoner/userName={nane}")
+        em.set_author(name=f"{propername}", url=f"{icostr}", icon_url=f"https://{xreg}.op.gg/summoner/userName={name}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
         xregc = xreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
