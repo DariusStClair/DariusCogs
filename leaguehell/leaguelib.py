@@ -136,6 +136,21 @@ class Leaguelib:
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/{iconid}.png"
         return rq
 
+    async def ddragon_champsplash(self, champid):
+        ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
+        version = await self.get(ddragonv)
+        chnametemp = str(await self.get_champ_name(champid))
+        chnametempr = str(chnametemp.replace("'", ""))
+        splashid = chnametempr.capitalize()
+        if splashid == "Reksai":
+            splashid = "RekSai"
+        if splashid == "Jarvan iv":
+            splashid = "JarvanIV"
+        if splashid == "Master yi":
+            splashid = "MasterYi"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/loading/{splashid}_0.png"
+        return rq
+
 
     async def summ_icon(self, name, xreg):
         apistr = await self.apistr()

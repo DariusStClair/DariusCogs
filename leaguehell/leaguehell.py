@@ -221,6 +221,7 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             chname = await self.lib.get_champ_name(str(i["championId"]))
             chico = str(await self.lib.ddragon_champico(str(i["championId"])))
+            csplash = str(await self.lib.ddragon_champsplash(str(i["championId"])))
             clvl = i["championLevel"]
             cpoints = i["championPoints"]
             cchest = i["chestGranted"]
@@ -236,10 +237,10 @@ class Leaguehell(commands.Cog):
             em.set_footer(text=(f"/Page {cpage}/ Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
-            em.add_field(name=f"Level **{clvl}**", value=f"**{cmtokens}** tokens.")
-            em.add_field(name="Chest granted?", value=f"**{chest}**")
-            em.add_field(name="Last played:", value=f"**{cmlp}**")
-            em.add_field(name="tempn", value="tempv")
+            em.add_field(name=f"Level **{clvl}**", value=f"**{cmtokens}** tokens.", inline=False)
+            em.add_field(name="Chest granted?", value=f"**{chest}**", inline=True)
+            em.add_field(name="Last played:", value=f"**{cmlp}**", inline=True)
+            em.add_field(name="Default splash art", value=f"[Click here to view]({csplash})", inline=True)
             await asyncio.sleep(0.3)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
