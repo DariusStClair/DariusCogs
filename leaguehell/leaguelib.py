@@ -137,8 +137,8 @@ class Leaguelib:
         return rq
 
     async def ddragon_champsplash(self, champid):
-        ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
-        version = await self.get(ddragonv)
+        #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
+        #version = await self.get(ddragonv)
         chnametemp = str(await self.get_champ_name(champid))
         chnametempr = str(chnametemp.replace("'", ""))
         splashid = chnametempr.capitalize()
@@ -148,7 +148,8 @@ class Leaguelib:
             splashid = "JarvanIV"
         if splashid == "Master yi":
             splashid = "MasterYi"
-        rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/loading/{splashid}_0.png"
+        #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/loading/{splashid}_0.png"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{splashid}_0.png"
         return rq
 
 
