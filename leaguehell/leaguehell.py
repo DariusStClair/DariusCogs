@@ -223,7 +223,7 @@ class Leaguehell(commands.Cog):
             chtitle = await self.lib.get_champ_title(str(i["championId"]))
             chico = str(await self.lib.ddragon_champico(str(i["championId"])))
             csplash = str(await self.lib.ddragon_champsplash(str(i["championId"])))
-            cload = str(await self.lib.ddragon_champsloading(str(i["championId"])))
+            #cload = str(await self.lib.ddragon_champsloading(str(i["championId"])))
             clvl = i["championLevel"]
             cpoints = i["championPoints"]
             cchest = i["chestGranted"]
@@ -234,7 +234,7 @@ class Leaguehell(commands.Cog):
             cmtokens = i["tokensEarned"]
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
-            em.set_thumbnail(url=cload)
+            #em.set_thumbnail(url=cload)
             #emdesc = f"__**{chname}**__ \n\nAt **{cpoints}** points."
             emdesc = f"**{cpoints}** points."
             em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
