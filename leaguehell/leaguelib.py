@@ -127,6 +127,8 @@ class Leaguelib:
         chnametemp = str(await self.get_champ_name(champid))
         chnametempr = str(chnametemp.replace("'", ""))
         iconid = chnametempr.capitalize()
+        if iconid == "Reksai":
+            iconid = "RekSai"
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/{iconid}.png"
         return rq
 
