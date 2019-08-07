@@ -222,7 +222,7 @@ class Leaguehell(commands.Cog):
             chname = await self.lib.get_champ_name(str(i["championId"]))
             chico = str(await self.lib.ddragon_champico(str(i["championId"])))
             csplash = str(await self.lib.ddragon_champsplash(str(i["championId"])))
-            cload = str(await self.lib.ddragon_champsplash(str(i["championId"])))
+            cload = str(await self.lib.ddragon_champsloading(str(i["championId"])))
             clvl = i["championLevel"]
             cpoints = i["championPoints"]
             cchest = i["chestGranted"]
