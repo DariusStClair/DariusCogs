@@ -147,7 +147,7 @@ class Leaguelib:
         #version = await self.get(ddragonv)
         chnametemp = str(await self.get_champ_name(champid))
         chnametempr = str(chnametemp.replace("'", ""))
-        splashid = chnametempr.capitalize()
+        temp = chnametempr.capitalize()
         if temp == "Reksai":
             temp = "RekSai"
         if temp == "Jarvan iv":
