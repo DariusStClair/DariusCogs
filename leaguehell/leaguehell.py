@@ -295,7 +295,10 @@ class Leaguehell(commands.Cog):
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
         #em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
-        em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}")
+        try:
+            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}")
+        except:
+            em.set_author(name=f"{name}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         xregc = xreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
