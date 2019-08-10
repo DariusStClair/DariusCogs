@@ -111,7 +111,7 @@ class Leaguehell(commands.Cog):
         em.description = emdesc
         em.add_field(name=(f"{aname}"), value=u'\u200b')
         em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
-        await ctx.send(em)
+        await ctx.send(embed=em)
         #await ctx.send(box(text=aname, lang="ruby"))
 
     #######################
