@@ -131,7 +131,7 @@ class Leaguehell(commands.Cog):
 
     @league.command(pass_context=True, no_pm=True)
     async def setname(self, ctx, name, user: discord.Member=None):
-        """Set your league nickname. \nIf it has space put it in quotes ("Two words").\n\n[user] is optional parameter for Moderators to set other people's names."""
+        """Set your league nickname. \nIf it has space put it in quotes ("Two words").\n\n`[user]` is an optional parameter for Moderators to set other people's nicknames."""
         server = ctx.guild
         author = ctx.author
         tar = None
