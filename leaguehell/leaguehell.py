@@ -109,7 +109,7 @@ class Leaguehell(commands.Cog):
         emdesc = (f"**{user}**'s summoner name:")
         em.description = emdesc
         em.add_field(name=(f"{aname}"), value=u'\u200b')
-        em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}")
+        em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"))
         await ctx.send(embed=em)
         #await ctx.send(box(text=aname, lang="ruby"))
 
