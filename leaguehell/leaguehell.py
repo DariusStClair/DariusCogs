@@ -12,6 +12,7 @@ import datetime
 import random
 # League stuffs
 from .leaguelib import Leaguelib
+from .handler import Handler
 
 regchecks = ["EUNE", "EUW", "NA"]
 vversion = "version: 0.01"
@@ -34,6 +35,7 @@ class Leaguehell(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.lib = Leaguelib(bot)
+        self.handle = Handler(bot)
         default_global = {"leagueapikey": None}
         default_member = {
             "Name": None,
@@ -288,11 +290,12 @@ class Leaguehell(commands.Cog):
             else:
                 name = await self.config.member(author).Name()
             #return xreg
-        icostr = str(await self.lib.summ_icon(name, xreg))
+        #icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
-        em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
+        #em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
+        em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         xregc = xreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
