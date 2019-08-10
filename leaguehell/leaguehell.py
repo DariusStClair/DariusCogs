@@ -220,7 +220,7 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         if not xreg:
             xreg = "eune"
-            return xreg
+            #return xreg
         icostr = str(await self.lib.summ_icon(name, xreg))
         clist = []
         #dnname = usr.display_name
