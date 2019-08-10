@@ -162,7 +162,7 @@ class Leaguehell(commands.Cog):
                 data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {anick}")
                 await ctx.send(embed=data)
         except:
-            pass
+            await ctx.send("Welp, that didn't work out. I think.")
 
     @checks.is_owner()
     @commands.command(name="leakapi")
