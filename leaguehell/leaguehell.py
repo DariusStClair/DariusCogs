@@ -113,7 +113,7 @@ class Leaguehell(commands.Cog):
         em.set_thumbnail(url=av)
         emdesc = (f"**{user}**'s summoner name:")
         em.description = emdesc
-        em.add_field(name=(f"{aname}"), value=u'\u200b')
+        em.add_field(name=u'\u200b', value=u'\u200b'f"**{aname}**")
         em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"))
         await ctx.send(embed=em)
         #await ctx.send(box(text=aname, lang="ruby"))
