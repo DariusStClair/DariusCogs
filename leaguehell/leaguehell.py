@@ -323,8 +323,7 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="leaguetest")
     async def leaguetest(self, ctx, name, xreg):
-        name = await self.config.member(name).Name()
-        icostr = str(await self.lib.summ_icon(name, xreg))
+        icostr = await self.lib.summ_icon(name, xreg)
         await ctx.send(box(icostr))
     
     @checks.is_owner()
