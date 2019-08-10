@@ -104,8 +104,13 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         if not user:
             user = ctx.author
+        if user.is_avatar_animated():
+            av = user.avatar_url_as(format="gif")
+        else:
+            av = user.avatar_url_as(format="png")
         aname = await self.config.member(user).Name()
         em = discord.Embed(colour=15158332)
+        em.set_thumbnail(url=av)
         emdesc = (f"**{user}**'s summoner name:")
         em.description = emdesc
         em.add_field(name=(f"{aname}"), value=u'\u200b')
