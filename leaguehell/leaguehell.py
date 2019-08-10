@@ -290,13 +290,12 @@ class Leaguehell(commands.Cog):
             else:
                 name = await self.config.member(author).Name()
             #return xreg
-        #icostr = str(await self.lib.summ_icon(name, xreg))
+        icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
-        #em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
         try:
-            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}")
+            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
         except:
             em.set_author(name=f"{name}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
@@ -322,10 +321,11 @@ class Leaguehell(commands.Cog):
         await ctx.send(embed=em)
 
     @checks.is_owner()
-    @commands.command(name="gettests")
-    async def gettests(self, ctx, name, xreg):
-        wtfwe = await self.lib.get_champ_masteries(name, xreg)
-        await ctx.send(wtfwe)
+    @commands.command(name="leaguetest")
+    async def leaguetest(self, ctx, name, xreg):
+        name = await self.config.member(name).Name()
+        icostr = str(await self.lib.summ_icon(name, xreg))
+        await ctx.send(box(icostr))
     
     @checks.is_owner()
     @league.command(name="lhistory")
