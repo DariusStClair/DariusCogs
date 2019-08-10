@@ -275,8 +275,8 @@ class Leaguehell(commands.Cog):
         #    return
         author = ctx.author
         if xreg.lower() == "none":
-            xreg = "eun1"
-            return xreg
+            xreg = "eune"
+            #return xreg
         icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
