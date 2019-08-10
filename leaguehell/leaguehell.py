@@ -266,7 +266,7 @@ class Leaguehell(commands.Cog):
 
     #@checks.is_owner()
     @league.command(name="ranked")
-    async def ranked(self, ctx, name, xreg=None):
+    async def ranked(self, ctx, name=None, xreg=None):
         """/gonna set help when I can/"""
         #try:
         #    not_mumbojumbo_anymore_biatch = other_dict[this_dict["queueType"]]
@@ -276,6 +276,11 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         if not xreg:
             xreg = "eune"
+        if not name:
+            if not self.config.member(author).Name():
+                await ctx.send_help()
+            else:
+                name = await self.config.member(author).Name()
             #return xreg
         icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
