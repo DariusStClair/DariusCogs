@@ -105,12 +105,11 @@ class Leaguehell(commands.Cog):
         if not user:
             user = ctx.author
         aname = await self.config.member(user).Name()
-        icostr = str(user.avatar)
         em = discord.Embed(colour=15158332)
         emdesc = (f"**{user}**'s summoner name:")
         em.description = emdesc
         em.add_field(name=(f"{aname}"), value=u'\u200b')
-        em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
+        em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}")
         await ctx.send(embed=em)
         #await ctx.send(box(text=aname, lang="ruby"))
 
