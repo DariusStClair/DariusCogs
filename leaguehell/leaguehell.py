@@ -14,6 +14,7 @@ import random
 from .leaguelib import Leaguelib
 
 regchecks = ["EUNE", "EUW", "NA"]
+vversion = "version: 0.01"
 
 def apikeycheck():
     async def predicate(ctx):
@@ -100,10 +101,18 @@ class Leaguehell(commands.Cog):
 
     @league.command(pass_context=True, no_pm=True)
     async def name(self, ctx, user: discord.Member=None):
+        author = ctx.author
         if not user:
             user = ctx.author
         aname = await self.config.member(user).Name()
-        await ctx.send(box(text=aname, lang="ruby"))
+        icostr = str(user.avatar)
+        em = discord.Embed(colour=15158332)
+        emdesc = (f"**{user}**'s summoner name:")
+        em.description = emdesc
+        em.add_field(name=(f"{aname}"), value=u'\u200b')
+        em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
+        await ctx.send(em)
+        #await ctx.send(box(text=aname, lang="ruby"))
 
     #######################
     # League Name subgroup
@@ -118,7 +127,7 @@ class Leaguehell(commands.Cog):
 
     @league.command(pass_context=True, no_pm=True)
     async def setname(self, ctx, name, user: discord.Member=None):
-        """Set your league nickname"""
+        """Set your league nickname. \nIf it has space put it in quotes ("Two words")."""
         server = ctx.guild
         author = ctx.author
         tar = None
@@ -163,11 +172,11 @@ class Leaguehell(commands.Cog):
     @league.command(name="champs", aliases=["champions"])
     @apikeycheck()
     async def champs(self, ctx, name, *, xreg=None):
-        usr = ctx.author
+        author = ctx.author
         if not xreg:
             xreg = "eune"
             return xreg
-        dnname = usr.display_name
+        #dnname = usr.display_name
         sumname = str(name).capitalize()
         em = discord.Embed(colour=15158332)
         icostr = str(await self.lib.summ_icon(name, xreg))
@@ -175,7 +184,7 @@ class Leaguehell(commands.Cog):
         em.description = emdesc
         em.url = icostr
         total = await self.lib.get_mastery(name, xreg)
-        em.set_footer(text=(f"{sumname} Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
+        em.set_footer(text=(f"{sumname} Total mastery: {total} | Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
         champs = await self.lib.get_champ_masteries(name, xreg)
         temp = 0
         for i in champs:
@@ -204,13 +213,13 @@ class Leaguehell(commands.Cog):
     @apikeycheck()
     async def pchamps(self, ctx, name, *, xreg=None):
         """/gonna set help when I can/"""
-        usr = ctx.author
+        author = ctx.author
         if not xreg:
             xreg = "eune"
             return xreg
         icostr = str(await self.lib.summ_icon(name, xreg))
         clist = []
-        dnname = usr.display_name
+        #dnname = usr.display_name
         total = await self.lib.get_mastery(name, xreg)
         champs = await self.lib.get_champ_masteries(name, xreg)
         cpage = 0
@@ -238,7 +247,7 @@ class Leaguehell(commands.Cog):
             #em.set_thumbnail(url=cload)
             #emdesc = f"__**{chname}**__ \n\nAt **{cpoints}** points."
             emdesc = f"**{cpoints}** points."
-            em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Requested by {dnname} | Powered by HELL"), icon_url=icostr)
+            em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
             em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
@@ -269,7 +278,7 @@ class Leaguehell(commands.Cog):
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
         em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         xregc = xreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
         picon = str(await self.lib.summ_icon(name, xreg))
@@ -308,7 +317,7 @@ class Leaguehell(commands.Cog):
         hstry = await self.lib.get_history(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | version: 0.00")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         em.description = (f"**{propername}**'s shit:")
         for i in hstry:
             champ = hstry[i]["champ"]
