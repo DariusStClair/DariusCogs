@@ -290,14 +290,18 @@ class Leaguehell(commands.Cog):
             else:
                 name = await self.config.member(author).Name()
             #return xreg
-        #icostr = str(await self.lib.summ_icon(name, xreg))
+        icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
+        try:
+            opgg = url(f"https://{xreg}.op.gg/summoner/userName={name}")
+        except:
+            opgg = None
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
-        #try:
-        #    em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
-        #except:
-        #    em.set_author(name=f"{name}")
+        if not opgg:
+            em.set_author(name=f"{propername}", icon_url=f"{icostr}")
+        else:
+            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         xregc = xreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
