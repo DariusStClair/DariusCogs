@@ -274,9 +274,10 @@ class Leaguehell(commands.Cog):
         #    await ctx.send("ABORT MISSION! I REPEAT! ABORT MISSION!")
         #    return
         author = ctx.author
+        #guild = ctx.guild
         if not xreg:
             xreg = "eune"
-        if name is discord.Member():
+        if name is discord.member:
             if not self.config.member(author).Name():
                 await ctx.send_help()
             else:
