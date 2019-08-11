@@ -332,7 +332,9 @@ class Leaguehell(commands.Cog):
             else:
                 name = await self.config.member(author).Name()
                 resp.append("> No name, looks through conf\n")
-        await ctx.send(resp)
+        for i in resp:
+            await ctx.send(i)
+            asyncio.sleep(0.2)
 
     @checks.is_owner()
     @league.command(name="lhistory")
