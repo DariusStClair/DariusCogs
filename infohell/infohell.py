@@ -5,9 +5,11 @@ from redbot.core import checks, Config, bank, commands
 from redbot.core.i18n import Translator, cog_i18n
 from redbot.core.utils import mod
 from redbot.core.utils.chat_formatting import bold, box, inline
+# Libs
 import asyncio
 import datetime
 import random
+import calendar
 
 class Infohell(commands.Cog):
     """The info Cog for Hell"""
