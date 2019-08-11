@@ -17,6 +17,7 @@ from .handler import Handler
 
 regchecks = ["EUNE", "EUW", "NA"]
 vversion = "version: 0.01"
+allregistered = []
 
 def apikeycheck():
     async def predicate(ctx):
@@ -324,8 +325,7 @@ class Leaguehell(commands.Cog):
             resp.append(f"> No name, get author's from conf ({tar})")
         else:
             try:
-                name = bot.get_member_name(name)
-                tar = await self.handle.get_member_name(name)
+                tar = await self.handle.get_leaguename(name)
                 resp.append(f"> Name is in allmembers, get it from conf ({tar})")
             except:
                 tar = name
