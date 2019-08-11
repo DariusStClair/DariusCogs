@@ -316,22 +316,19 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leaguetest")
     async def leaguetest(self, ctx, name: discord.Member=None, xreg=None):
         author = ctx.author
+        allmembers = await self.data.all_members()
         resp = ["> So:\n"]
+        if name is None:
+            tar = await self.config.member(author).Name()
+            resp.append(f"> No name, get author's from conf ({tar})\n")
+        elif name in allmembers:
+            tar = await self.config.member(name).Name()
+            resp.append(f"> Name is in allmembers, get it from conf ({tar})\n")
+        else:
+            resp.append("> User ain't in allmembers and isn't the author\n")
         if not xreg:
             xreg = "eune"
-            resp.append("> No xreg, defaults to `eune`\n")
-        if name is discord.Member:
-            if not self.config.member(author).Name():
-                await ctx.send_help()
-            else:
-                name = await self.config.member(name).Name()
-                resp.append("> `name is discord.Member, looks through conf`\n")
-        if not name:
-            if not self.config.member(author).Name():
-                await ctx.send_help()
-            else:
-                name = await self.config.member(author).Name()
-                resp.append("> No name, looks through conf\n")
+            resp.append(f"> No xreg, defaults ({xreg})\n")
         for i in resp:
             await ctx.send(i)
             asyncio.sleep(0.2)
