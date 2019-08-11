@@ -344,11 +344,11 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         if not xreg:
             xreg = "eune"
-        icostr = str(await self.lib.summ_icon(name, xreg))
+        #icostr = str(await self.lib.summ_icon(name, xreg))
         clist = []
         cpage = 0
         hstry = await self.lib.get_history(name, xreg)
-        propername = await self.lib.get_prname(name, xreg)
+        #propername = await self.lib.get_prname(name, xreg)
         #em = discord.Embed(colour=15158332)
         #em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         #em.description = (f"**{propername}**'s shit:")
@@ -359,8 +359,14 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
             champ = hstry[i]["champ"]
-            role = hstry[i]["role"]
-            lane = hstry[i]["lane"]
+            if not hstry[i]["role"]:
+                hstry[i]["role"] = "n/a (r)"
+            else:
+                role = hstry[i]["role"]
+            if not hstry[i]["lane"]:
+                hstry[i]["lane"] = "n/a (l)"
+            else:
+                lane = hstry[i]["lane"]
             duration = hstry[i]["Duration"]
             gamemode = hstry[i]["Gamemode"]
             result = hstry[i]["result"]
