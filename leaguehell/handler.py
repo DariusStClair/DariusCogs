@@ -10,8 +10,8 @@ from redbot.core import checks, Config, bank, commands
 class Handler:
     def __init__(self, bot):
         self.bot = bot
-        self.config = Config.get_conf(None, identifier=690430666, cog_name="Leaguehell")
-
+        self.config = Config.get_conf(self, identifier=690430666, force_registration=True)
+        self.config = Config.get_conf
     async def check_modadmin(self, author: discord.Member):
         guild = author.guild
         if author == guild.owner:
@@ -24,10 +24,7 @@ class Handler:
             return True
         return False
     
-    async def get_member_name(self, name: discord.Member=None):
-        if not name:
-            return
-        else:
+    async def get_leaguename(self, name: discord.Member=None):
             re = await self.config.member(name).Name()
             return re
     
