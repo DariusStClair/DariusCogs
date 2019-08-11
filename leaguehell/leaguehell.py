@@ -316,22 +316,22 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leaguetest")
     async def leaguetest(self, ctx, name: discord.Member=None, xreg=None):
         author = ctx.author
-        resp = []
+        resp = ["> So:\n"]
         if not xreg:
             xreg = "eune"
-            resp.append = "> No xreg, defaults to `eune`\n"
+            resp.append("> No xreg, defaults to `eune`\n")
         if name is discord.Member:
             if not self.config.member(author).Name():
                 await ctx.send_help()
             else:
                 name = await self.config.member(name).Name()
-                resp.append = "> `name is discord.Member, looks through conf`\n"
+                resp.append("> `name is discord.Member, looks through conf`\n")
         if not name:
             if not self.config.member(author).Name():
                 await ctx.send_help()
             else:
                 name = await self.config.member(author).Name()
-                resp.append = "> No name, looks through conf\n"
+                resp.append("> No name, looks through conf\n")
         await ctx.send(resp)
 
     @checks.is_owner()
