@@ -9,6 +9,7 @@ class Leaguelib:
         self.bot = bot
         self.api = None
         self.champs = None
+        self.users = None
         self._sess = aiohttp.ClientSession()
         self.srvs = {
             "eune": "eun1",
@@ -309,9 +310,14 @@ class Leaguelib:
         for i in rj["matches"]:
             temp = {}
             temp["champ"] = await self.get_champ_name(str(i["champion"]))
-            temp["role"] = i["lane"]
-            if temp["role"].lower() == "none":
+            if i["role"].lower() == "none":
+                pass
+            else:
                 temp["role"] = i["role"]
+            if i["lane"].lower() == "none":
+                temp["lane"] = i["lane"]
+            else:
+                pass
             match = await self.get_match(xreg, i["gameId"])
             osf = floor((match["gameDuration"])/60)
             temp["Duration"] = str(osf) + ":" + str(match["gameDuration"] - (osf*60))
