@@ -23,5 +23,8 @@ class Handler:
         if await self.bot.is_mod(author):
             return True
         return False
-
+    
+    async def get_member_name(self, name: discord.Member):
+        re = await self.config.member(name).Name()
+        return re
     
