@@ -49,18 +49,6 @@ class Leaguehell(commands.Cog):
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
 
-    async def check_modadmin(self, author: discord.Member):
-        guild = author.guild
-        if author == guild.owner:
-            return True
-        if await self.bot.is_owner(author):
-            return True
-        if await self.bot.is_admin(author):
-            return True
-        if await self.bot.is_mod(author):
-            return True
-        return False
-
     @checks.is_owner()
     @commands.command(name="leagueapi")
     async def leagueapi(self, ctx, *, key):
@@ -137,7 +125,7 @@ class Leaguehell(commands.Cog):
         server = ctx.guild
         author = ctx.author
         tar = None
-        checkmod = await self.check_modadmin(author)
+        checkmod = await self.handle.check_modadmin(author)
         if not user:
             tar = author
         else:
@@ -268,7 +256,7 @@ class Leaguehell(commands.Cog):
 
     #@checks.is_owner()
     @league.command(name="ranked")
-    async def ranked(self, ctx, name=None, xreg=None):
+    async def ranked(self, ctx, name: discord.Member=None, xreg=None):
         """/gonna set help when I can/"""
         #try:
         #    not_mumbojumbo_anymore_biatch = other_dict[this_dict["queueType"]]
@@ -279,7 +267,7 @@ class Leaguehell(commands.Cog):
         #guild = ctx.guild
         if not xreg:
             xreg = "eune"
-        if name is discord.member:
+        if name is discord.Member:
             if not self.config.member(author).Name():
                 await ctx.send_help()
             else:
@@ -329,7 +317,6 @@ class Leaguehell(commands.Cog):
     async def leaguetest(self, ctx, name, xreg):
         icostr = await self.lib.summ_icon(name, xreg)
         await ctx.send(box(icostr))
-        discord.User.avatar_url()
     
     @checks.is_owner()
     @league.command(name="lhistory")
