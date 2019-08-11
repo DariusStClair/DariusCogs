@@ -342,22 +342,32 @@ class Leaguehell(commands.Cog):
     async def history(self, ctx, name, xreg):
         """I mean. If I'm reading the help on my own command..."""
         author = ctx.author
-        if xreg.lower() == "none":
-            xreg = "eun1"
-            return xreg
+        if not xreg:
+            xreg = "eune"
+        icostr = str(await self.lib.summ_icon(name, xreg))
+        clist = []
+        cpage = 0
         hstry = await self.lib.get_history(name, xreg)
         propername = await self.lib.get_prname(name, xreg)
-        em = discord.Embed(colour=15158332)
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-        em.description = (f"**{propername}**'s shit:")
+        #em = discord.Embed(colour=15158332)
+        #em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        #em.description = (f"**{propername}**'s shit:")
         for i in hstry:
+            cpage += 1
+            if cpage >= 11:
+                break
+            em = discord.Embed(colour=15158332)
+            em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
             champ = hstry[i]["champ"]
             role = hstry[i]["role"]
+            lane = hstry[i]["lane"]
             duration = hstry[i]["Duration"]
             gamemode = hstry[i]["Gamemode"]
             result = hstry[i]["result"]
             kda = hstry[i]["kda"]
             gold = hstry[i]["gold"]
-            em.add_field(name=(f"{gamemode} | {duration} minutes"), value=(f"**{champ}** | {role} | {result} | {kda} | {gold}"), inline=False)
+            em.description = (f"**{gamemode}** | {duration} min")
+            em.add_field(name=(f"{champ} | r: {role} / l: {lane}"), value=(f"**{result}**\n{kda} | {gold}"), inline=False)
+            clist.append(em)
             await asyncio.sleep(0.5)
-        await ctx.send(embed=em)
+        await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
