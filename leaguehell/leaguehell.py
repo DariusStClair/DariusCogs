@@ -316,7 +316,7 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leaguetest")
     async def leaguetest(self, ctx, name: discord.Member=None, xreg=None):
         author = ctx.author
-        resp = ["> So:\n"]
+        resp = []
         if not xreg:
             xreg = "eune"
             resp.append = "> No xreg, defaults to `eune`\n"
