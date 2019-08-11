@@ -316,7 +316,7 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leaguetest")
     async def leaguetest(self, ctx, name: discord.Member=None, xreg=None):
         author = ctx.author
-        allmembers = await self.data.all_members()
+        allmembers = await self.config.all_members()
         resp = ["> So:\n"]
         if name is None:
             tar = await self.config.member(author).Name()
