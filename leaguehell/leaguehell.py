@@ -325,7 +325,7 @@ class Leaguehell(commands.Cog):
         else:
             try:
                 vvv = bot.get_user(name)
-                tar = await self.config.member(name).Name()
+                tar = await self.config.member(vvv).Name()
                 resp.append(f"> Name is in allmembers, get it from conf ({tar})")
             except:
                 tar = name
