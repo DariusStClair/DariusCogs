@@ -321,11 +321,12 @@ class Leaguehell(commands.Cog):
         if name is None:
             tar = await self.config.member(author).Name()
             resp.append(f"> No name, get author's from conf ({tar})\n")
-        elif name in allmembers:
-            tar = await self.config.member(name).Name()
-            resp.append(f"> Name is in allmembers, get it from conf ({tar})\n")
         else:
-            resp.append("> User ain't in allmembers and isn't the author\n")
+            try:
+                memb = await self.config.member(name).Name()
+                resp.append(f"> Name is in allmembers, get it from conf ({tar})\n")
+            except:
+                resp.append("> User ain't in allmembers and isn't the author\n")
         if not xreg:
             xreg = "eune"
             resp.append(f"> No xreg, defaults ({xreg})\n")
