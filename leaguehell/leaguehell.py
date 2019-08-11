@@ -324,6 +324,7 @@ class Leaguehell(commands.Cog):
             resp.append(f"> No name, get author's from conf ({tar})")
         else:
             try:
+                name = bot.get_member_name(name)
                 tar = await self.handle.get_member_name(name)
                 resp.append(f"> Name is in allmembers, get it from conf ({tar})")
             except:

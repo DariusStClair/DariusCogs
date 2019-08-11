@@ -24,7 +24,10 @@ class Handler:
             return True
         return False
     
-    async def get_member_name(self, name: discord.Member):
-        re = await self.config.member(name).Name()
-        return re
+    async def get_member_name(self, name: discord.Member=None):
+        if not name:
+            return
+        else:
+            re = await self.config.member(name).Name()
+            return re
     
