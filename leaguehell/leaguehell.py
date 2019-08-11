@@ -314,9 +314,21 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="leaguetest")
-    async def leaguetest(self, ctx, name, xreg):
-        icostr = await self.lib.summ_icon(name, xreg)
-        await ctx.send(box(icostr))
+    async def leaguetest(self, ctx, name: discord.Member=None, xreg=None):
+        author = ctx.author
+        if not xreg:
+            xreg = "eune"
+        if name is discord.Member:
+            if not self.config.member(author).Name():
+                await ctx.send_help()
+            else:
+                name = await self.config.member(name).Name()
+        if not name:
+            if not self.config.member(author).Name():
+                await ctx.send_help()
+            else:
+                name = await self.config.member(author).Name()
+        await ctx.send(box(name))
     
     @checks.is_owner()
     @league.command(name="lhistory")
