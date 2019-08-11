@@ -318,17 +318,19 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         if not xreg:
             xreg = "eune"
+            await ctx.send("> No xreg, defaults to `eune`")
         if name is discord.Member:
             if not self.config.member(author).Name():
                 await ctx.send_help()
             else:
                 name = await self.config.member(name).Name()
+                await ctx.send("> `name is discord.Member, looks through conf`")
         if not name:
             if not self.config.member(author).Name():
                 await ctx.send_help()
             else:
                 name = await self.config.member(author).Name()
-        await ctx.send(box(name))
+                await ctx.send("> No name, looks through conf")
     
     @checks.is_owner()
     @league.command(name="lhistory")
