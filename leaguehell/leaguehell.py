@@ -1,5 +1,6 @@
 # Ugh I gotta start using notes and shit
 import discord
+from discord.utils import get
 # Red stuffs
 from redbot.core import checks, Config, bank, commands
 from redbot.core.utils import mod
@@ -314,23 +315,24 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="leaguetest")
-    async def leaguetest(self, ctx, name: discord.Member=None, xreg=None):
+    async def leaguetest(self, ctx, name=None, xreg=None):
         author = ctx.author
         #allmembers = await self.config.all_members()
         resp = ["> So:\n"]
         if name is None:
             tar = await self.config.member(author).Name()
-            resp.append(f"> No name, get author's from conf ({tar})\n")
+            resp.append(f"> No name, get author's from conf ({tar})")
         else:
             try:
+                vvv = bot.get_user(name)
                 tar = await self.config.member(name).Name()
-                resp.append(f"> Name is in allmembers, get it from conf ({tar})\n")
+                resp.append(f"> Name is in allmembers, get it from conf ({tar})")
             except:
                 tar = name
-                resp.append(f"> User ain't in allmembers and isn't the author, target is {tar}\n")
+                resp.append(f"> User ain't in allmembers and isn't the author, target is {tar}")
         if not xreg:
             xreg = "eune"
-            resp.append(f"> No xreg, defaults ({xreg})\n")
+            resp.append(f"> No xreg, defaults ({xreg})")
         for i in resp:
             await ctx.send(i)
             asyncio.sleep(0.2)
