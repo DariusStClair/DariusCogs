@@ -316,7 +316,7 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leaguetest")
     async def leaguetest(self, ctx, name: discord.Member=None, xreg=None):
         author = ctx.author
-        resp = None
+        resp = "> So:\n"
         if not xreg:
             xreg = "eune"
             resp.append = "> No xreg, defaults to `eune`\n"
@@ -333,7 +333,7 @@ class Leaguehell(commands.Cog):
                 name = await self.config.member(author).Name()
                 resp.append = "> No name, looks through conf\n"
         await ctx.send(resp)
-        
+
     @checks.is_owner()
     @league.command(name="lhistory")
     async def history(self, ctx, name, xreg):
