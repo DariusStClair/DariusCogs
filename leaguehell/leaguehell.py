@@ -359,14 +359,14 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
             champ = hstry[i]["champ"]
-            if not hstry[i]["role"]:
-                hstry[i]["role"] = "n/a (r)"
-            else:
+            try:
                 role = hstry[i]["role"]
-            if not hstry[i]["lane"]:
-                hstry[i]["lane"] = "n/a (l)"
-            else:
+            except:
+                role = "n/a (r)"
+            try:
                 lane = hstry[i]["lane"]
+            except:
+                lane = "n/a (l)"
             duration = hstry[i]["Duration"]
             gamemode = hstry[i]["Gamemode"]
             result = hstry[i]["result"]
