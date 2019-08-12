@@ -225,15 +225,13 @@ class Leaguelib:
         iconimg = await self.ddragon_icon(pid)
         return iconimg
 
-    async def get_champid(self, *name):
+    async def get_champid(self, name):
         if self.champs is None:
             await self.upd_champs()
         champ = self.champs["data"]
         for i in champ:
             if champ[i]["id"] == name:
                 return champ[i]["key"]
-            else:
-                pass
 
     async def get_champ_mastery(self, name, xreg, champid):
         summid = await self.get_sid(name, xreg)
