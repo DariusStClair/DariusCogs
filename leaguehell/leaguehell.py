@@ -347,6 +347,12 @@ class Leaguehell(commands.Cog):
         await ctx.send(champid)
 
     @checks.is_owner()
+    @commands.command(name="leaguepatch")
+    async def leaguepatch(self, ctx):
+        cpatch = await self.lib.get_patch
+        await ctx.send(box(cpatch))
+
+    @checks.is_owner()
     @league.command(name="lhistory")
     async def history(self, ctx, name, xreg):
         """I mean. If I'm reading the help on my own command..."""
