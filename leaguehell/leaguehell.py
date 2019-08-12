@@ -304,7 +304,7 @@ class Leaguehell(commands.Cog):
         #uhelo = await self.lib.ranked_q(uhelo)
         for i in uhelo:
             queuetype = i["queueType"]
-            if queuetype == "RANKED_TFT":
+            if queuetype == "Teamfight Tactics":
                 em.add_field(name="**Note:**", value="*Winratio is not really realistic in TFT, as RIOT counts only 1st place for a win (2nd to 8th are all counted as losses).*", inline=False)
             wins = i["wins"]
             losses = i["losses"]
