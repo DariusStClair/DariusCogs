@@ -381,13 +381,11 @@ class Leaguehell(commands.Cog):
             chspells = data["spells"]
             em = discord.Embed(colour=15158332)
             em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
-            listroles = []
-            listspells = []
+            #listroles = []
             for i in chroles:
-                listroles.append(chroles[i])
+                em.add_field(name=f"Temp {i}", value=f"{chspells[i]}")
             for i in chspells:
                 em.add_field(name=f"Temp {i}", value=f"{chspells[i]}")
-                listspells.append(chspells[i])
             emdesc = f"{chname}, {chtitle} \n{chbio} \n\nRoles: {listroles}"
             em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}")
             em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: {chid} | {vversion}")
