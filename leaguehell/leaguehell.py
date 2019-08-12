@@ -386,7 +386,7 @@ class Leaguehell(commands.Cog):
             allroles = ''
             if roles >= 1:
                 for i in range(roles):
-                    allroles = allroles.join(" ," + chroles[i])
+                    allroles = allroles.join(chroles[i])
             if roles == 1:
                 allroles = chroles[1]
             #    for i in listroles:
