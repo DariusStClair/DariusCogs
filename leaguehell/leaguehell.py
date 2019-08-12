@@ -4,7 +4,7 @@ from discord.utils import get
 # Red stuffs
 from redbot.core import checks, Config, bank, commands
 from redbot.core.utils import mod
-from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+from redbot.core.utils.menus import menu, start_adding_reactions, DEFAULT_CONTROLS
 from redbot.core.utils.chat_formatting import bold, box, inline
 # Libs
 import aiohttp
@@ -28,7 +28,10 @@ def apikeycheck():
             result = False
         if not result and ctx.invoked_with in dir(ctx.bot.get_cog("Leaguehell")):
             await ctx.send("Yo, api key gotta be set first with the 'leagueapi <key>' command")
-        return result
+        if ctx.channel.permissions_for(discord.utils.get(ctx.guild.members, id=ctx.bot.user.id)).add_reactions:
+            return result
+        else:
+            raise commands.ReactionsCheckFailure(message="I got no permissions to add reactions")
     return commands.check(predicate)
 
 class Leaguehell(commands.Cog):
@@ -316,26 +319,28 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="leaguetest")
-    async def leaguetest(self, ctx, name=None, xreg=None):
-        author = ctx.author
+    async def leaguetest(self, ctx, name=None):
+        #author = ctx.author
         #allmembers = await self.config.all_members()
-        resp = ["> So:\n"]
-        if name is None:
-            tar = await self.config.member(author).Name()
-            resp.append(f"> No name, get author's from conf ({tar})")
-        else:
-            try:
-                tar = await self.config.member(user).Name()
-                resp.append(f"> Name is in allmembers, get it from conf ({tar})")
-            except:
-                tar = name
-                resp.append(f"> User ain't in allmembers and isn't the author, target is {tar}")
-        if not xreg:
-            xreg = "eune"
-            resp.append(f"> No xreg, defaults ({xreg})")
-        for i in resp:
-            await ctx.send(i)
-            asyncio.sleep(0.2)
+        #resp = ["> So:\n"]
+        #if name is None:
+        #    tar = await self.config.member(author).Name()
+        #    resp.append(f"> No name, get author's from conf ({tar})")
+        #else:
+        #    try:
+        #        tar = await self.config.member(user).Name()
+        #        resp.append(f"> Name is in allmembers, get it from conf ({tar})")
+        #    except:
+        #        tar = name
+        #        resp.append(f"> User ain't in allmembers and isn't the author, target is {tar}")
+        #if not xreg:
+        #    xreg = "eune"
+        #    resp.append(f"> No xreg, defaults ({xreg})")
+        #for i in resp:
+        #    await ctx.send(i)
+        #    asyncio.sleep(0.2)
+        champico = await self.lib.cdragon_champ_square(name)
+        await ctx.send(file=discord.File(champico, '{}.png'.format(name)))
 
     @checks.is_owner()
     @league.command(name="lhistory")
