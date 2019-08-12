@@ -225,7 +225,7 @@ class Leaguelib:
         iconimg = await self.ddragon_icon(pid)
         return iconimg
 
-    async def get_champid(self):
+    async def get_champlist(self):
         if self.champs is None:
             await self.upd_champs()
         champ = self.champs["data"]
@@ -234,6 +234,13 @@ class Leaguelib:
         #        return champ[i]["key"]
         return champ
         #return "> Welp, that's an error"
+
+    async def get_champid(self, name):
+        clist = await self.get_champlist()
+        for i in clist:
+            if clist[i]["name"].lower == str(name).lower:
+                return clist[i]["key"]
+        return "Invalid champ"
 
     async def get_champ_mastery(self, name, xreg, champid):
         summid = await self.get_sid(name, xreg)
