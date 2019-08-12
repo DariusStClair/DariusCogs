@@ -385,7 +385,7 @@ class Leaguehell(commands.Cog):
             role = ""
             roles = len(chroles)
             for i in range(roles):
-                role.append(data["roles"][i])
+                role = chroles[i]
                 em.add_field(name=f"Temp {i}", value=f"{role}")
             #for i in chspells:
             #    spell = chspells[i]
