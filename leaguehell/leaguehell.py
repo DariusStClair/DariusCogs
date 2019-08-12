@@ -343,7 +343,7 @@ class Leaguehell(commands.Cog):
         #
         #champico = await self.lib.cdragon_champ_square(name)
         #await ctx.send(file=discord.File(champico, '{}.png'.format(name)))
-        champid = await self.lib.get_champid(name)
+        champid = await self.lib.get_champ_name(name)
         await ctx.send(champid)
 
     @checks.is_owner()
