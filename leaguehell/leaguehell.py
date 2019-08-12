@@ -349,7 +349,7 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="leaguepatch")
     async def leaguepatch(self, ctx):
-        cpatch = await self.lib.get_patch
+        cpatch = await self.lib.get_patch()
         await ctx.send(box(cpatch))
 
     @checks.is_owner()
