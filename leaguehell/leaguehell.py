@@ -365,10 +365,13 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="lookupchamp")
     async def lookupchamp(self, ctx, *, name):
+        author = ctx.author
         #chkey = await self.lib.get_champid(name)
         #await ctx.send(chkey)
         champico = await self.lib.cdragon_champ_square(name)
-        await ctx.send(file=discord.File(champico, '{}.png'.format(name)))
+        em = discord.Embed(colour=15158332)
+        em.set_image(url=champico)
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
 
     @checks.is_owner()
     @commands.command(name="leaguepatch")
