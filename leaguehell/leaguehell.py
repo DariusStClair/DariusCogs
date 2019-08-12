@@ -345,8 +345,21 @@ class Leaguehell(commands.Cog):
         #await ctx.send(file=discord.File(champico, '{}.png'.format(name)))
         clist = []
         champid = await self.lib.get_champid()
+        npages = len(champid)
+        cpage = 1
         for i in champid:
-            clist.append(champid[i])
+            cpage += 1
+            thing1 = champid[i]["name"]
+            thing2 = champid[i]["key"]
+            thing3 = champid[i]["id"]
+            thing4 = champid[i]["title"]
+            thing5 = champid[i]["blurb"]
+            em = discord.Embed(colour=15158332)
+            emdesc = f"**{thing1}** / ID: {thing3}."
+            em.add_field(name=f"Key: {thing2}, {thing4}", value=f"{thing5}")
+            em.set_footer(text=(f"Page {cpage}/{npages} | Powered by HELL |{vversion}"))
+            em.description = emdesc
+            clist.append(em)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
     @checks.is_owner()
