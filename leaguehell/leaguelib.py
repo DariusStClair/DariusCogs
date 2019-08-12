@@ -9,13 +9,14 @@ class Leaguelib:
         self.bot = bot
         self.api = None
         self.champs = None
-        self.users = None
+        self.imgs = None
         self._sess = aiohttp.ClientSession()
         self.srvs = {
             "eune": "eun1",
             "euw": "euw1",
             "na": "na1"
         }
+        # Rito api / ddragon
         self.summ_name = "/lol/summoner/v4/summoners/by-name/{}"
         self.mastery_summ = "/lol/champion-mastery/v4/champion-masteries/by-summoner/{}"
         self.scores_summ = "/lol/champion-mastery/v4/scores/by-summoner/{}"
@@ -25,6 +26,9 @@ class Leaguelib:
         self.match_matchid = "/lol/match/v4/matches/{}"
         self.matchlist_acc = "/lol/match/v4/matchlists/by-account/{}"
         self.ranked_test = "/lol/league/v4/entries/by-summoner/{}"
+        # Community Dragon (cdragon)
+        self.cdragon_champ = "https://cdn.communitydragon.org/{}/champion/"
+        self.cdragon_champ_square = "{}/square.png"
 
     async def __unload(self):
         self._sess.detach()
@@ -36,6 +40,11 @@ class Leaguelib:
             return self.api
         else:
             return self.api
+
+    async def get_patch(self):
+        ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
+        version = await self.get(ddragonv)
+        return version[0]
 
     async def apistr(self):
         leagueapikey = await self._getapi()
@@ -120,21 +129,21 @@ class Leaguelib:
                 return champ[i]["title"]
 
     async def upd_champs(self):
-        ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
-        version = await self.get(ddragonv)
-        rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/data/en_US/champion.json"
+        #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
+        version = await self.get_patch()
+        rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/champion.json"
         self.champs = await self.get(rq)
 
     async def ddragon_icon(self, pid):
-        ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
-        version = await self.get(ddragonv)
+        #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
+        version = await self.get_patch()
         iconid = pid
-        rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/profileicon/{iconid}.png"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/profileicon/{iconid}.png"
         return rq
 
     async def ddragon_champico(self, champid):
-        ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
-        version = await self.get(ddragonv)
+        #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
+        version = await self.get_patch()
         chnametemp = str(await self.get_champ_name(champid))
         chnametempr = str(chnametemp.replace("'", ""))
         temp = chnametempr.capitalize()
@@ -150,8 +159,16 @@ class Leaguelib:
             temp = "KogMaw"
         if temp == "Lee sin":
             temp = "LeeSin"
-        rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/{temp}.png"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{temp}.png"
         return rq
+
+    # Community dragon test
+    async def cdragon_champico(self, champname):
+        champkey = await self.get_champid(champname)
+        version = await self.get_patch()
+        self.url.format(self.srvs[xreg]) + self.mastery_summchamp.format(summid, champid)
+        square = self.cdragon_champ.format(version) + self.cdragon_champ_square.format(champkey)
+        return square
 
     async def ddragon_champsplash(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
@@ -310,14 +327,9 @@ class Leaguelib:
         for i in rj["matches"]:
             temp = {}
             temp["champ"] = await self.get_champ_name(str(i["champion"]))
-            if i["role"].lower() == "none":
-                pass
-            else:
+            temp["role"] = i["lane"]
+            if temp["role"].lower() == "none":
                 temp["role"] = i["role"]
-            if i["lane"].lower() == "none":
-                temp["lane"] = i["lane"]
-            else:
-                pass
             match = await self.get_match(xreg, i["gameId"])
             osf = floor((match["gameDuration"])/60)
             temp["Duration"] = str(osf) + ":" + str(match["gameDuration"] - (osf*60))
