@@ -364,7 +364,7 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="lookupchamp")
-    async def lookupchamp(self, ctx, name):
+    async def lookupchamp(self, ctx, *, name):
         chkey = await self.lib.get_champid(name)
         await ctx.send(chkey)
 
