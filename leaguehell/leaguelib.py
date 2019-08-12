@@ -163,10 +163,10 @@ class Leaguelib:
         return rq
 
     # Community dragon test
-    async def cdragon_champico(self, champname):
+    async def cdragon_champ_square(self, champname):
         champkey = await self.get_champid(champname)
         version = await self.get_patch()
-        self.url.format(self.srvs[xreg]) + self.mastery_summchamp.format(summid, champid)
+        #self.url.format(self.srvs[xreg]) + self.mastery_summchamp.format(summid, champid)
         square = self.cdragon_champ.format(version) + self.cdragon_champ_square.format(champkey)
         return square
 
