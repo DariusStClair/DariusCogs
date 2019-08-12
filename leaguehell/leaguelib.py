@@ -99,15 +99,6 @@ class Leaguelib:
         rj = await self.get(rq)
         return rj
 
-    async def get_mastery(self, name, xreg):
-        summid = await self.get_sid(name, xreg)
-        apistr = await self.apistr()
-        if xreg not in self.srvs:
-            return False
-        rq = self.url.format(self.srvs[xreg]) + self.scores_summ.format(summid) + apistr
-        rj = await self.get(rq)
-        return rj
-
     async def get_champ_name(self, champid):
         if self.champs is None:
             await self.upd_champs()
@@ -117,6 +108,15 @@ class Leaguelib:
         for i in champ:
             if champ[i]["key"] == champid:
                 return champ[i]["name"]
+
+    async def get_mastery(self, name, xreg):
+        summid = await self.get_sid(name, xreg)
+        apistr = await self.apistr()
+        if xreg not in self.srvs:
+            return False
+        rq = self.url.format(self.srvs[xreg]) + self.scores_summ.format(summid) + apistr
+        rj = await self.get(rq)
+        return rj
 
     async def get_champ_title(self, champid):
         if self.champs is None:
@@ -231,6 +231,17 @@ class Leaguelib:
         champ = self.champs["data"]
         for i in champ:
             if champ[i]["name"] == name:
+                return champ[i]["key"]
+        return "Wtf champ we"
+
+    async def get_champ_key(self, *name):
+        if self.champs is None:
+            await self.upd_champs()
+        champ = self.champs["data"]
+        for i in champ:
+            lowchamp = champ[i]["name"]
+            lowname = name
+            if lowchamp.lower == lowname.lower:
                 return champ[i]["key"]
         return "Wtf champ we"
 
