@@ -9,6 +9,7 @@ class Leaguelib:
         self.bot = bot
         self.api = None
         self.champs = None
+        self.cdragon = None
         self.imgs = None
         self._sess = aiohttp.ClientSession()
         self.srvs = {
@@ -29,6 +30,7 @@ class Leaguelib:
         # Community Dragon (cdragon)
         self.cdragon_champ = "https://cdn.communitydragon.org/{}/champion/"
         self.cdragon_champ_squareurl = "{}/square.png"
+        self.cdragon_champ_dataurl = "{}/data"
 
     async def __unload(self):
         self._sess.detach()
@@ -162,7 +164,7 @@ class Leaguelib:
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{temp}.png"
         return rq
 
-    # Community dragon test
+    # Community dragon champstuff
     async def cdragon_champ_square(self, champname):
         champkey = await self.get_champid(champname)
         if champkey != "Invalid champ":
@@ -171,7 +173,17 @@ class Leaguelib:
             square = self.cdragon_champ.format(version) + self.cdragon_champ_squareurl.format(champkey)
             return square
         else:
-            return "https://cdn.discordapp.com/emojis/595739688548171787.png"
+            version = await self.get_patch()
+            return f"https://cdn.communitydragon.org/{version}/champion/generic/square.png"
+
+    async def cdragon_champ_data(self, champname):
+        champkey = await self.get_champid(champname)
+        if champkey != "Invalid champ":
+            version = await self.get_patch()
+            champdata = self.cdragon_champ.format(version) + self.cdragon_champ_dataurl.format(champkey)
+            return cdchampdata
+        else:
+            return "Error"
 
     async def ddragon_champsplash(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
@@ -237,6 +249,14 @@ class Leaguelib:
         #        return champ[i]["key"]
         return champ
         #return "> Welp, that's an error"
+        
+    async def get_champ_data(self, name):
+        if self.champs is None:
+            await self.upd_champs()
+        champ = await self.get_champid(name)
+        data = self.get_champlist
+        resp = data[champ]
+        return resp
 
     async def get_champid(self, name):
         clist = await self.get_champlist()
