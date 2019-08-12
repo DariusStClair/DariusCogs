@@ -365,8 +365,10 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="lookupchamp")
     async def lookupchamp(self, ctx, *, name):
-        chkey = await self.lib.get_champid(name)
-        await ctx.send(chkey)
+        #chkey = await self.lib.get_champid(name)
+        #await ctx.send(chkey)
+        champico = await self.lib.cdragon_champ_square(name)
+        await ctx.send(file=discord.File(champico, '{}.png'.format(name)))
 
     @checks.is_owner()
     @commands.command(name="leaguepatch")

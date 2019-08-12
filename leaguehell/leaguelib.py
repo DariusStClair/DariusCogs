@@ -244,6 +244,10 @@ class Leaguelib:
             searched = "".join(searched.split(" "))
         if "'" in searched:
             searched = "".join(searched.split("'"))
+        if "." in searched:
+            searched = "".join(searched.split("."))
+        if "&" in searched:
+            searched = "".join(searched.split("&"))
         for i in clist:
             temp = str(clist[i]["id"])
             if temp.lower() == searched.lower():
