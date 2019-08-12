@@ -181,7 +181,8 @@ class Leaguelib:
         if champkey != "Invalid champ":
             version = await self.get_patch()
             cdchampdata = self.cdragon_champ.format(version) + self.cdragon_champ_dataurl.format(champkey)
-            return cdchampdata
+            rj = await self.get(cdchampdata)
+            return rj
         else:
             return "Error"
 
