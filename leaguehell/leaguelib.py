@@ -230,8 +230,9 @@ class Leaguelib:
             await self.upd_champs()
         champ = self.champs["data"]
         for i in champ:
-            if champ[i]["id"] == name:
+            if champ[i]["id"].lower == str(name).lower:
                 return champ[i]["key"]
+        return "> Welp, that's an error"
 
     async def get_champ_mastery(self, name, xreg, champid):
         summid = await self.get_sid(name, xreg)
