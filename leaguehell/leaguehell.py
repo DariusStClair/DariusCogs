@@ -368,12 +368,12 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         #chkey = await self.lib.get_champid(name)
         #await ctx.send(chkey)
-        try:
-            champico = await self.lib.cdragon_champ_square(name)
+        champico = await self.lib.cdragon_champ_square(name)
+        if champico != "https://cdn.discordapp.com/emojis/595739688548171787.png":
             em = discord.Embed(colour=15158332)
             em.set_image(url=champico)
             em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-        except:
+        else:
             em = discord.Embed(colour=15158332)
             emdesc = "Invalid champ"
             em.description = emdesc
