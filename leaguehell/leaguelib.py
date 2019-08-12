@@ -240,7 +240,7 @@ class Leaguelib:
         champ = self.champs["data"]
         for i in champ:
             lowchamp = champ[i]["name"]
-            lowname = name
+            lowname = str(name)
             if lowchamp.lower == lowname.lower:
                 return champ[i]["key"]
         return "Wtf champ we"
