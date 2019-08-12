@@ -387,7 +387,7 @@ class Leaguehell(commands.Cog):
                 for i in range(roles):
                     allroles = ''.join(map(chroles[i]))
             if roles == 1:
-                allroles = ''.join(map(chroles[0]))
+                allroles = str(chroles[0]).strip("['']")
             #    for i in listroles:
             #        allroles = ''.join(listroles[i])
             em.add_field(name="Roles:", value=f"{allroles}")
