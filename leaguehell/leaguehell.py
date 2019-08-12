@@ -397,7 +397,7 @@ class Leaguehell(commands.Cog):
         #    em.description = emdesc
         #    em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         #await ctx.send(embed=em)
-        await ctx.send(data[0]["id"])
+        await ctx.send(data["id"])
 
     @checks.is_owner()
     @commands.command(name="leaguepatch")
