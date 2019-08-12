@@ -4,6 +4,7 @@ import asyncio
 from math import floor, ceil
 import datetime
 import discord
+import re
 # Red stuffs
 from redbot.core import checks, Config, bank, commands
 
@@ -28,3 +29,7 @@ class Handler:
             re = await self.config.member(name).Name()
             return re
     
+    async def cleanhtml(self, stuff):
+        cleanr = re.compile('<.*?>')
+        clean = re.sub(cleanr, '', stuff)
+        return clean

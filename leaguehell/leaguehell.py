@@ -11,6 +11,7 @@ import aiohttp
 import asyncio
 import datetime
 import random
+import re
 # League stuffs
 from .leaguelib import Leaguelib
 from .handler import Handler
@@ -376,7 +377,8 @@ class Leaguehell(commands.Cog):
             chbio = data["shortBio"]
             chico = await self.lib.cdragon_champ_square(name)
             chpassivename = data["passive"]["name"]
-            chpassivedescr = data["passive"]["description"]
+            chpassivedescrx = data["passive"]["description"]
+            chpassivedescr = await self.handle.cleanhtml(chpassivedescrx)
             chroles = data["roles"]
             #chspells = data["spells"]
             em = discord.Embed(colour=15158332)
