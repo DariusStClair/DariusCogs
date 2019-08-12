@@ -372,6 +372,7 @@ class Leaguehell(commands.Cog):
         em = discord.Embed(colour=15158332)
         em.set_image(url=champico)
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        await ctx.send(embed=em)
 
     @checks.is_owner()
     @commands.command(name="leaguepatch")
