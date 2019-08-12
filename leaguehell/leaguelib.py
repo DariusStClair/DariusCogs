@@ -28,7 +28,7 @@ class Leaguelib:
         self.ranked_test = "/lol/league/v4/entries/by-summoner/{}"
         # Community Dragon (cdragon)
         self.cdragon_champ = "https://cdn.communitydragon.org/{}/champion/"
-        self.cdragon_champ_square = "{}/square.png"
+        self.cdragon_champ_squareurl = "{}/square.png"
 
     async def __unload(self):
         self._sess.detach()
