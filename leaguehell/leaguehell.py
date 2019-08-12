@@ -319,7 +319,7 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="leaguetest")
-    async def leaguetest(self, ctx, name=None):
+    async def leaguetest(self, ctx):
         #author = ctx.author
         #allmembers = await self.config.all_members()
         #resp = ["> So:\n"]
@@ -343,8 +343,11 @@ class Leaguehell(commands.Cog):
         #
         #champico = await self.lib.cdragon_champ_square(name)
         #await ctx.send(file=discord.File(champico, '{}.png'.format(name)))
-        champid = await self.lib.get_champid(name)
-        await ctx.send(champid)
+        clist = []
+        champid = await self.lib.get_champid()
+        for i in champid:
+            clist.append(champid[i])
+        await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
     @checks.is_owner()
     @commands.command(name="leaguepatch")
