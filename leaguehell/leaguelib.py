@@ -238,8 +238,13 @@ class Leaguelib:
     async def get_champid(self, name):
         clist = await self.get_champlist()
         searched = str(name)
+        if " " not in searched:
+            searched = str(name)
+        else:
+            searched = "".join(searched.split(" "))
         for i in clist:
-            if str(clist[i]["name"]).lower == searched.lower:
+            temp = str(clist[i]["id"])
+            if temp.lower == searched.lower:
                 return clist[i]["key"]
         return "Invalid champ"
 
