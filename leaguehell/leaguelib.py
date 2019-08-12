@@ -244,7 +244,7 @@ class Leaguelib:
             searched = "".join(searched.split(" "))
         for i in clist:
             temp = str(clist[i]["id"])
-            if temp.lower == searched.lower:
+            if temp.lower() == searched.lower():
                 return clist[i]["key"]
         return "Invalid champ"
 
