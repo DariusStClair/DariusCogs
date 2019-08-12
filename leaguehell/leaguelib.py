@@ -167,7 +167,7 @@ class Leaguelib:
         champkey = await self.get_champid(champname)
         version = await self.get_patch()
         #self.url.format(self.srvs[xreg]) + self.mastery_summchamp.format(summid, champid)
-        square = self.cdragon_champ.format(version) + self.cdragon_champ_square.format(champkey)
+        square = self.cdragon_champ.format(version) + self.cdragon_champ_squareurl.format(champkey)
         return square
 
     async def ddragon_champsplash(self, champid):
