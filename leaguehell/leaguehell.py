@@ -346,7 +346,7 @@ class Leaguehell(commands.Cog):
         clist = []
         champid = await self.lib.get_champid()
         npages = len(champid)
-        cpage = 1
+        cpage = 0
         for i in champid:
             cpage += 1
             thing1 = champid[i]["name"]
@@ -357,7 +357,7 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             emdesc = f"**{thing1}** / ID: {thing3}."
             em.add_field(name=f"Key: {thing2}, {thing4}", value=f"{thing5}")
-            em.set_footer(text=(f"Page {cpage}/{npages} | Powered by HELL |{vversion}"))
+            em.set_footer(text=(f"Page {cpage}/{npages} | Powered by HELL | {vversion}"))
             em.description = emdesc
             clist.append(em)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
