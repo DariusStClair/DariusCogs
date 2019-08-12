@@ -383,12 +383,11 @@ class Leaguehell(commands.Cog):
             em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
             #listroles = []
             roles = len(chroles)
-            listroles = ', '
             if roles >= 1:
                 for i in range(roles):
-                    allroles = listroles.join(chroles[i])
+                    allroles = ''.join(map(chroles[i]))
             if roles == 1:
-                allroles = chroles
+                allroles = ''.join(map(chroles[0]))
             #    for i in listroles:
             #        allroles = ''.join(listroles[i])
             em.add_field(name="Roles:", value=f"{allroles}")
