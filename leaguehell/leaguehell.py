@@ -383,10 +383,12 @@ class Leaguehell(commands.Cog):
             em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
             #listroles = []
             for i in chroles:
-                em.add_field(name=f"Temp {i}", value=f"{chspells[i]}")
+                role = chroles[i]
+                em.add_field(name=f"Temp {i}", value=f"{spell}")
             for i in chspells:
-                em.add_field(name=f"Temp {i}", value=f"{chspells[i]}")
-            emdesc = f"{chname}, {chtitle} \n{chbio} \n\nRoles: {listroles}"
+                spell = chspells[i]
+                em.add_field(name=f"Temp {i}", value=f"{spell}")
+            emdesc = f"{chname}, {chtitle} \n{chbio}"
             em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}")
             em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: {chid} | {vversion}")
         else:
