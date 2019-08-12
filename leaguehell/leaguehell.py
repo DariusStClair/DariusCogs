@@ -382,12 +382,8 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
             #listroles = []
-            roles = len(chroles)
-            if roles >= 1:
-                for i in range(roles):
-                    allroles = ''.join(map(chroles[i]))
-            if roles == 1:
-                allroles = str(chroles[0]).strip("['']")
+            #roles = len(chroles)
+            allroles = " ".join([str(elem) for elem in chroles])
             #    for i in listroles:
             #        allroles = ''.join(listroles[i])
             em.add_field(name="Roles:", value=f"{allroles}")
