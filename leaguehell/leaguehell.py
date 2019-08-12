@@ -369,35 +369,35 @@ class Leaguehell(commands.Cog):
         #chkey = await self.lib.get_champid(name)
         #await ctx.send(chkey)
         data = await self.lib.cdragon_champ_data(name)
-        #if data != "Error":
-        #    chid = data["id"]
-        #    chname = data["name"]
-        #    chtitle = data["title"]
-        #    chbio = data["shortBio"]
-        #    chico = await self.lib.cdragon_champ_square(name)
-        #    chpassivename = data["passive"]["name"]
-        #    chpassivedescr = data["passive"]["description"]
-        #    chroles = data["roles"]
-        #    chspells = data["spells"]
-        #    em = discord.Embed(colour=15158332)
-        #    em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
-        #    listroles = []
-        #    listspells = []
-        #   for i in chroles:
-        #        listroles.append(chroles[i])
-        #    for i in chspells:
-        #        em.add_field(name=f"Temp {i}", value=f"{chspells[i]}")
-        #        listspells.append(chspells[i])
-        #    emdesc = f"{chname}, {chtitle} \n{chbio} \n\nRoles: {listroles}"
-        #    em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}")
-        #    em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: {chid} | {vversion}")
-        #else:
-        #    em = discord.Embed(colour=15158332)
-        #    emdesc = "**Invalid champ**"
-        #    em.description = emdesc
-        #    em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-        #await ctx.send(embed=em)
-        await ctx.send(data["passive"]["name"])
+        if data != "Error":
+            chid = data["id"]
+            chname = data["name"]
+            chtitle = data["title"]
+            chbio = data["shortBio"]
+            chico = await self.lib.cdragon_champ_square(name)
+            chpassivename = data["passive"]["name"]
+            chpassivedescr = data["passive"]["description"]
+            chroles = data["roles"]
+            chspells = data["spells"]
+            em = discord.Embed(colour=15158332)
+            em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
+            listroles = []
+            listspells = []
+           for i in chroles:
+                listroles.append(chroles[i])
+            for i in chspells:
+                em.add_field(name=f"Temp {i}", value=f"{chspells[i]}")
+                listspells.append(chspells[i])
+            emdesc = f"{chname}, {chtitle} \n{chbio} \n\nRoles: {listroles}"
+            em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}")
+            em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: {chid} | {vversion}")
+        else:
+            em = discord.Embed(colour=15158332)
+            emdesc = "**Invalid champ**"
+            em.description = emdesc
+            em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        await ctx.send(embed=em)
+        #await ctx.send(data["passive"]["name"])
 
     @checks.is_owner()
     @commands.command(name="leaguepatch")
