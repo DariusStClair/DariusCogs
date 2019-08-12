@@ -230,18 +230,7 @@ class Leaguelib:
             await self.upd_champs()
         champ = self.champs["data"]
         for i in champ:
-            if champ[i]["name"] == name:
-                return champ[i]["key"]
-        return "Wtf champ we"
-
-    async def get_champ_key(self, *name):
-        if self.champs is None:
-            await self.upd_champs()
-        champ = self.champs["data"]
-        for i in champ:
-            lowchamp = champ[i]["name"]
-            lowname = str(name)
-            if lowchamp.lower == lowname.lower:
+            if champ[i]["id"] == name:
                 return champ[i]["key"]
         return "Wtf champ we"
 
