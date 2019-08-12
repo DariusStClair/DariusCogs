@@ -165,10 +165,13 @@ class Leaguelib:
     # Community dragon test
     async def cdragon_champ_square(self, champname):
         champkey = await self.get_champid(champname)
-        version = await self.get_patch()
-        #self.url.format(self.srvs[xreg]) + self.mastery_summchamp.format(summid, champid)
-        square = self.cdragon_champ.format(version) + self.cdragon_champ_squareurl.format(champkey)
-        return square
+        if champkey != "Invalid champ":
+            version = await self.get_patch()
+            #self.url.format(self.srvs[xreg]) + self.mastery_summchamp.format(summid, champid)
+            square = self.cdragon_champ.format(version) + self.cdragon_champ_squareurl.format(champkey)
+            return square
+        else:
+            return "https://cdn.discordapp.com/emojis/595739688548171787.png"
 
     async def ddragon_champsplash(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
