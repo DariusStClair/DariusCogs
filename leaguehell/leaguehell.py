@@ -368,10 +368,16 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         #chkey = await self.lib.get_champid(name)
         #await ctx.send(chkey)
-        champico = await self.lib.cdragon_champ_square(name)
-        em = discord.Embed(colour=15158332)
-        em.set_image(url=champico)
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        try:
+            champico = await self.lib.cdragon_champ_square(name)
+            em = discord.Embed(colour=15158332)
+            em.set_image(url=champico)
+            em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        except:
+            em = discord.Embed(colour=15158332)
+            emdesc = "Invalid champ"
+            em.description = emdesc
+            em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         await ctx.send(embed=em)
 
     @checks.is_owner()
