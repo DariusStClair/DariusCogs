@@ -383,7 +383,7 @@ class Leaguehell(commands.Cog):
             em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
             listroles = []
             listspells = []
-           for i in chroles:
+            for i in chroles:
                 listroles.append(chroles[i])
             for i in chspells:
                 em.add_field(name=f"Temp {i}", value=f"{chspells[i]}")
