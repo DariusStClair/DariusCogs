@@ -382,8 +382,10 @@ class Leaguehell(commands.Cog):
         #    em = discord.Embed(colour=15158332)
         #    em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
         #    #listroles = []
+        #    role = ""
+        #    roles = len(chroles)
         #    for i in chroles:
-        #        role = chroles[i]
+        #        role.append(i)
         #        em.add_field(name=f"Temp {i}", value=f"{role}")
         #    for i in chspells:
         #        spell = chspells[i]
@@ -397,7 +399,7 @@ class Leaguehell(commands.Cog):
         #    em.description = emdesc
         #    em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         #await ctx.send(embed=em)
-        await ctx.send(data["roles"])
+        await ctx.send(len(data["roles"]))
 
     @checks.is_owner()
     @commands.command(name="leaguepatch")
