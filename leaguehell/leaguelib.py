@@ -232,8 +232,7 @@ class Leaguelib:
         for i in champ:
             if champ[i]["name"] == name:
                 return champ[i]["key"]
-            else:
-                return "Wtf champ we"
+        return "Wtf champ we"
 
     async def get_champ_mastery(self, name, xreg, champid):
         summid = await self.get_sid(name, xreg)

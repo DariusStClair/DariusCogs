@@ -339,8 +339,12 @@ class Leaguehell(commands.Cog):
         #for i in resp:
         #    await ctx.send(i)
         #    asyncio.sleep(0.2)
-        champico = await self.lib.cdragon_champ_square(name)
-        await ctx.send(file=discord.File(champico, '{}.png'.format(name)))
+        #
+        #
+        #champico = await self.lib.cdragon_champ_square(name)
+        #await ctx.send(file=discord.File(champico, '{}.png'.format(name)))
+        champid = await self.lib.get_champid(name)
+        await ctx.send(champid)
 
     @checks.is_owner()
     @league.command(name="lhistory")
