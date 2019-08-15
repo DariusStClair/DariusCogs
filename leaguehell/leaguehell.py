@@ -181,7 +181,7 @@ class Leaguehell(commands.Cog):
                 else:
                     await ctx.send("> You can't set other people's regions")
         db = await self.config.guild(server).db()
-        if reg.upper() in reghecks:
+        if reg.upper() in regchecks:
             if tar.id in db:
                 regup = reg.upper()
                 reglow = reg.lower()
