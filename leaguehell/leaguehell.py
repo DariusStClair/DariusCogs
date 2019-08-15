@@ -155,7 +155,7 @@ class Leaguehell(commands.Cog):
             await self.config.guild(server).db.set(db)
             await self.config.member(tar).Name.set(name)
             data = discord.Embed(colour=0xff0000)
-            data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {anick}")
+            data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {author}")
             await ctx.send(embed=data)
         #except:
         #    await ctx.send("Welp, that didn't work out. I think.")
