@@ -324,7 +324,7 @@ class Leaguehell(commands.Cog):
             if not self.config.member(author).Region():
                 await ctx.send_help()
             else:
-                name = await self.config.member(author).Region()
+                xreg = await self.config.member(author).Region()
         #if name is discord.Member:
         #    if not self.config.member(author).Name():
         #        await ctx.send_help()
