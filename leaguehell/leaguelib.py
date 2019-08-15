@@ -209,7 +209,7 @@ class Leaguelib:
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
         #temp = await self.get_cname(champid)
         temp = await self.get_champid(champid)
-        rq = f"https://cdn.communitydragon.org/{version}/champion/{temp|}/splash-art"
+        rq = f"https://cdn.communitydragon.org/{version}/champion/{temp}/splash-art"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{temp}_0.jpg"
         return rq
 
