@@ -16,7 +16,6 @@ import re
 from .leaguelib import Leaguelib
 from .handler import Handler
 
-regchecks = ["EUNE", "EUW", "NA"]
 vversion = "version: 0.02"
 allregistered = []
 
@@ -169,6 +168,7 @@ class Leaguehell(commands.Cog):
         server = ctx.guild
         author = ctx.author
         tar = None
+        reghecks = await self.regchecks()
         checkmod = await self.handle.check_modadmin(author)
         if not user:
             tar = author
@@ -204,7 +204,7 @@ class Leaguehell(commands.Cog):
             regup = reg.upper()
             reglow = reg.lower()
             data = discord.Embed(colour=0xff0000)
-            data.add_field(name=f"**{regup}** is not a valid region.", value=f"Valid regions are: \n{self.regchecks}")
+            data.add_field(name=f"**{regup}** is not a valid region.", value=f"Valid regions are: \n{regchecks}")
             data.set_footer(text=f"Powered by HELL | {vversion}")
             await ctx.send(embed=data)
 
