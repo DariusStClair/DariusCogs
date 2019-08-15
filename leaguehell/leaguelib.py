@@ -161,7 +161,7 @@ class Leaguelib:
         #    temp = "KogMaw"
         #if temp == "Lee sin":
         #    temp = "LeeSin"
-        temp = await self.get_champid(champid)
+        temp = await self.get_cname(champid)
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{temp}.png"
         return rq
 
@@ -206,7 +206,7 @@ class Leaguelib:
         #if temp == "Lee sin":
         #    temp = "LeeSin"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
-        temp = await self.get_champid(champid)
+        temp = await self.get_cname(champid)
         rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{temp}_0.jpg"
         return rq
 
@@ -229,7 +229,7 @@ class Leaguelib:
         #if temp == "Lee sin":
         #    temp = "LeeSin"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
-        temp = await self.get_champid(champid)
+        temp = await self.get_cname(champid)
         rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{temp}_0.jpg"
         return rq
 
@@ -261,6 +261,25 @@ class Leaguelib:
         data = self.get_champlist
         resp = data[champ]
         return resp
+
+    async def get_cname(self, name):
+        clist = await self.get_champlist()
+        searched = str(name)
+        if " " not in searched:
+            searched = str(name)
+        else:
+            searched = "".join(searched.split(" "))
+        if "'" in searched:
+            searched = "".join(searched.split("'"))
+        if "." in searched:
+            searched = "".join(searched.split("."))
+        if "&" in searched:
+            searched = "".join(searched.split("&"))
+        for i in clist:
+            temp = str(clist[i]["id"])
+            if temp.lower() == searched.lower():
+                return clist[i]["id"]
+        return "Invalid champ"
 
     async def get_champid(self, name):
         clist = await self.get_champlist()
