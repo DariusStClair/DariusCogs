@@ -146,24 +146,24 @@ class Leaguelib:
     async def ddragon_champico(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
         version = await self.get_patch()
-        #chnametemp = str(await self.get_champ_name(champid))
-        #chnametempr = str(chnametemp.replace("'", ""))
-        #temp = chnametempr.capitalize()
-        #if temp == "Reksai":
-        #    temp = "RekSai"
-        #if temp == "Jarvan iv":
-        #    temp = "JarvanIV"
-        #if temp == "Master yi":
-        #    temp = "MasterYi"
-        #if temp == "Miss fortune":
-        #    temp = "MissFortune"
-        #if temp == "Kogmaw":
-        #    temp = "KogMaw"
-        #if temp == "Lee sin":
-        #    temp = "LeeSin"
-        temp = await self.get_champid(champid)
-        rq = f" https://cdn.communitydragon.org/{version}/champion/{temp}/square"
-        #rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{temp}.png"
+        chnametemp = str(await self.get_champ_name(champid))
+        chnametempr = str(chnametemp.replace("'", ""))
+        temp = chnametempr.capitalize()
+        if temp == "Reksai":
+            temp = "RekSai"
+        if temp == "Jarvan iv":
+            temp = "JarvanIV"
+        if temp == "Master yi":
+            temp = "MasterYi"
+        if temp == "Miss fortune":
+            temp = "MissFortune"
+        if temp == "Kogmaw":
+            temp = "KogMaw"
+        if temp == "Lee sin":
+            temp = "LeeSin"
+        if temp == "Nunu & willump":
+            temp = "Nunu"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{temp}.png"
         return rq
 
     # Community dragon champstuff
@@ -190,53 +190,50 @@ class Leaguelib:
 
     async def ddragon_champsplash(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
-        version = await self.get_patch()
-        #chnametemp = str(await self.get_champ_name(champid))
-        #chnametempr = str(chnametemp.replace("'", ""))
-        #temp = chnametempr.capitalize()
-        #if temp == "Reksai":
-        #    temp = "RekSai"
-        #if temp == "Jarvan iv":
-        #    temp = "JarvanIV"
-        #if temp == "Master yi":
-        #    temp = "MasterYi"
-        #if temp == "Miss fortune":
-        #    temp = "MissFortune"
-        #if temp == "Kogmaw":
-        #    temp = "KogMaw"
-        #if temp == "Lee sin":
-        #    temp = "LeeSin"
+        #version = await self.get(ddragonv)
+        chnametemp = str(await self.get_champ_name(champid))
+        chnametempr = str(chnametemp.replace("'", ""))
+        temp = chnametempr.capitalize()
+        if temp == "Reksai":
+            temp = "RekSai"
+        if temp == "Jarvan iv":
+            temp = "JarvanIV"
+        if temp == "Master yi":
+            temp = "MasterYi"
+        if temp == "Miss fortune":
+            temp = "MissFortune"
+        if temp == "Kogmaw":
+            temp = "KogMaw"
+        if temp == "Lee sin":
+            temp = "LeeSin"
+        if temp == "Nunu & willump":
+            temp = "Nunu"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
-        #temp = await self.get_cname(champid)
-        temp = await self.get_champid(champid)
-        rq = f"https://cdn.communitydragon.org/{version}/champion/{temp}/splash-art"
-        #rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{temp}_0.jpg"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{temp}_0.jpg"
         return rq
 
     async def ddragon_champsloading(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
-        version = await self.get_patch()
-        #chnametemp = str(await self.get_champ_name(champid))
-        #chnametempr = str(chnametemp.replace("'", ""))
-        #temp = chnametempr.capitalize()
-        #if temp == "Reksai":
-        #    temp = "RekSai"
-        #if temp == "Jarvan iv":
-        #    temp = "JarvanIV"
-        #if temp == "Master yi":
-        #    temp = "MasterYi"
-        #if temp == "Miss fortune":
-        #    temp = "MissFortune"
-        #if temp == "Kogmaw":
-        #    temp = "KogMaw"
-        #if temp == "Lee sin":
-        #    temp = "LeeSin"
-        #if temp == "Nunu & willump":
-        #    temp = "something"
+        #version = await self.get(ddragonv)
+        chnametemp = str(await self.get_champ_name(champid))
+        chnametempr = str(chnametemp.replace("'", ""))
+        temp = chnametempr.capitalize()
+        if temp == "Reksai":
+            temp = "RekSai"
+        if temp == "Jarvan iv":
+            temp = "JarvanIV"
+        if temp == "Master yi":
+            temp = "MasterYi"
+        if temp == "Miss fortune":
+            temp = "MissFortune"
+        if temp == "Kogmaw":
+            temp = "KogMaw"
+        if temp == "Lee sin":
+            temp = "LeeSin"
+        if temp == "Nunu & willump":
+            temp = "Nunu"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
-        temp = await self.get_champid(champid)
-        rq = f"https://cdn.communitydragon.org/{version}/champion/{temp}/portrait"
-        #rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{temp}_0.jpg"
+        rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{temp}_0.jpg"
         return rq
 
 
@@ -267,25 +264,6 @@ class Leaguelib:
         data = self.get_champlist
         resp = data[champ]
         return resp
-
-    async def get_cname(self, name):
-        clist = await self.get_champlist()
-        searched = str(name)
-        if " " not in searched:
-            searched = str(name)
-        else:
-            searched = "".join(searched.split(" "))
-        if "'" in searched:
-            searched = "".join(searched.split("'"))
-        if "." in searched:
-            searched = "".join(searched.split("."))
-        if "&" in searched:
-            searched = "".join(searched.split("&"))
-        for i in clist:
-            temp = str(clist[i]["id"])
-            if temp.lower() == searched.lower():
-                return clist[i]["id"]
-        return "Invalid champ"
 
     async def get_champid(self, name):
         clist = await self.get_champlist()
