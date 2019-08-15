@@ -168,7 +168,7 @@ class Leaguehell(commands.Cog):
         server = ctx.guild
         author = ctx.author
         tar = None
-        regchecks = self.regchecks
+        regchecks = ["EUNE", "EUW", "NA"]
         checkmod = await self.handle.check_modadmin(author)
         if not user:
             tar = author
@@ -181,7 +181,7 @@ class Leaguehell(commands.Cog):
                 else:
                     await ctx.send("> You can't set other people's regions")
         db = await self.config.guild(server).db()
-        if reg.upper() in self.reghecks:
+        if reg.upper() in reghecks:
             if tar.id in db:
                 regup = reg.upper()
                 reglow = reg.lower()
