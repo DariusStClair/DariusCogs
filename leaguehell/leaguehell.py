@@ -54,6 +54,7 @@ class Leaguehell(commands.Cog):
         self.config.register_global(**default_global)
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
+        self.regchecks = ["EUNE", "EUW", "NA"]
 
     @checks.is_owner()
     @commands.command(name="leagueapi")
@@ -161,6 +162,52 @@ class Leaguehell(commands.Cog):
             await ctx.send(embed=data)
         #except:
         #    await ctx.send("Welp, that didn't work out. I think.")
+
+    @league.command(pass_context=True, no_pm=True, name="setreg", aliases=["setregion"])
+    async def setreg(self, ctx, reg: str, user: discord.Member=None):
+        """Set your league region. \n\n`[user]` is an optional parameter for Moderators to set other people's nicknames."""
+        server = ctx.guild
+        author = ctx.author
+        tar = None
+        checkmod = await self.handle.check_modadmin(author)
+        if not user:
+            tar = author
+        else:
+            if checkmod is True:
+                tar = user
+            else:
+                if user == author:
+                    tar = author
+                else:
+                    await ctx.send("> You can't set other people's regions")
+        db = await self.config.guild(server).db()
+        if reg.upper() in self.reghecks:
+            if tar.id in db:
+                regup = reg.upper()
+                reglow = reg.lower()
+                await self.config.member(tar).Region.set(reglow)
+                data = discord.Embed(colour=0xff0000)
+                data.add_field(name=f"**{tar}**'s region has been changed to **{regup}**", value=f"Issued by {author}")
+                data.set_footer(text=f"Powered by HELL | {vversion}")
+                await ctx.send(embed=data)
+            else:
+                regup = reg.upper()
+                reglow = reg.lower()
+                db.append(tar.id)
+                await self.config.guild(server).db.set(db)
+                await self.config.member(tar).Region.set(reglow)
+                data = discord.Embed(colour=0xff0000)
+                data.add_field(name=f"**{tar}**'s nickname has been changed to **{regup}**", value=f"Issued by {author}")
+                data.set_footer(text=f"Powered by HELL | {vversion}")
+                await ctx.send(embed=data)
+        else:
+            regup = reg.upper()
+            reglow = reg.lower()
+            data = discord.Embed(colour=0xff0000)
+            data.add_field(name=f"**{regup}** is not a valid region.", value=f"Valid regions are: \n{self.regchecks}")
+            data.set_footer(text=f"Powered by HELL | {vversion}")
+            await ctx.send(embed=data)
+
 
     @checks.is_owner()
     @commands.command(name="leakapi")
