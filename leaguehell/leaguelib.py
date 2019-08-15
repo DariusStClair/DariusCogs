@@ -161,8 +161,9 @@ class Leaguelib:
         #    temp = "KogMaw"
         #if temp == "Lee sin":
         #    temp = "LeeSin"
-        temp = await self.get_cname(champid)
-        rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{temp}.png"
+        temp = await self.get_champid(champid)
+        rq = f" https://cdn.communitydragon.org/{version}/champion/{temp}/square"
+        #rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{temp}.png"
         return rq
 
     # Community dragon champstuff
@@ -189,7 +190,7 @@ class Leaguelib:
 
     async def ddragon_champsplash(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
-        #version = await self.get(ddragonv)
+        version = await self.get_patch()
         #chnametemp = str(await self.get_champ_name(champid))
         #chnametempr = str(chnametemp.replace("'", ""))
         #temp = chnametempr.capitalize()
@@ -206,13 +207,15 @@ class Leaguelib:
         #if temp == "Lee sin":
         #    temp = "LeeSin"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
-        temp = await self.get_cname(champid)
-        rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{temp}_0.jpg"
+        #temp = await self.get_cname(champid)
+        temp = await self.get_champid(champid)
+        rq = f"https://cdn.communitydragon.org/{version}/champion/{temp|}/splash-art"
+        #rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{temp}_0.jpg"
         return rq
 
     async def ddragon_champsloading(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
-        #version = await self.get(ddragonv)
+        version = await self.get_patch()
         #chnametemp = str(await self.get_champ_name(champid))
         #chnametempr = str(chnametemp.replace("'", ""))
         #temp = chnametempr.capitalize()
@@ -228,9 +231,12 @@ class Leaguelib:
         #    temp = "KogMaw"
         #if temp == "Lee sin":
         #    temp = "LeeSin"
+        #if temp == "Nunu & willump":
+        #    temp = "something"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
-        temp = await self.get_cname(champid)
-        rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{temp}_0.jpg"
+        temp = await self.get_champid(champid)
+        rq = f"https://cdn.communitydragon.org/{version}/champion/{temp}/portrait"
+        #rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{temp}_0.jpg"
         return rq
 
 
