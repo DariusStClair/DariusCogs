@@ -168,7 +168,7 @@ class Leaguehell(commands.Cog):
         server = ctx.guild
         author = ctx.author
         tar = None
-        regchecks = await self.regchecks
+        regchecks = self.regchecks
         checkmod = await self.handle.check_modadmin(author)
         if not user:
             tar = author
