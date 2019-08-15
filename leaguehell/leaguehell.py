@@ -17,7 +17,7 @@ from .leaguelib import Leaguelib
 from .handler import Handler
 
 regchecks = ["EUNE", "EUW", "NA"]
-vversion = "version: 0.01"
+vversion = "version: 0.02"
 allregistered = []
 
 def apikeycheck():
@@ -141,24 +141,24 @@ class Leaguehell(commands.Cog):
                 if user == author:
                     tar = author
                 else:
-                    await ctx.send("You can't set other people's nicknames")
+                    await ctx.send("> You can't set other people's nicknames")
         #await ctx.send(f"> __**DEBUG**__ \nTar is set to {tar}\nCaller is {author}\nCheck is {checkmod}\nVar is set to {name}")
-        try:
-            db = await self.config.guild(server).db()
-            if tar.id in db:
-                await self.config.member(tar).Name.set(name)
-                data = discord.Embed(colour=0xff0000)
-                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {author}")
-                await ctx.send(embed=data)
-            else:
-                db.append(tar.id)
-                await self.config.guild(server).db.set(db)
-                await self.config.member(tar).Name.set(name)
-                data = discord.Embed(colour=0xff0000)
-                data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {anick}")
-                await ctx.send(embed=data)
-        except:
-            await ctx.send("Welp, that didn't work out. I think.")
+        #try:
+        db = await self.config.guild(server).db()
+        if tar.id in db:
+            await self.config.member(tar).Name.set(name)
+            data = discord.Embed(colour=0xff0000)
+            data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {author}")
+            await ctx.send(embed=data)
+        else:
+            db.append(tar.id)
+            await self.config.guild(server).db.set(db)
+            await self.config.member(tar).Name.set(name)
+            data = discord.Embed(colour=0xff0000)
+            data.add_field(name=f"**{tar}**'s nickname has been changed to **{name}**", value=f"Issued by {anick}")
+            await ctx.send(embed=data)
+        #except:
+        #    await ctx.send("Welp, that didn't work out. I think.")
 
     @checks.is_owner()
     @commands.command(name="leakapi")
@@ -389,11 +389,12 @@ class Leaguehell(commands.Cog):
             #    for i in listroles:
             #        allroles = ''.join(listroles[i])
             em.add_field(name="Roles:", value=f"{allroles}")
-            #for i in chspells:
-            #    spell = chspells[i]
-            #    em.add_field(name=f"Temp {i}", value=f"{spell}")
+            for i in range(4):
+                spell = chspells[i]
+                hotkey = str(spell["spellkey"]).upper()
+                spname = spell["name"]
             emdesc = f"{chname}, {chtitle} \n{chbio}"
-            em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}")
+            em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}", inline=False)
             em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: {chid} | {vversion}")
         else:
             em = discord.Embed(colour=15158332)
