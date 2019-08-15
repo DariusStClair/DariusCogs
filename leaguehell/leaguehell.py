@@ -321,7 +321,10 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         #guild = ctx.guild
         if not xreg:
-            xreg = "eune"
+            if not self.config.member(author).Region():
+                await ctx.send_help()
+            else:
+                name = await self.config.member(author).Region()
         #if name is discord.Member:
         #    if not self.config.member(author).Name():
         #        await ctx.send_help()
