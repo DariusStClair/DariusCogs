@@ -473,7 +473,7 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="leaguetestname")
-    async def leaguetestname(self, ctx, name):
+    async def leaguetestname(self, ctx, name: discord.Member=None):
         #if "#" in name:
         #    test = await self.handle.search_leaguename(name)
         #    await ctx.send(test)
