@@ -471,6 +471,15 @@ class Leaguehell(commands.Cog):
         cpatch = await self.lib.get_patch()
         await ctx.send(box(cpatch))
 
+    @check.is_owner()
+    @commands.command(name="leaguetestname")
+    async def leaguetestname(self, ctx, name):
+        if "#" in name:
+            test = await self.handle.search_leaguename(name)
+            await ctx.send(test)
+        else:
+            await ctx.send("> # not found")
+
     @checks.is_owner()
     @league.command(name="lhistory")
     async def history(self, ctx, name, xreg):
