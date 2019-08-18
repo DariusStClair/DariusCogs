@@ -522,7 +522,11 @@ class Leaguehell(commands.Cog):
         #    await ctx.send(test)
         #else:
         #    await ctx.send("> # not found")
-        await ctx.send(str(f"> {name}"))
+        test = await self.handle.search_leaguename(name)
+        if test == "Error":
+            await ctx.send("> Name not found or some shit")
+        else:
+            await ctx.send("> Name is in the DB")
 
     @checks.is_owner()
     @league.command(name="lhistory")
