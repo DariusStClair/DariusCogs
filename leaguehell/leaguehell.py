@@ -340,7 +340,7 @@ class Leaguehell(commands.Cog):
                 name = await self.config.member(author).Name()
         if "#" in name: 
             reg = await self.handle.search_leaguename(name)
-            if not reg:
+            if reg == "Error":
                 return "> No account set"
             else:
                 name = reg
