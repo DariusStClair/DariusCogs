@@ -479,7 +479,7 @@ class Leaguehell(commands.Cog):
         #    await ctx.send(test)
         #else:
         #    await ctx.send("> # not found")
-        await ctx.send(str(f"> {name}")
+        await ctx.send(str(f"> {name}"))
 
     @checks.is_owner()
     @league.command(name="lhistory")
