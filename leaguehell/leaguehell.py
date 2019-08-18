@@ -142,6 +142,7 @@ class Leaguehell(commands.Cog):
                     tar = author
                 else:
                     await ctx.send("> You can't set other people's nicknames")
+                    return
         #await ctx.send(f"> __**DEBUG**__ \nTar is set to {tar}\nCaller is {author}\nCheck is {checkmod}\nVar is set to {name}")
         #try:
         db = await self.config.guild(server).db()
@@ -180,6 +181,7 @@ class Leaguehell(commands.Cog):
                     tar = author
                 else:
                     await ctx.send("> You can't set other people's regions")
+                    return
         db = await self.config.guild(server).db()
         if reg.upper() in regchecks:
             if tar.id in db:
@@ -224,7 +226,6 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         if not xreg:
             xreg = "eune"
-            return xreg
         #dnname = usr.display_name
         sumname = str(name).capitalize()
         em = discord.Embed(colour=15158332)
