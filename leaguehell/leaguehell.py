@@ -474,11 +474,12 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="leaguetestname")
     async def leaguetestname(self, ctx, name):
-        if "#" in name:
-            test = await self.handle.search_leaguename(name)
-            await ctx.send(test)
-        else:
-            await ctx.send("> # not found")
+        #if "#" in name:
+        #    test = await self.handle.search_leaguename(name)
+        #    await ctx.send(test)
+        #else:
+        #    await ctx.send("> # not found")
+        await ctx.send(str(f"> {name}")
 
     @checks.is_owner()
     @league.command(name="lhistory")
