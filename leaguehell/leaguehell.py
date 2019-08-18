@@ -471,7 +471,7 @@ class Leaguehell(commands.Cog):
         cpatch = await self.lib.get_patch()
         await ctx.send(box(cpatch))
 
-    @check.is_owner()
+    @checks.is_owner()
     @commands.command(name="leaguetestname")
     async def leaguetestname(self, ctx, name):
         if "#" in name:
