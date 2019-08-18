@@ -332,10 +332,10 @@ class Leaguehell(commands.Cog):
         #    else:
         #        name = await self.config.member(name).Name()
         if not name:
-            try:
-                name = await self.config.member(author).Name()
-            except:
+            if not self.config.member(author).Name():
                 await ctx.send_help()
+            else:
+                name = await self.config.member(author).Name()
             #return xreg
         icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
