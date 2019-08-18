@@ -26,10 +26,19 @@ class Handler:
         return False
     
     async def get_leaguename(self, name: discord.Member=None):
-            re = await self.config.member(name).Name()
-            return re
+        re = await self.config.member(name).Name()
+        return re
     
     async def cleanhtml(self, stuff):
         cleanr = re.compile('<.*?>')
         clean = re.sub(cleanr, '', stuff)
         return clean
+
+    async def search_leaguename(self, name):
+        registered = await self.config.all_members()
+        for k in registered:
+            for v in registered[k]:
+                if name in v:
+                    return k
+        return "Error"
+        

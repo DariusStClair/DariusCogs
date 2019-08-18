@@ -324,6 +324,7 @@ class Leaguehell(commands.Cog):
         if not xreg:
             if not self.config.member(author).Region():
                 await ctx.send_help()
+                return
             else:
                 xreg = await self.config.member(author).Region()
         #if name is discord.Member:
@@ -334,8 +335,15 @@ class Leaguehell(commands.Cog):
         if not name:
             if not self.config.member(author).Name():
                 await ctx.send_help()
+                return
             else:
                 name = await self.config.member(author).Name()
+        if "#" in name: 
+            reg = await self.handle.search_leaguename(name)
+            if not reg:
+                return "> No account set"
+            else:
+                name = reg
             #return xreg
         icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
