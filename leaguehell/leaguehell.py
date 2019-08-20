@@ -549,7 +549,7 @@ class Leaguehell(commands.Cog):
     async def leagueemoji(self, ctx, *, name):
         for n_ in ctx.bot.emojis:
             if n_.name == name:
-                chemoji = f"<:{n.name}:{n.id}"
+                chemoji = f"<:{n_.name}:{n_.id}"
         await ctx.send(chemoji)
 
     @checks.is_owner()
