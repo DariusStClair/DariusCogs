@@ -471,11 +471,24 @@ class Leaguehell(commands.Cog):
     @commands.command(name="champ")
     async def champ(self, ctx, *, name):
         author = ctx.author
+        #guilds = [612586360473124865, 612586558528290837, 612586640413818881, 612586727726383104]
         #chkey = await self.lib.get_champid(name)
         #await ctx.send(chkey)
         data = await self.lib.cdragon_champ_data(name)
         if data != "Error":
+            list1 = ["Alistar", "Amumu", "Anivia", "Annie", "Ashe", "Blitzcrank", "Caitlyn", "ChoGath", "Corki", "DrMundo", "Evelynn", "Fiddlesticks", "Galio", "Gangplank", "Irelia", "Janna", "Jax", "Karma", "Karthus", "Kassadin", "Kayle", "LeBlanc", "MasterYi", "MissFortune", "Morgana", "None", "Nunu", "Olaf", "Rammus", "Ryze", "Shaco", "Singed", "Sion", "Sivir", "Sona", "Soraka", "Swain", "Taric", "Teemo", "Tristana", "Trundle", "Tryndamere", "TwistedFate", "Twitch", "Urgot", "Veigar", "Vladimir", "Warwick", "XinZhao", "Zilean"]
+            list2 = ["Ahri", "Akali", "Brand", "Cassiopeia", "Draven", "Elise", "Ezrael", "Fiora", "Fizz", "Garen", "Gragas", "Graves", "Heimerdinger", "JarvanIV", "Katarina", "Kennen", "KogMaw", "LeeSin", "Leona", "Lulu", "Lux", "Malphite", "Malzahar", "Maokai", "Mordekaiser", "Nasus", "Nautilus", "Nidalee", "Nocturne", "Orianna", "Pantheon", "Poppy", "Renekton", "Rengar", "Riven", "Rumble", "Sejuani", "Shen", "Shyvana", "Skarner", "Talon", "Udyr", "Varus", "Vayne", "Viktor", "Volibear", "Wukong", "Xerath", "Yorick", "Ziggs"]
+            list3 = ["Aatrox", "AurelionSol", "Azir", "Bard", "Braum", "Camilee", "Darius", "Diana", "Ekko", "Gnar", "Hecarim", "Illaloi", "Ivern", "Jayce", "Jhin", "Jinx", "KaiSa", "Kalista", "Kayn", "KhaZix", "Kindred", "Kled", "Lissandra", "Lucian", "Nami", "Neeko", "Ornn", "Pyke", "Qiyana", "Quinn", "Rakan", "RekSai", "Sylas", "Syndra", "TahmKench", "Taliyah", "Thresh", "VelKoz", "Vi", "Xayah", "Yasuo", "Yummi", "Zac", "Zed", "Zoe", "Zyra"]
+            guid1 = 612586360473124865
+            guid2 = 612586558528290837
+            guid3 = 612586640413818881
             chid = data["id"]
+            if chid in list1:
+                guildid = guid1
+            if chid in list2:
+                guildid = guid2
+            if chid in list3:
+                guildid = guid3
             chname = data["name"]
             chtitle = data["title"]
             chbio = data["shortBio"]
@@ -493,11 +506,13 @@ class Leaguehell(commands.Cog):
             #    for i in listroles:
             #        allroles = ''.join(listroles[i])
             em.add_field(name="Roles:", value=f"{allroles}")
-            for i in range(4):
-                spell = chspells[i]
-                hotkey = str(spell["spellkey"]).upper()
-                spname = spell["name"]
+            #for i in range(4):
+                #spell = chspells[i]
+                #hotkey = str(spell["spellkey"]).upper()
+                #spname = spell["name"]
             emdesc = f"{chname}, {chtitle} \n{chbio}"
+            emoji = discord.utils.get(guild.emojis, name=f"{chid}")
+            em.add_field(name"Emoji test:", value=f"__/chemoji-placeholder/__", inline=False)
             em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}", inline=False)
             em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: {chid} | {vversion}")
         else:
