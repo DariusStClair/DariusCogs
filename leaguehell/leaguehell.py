@@ -489,6 +489,7 @@ class Leaguehell(commands.Cog):
                 guildid = guid2
             if chid in list3:
                 guildid = guid3
+            #chemoji = get(bot.get_all_emojis(), name="Annie")
             chname = data["name"]
             chtitle = data["title"]
             chbio = data["shortBio"]
@@ -512,7 +513,7 @@ class Leaguehell(commands.Cog):
                 #spname = spell["name"]
             emdesc = f"{chname}, {chtitle} \n{chbio}"
             emoji = discord.utils.get(guild.emojis, name=f"{chid}")
-            em.add_field(name"Emoji test:", value=f"__/chemoji-placeholder/__", inline=False)
+            em.add_field(name="Emoji test:", value=f"__/chemoji-placeholder/__", inline=False)
             em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}", inline=False)
             em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: {chid} | {vversion}")
         else:
@@ -542,6 +543,12 @@ class Leaguehell(commands.Cog):
             await ctx.send("> Name not found or some shit")
         else:
             await ctx.send("> Name is in the DB")
+    
+    @checks.is_owner()
+    @commands.command(name="leagueemoji")
+    async def leagueemoji(self, ctx, *, name):
+        chemoji = get(bot.get_all_emojis(), name="name")
+        await ctx.send(chemoji)
 
     @checks.is_owner()
     @league.command(name="lhistory")
