@@ -547,7 +547,7 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="leagueemoji")
     async def leagueemoji(self, ctx, *, name):
-        chemoji = await get(ctx.bot.get_all_emojis(), name="name")
+        chemoji = await get(self.bot.get_all_emojis(), name="name")
         await ctx.send(chemoji)
 
     @checks.is_owner()
