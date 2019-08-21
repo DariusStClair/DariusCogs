@@ -257,6 +257,8 @@ class Leaguelib:
             temp = "LeeSin"
         if temp == "Nunu & willump":
             temp = "Nunu"
+        if temp == "Leblanc":
+            temp = "LeBlanc"
         return temp
 
     async def summ_icon(self, name, xreg):
