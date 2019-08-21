@@ -231,7 +231,6 @@ class Leaguehell(commands.Cog):
         em = discord.Embed(colour=15158332)
         icostr = str(await self.lib.summ_icon(name, xreg))
         total = await self.lib.get_mastery(name, xreg)
-        reg = str(xreg).upper
         emdesc = (f"**{sumname}**\nTotal mastery: **{total}**\n**Top 3 champions by mastery**:")
         em.description = emdesc
         em.url = icostr
