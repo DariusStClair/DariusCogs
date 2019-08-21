@@ -166,6 +166,8 @@ class Leaguelib:
             temp = "LeeSin"
         if temp == "Nunu & willump":
             temp = "Nunu"
+        if temp == "Leblanc":
+            temp = "LeBlanc"
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{temp}.png"
         return rq
 
@@ -211,6 +213,8 @@ class Leaguelib:
             temp = "LeeSin"
         if temp == "Nunu & willump":
             temp = "Nunu"
+        if temp == "Leblanc":
+            temp = "LeBlanc"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
         rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{temp}_0.jpg"
         return rq
@@ -235,6 +239,8 @@ class Leaguelib:
             temp = "LeeSin"
         if temp == "Nunu & willump":
             temp = "Nunu"
+        if temp == "Leblanc":
+            temp = "LeBlanc"
         #rq = f"http://ddragon.leagueoflegends.com/cdn/{version[0]}/img/champion/splash/{splashid}_0.jpg"
         rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{temp}_0.jpg"
         return rq

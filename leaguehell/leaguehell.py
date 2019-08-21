@@ -16,7 +16,7 @@ import re
 from .leaguelib import Leaguelib
 from .handler import Handler
 
-vversion = "version: 0.02"
+vversion = "version: 0.03"
 allregistered = []
 
 def apikeycheck():
