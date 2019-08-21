@@ -550,8 +550,6 @@ class Leaguehell(commands.Cog):
         for n_ in ctx.bot.emojis:
             if n_.name == name:
                 chemoji = f"<:{n_.name}:{n_.id}>"
-            else:
-                chemoji = "No such thing bro"
         await ctx.send(chemoji)
 
     @checks.is_owner()
