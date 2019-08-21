@@ -239,6 +239,25 @@ class Leaguelib:
         rq = f"http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{temp}_0.jpg"
         return rq
 
+    async def champ_name_sanitized(self, champid):
+        chnametemp = str(await self.get_champ_name(champid))
+        chnametempr = str(chnametemp.replace("'", ""))
+        temp = chnametempr.capitalize()
+        if temp == "Reksai":
+            temp = "RekSai"
+        if temp == "Jarvan iv":
+            temp = "JarvanIV"
+        if temp == "Master yi":
+            temp = "MasterYi"
+        if temp == "Miss fortune":
+            temp = "MissFortune"
+        if temp == "Kogmaw":
+            temp = "KogMaw"
+        if temp == "Lee sin":
+            temp = "LeeSin"
+        if temp == "Nunu & willump":
+            temp = "Nunu"
+        return temp
 
     async def summ_icon(self, name, xreg):
         apistr = await self.apistr()
