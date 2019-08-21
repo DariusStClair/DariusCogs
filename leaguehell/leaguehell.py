@@ -239,6 +239,7 @@ class Leaguehell(commands.Cog):
         temp = 0
         for i in champs:
             chname = await self.lib.get_champ_name(str(i["championId"]))
+            chemoji = await self.lib.champ_emoji(chname)
             clvl = i["championLevel"]
             cpoints = i["championPoints"]
             cchest = i["chestGranted"]
@@ -249,7 +250,7 @@ class Leaguehell(commands.Cog):
             cmtokens = i["tokensEarned"]
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
-            em.add_field(name=(f"{chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."), inline=True)
+            em.add_field(name=(f"{chemoji} {chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."), inline=True)
             if temp >= 8:
                 break
             temp += 1
