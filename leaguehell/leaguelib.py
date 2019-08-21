@@ -450,18 +450,8 @@ class Leaguelib:
         return qtype
 
     async def champ_emoji(self, chid):
-        list1 = ["Alistar", "Amumu", "Anivia", "Annie", "Ashe", "Blitzcrank", "Caitlyn", "ChoGath", "Corki", "DrMundo", "Evelynn", "Fiddlesticks", "Galio", "Gangplank", "Irelia", "Janna", "Jax", "Karma", "Karthus", "Kassadin", "Kayle", "LeBlanc", "MasterYi", "MissFortune", "Morgana", "None", "Nunu", "Olaf", "Rammus", "Ryze", "Shaco", "Singed", "Sion", "Sivir", "Sona", "Soraka", "Swain", "Taric", "Teemo", "Tristana", "Trundle", "Tryndamere", "TwistedFate", "Twitch", "Urgot", "Veigar", "Vladimir", "Warwick", "XinZhao", "Zilean"]
-        list2 = ["Ahri", "Akali", "Brand", "Cassiopeia", "Draven", "Elise", "Ezrael", "Fiora", "Fizz", "Garen", "Gragas", "Graves", "Heimerdinger", "JarvanIV", "Katarina", "Kennen", "KogMaw", "LeeSin", "Leona", "Lulu", "Lux", "Malphite", "Malzahar", "Maokai", "Mordekaiser", "Nasus", "Nautilus", "Nidalee", "Nocturne", "Orianna", "Pantheon", "Poppy", "Renekton", "Rengar", "Riven", "Rumble", "Sejuani", "Shen", "Shyvana", "Skarner", "Talon", "Udyr", "Varus", "Vayne", "Viktor", "Volibear", "Wukong", "Xerath", "Yorick", "Ziggs"]
-        list3 = ["Aatrox", "AurelionSol", "Azir", "Bard", "Braum", "Camilee", "Darius", "Diana", "Ekko", "Gnar", "Hecarim", "Illaloi", "Ivern", "Jayce", "Jhin", "Jinx", "KaiSa", "Kalista", "Kayn", "KhaZix", "Kindred", "Kled", "Lissandra", "Lucian", "Nami", "Neeko", "Ornn", "Pyke", "Qiyana", "Quinn", "Rakan", "RekSai", "Sylas", "Syndra", "TahmKench", "Taliyah", "Thresh", "VelKoz", "Vi", "Xayah", "Yasuo", "Yummi", "Zac", "Zed", "Zoe", "Zyra"]
-        guid1 = 612586360473124865
-        guid2 = 612586558528290837
-        guid3 = 612586640413818881
-        if chid in list1:
-            guildid = guid1
-        if chid in list2:
-            guildid = guid2
-        if chid in list3:
-            guildid = guid3
-        guild = bot.get_guild(guildid)
-        emoji = discord.utils.get(guild.emojis, name=f"{chid}")
+        emoji = "<:None:612702016094863518>"
+        for n_ in self.bot.emojis:
+            if n_.name == chid:
+                emoji = f"<:{n_.name}:{n_.id}>"
         return emoji
