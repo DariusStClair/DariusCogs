@@ -231,7 +231,7 @@ class Leaguehell(commands.Cog):
         em = discord.Embed(colour=15158332)
         icostr = str(await self.lib.summ_icon(name, xreg))
         total = await self.lib.get_mastery(name, xreg)
-        emdesc = (f"{sumname} / {xreg}\nTotal mastery: {total}\nTop 6 champions by mastery in {xreg}:")
+        emdesc = (f"{sumname} / {xreg}\nTotal mastery: {total}\nTop 3 champions by mastery in {xreg}:")
         em.description = emdesc
         em.url = icostr
         em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
@@ -253,7 +253,7 @@ class Leaguehell(commands.Cog):
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
             em.add_field(name=(f"{chemoji} {chname}"), value=(f"At **{cpoints}** points.\nLevel **{clvl}**.\n**{cmtokens}** tokens.\nChest granted? **{chest}**.\nLast played: **{cmlp}**."), inline=True)
             temp += 1
-            if temp >= 5:
+            if temp >= 3:
                 break
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
