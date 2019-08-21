@@ -230,11 +230,11 @@ class Leaguehell(commands.Cog):
         sumname = str(name).capitalize()
         em = discord.Embed(colour=15158332)
         icostr = str(await self.lib.summ_icon(name, xreg))
-        emdesc = (f"{sumname}'s top 6 champions by mastery in {xreg}:")
+        emdesc = (f"{sumname} / {xreg}\nTotal mastery: {total}\nTop 6 champions by mastery in {xreg}:")
         em.description = emdesc
         em.url = icostr
         total = await self.lib.get_mastery(name, xreg)
-        em.set_footer(text=(f"{sumname} Total mastery: {total} | Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
+        em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
         champs = await self.lib.get_champ_masteries(name, xreg)
         temp = 0
         for i in champs:
