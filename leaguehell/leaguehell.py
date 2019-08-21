@@ -239,7 +239,7 @@ class Leaguehell(commands.Cog):
         temp = 0
         for i in champs:
             chname = await self.lib.get_champ_name(str(i["championId"]))
-            chemoji = await self.lib.champ_emoji(chname)
+            chemoji = await self.lib.champ_emoji(str(i["championId"]))
             clvl = i["championLevel"]
             cpoints = i["championPoints"]
             cchest = i["chestGranted"]
