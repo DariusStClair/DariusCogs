@@ -547,6 +547,7 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="leagueemoji")
     async def leagueemoji(self, ctx, *, name):
+        chemoji = "<:None:612702016094863518>"
         for n_ in ctx.bot.emojis:
             if n_.name == name:
                 chemoji = f"<:{n_.name}:{n_.id}>"
