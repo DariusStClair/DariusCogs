@@ -404,7 +404,11 @@ class Leaguehell(commands.Cog):
                 return "> No account set"
             else:
                 name = reg
-        icostr = str(await self.lib.summ_icon(name, xreg))
+        try:
+            icostr = str(await self.lib.summ_icon(name, xreg))
+        except:
+            await ctx.send("> Icostr failure, that's an exception")
+            return
         uhelo = await self.lib.get_ranked(name, xreg)
         try:
             opgg = url(f"https://{xreg}.op.gg/summoner/userName={name}")
