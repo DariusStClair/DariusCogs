@@ -398,12 +398,14 @@ class Leaguehell(commands.Cog):
                 return
             else:
                 name = await self.config.member(author).Name()
-        if name is discord.Member: 
+        if typ(name) is discord.Member:
             reg = await self.handle.search_leaguename(name)
-            if reg == "Error":
+            if reg == "None":
                 return "> No account set"
             else:
                 name = reg
+        else:
+            await ctx.send(f">>> No {name} found whatsofuckgingver")
         try:
             icostr = str(await self.lib.summ_icon(name, xreg))
         except:
