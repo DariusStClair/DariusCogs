@@ -17,7 +17,7 @@ from typing import Union
 from .leaguelib import Leaguelib
 from .handler import Handler
 
-vversion = "version: 0.03"
+vversion = "version: 0.04"
 allregistered = []
 
 def apikeycheck():
@@ -408,8 +408,6 @@ class Leaguehell(commands.Cog):
                 return "> No account set"
             else:
                 name = reg
-        else:
-            await ctx.send(f">>> No {name} found whatsofuckgingver")
         try:
             icostr = str(await self.lib.summ_icon(name, xreg))
         except:
