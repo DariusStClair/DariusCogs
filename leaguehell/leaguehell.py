@@ -447,14 +447,14 @@ class Leaguehell(commands.Cog):
             tier = i["tier"]
             tiermoji = str(tier).lower
             emoji = await self.lib.champ_emoji(str(tiermoji).capitalize)
-            rank = i["rank"]
-            leaguepnts = i["leaguePoints"]
-            totalgames = int(wins)+int(losses)
-            calcratio = (int(wins)/totalgames)*100
-            ratio = round(calcratio, 2)
-            em.add_field(name=(f"{queuetype}"), value=(f" {emoji} **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
-            await asyncio.sleep(0.5)
             await ctx.send(emoji)
+            #rank = i["rank"]
+            #leaguepnts = i["leaguePoints"]
+            #totalgames = int(wins)+int(losses)
+            #calcratio = (int(wins)/totalgames)*100
+            #ratio = round(calcratio, 2)
+            #em.add_field(name=(f"{queuetype}"), value=(f" {emoji} **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
+            await asyncio.sleep(0.5)
         await ctx.send(embed=em)
 
     @checks.is_owner()
