@@ -56,6 +56,10 @@ class Leaguehell(commands.Cog):
         self.config.register_member(**default_member)
         self.regchecks = ["EUNE", "EUW", "NA"]
 
+    async def user_lname(self, name: discord.Member=None):
+        re = await self.config.member(name).Name()
+        return re
+
     @checks.is_owner()
     @commands.command(name="leagueapi")
     async def leagueapi(self, ctx, *, key):
@@ -399,7 +403,7 @@ class Leaguehell(commands.Cog):
             else:
                 name = await self.config.member(author).Name()
         if type(name) is discord.Member:
-            reg = await self.handle.search_leaguename(name)
+            reg = await self.user_lname(name)
             if reg == "None":
                 return "> No account set"
             else:
