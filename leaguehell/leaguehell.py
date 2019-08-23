@@ -445,9 +445,9 @@ class Leaguehell(commands.Cog):
             wins = i["wins"]
             losses = i["losses"]
             tier = i["tier"]
-            tiermoji = str(tier).lower
+            tiermoji = tier.lower
             emoji = await self.lib.champ_emoji(str(tiermoji).capitalize)
-            await ctx.send(tier)
+            await ctx.send(tiermoji)
             rank = i["rank"]
             leaguepnts = i["leaguePoints"]
             totalgames = int(wins)+int(losses)
