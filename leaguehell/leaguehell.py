@@ -170,7 +170,7 @@ class Leaguehell(commands.Cog):
 
     @league.command(pass_context=True, no_pm=True, name="setreg", aliases=["setregion"])
     async def setreg(self, ctx, reg: str, user: discord.Member=None):
-        """Set your league region. \n\n`[user]` is an optional parameter for Moderators to set other people's nicknames."""
+        """Set your league region. \n\n`[user]` is an optional parameter for Moderators to set other people's regions."""
         server = ctx.guild
         author = ctx.author
         tar = None
@@ -185,7 +185,7 @@ class Leaguehell(commands.Cog):
                 if user == author:
                     tar = author
                 else:
-                    await ctx.send("> You can't set other people's regions")
+                    await ctx.send("> You can't set other people's region")
                     return
         db = await self.config.guild(server).db()
         if reg.upper() in regchecks:
@@ -409,16 +409,25 @@ class Leaguehell(commands.Cog):
             else:
                 name = reg
         try:
-            icostr = str(await self.lib.summ_icon(name, xreg))
+            propername = await self.lib.get_prname(name, xreg)
         except:
-            await ctx.send(f">>> Icostr failure, that's an exception for:\n{name} / {xreg}")
+            await ctx.send(">>> Nah.")
+            return
+        if propername == "None":
+            em = discord.Embed(colour=15158332)
+            icostr = "https://cdn.discordapp.com/emojis/612702016094863518.png"
+            xregc = xreg.upper()
+            em.description = (f"\n\n**{name}** not found in **{xregc}**.\n\n")
+            em.set_author(name=f"Nope.", url=f"https://discordapp.com/channels/285136446514528257/592745494736797731/609918602459480066", icon_url=f"{icostr}")
+            em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+            await ctx.send(embed=em)
             return
         uhelo = await self.lib.get_ranked(name, xreg)
         try:
             opgg = url(f"https://{xreg}.op.gg/summoner/userName={name}")
         except:
             opgg = None
-        propername = await self.lib.get_prname(name, xreg)
+        icostr = str(await self.lib.summ_icon(name, xreg))
         em = discord.Embed(colour=15158332)
         if not opgg:
             em.set_author(name=f"{propername}", icon_url=f"{icostr}")
@@ -436,12 +445,14 @@ class Leaguehell(commands.Cog):
             wins = i["wins"]
             losses = i["losses"]
             tier = i["tier"]
+            tiermoji = str(tier).capitalize
+            emoji = await self.lib.champ_emoji(tiermoji)
             rank = i["rank"]
             leaguepnts = i["leaguePoints"]
             totalgames = int(wins)+int(losses)
             calcratio = (int(wins)/totalgames)*100
             ratio = round(calcratio, 2)
-            em.add_field(name=(f"{queuetype}"), value=(f" :white_small_square: **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
+            em.add_field(name=(f"{queuetype}"), value=(f" {emoji} **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
 
