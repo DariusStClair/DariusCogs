@@ -407,7 +407,7 @@ class Leaguehell(commands.Cog):
         try:
             icostr = str(await self.lib.summ_icon(name, xreg))
         except:
-            await ctx.send("> Icostr failure, that's an exception")
+            await ctx.send(f">>> Icostr failure, that's an exception for:\n{name} / {xreg}")
             return
         uhelo = await self.lib.get_ranked(name, xreg)
         try:
