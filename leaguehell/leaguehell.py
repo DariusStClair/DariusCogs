@@ -398,7 +398,7 @@ class Leaguehell(commands.Cog):
                 return
             else:
                 name = await self.config.member(author).Name()
-        if typ(name) is discord.Member:
+        if type(name) is discord.Member:
             reg = await self.handle.search_leaguename(name)
             if reg == "None":
                 return "> No account set"
