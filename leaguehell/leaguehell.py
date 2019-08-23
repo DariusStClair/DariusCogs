@@ -454,6 +454,7 @@ class Leaguehell(commands.Cog):
             ratio = round(calcratio, 2)
             em.add_field(name=(f"{queuetype}"), value=(f" {emoji} **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
             await asyncio.sleep(0.5)
+            await ctx.send(emoji)
         await ctx.send(embed=em)
 
     @checks.is_owner()
