@@ -12,6 +12,7 @@ import asyncio
 import datetime
 import random
 import re
+from typing import Union
 # League stuffs
 from .leaguelib import Leaguelib
 from .handler import Handler
@@ -382,8 +383,8 @@ class Leaguehell(commands.Cog):
         await ctx.send(embed=em)
     
     @checks.is_owner()
-    @league.command(name="rankedwr")
-    async def rankedwr(self, ctx, name=None, xreg=None):
+    @league.command(name="rankedtest")
+    async def rankedtest(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
         author = ctx.author
         if not xreg:
             if not self.config.member(author).Region():
@@ -397,7 +398,7 @@ class Leaguehell(commands.Cog):
                 return
             else:
                 name = await self.config.member(author).Name()
-        if "#" in name: 
+        if name is discord.Member: 
             reg = await self.handle.search_leaguename(name)
             if reg == "Error":
                 return "> No account set"
@@ -405,10 +406,21 @@ class Leaguehell(commands.Cog):
                 name = reg
         icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
+        try:
+            opgg = url(f"https://{xreg}.op.gg/summoner/userName={name}")
+        except:
+            opgg = None
         propername = await self.lib.get_prname(name, xreg)
         em = discord.Embed(colour=15158332)
-        em.set_author(name=f"{propername}", icon_url=f"{icostr}")
+        if not opgg:
+            em.set_author(name=f"{propername}", icon_url=f"{icostr}")
+        else:
+            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        xregc = xreg.upper()
+        em.description = (f"{xregc} **{propername}** Ranked stats")
+        picon = str(await self.lib.summ_icon(name, xreg))
+        em.set_thumbnail(url=picon)
         for i in uhelo:
             queuetype = i["queueType"]
             if queuetype == "Teamfight Tactics":
@@ -420,7 +432,8 @@ class Leaguehell(commands.Cog):
             leaguepnts = i["leaguePoints"]
             totalgames = int(wins)+int(losses)
             calcratio = (int(wins)/totalgames)*100
-            em.add_field(name=(f"{queuetype}"), value=(f" :white_small_square: **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games. \nPrecise winrate:\n**{calcratio}%**"), inline=False)
+            ratio = round(calcratio, 2)
+            em.add_field(name=(f"{queuetype}"), value=(f" :white_small_square: **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
             await asyncio.sleep(0.5)
         await ctx.send(embed=em)
 
@@ -478,19 +491,19 @@ class Leaguehell(commands.Cog):
         #await ctx.send(chkey)
         data = await self.lib.cdragon_champ_data(name)
         if data != "Error":
-            list1 = ["Alistar", "Amumu", "Anivia", "Annie", "Ashe", "Blitzcrank", "Caitlyn", "ChoGath", "Corki", "DrMundo", "Evelynn", "Fiddlesticks", "Galio", "Gangplank", "Irelia", "Janna", "Jax", "Karma", "Karthus", "Kassadin", "Kayle", "LeBlanc", "MasterYi", "MissFortune", "Morgana", "None", "Nunu", "Olaf", "Rammus", "Ryze", "Shaco", "Singed", "Sion", "Sivir", "Sona", "Soraka", "Swain", "Taric", "Teemo", "Tristana", "Trundle", "Tryndamere", "TwistedFate", "Twitch", "Urgot", "Veigar", "Vladimir", "Warwick", "XinZhao", "Zilean"]
-            list2 = ["Ahri", "Akali", "Brand", "Cassiopeia", "Draven", "Elise", "Ezrael", "Fiora", "Fizz", "Garen", "Gragas", "Graves", "Heimerdinger", "JarvanIV", "Katarina", "Kennen", "KogMaw", "LeeSin", "Leona", "Lulu", "Lux", "Malphite", "Malzahar", "Maokai", "Mordekaiser", "Nasus", "Nautilus", "Nidalee", "Nocturne", "Orianna", "Pantheon", "Poppy", "Renekton", "Rengar", "Riven", "Rumble", "Sejuani", "Shen", "Shyvana", "Skarner", "Talon", "Udyr", "Varus", "Vayne", "Viktor", "Volibear", "Wukong", "Xerath", "Yorick", "Ziggs"]
-            list3 = ["Aatrox", "AurelionSol", "Azir", "Bard", "Braum", "Camilee", "Darius", "Diana", "Ekko", "Gnar", "Hecarim", "Illaloi", "Ivern", "Jayce", "Jhin", "Jinx", "KaiSa", "Kalista", "Kayn", "KhaZix", "Kindred", "Kled", "Lissandra", "Lucian", "Nami", "Neeko", "Ornn", "Pyke", "Qiyana", "Quinn", "Rakan", "RekSai", "Sylas", "Syndra", "TahmKench", "Taliyah", "Thresh", "VelKoz", "Vi", "Xayah", "Yasuo", "Yummi", "Zac", "Zed", "Zoe", "Zyra"]
-            guid1 = 612586360473124865
-            guid2 = 612586558528290837
-            guid3 = 612586640413818881
-            chid = data["id"]
-            if chid in list1:
-                guildid = guid1
-            if chid in list2:
-                guildid = guid2
-            if chid in list3:
-                guildid = guid3
+            #list1 = ["Alistar", "Amumu", "Anivia", "Annie", "Ashe", "Blitzcrank", "Caitlyn", "ChoGath", "Corki", "DrMundo", "Evelynn", "Fiddlesticks", "Galio", "Gangplank", "Irelia", "Janna", "Jax", "Karma", "Karthus", "Kassadin", "Kayle", "LeBlanc", "MasterYi", "MissFortune", "Morgana", "None", "Nunu", "Olaf", "Rammus", "Ryze", "Shaco", "Singed", "Sion", "Sivir", "Sona", "Soraka", "Swain", "Taric", "Teemo", "Tristana", "Trundle", "Tryndamere", "TwistedFate", "Twitch", "Urgot", "Veigar", "Vladimir", "Warwick", "XinZhao", "Zilean"]
+            #list2 = ["Ahri", "Akali", "Brand", "Cassiopeia", "Draven", "Elise", "Ezrael", "Fiora", "Fizz", "Garen", "Gragas", "Graves", "Heimerdinger", "JarvanIV", "Katarina", "Kennen", "KogMaw", "LeeSin", "Leona", "Lulu", "Lux", "Malphite", "Malzahar", "Maokai", "Mordekaiser", "Nasus", "Nautilus", "Nidalee", "Nocturne", "Orianna", "Pantheon", "Poppy", "Renekton", "Rengar", "Riven", "Rumble", "Sejuani", "Shen", "Shyvana", "Skarner", "Talon", "Udyr", "Varus", "Vayne", "Viktor", "Volibear", "Wukong", "Xerath", "Yorick", "Ziggs"]
+            #list3 = ["Aatrox", "AurelionSol", "Azir", "Bard", "Braum", "Camilee", "Darius", "Diana", "Ekko", "Gnar", "Hecarim", "Illaloi", "Ivern", "Jayce", "Jhin", "Jinx", "KaiSa", "Kalista", "Kayn", "KhaZix", "Kindred", "Kled", "Lissandra", "Lucian", "Nami", "Neeko", "Ornn", "Pyke", "Qiyana", "Quinn", "Rakan", "RekSai", "Sylas", "Syndra", "TahmKench", "Taliyah", "Thresh", "VelKoz", "Vi", "Xayah", "Yasuo", "Yummi", "Zac", "Zed", "Zoe", "Zyra"]
+            #guid1 = 612586360473124865
+            #guid2 = 612586558528290837
+            #guid3 = 612586640413818881
+            #chid = data["id"]
+            #if chid in list1:
+            #    guildid = guid1
+            #if chid in list2:
+            #    guildid = guid2
+            #if chid in list3:
+            #    guildid = guid3
             #chemoji = get(bot.get_all_emojis(), name="Annie")
             chname = data["name"]
             chtitle = data["title"]
@@ -514,7 +527,7 @@ class Leaguehell(commands.Cog):
                 #hotkey = str(spell["spellkey"]).upper()
                 #spname = spell["name"]
             emdesc = f"{chname}, {chtitle} \n{chbio}"
-            emoji = discord.utils.get(guild.emojis, name=f"{chid}")
+            #emoji = discord.utils.get(guild.emojis, name=f"{chid}")
             em.add_field(name="Emoji test:", value=f"__/chemoji-placeholder/__", inline=False)
             em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}", inline=False)
             em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: {chid} | {vversion}")
@@ -552,43 +565,43 @@ class Leaguehell(commands.Cog):
         chemoji = await self.lib.champ_emoji(name)
         await ctx.send(chemoji)
 
-    @checks.is_owner()
-    @league.command(name="lhistory")
-    async def history(self, ctx, name, xreg):
-        """I mean. If I'm reading the help on my own command..."""
-        author = ctx.author
-        if not xreg:
-            xreg = "eune"
-        #icostr = str(await self.lib.summ_icon(name, xreg))
-        clist = []
-        cpage = 0
-        hstry = await self.lib.get_history(name, xreg)
-        #propername = await self.lib.get_prname(name, xreg)
-        #em = discord.Embed(colour=15158332)
-        #em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-        #em.description = (f"**{propername}**'s shit:")
-        for i in hstry:
-            cpage += 1
-            if cpage >= 11:
-                break
-            em = discord.Embed(colour=15158332)
-            em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-            champ = hstry[i]["champ"]
-            try:
-                role = hstry[i]["role"]
-            except:
-                role = "n/a (r)"
-            try:
-                lane = hstry[i]["lane"]
-            except:
-                lane = "n/a (l)"
-            duration = hstry[i]["Duration"]
-            gamemode = hstry[i]["Gamemode"]
-            result = hstry[i]["result"]
-            kda = hstry[i]["kda"]
-            gold = hstry[i]["gold"]
-            em.description = (f"**{gamemode}** | {duration} min")
-            em.add_field(name=(f"{champ} | r: {role} / l: {lane}"), value=(f"**{result}**\n{kda} | {gold}"), inline=False)
-            clist.append(em)
-            await asyncio.sleep(0.5)
-        await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
+    #@checks.is_owner()
+    #@league.command(name="history")
+    #async def history(self, ctx, name, xreg):
+    #    """I mean. If I'm reading the help on my own command..."""
+    #    author = ctx.author
+    #    if not xreg:
+    #        xreg = "eune"
+    #    #icostr = str(await self.lib.summ_icon(name, xreg))
+    #    clist = []
+    #    cpage = 0
+    #    hstry = await self.lib.get_history(name, xreg)
+    #    #propername = await self.lib.get_prname(name, xreg)
+    #    #em = discord.Embed(colour=15158332)
+    #    #em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+    #    #em.description = (f"**{propername}**'s shit:")
+    #    for i in hstry:
+    #        cpage += 1
+    #        if cpage >= 11:
+    #            break
+    #        em = discord.Embed(colour=15158332)
+    #        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+    #        champ = hstry[i]["champ"]
+    #        try:
+    #            role = hstry[i]["role"]
+    #        except:
+    #            role = "n/a (r)"
+    #        try:
+    #            lane = hstry[i]["lane"]
+    #        except:
+    #            lane = "n/a (l)"
+    #        duration = hstry[i]["Duration"]
+    #        gamemode = hstry[i]["Gamemode"]
+    #        result = hstry[i]["result"]
+    #        kda = hstry[i]["kda"]
+    #        gold = hstry[i]["gold"]
+    #        em.description = (f"**{gamemode}** | {duration} min")
+    #        em.add_field(name=(f"{champ} | r: {role} / l: {lane}"), value=(f"**{result}**\n{kda} | {gold}"), inline=False)
+    #        clist.append(em)
+    #        await asyncio.sleep(0.5)
+    #    await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
