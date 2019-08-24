@@ -214,7 +214,7 @@ class Leaguelib:
             temp = "Nunu"
         if temp == "Leblanc":
             temp = "LeBlanc"
-        if temp == "Tahm Kench":
+        if temp == "Tahm kench":
             temp = "TahmKench"
         return temp
 
@@ -237,7 +237,7 @@ class Leaguelib:
             temp = "Nunu"
         if temp == "Leblanc":
             temp = "LeBlanc"
-        if temp == "Tahm Kench":
+        if temp == "Tahm kench":
             temp = "TahmKench"
         return temp
 
