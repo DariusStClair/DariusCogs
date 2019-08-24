@@ -250,7 +250,7 @@ class Leaguehell(commands.Cog):
         #dnname = usr.display_name
         sumname = str(name).capitalize()
         if sumname == "None":
-            await ctx.send("> No account set :(")
+            await ctx.send("> This user has no account set :(")
             return
         em = discord.Embed(colour=15158332)
         icostr = str(await self.lib.summ_icon(name, xreg))
@@ -307,6 +307,10 @@ class Leaguehell(commands.Cog):
                 return "> No account set"
             else:
                 name = reg
+        summname = await self.lib.get_prname(name, xreg)
+        if sumname == "None":
+            await ctx.send("> This user has no account set :(")
+            return
         icostr = str(await self.lib.summ_icon(name, xreg))
         clist = []
         #dnname = usr.display_name
