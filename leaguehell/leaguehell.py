@@ -224,13 +224,29 @@ class Leaguehell(commands.Cog):
         await ctx.send(db["leagueapikey"])
     
     # One embed
-    @checks.is_owner()
+    #@checks.is_owner()
     @league.command(name="champs", aliases=["champions"])
     @apikeycheck()
-    async def champs(self, ctx, name, *, xreg=None):
+    async def champs(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
         author = ctx.author
         if not xreg:
-            xreg = "eune"
+            if not self.config.member(author).Region():
+                await ctx.send_help()
+                return
+            else:
+                xreg = await self.config.member(author).Region()
+        if not name:
+            if not self.config.member(author).Name():
+                await ctx.send_help()
+                return
+            else:
+                name = await self.config.member(author).Name()
+        if type(name) is discord.Member:
+            reg = await self.user_lname(name)
+            if reg == "None":
+                return "> No account set"
+            else:
+                name = reg
         #dnname = usr.display_name
         sumname = str(name).capitalize()
         em = discord.Embed(colour=15158332)
