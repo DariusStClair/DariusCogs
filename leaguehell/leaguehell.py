@@ -636,7 +636,7 @@ class Leaguehell(commands.Cog):
             em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
-            em.set_author(name=f"{chname}, {chtitle}"")
+            em.set_author(name=f"{chname}, {chtitle}")
             em.add_field(name=f"Level **{clvl}**", value=f"**{cmtokens}** tokens.", inline=True)
             em.add_field(name="Chest granted?", value=f"**{chest}**", inline=True)
             em.add_field(name="Last played:", value=f"**{cmlp}**", inline=True)
