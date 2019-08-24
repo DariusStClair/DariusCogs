@@ -599,7 +599,10 @@ class Leaguehell(commands.Cog):
             em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
             await ctx.send(embed=em)
             return
-        await ctx.send(f">>> {sid}")
+        prname = await self.lib.get_prname(name, xreg)
+        caid = await self.lib.get_aid(name, xreg)
+        puuid = await self.lib.get_puuid(name, xreg)
+        await ctx.send(f">>> SID: {sid} \nprname: {prname}\naID: {caid}\n puuID: {puuid}")
 
     @checks.is_owner()
     @commands.command(name="leaguetestname")
