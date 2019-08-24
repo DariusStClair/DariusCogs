@@ -247,10 +247,11 @@ class Leaguehell(commands.Cog):
                 return "> No account set"
             else:
                 name = reg
-        if name == "None":
-            return "> No account set :("
         #dnname = usr.display_name
         sumname = str(name).capitalize()
+        if sumname == "None":
+            await ctx.send("> No account set :(")
+            return
         em = discord.Embed(colour=15158332)
         icostr = str(await self.lib.summ_icon(name, xreg))
         total = await self.lib.get_mastery(name, xreg)
