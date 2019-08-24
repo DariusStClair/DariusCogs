@@ -446,8 +446,8 @@ class Leaguehell(commands.Cog):
                 return "> No account set"
             else:
                 name = reg
-        sumname = await self.lib.get_prname(name, xreg)
-        if sumname == "None":
+        propername = await self.lib.get_prname(name, xreg)
+        if propername == "None":
             await ctx.send("> This user has no account set :(")
             return
         uhelo = await self.lib.get_ranked(name, xreg)
