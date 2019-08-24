@@ -268,12 +268,26 @@ class Leaguehell(commands.Cog):
     #@checks.is_owner()
     @league.command(name="pchamps", aliases=["pchampions"])
     @apikeycheck()
-    async def pchamps(self, ctx, name, *, xreg=None):
-        """/gonna set help when I can/"""
+    async def pchamps(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
         author = ctx.author
         if not xreg:
-            xreg = "eune"
-            #return xreg
+            if not self.config.member(author).Region():
+                await ctx.send_help()
+                return
+            else:
+                xreg = await self.config.member(author).Region()
+        if not name:
+            if not self.config.member(author).Name():
+                await ctx.send_help()
+                return
+            else:
+                name = await self.config.member(author).Name()
+        if type(name) is discord.Member:
+            reg = await self.user_lname(name)
+            if reg == "None":
+                return "> No account set"
+            else:
+                name = reg
         icostr = str(await self.lib.summ_icon(name, xreg))
         clist = []
         #dnname = usr.display_name
@@ -564,45 +578,10 @@ class Leaguehell(commands.Cog):
         await ctx.send(box(cpatch))
 
     @checks.is_owner()
-    @league.command(name="summid")
-    async def summid(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
-        author = ctx.author
-        if not xreg:
-            if not self.config.member(author).Region():
-                await ctx.send_help()
-                return
-            else:
-                xreg = await self.config.member(author).Region()
-        if not name:
-            if not self.config.member(author).Name():
-                await ctx.send_help()
-                return
-            else:
-                name = await self.config.member(author).Name()
-        if type(name) is discord.Member:
-            reg = await self.user_lname(name)
-            if reg == "None":
-                return "> No account set"
-            else:
-                name = reg
-        try:
-            sid = await self.lib.get_sid(name, xreg)
-        except:
-            await ctx.send(">>> Nah.")
-            return
-        if sid == "None":
-            em = discord.Embed(colour=15158332)
-            icostr = "https://cdn.discordapp.com/emojis/612702016094863518.png"
-            xregc = xreg.upper()
-            em.description = (f"\n\n**{name}** not found in **{xregc}**.\n\n")
-            em.set_author(name=f"Nope.", url=f"https://discordapp.com/channels/285136446514528257/592745494736797731/609918602459480066", icon_url=f"{icostr}")
-            em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-            await ctx.send(embed=em)
-            return
-        prname = await self.lib.get_prname(name, xreg)
-        caid = await self.lib.get_aid(name, xreg)
-        puuid = await self.lib.get_puuid(name, xreg)
-        await ctx.send(f">>> SID: {sid} \nprname: {prname}\naID: {caid}\n puuID: {puuid}")
+    @league.command(name="champid")
+    async def champid(self, ctx, *, champ: Union[str, int] = None):
+        if type(name) is str:
+            champinfo = await self.lib.get_champ
 
     @checks.is_owner()
     @commands.command(name="leaguetestname")
