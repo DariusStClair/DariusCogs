@@ -387,8 +387,8 @@ class Leaguehell(commands.Cog):
         await ctx.send(embed=em)
     
     #@checks.is_owner()
-    @league.command(name="rankedtest")
-    async def rankedtest(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
+    @league.command(name="ranked")
+    async def ranked(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
         author = ctx.author
         if not xreg:
             if not self.config.member(author).Region():
