@@ -249,7 +249,8 @@ class Leaguehell(commands.Cog):
                 name = reg
         #dnname = usr.display_name
         sumname = str(name).capitalize()
-        if sumname == "None":
+        summname = await self.lib.get_prname(name, xreg)
+        if summname == "None":
             await ctx.send("> This user has no account set :(")
             return
         em = discord.Embed(colour=15158332)
@@ -307,7 +308,7 @@ class Leaguehell(commands.Cog):
                 return "> No account set"
             else:
                 name = reg
-        summname = await self.lib.get_prname(name, xreg)
+        sumname = await self.lib.get_prname(name, xreg)
         if sumname == "None":
             await ctx.send("> This user has no account set :(")
             return
@@ -445,19 +446,9 @@ class Leaguehell(commands.Cog):
                 return "> No account set"
             else:
                 name = reg
-        try:
-            propername = await self.lib.get_prname(name, xreg)
-        except:
-            await ctx.send(">>> Nah.")
-            return
-        if propername == "None":
-            em = discord.Embed(colour=15158332)
-            icostr = "https://cdn.discordapp.com/emojis/612702016094863518.png"
-            xregc = xreg.upper()
-            em.description = (f"\n\n**{name}** not found in **{xregc}**.\n\n")
-            em.set_author(name=f"Nope.", url=f"https://discordapp.com/channels/285136446514528257/592745494736797731/609918602459480066", icon_url=f"{icostr}")
-            em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-            await ctx.send(embed=em)
+        sumname = await self.lib.get_prname(name, xreg)
+        if sumname == "None":
+            await ctx.send("> This user has no account set :(")
             return
         uhelo = await self.lib.get_ranked(name, xreg)
         try:
