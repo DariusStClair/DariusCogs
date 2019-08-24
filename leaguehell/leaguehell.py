@@ -247,6 +247,8 @@ class Leaguehell(commands.Cog):
                 return "> No account set"
             else:
                 name = reg
+        if name == "None":
+            return "> No account set :("
         #dnname = usr.display_name
         sumname = str(name).capitalize()
         em = discord.Embed(colour=15158332)
