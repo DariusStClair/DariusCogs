@@ -582,6 +582,67 @@ class Leaguehell(commands.Cog):
     async def champid(self, ctx, *, champ: Union[str, int] = None):
         if type(name) is str:
             champinfo = await self.lib.get_champ
+    
+    @checks.is_owner()
+    @league.command(name="listmastery")
+    async def listmastery(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
+        author = ctx.author
+        if not xreg:
+            if not self.config.member(author).Region():
+                await ctx.send_help()
+                return
+            else:
+                xreg = await self.config.member(author).Region()
+        if not name:
+            if not self.config.member(author).Name():
+                await ctx.send_help()
+                return
+            else:
+                name = await self.config.member(author).Name()
+        if type(name) is discord.Member:
+            reg = await self.user_lname(name)
+            if reg == "None":
+                return "> No account set"
+            else:
+                name = reg
+        clist = []
+        total = await self.lib.get_mastery(name, xreg)
+        champs = await self.lib.get_champ_masteries(name, xreg)
+        cpage = 0
+        #tpages = 10
+        for i in champs:
+            cpage += 1
+            if cpage >= 11:
+                break
+            em = discord.Embed(colour=15158332)
+            chname = await self.lib.get_champ_name(str(i["championId"]))
+            chtitle = await self.lib.get_champ_title(str(i["championId"]))
+            #chico = str(await self.lib.ddragon_champico(str(i["championId"])))
+            #csplash = str(await self.lib.ddragon_champsplash(str(i["championId"])))
+            #cload = str(await self.lib.ddragon_champsloading(str(i["championId"])))
+            clvl = i["championLevel"]
+            cpoints = i["championPoints"]
+            cchest = i["chestGranted"]
+            if cchest is True:
+                chest = "Yes"
+            else:
+                chest = "No"
+            cmtokens = i["tokensEarned"]
+            cmlpunix = (i["lastPlayTime"]/1000)
+            cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
+            #em.set_thumbnail(url=cload)
+            #emdesc = f"__**{chname}**__ \n\nAt **{cpoints}** points."
+            emdesc = f"**{cpoints}** points."
+            em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
+            em.description = emdesc
+            clist.append(em)
+            em.set_author(name=f"{chname}, {chtitle}"")
+            em.add_field(name=f"Level **{clvl}**", value=f"**{cmtokens}** tokens.", inline=True)
+            em.add_field(name="Chest granted?", value=f"**{chest}**", inline=True)
+            em.add_field(name="Last played:", value=f"**{cmlp}**", inline=True)
+            em.add_field(name="Default splash art", value=f"[Click here to view]({csplash})", inline=True)
+            await asyncio.sleep(0.3)
+        await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
     @checks.is_owner()
     @commands.command(name="leaguetestname")
