@@ -607,6 +607,7 @@ class Leaguehell(commands.Cog):
                 name = reg
         clist = []
         total = await self.lib.get_mastery(name, xreg)
+        icostr = str(await self.lib.summ_icon(name, xreg))
         champs = await self.lib.get_champ_masteries(name, xreg)
         cpage = 0
         #tpages = 10
@@ -640,7 +641,7 @@ class Leaguehell(commands.Cog):
             em.add_field(name=f"Level **{clvl}**", value=f"**{cmtokens}** tokens.", inline=True)
             em.add_field(name="Chest granted?", value=f"**{chest}**", inline=True)
             em.add_field(name="Last played:", value=f"**{cmlp}**", inline=True)
-            em.add_field(name="Default splash art", value=f"[Click here to view]({csplash})", inline=True)
+            #em.add_field(name="Default splash art", value=f"[Click here to view]({csplash})", inline=True)
             await asyncio.sleep(0.3)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
