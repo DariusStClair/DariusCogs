@@ -603,11 +603,11 @@ class Leaguehell(commands.Cog):
         em.set_author(name=f"Server status for **{region}** at **{hostname}**")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         for i in srvcs:
-            status = srvcs[i]["status"]
-            incidents = srvcs[i]["incidents"]
+            status = i["status"]
+            incidents = i["incidents"]
             if len(incidents) == 0:
                 incidents.append("None")
-            name = srvcs[i]["name"]
+            name = i["name"]
             em.add_field(name=f"{name}: {status}", value=f"{incidents}")
         await ctx.send(embed=em)
             
