@@ -18,7 +18,15 @@ class Leaguelib:
         self.srvs = {
             "eune": "eun1",
             "euw": "euw1",
-            "na": "na1"
+            "na": "na1",
+            "br": "br1",
+            "jp": "jp1",
+            "kr": "kr",
+            "lan": "la1",
+            "oce": "oc1",
+            "tr": "tr1",
+            "ru": "ru",
+            "pbe": "pbe1"
         }
         # Rito api / ddragon
         self.summ_name = "/lol/summoner/v4/summoners/by-name/{}"
@@ -461,7 +469,7 @@ class Leaguelib:
     async def statusdata(self, xreg):
         apistr = await self.apistr()
         if xreg not in self.srvs:
-            return False
+            return None
         rq = self.url.format(self.srvs[xreg]) + self.shard_data + apistr
         rj = await self.get(rq)
         return rj
