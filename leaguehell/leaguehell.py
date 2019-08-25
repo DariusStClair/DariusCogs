@@ -393,7 +393,7 @@ class Leaguehell(commands.Cog):
         icostr = str(await self.lib.summ_icon(name, xreg))
         uhelo = await self.lib.get_ranked(name, xreg)
         try:
-            opgg = url(f"https://{xreg}.op.gg/summoner/userName={name}")
+            opgg = f"https://{xreg}.op.gg/summoner/userName={name}"
         except:
             opgg = None
         propername = await self.lib.get_prname(name, xreg)
@@ -452,7 +452,7 @@ class Leaguehell(commands.Cog):
             return
         uhelo = await self.lib.get_ranked(name, xreg)
         try:
-            opgg = url(f"https://{xreg}.op.gg/summoner/userName={name}")
+            opgg = f"https://{xreg}.op.gg/summoner/userName={name}"
         except:
             opgg = None
         icostr = str(await self.lib.summ_icon(name, xreg))
@@ -577,7 +577,7 @@ class Leaguehell(commands.Cog):
             #emoji = discord.utils.get(guild.emojis, name=f"{chid}")
             em.add_field(name="Emoji test:", value=f"__/chemoji-placeholder/__", inline=False)
             em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}", inline=False)
-            em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: {chid} | {vversion}")
+            em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: \obsolete\ | {vversion}")
         else:
             em = discord.Embed(colour=15158332)
             emdesc = "**Invalid champ**"
