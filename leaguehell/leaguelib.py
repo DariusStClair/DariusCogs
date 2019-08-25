@@ -30,6 +30,7 @@ class Leaguelib:
         self.match_matchid = "/lol/match/v4/matches/{}"
         self.matchlist_acc = "/lol/match/v4/matchlists/by-account/{}"
         self.ranked_test = "/lol/league/v4/entries/by-summoner/{}"
+        self.shard_data = "/lol/status/v3/shard-data"
         # Community Dragon (cdragon)
         self.cdragon_champ = "https://cdn.communitydragon.org/{}/champion/"
         self.cdragon_champ_squareurl = "{}/square.png"
@@ -456,3 +457,8 @@ class Leaguelib:
             if n_.name == chid:
                 emoji = f"<:{n_.name}:{n_.id}>"
         return emoji
+
+    async def statusdata(self, xreg):
+        rq = self.url.format(self.srvs[xreg]) + self.shard_data + apistr
+        rj = await self.get(rq)
+        return rj
