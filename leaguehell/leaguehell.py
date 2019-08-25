@@ -596,6 +596,9 @@ class Leaguehell(commands.Cog):
             else:
                 xreg = await self.config.member(author).Region()
         rq = await self.lib.statusdata(xreg)
+        if rq is False:
+            await ctx.send("> This ain't a valid region what ze fuck")
+            return
         region = rq["name"]
         hostname = rq["hostname"]
         srvcs = rq["services"]
