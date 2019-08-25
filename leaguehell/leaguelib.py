@@ -459,6 +459,9 @@ class Leaguelib:
         return emoji
 
     async def statusdata(self, xreg):
+        apistr = await self.apistr()
+        if xreg not in self.srvs:
+            return False
         rq = self.url.format(self.srvs[xreg]) + self.shard_data + apistr
         rj = await self.get(rq)
         return rj
