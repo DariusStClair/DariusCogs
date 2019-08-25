@@ -595,7 +595,7 @@ class Leaguehell(commands.Cog):
                 return
             else:
                 xreg = await self.config.member(author).Region()
-        rq = self.lib.statusdata(xreg)
+        rq = await self.lib.statusdata(xreg)
         region = rq["name"]
         hostname = rq["hostname"]
         srvcs = rq["services"]
