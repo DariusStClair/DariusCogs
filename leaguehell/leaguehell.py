@@ -600,15 +600,16 @@ class Leaguehell(commands.Cog):
         hostname = rq["hostname"]
         srvcs = rq["services"]
         em = discord.Embed(colour=15158332)
-        em.set_author(name=f"Server status for **{region}** at **{hostname}**")
+        em.set_author(name=f"Server status for {region} at {hostname}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         for i in srvcs:
             status = i["status"]
+            emoji = await self.lib.champ_emoji(str(status).capitalize())
             incidents = i["incidents"]
             if len(incidents) == 0:
                 incidents.append("None")
             name = i["name"]
-            em.add_field(name=f"{name}: {status}", value=f"{incidents}")
+            em.add_field(name=f"{name}: {status} {emoji}", value=f"`Incidents:` \n**{incidents}**")
         await ctx.send(embed=em)
             
     @commands.command(name="leaguepatch")
