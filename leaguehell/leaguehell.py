@@ -586,6 +586,31 @@ class Leaguehell(commands.Cog):
         await ctx.send(embed=em)
         #await ctx.send(len(data["spells"]))
 
+    @league.command(name="status")
+    async def status(self, ctx, xreg=None):
+        author = ctx.author
+        if not xreg:
+            if not self.config.member(author).Region():
+                await ctx.send_help()
+                return
+            else:
+                xreg = await self.config.member(author).Region()
+        rq = self.lib.statusdata(xreg)
+        region = rq["name"]
+        hostname = rq["hostname"]
+        srvcs = rq["services"]
+        em = discord.Embed(colour=15158332)
+        em.set_author(name=f"Server status for **{region}** at **{hostname}**")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        for i in srvcs:
+            status = srvcs[i]["status"]
+            incidents = srvcs[i]["incidents"]
+            if len(incidents) == 0:
+                incidents.append("None")
+            name = srvcs[i]["name"]
+            em.add_field(name=f"{name}: {status}", value=f"{incidents}")
+        await ctx.send(embed=em)
+            
     @commands.command(name="leaguepatch")
     async def leaguepatch(self, ctx):
         cpatch = await self.lib.get_patch()
