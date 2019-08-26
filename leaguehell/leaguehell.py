@@ -607,7 +607,8 @@ class Leaguehell(commands.Cog):
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         for i in srvcs:
             status = str(i["status"]).capitalize()
-            emoji = await self.lib.champ_emoji(status)
+            emojistatus = status.lower()
+            emoji = await self.lib.champ_emoji(emojistatus)
             incidents = i["incidents"]
             name = i["name"]
             if len(incidents) == 0:
