@@ -611,13 +611,13 @@ class Leaguehell(commands.Cog):
             incidents = i["incidents"]
             name = i["name"]
             if len(incidents) == 0:
-                em.add_field(name=f"{name}: {status} {emoji}", value=f"No issues")
+                em.add_field(name=f"{name}: {status} {emoji}", value=f"No issues", inline=False)
             else:
                 incident = []
                 number = 0
                 for i in incidents:
                     incid = i["id"]
-                    active = i["active"]
+                    active = "Open" if i["active"] == "True" else "Closed"
                     created = i["created_at"]
                     updates = i["updates"]
                     if updates:
@@ -626,9 +626,9 @@ class Leaguehell(commands.Cog):
                             content = u["content"]
                             severity = u["severity"]
                             ucreated = u["created_at"]
-                            incident.append(f"Incident ID: {incid}\nStatus: {active}\nCreated at: {created}\nUpdated at: {updated}\nSeverity: {severity}\nInformation: {content}")
+                            incident.append(f"`Incident ID:`\n{incid}\n`Status:`\n**{active}**\n`Created at:`\n{created}\n`Updated at:`\n{updated}\n`Category:`\n**{severity}**\n`Information:`\n{content}")
                 report = "\n".join(incident)
-                em.add_field(name=f"{name}: {status} {emoji}", value=f"Incidents: {report}")
+                em.add_field(name=f"{name}: {status} {emoji}", value=f"**Incidents:**\n{report}", inline=False)
         await ctx.send(embed=em)
             
     @commands.command(name="leaguepatch")
