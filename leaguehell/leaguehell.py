@@ -619,15 +619,14 @@ class Leaguehell(commands.Cog):
                     incid = i["id"]
                     active = i["active"]
                     created = i["created_at"]
-                    if len(i["updated_at"]) >= 1:
-                        updated = i["updated_at"]
-                    else:
-                        updated = "No updates yet"
-                    content = i["content"]
-                    severity = i["severity"]
-                    info = i["info"]
-                    number += 1
-                    incident.append = f"Incident ID/#: {incid} / {number}\nStatus: {active}\nCreated at: {created}\nUpdated at: {updated}\nSeverity: {severity}\nInformation: {content}\n{info}"
+                    updates = i["updates"]
+                    if updates:
+                        for u in updates:
+                            updated = u["updated_at"]
+                            content = u["content"]
+                            severity = u["severity"]
+                            ucreated = u["created_at"]
+                            incident.append = f"Incident ID: {incid}\nStatus: {active}\nCreated at: {created}\nUpdated at: {updated}\nSeverity: {severity}\nInformation: {content}"
                 report = *incident, sep = "\n"
                 em.add_field(name=f"{name}: {status} {emoji}", value=f"Incidents: {report}")
         await ctx.send(embed=em)
