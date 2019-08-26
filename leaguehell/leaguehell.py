@@ -606,12 +606,12 @@ class Leaguehell(commands.Cog):
         em.set_author(name=f"Server status for {region} at {hostname}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         for i in srvcs:
-            status = i["status"]
+            status = str(i["status"]).capitalize()
             emoji = await self.lib.champ_emoji(status)
             incidents = i["incidents"]
             name = i["name"]
             if len(incidents) == 0:
-                em.add_field(name=f"{name}: {status} {emoji}", value=f"No issues", inline=False)
+                em.add_field(name=f"{emoji} {name}: {status}", value=f"No issues", inline=False)
             else:
                 incident = []
                 number = 0
@@ -624,7 +624,7 @@ class Leaguehell(commands.Cog):
                         for u in updates:
                             updated = u["updated_at"]
                             content = u["content"]
-                            severity = u["severity"]
+                            severity = str(u["severity"]).capitalize()
                             ucreated = u["created_at"]
                             incident.append(f"`Incident ID:`\n{incid}\n`Active:`\n**{active}**\n`Created at:`\n{created}\n`Updated at:`\n{updated}\n`Category:`\n**{severity}**\n`Information:`\n{content}")
                 report = "\n".join(incident)
