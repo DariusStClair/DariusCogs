@@ -617,7 +617,7 @@ class Leaguehell(commands.Cog):
                 number = 0
                 for i in incidents:
                     incid = i["id"]
-                    active = "Open" if i["active"] == "True" else "Closed"
+                    active = "Open" if i["active"] == "true" else "Closed"
                     created = i["created_at"]
                     updates = i["updates"]
                     if updates:
