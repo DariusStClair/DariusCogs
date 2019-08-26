@@ -628,7 +628,7 @@ class Leaguehell(commands.Cog):
                             ucreated = u["created_at"]
                             incident.append(f"`Incident ID:`\n{incid}\n`Active:`\n**{active}**\n`Created at:`\n{created}\n`Updated at:`\n{updated}\n`Category:`\n**{severity}**\n`Information:`\n{content}")
                 report = "\n".join(incident)
-                em.add_field(name=f"{name}: {status} {emoji}", value=f"**Incidents:**\n{report}", inline=False)
+                em.add_field(name=f"{emoji} {name}: {status}", value=f"**Incidents:**\n{report}", inline=False)
         await ctx.send(embed=em)
             
     @commands.command(name="leaguepatch")
