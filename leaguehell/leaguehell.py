@@ -626,7 +626,7 @@ class Leaguehell(commands.Cog):
                             content = u["content"]
                             severity = u["severity"]
                             ucreated = u["created_at"]
-                            incident.append = f"Incident ID: {incid}\nStatus: {active}\nCreated at: {created}\nUpdated at: {updated}\nSeverity: {severity}\nInformation: {content}"
+                            incident.append(f"Incident ID: {incid}\nStatus: {active}\nCreated at: {created}\nUpdated at: {updated}\nSeverity: {severity}\nInformation: {content}")
                 report = *incident, sep = "\n"
                 em.add_field(name=f"{name}: {status} {emoji}", value=f"Incidents: {report}")
         await ctx.send(embed=em)
