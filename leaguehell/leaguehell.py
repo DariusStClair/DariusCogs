@@ -755,7 +755,7 @@ class Leaguehell(commands.Cog):
                 return ">>> Unregistered member. \nThey can register with `!!league setname <name>`"
             else:
                 searchreg = await self.config.member(search).Region()
-        if type(search) is str:
+        else:
             searchlast = search.split()[-1]
             searchlastl = searchlast.lower()
             if searchlastl in self.regchecks:
