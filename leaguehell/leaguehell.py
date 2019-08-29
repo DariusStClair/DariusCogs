@@ -54,7 +54,7 @@ class Leaguehell(commands.Cog):
         self.config.register_global(**default_global)
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
-        self.regchecks = ["EUNE", "EUW", "NA"]
+        self.regchecks = ["EUNE", "EUW", "NA", "BR", "JP", "KR", "LAN", "OCE", "TR", "RU", "PBE"]
         self.servers = {
             "eune": "eun1",
             "euw": "euw1",
@@ -758,8 +758,9 @@ class Leaguehell(commands.Cog):
         else:
             searchlast = search.split()[-1]
             searchlastl = searchlast.lower()
+            searchlastc = searchlast.upper()
             await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
-            if searchlastl in self.regchecks:
+            if searchlastc in self.regchecks:
                 await ctx.send(f">>>Search last in selfchecks!")
                 searchreg = await self.regchecks["searchlastl"]
                 searchcut = search.rsplit(" ", 1)[0]
