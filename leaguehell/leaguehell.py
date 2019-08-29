@@ -55,6 +55,19 @@ class Leaguehell(commands.Cog):
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
         self.regchecks = ["EUNE", "EUW", "NA"]
+        self.servers = {
+            "eune": "eun1",
+            "euw": "euw1",
+            "na": "na1",
+            "br": "br1",
+            "jp": "jp1",
+            "kr": "kr",
+            "lan": "la1",
+            "oce": "oc1",
+            "tr": "tr1",
+            "ru": "ru",
+            "pbe": "pbe1"
+        }
 
     async def user_lname(self, name: discord.Member=None):
         re = await self.config.member(name).Name()
@@ -595,7 +608,8 @@ class Leaguehell(commands.Cog):
                 return
             else:
                 xreg = await self.config.member(author).Region()
-        rq = await self.lib.statusdata(xreg)
+        xreglow = xreg.lower()
+        rq = await self.lib.statusdata(xreglow)
         if rq is False:
             await ctx.send("> This ain't a valid region what ze fuck")
             return
@@ -725,12 +739,13 @@ class Leaguehell(commands.Cog):
         chemoji = await self.lib.champ_emoji(name)
         await ctx.send(chemoji)
 
-    @league.command(name="inactivenames")
-    async def inactivenames(self, ctx):
-        em = discord.Embed(colour=15158332)        
-        em.description = "Each Summoner name will have **6 months of inactivity protection** upon creation.\nEach Summoner name will earn **an additional month of inactivity protection for each Summoner level above 6**, up to **30** months.\nInactivity is defined to be a period in which no games of any kind have been played on the account. \nWhen inactivity protection expires, your name will be available to be claimed through the Summoner name Change service in the store."
-        em.set_footer(text="Powered by HELL")
-        await ctx.send(embed=em)
+    @checks.is_owner()
+    @commands.command(name="testshit")
+    async def testshit(self, ctx, *, search=None):
+        author = ctx.author
+        guilt = ctx.guild
+        
+
 
     #@checks.is_owner()
     #@league.command(name="history")
