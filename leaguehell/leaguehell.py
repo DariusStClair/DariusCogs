@@ -761,8 +761,10 @@ class Leaguehell(commands.Cog):
             searchlastl = searchlast.lower()
             if searchlastl in self.regchecks:
                 searchreg = self.regchecks["searchlastl"]
-            searchcut = search.rsplit(" ", 1)[0]
-            search = searchcut
+                searchcut = search.rsplit(" ", 1)[0]
+                search = searchcut
+            else:
+                searchreg = "eune"
         await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
 
 
