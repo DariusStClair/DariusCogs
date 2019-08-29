@@ -748,18 +748,18 @@ class Leaguehell(commands.Cog):
                 return ">>> Unregistered member. \nThey can register with `!!league setname <name>`"
             else:
                 search = await self.config.member(author).Name()
-                searchreg = self.config.member(author).Region()
+                searchreg = await self.config.member(author).Region()
         if type(search) is discord.Member:
             reg = await self.user_lname(search)
             if reg == "None":
                 return ">>> Unregistered member. \nThey can register with `!!league setname <name>`"
             else:
-                searchreg = self.config.member(search).Region()
+                searchreg = await self.config.member(search).Region()
         if type(search) is str:
             searchlast = search.split()[-1]
             searchlastl = searchlast.lower()
             if searchlastl in self.regchecks:
-                searchreg = self.regchecks["searchlastl"]
+                searchreg = await self.regchecks["searchlastl"]
                 searchcut = search.rsplit(" ", 1)[0]
                 search = searchcut
             else:
