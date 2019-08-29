@@ -745,13 +745,16 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         guilt = ctx.guild
         if isinstance(search, discord.Member):
-            searched = search.split(" ")
+            #searched = search.split(" ")
+            await ctx.send(">>> Instance is discord member, looking through config")
         if isinstance(search, str):
             if not search:
-                searched = author
+                #searched = author
+                await ctx.send(">>> Instance is empty string, defaulting to author")
             else:
-                searched = search
-        await ctx.send(box(searched))
+                #searched = search
+                await ctx.send(">>> Instance is string, looking it up")
+        await ctx.send("Done")
 
 
     #@checks.is_owner()
