@@ -750,7 +750,7 @@ class Leaguehell(commands.Cog):
         if isinstance(search, str):
             if search == None:
                 #searched = author
-                await ctx.send(">>> Instance is empty string, defaulting to author")
+                await ctx.send(search)
             else:
                 #searched = search
                 await ctx.send(">>> Instance is string, looking it up")
