@@ -747,14 +747,14 @@ class Leaguehell(commands.Cog):
             if not self.config.member(author).Name():
                 return ">>> Unregistered member. \nThey can register with `!!league setname <name>`"
             else:
-                name = await self.config.member(author).Name()
+                search = await self.config.member(author).Name()
         if type(search) is discord.Member:
             reg = await self.user_lname(search)
             if reg == "None":
                 return ">>> Unregistered member. \nThey can register with `!!league setname <name>`"
             else:
                 search = reg
-                await ctx.send(f">>> Searched is: {search}")
+        await ctx.send(f">>> Searched is: {search}")
 
 
     #@checks.is_owner()
