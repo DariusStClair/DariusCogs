@@ -748,7 +748,7 @@ class Leaguehell(commands.Cog):
             #searched = search.split(" ")
             await ctx.send(">>> Instance is discord member, looking through config")
         if isinstance(search, str):
-            if not search:
+            if search == None:
                 #searched = author
                 await ctx.send(">>> Instance is empty string, defaulting to author")
             else:
