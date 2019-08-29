@@ -743,18 +743,18 @@ class Leaguehell(commands.Cog):
     @commands.command(name="testshit")
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
-        guilt = ctx.guild
-        if isinstance(search, discord.Member):
-            #searched = search.split(" ")
-            await ctx.send(">>> Instance is discord member, looking through config")
-        if isinstance(search, str):
-            if search == None:
-                #searched = author
-                await ctx.send(search)
+        if not search:
+            if not self.config.member(author).Name():
+                return ">>> Unregistered member. \nThey can register with `!!league setname <name>`"
             else:
-                #searched = search
-                await ctx.send(">>> Instance is string, looking it up")
-        await ctx.send("Done")
+                name = await self.config.member(author).Name()
+        if type(search) is discord.Member:
+            reg = await self.user_lname(search)
+            if reg == "None":
+                return ">>> Unregistered member. \nThey can register with `!!league setname <name>`"
+            else:
+                search = reg
+                await ctx.send(f">>> Searched is: {search}")
 
 
     #@checks.is_owner()
