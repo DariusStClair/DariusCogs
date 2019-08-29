@@ -741,10 +741,17 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="testshit")
-    async def testshit(self, ctx, *, search=None):
+    async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
         guilt = ctx.guild
-        
+        if isinstance(search, discord.Member):
+            searched = search.split(" ")
+        if isinstance(search, str):
+            if not search:
+                searched = author
+            else:
+                searched = search
+        await ctx.send(box(searched))
 
 
     #@checks.is_owner()
