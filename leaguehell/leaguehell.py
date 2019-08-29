@@ -762,7 +762,7 @@ class Leaguehell(commands.Cog):
             await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
             if searchlastc in self.regchecks:
                 await ctx.send(f">>>Search last in selfchecks!")
-                searchreg = await self.servers[searchlastl]
+                searchreg = self.servers[searchlastl]
                 searchcut = search.rsplit(" ", 1)[0]
                 search = searchcut
             else:
