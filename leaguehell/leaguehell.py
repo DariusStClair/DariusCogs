@@ -725,6 +725,13 @@ class Leaguehell(commands.Cog):
         chemoji = await self.lib.champ_emoji(name)
         await ctx.send(chemoji)
 
+    @league.command(name="inactivenames")
+    async def inactivenames(self, ctx):
+        em = discord.Embed(colour=15158332)        
+        em.description("Each Summoner name will have **6 months of inactivity protection** upon creation.\nEach Summoner name will earn **an additional month of inactivity protection for each Summoner level above 6**, up to **30** months.\nInactivity is defined to be a period in which no games of any kind have been played on the account. \nWhen inactivity protection expires, your name will be available to be claimed through the Summoner name Change service in the store.")
+        em.set_footer(text="Powered by HELL")
+        await ctx.send(embed=em)
+
     #@checks.is_owner()
     #@league.command(name="history")
     #async def history(self, ctx, name, xreg):
