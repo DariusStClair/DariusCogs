@@ -758,12 +758,15 @@ class Leaguehell(commands.Cog):
         else:
             searchlast = search.split()[-1]
             searchlastl = searchlast.lower()
+            await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
             if searchlastl in self.regchecks:
+                await ctx.send(f">>>Search last in selfchecks!")
                 searchreg = await self.regchecks["searchlastl"]
                 searchcut = search.rsplit(" ", 1)[0]
                 search = searchcut
             else:
                 searchreg = "eune"
+                await ctx.send(f">>>Search last **NOT** in selfchecks!")
         await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
 
 
