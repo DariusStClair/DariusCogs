@@ -747,7 +747,7 @@ class Leaguehell(commands.Cog):
         if not search:
             if self.config.member(author).Name() == "None":
                 await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
-                return
+                passed = False
             else:
                 search = await self.config.member(author).Name()
                 searchreg = await self.config.member(author).Region()
@@ -755,7 +755,7 @@ class Leaguehell(commands.Cog):
             reg = await self.config.member(search).Name()
             if reg == "None":
                 await ctx.send(">>> Unregistered member. \nThey can register with `!!league setname <name>`")
-                return
+                passed = False
             else:
                 searchreg = await self.config.member(search).Region()
                 search = reg
@@ -774,7 +774,10 @@ class Leaguehell(commands.Cog):
                     await ctx.send(f">>>`Search last` **NOT** in selfchecks!")
             else:
                 pass
-        await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
+        if passed is True:
+            await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
+        else:
+            await ctx.send("Passcheck is `False`")
 
 
     #@checks.is_owner()
