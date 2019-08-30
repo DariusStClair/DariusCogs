@@ -690,10 +690,10 @@ class Leaguehell(commands.Cog):
                 searchreg = await self.config.member(search).Region()
                 search = reg
                 passed = True
-        if passed is True:
-            await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
-        else:
-            await ctx.send(f"Passcheck is `False` (s={search})")
+        #if passed is True:
+        await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
+        #else:
+        #    await ctx.send(f"Passcheck is `False` (s={search})")
 
     def cog_unload(self):
         self.lib.cog_unload()
