@@ -657,7 +657,8 @@ class Leaguehell(commands.Cog):
         searchreg = "eune"
         passed = False
         if type(search) is str:
-            if self.config.member(author).Name() == "None":
+            search = await self.config.member(author).Name()
+            if search == "None":
                 await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
                 passed = False
             else:
