@@ -743,31 +743,37 @@ class Leaguehell(commands.Cog):
     @commands.command(name="testshit")
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
+        done = False
         if not search:
             if not self.config.member(author).Name():
-                return ">>> Unregistered member. \nThey can register with `!!league setname <name>`"
+                await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
+                return
             else:
                 search = await self.config.member(author).Name()
                 searchreg = await self.config.member(author).Region()
         if type(search) is discord.Member:
             reg = await self.user_lname(search)
             if reg == "None":
-                return ">>> Unregistered member. \nThey can register with `!!league setname <name>`"
+                await ctx.send(">>> Unregistered member. \nThey can register with `!!league setname <name>`")
+                return
             else:
                 searchreg = await self.config.member(search).Region()
         else:
-            searchlast = search.split()[-1]
-            searchlastl = searchlast.lower()
-            searchlastc = searchlast.upper()
-            await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
-            if searchlastc in self.regchecks:
-                await ctx.send(f">>>Search last in selfchecks!")
-                searchreg = self.servers[searchlastl]
-                searchcut = search.rsplit(" ", 1)[0]
-                search = searchcut
+            if len(search.split() > 1):
+                searchlast = search.split()[-1]
+                searchlastl = searchlast.lower()
+                searchlastc = searchlast.upper()
+                await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
+                if searchlastc in self.regchecks:
+                    await ctx.send(f">>>`Search last` in selfchecks!")
+                    searchreg = self.servers[searchlastl]
+                    searchcut = search.rsplit(" ", 1)[0]
+                    search = searchcut
+                else:
+                    searchreg = "eune"
+                    await ctx.send(f">>>`Search last` **NOT** in selfchecks!")
             else:
-                searchreg = "eune"
-                await ctx.send(f">>>Search last **NOT** in selfchecks!")
+                pass
         await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
 
 
