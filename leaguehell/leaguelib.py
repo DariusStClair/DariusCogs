@@ -475,4 +475,4 @@ class Leaguelib:
         return rj
 
     def __unload(self):
-        asyncio.get_event_loop().create_task(self._session.close())
+        asyncio.get_event_loop().create_task(self._sess.close())
