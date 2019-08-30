@@ -759,7 +759,7 @@ class Leaguehell(commands.Cog):
             else:
                 searchreg = await self.config.member(search).Region()
         else:
-            if len(search.split() > 1):
+            if len(search.split()) > 1:
                 searchlast = search.split()[-1]
                 searchlastl = searchlast.lower()
                 searchlastc = searchlast.upper()
