@@ -691,7 +691,7 @@ class Leaguehell(commands.Cog):
         if passed is True:
             await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
         else:
-            await ctx.send("Passcheck is `False`")
+            await ctx.send(f"Passcheck is `False` (s={search}")
 
     def cog_unload(self):
         self.lib.cog_unload()
