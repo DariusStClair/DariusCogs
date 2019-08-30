@@ -683,7 +683,7 @@ class Leaguehell(commands.Cog):
                 passed = True
         if type(search) is discord.Member:
             reg = await self.config.member(search).Name()
-            if reg == "None":
+            if str(reg) == "None":
                 await ctx.send(">>> Unregistered member. \nThey can register with `!!league setname <name>`")
                 passed = False
             else:
