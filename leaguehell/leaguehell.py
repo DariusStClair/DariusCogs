@@ -655,48 +655,32 @@ class Leaguehell(commands.Cog):
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
         searchreg = "eune"
-        passed = False
         if type(search) is str:
-            if search == "None":
+            if str(search) == "None":
                 await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
-                passed = False
-            elif search != "None":
+            elif str(search) != "None":
                 if len(search.split()) > 1:
                     searchlast = search.split()[-1]
                     searchlastl = searchlast.lower()
                     searchlastc = searchlast.upper()
-                    #await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
                     if searchlastc in self.regchecks:
-                        #await ctx.send(f">>>`Search last` in selfchecks!")
                         searchreg = self.servers[searchlastl]
                         searchcut = search.rsplit(" ", 1)[0]
                         search = searchcut
-                        passed = True
-                    else:
-                        #await ctx.send(f">>>`Search last` **NOT** in selfchecks!")
-                        passed = True
-                else:
-                    pass
             else:
                 search = await self.config.member(author).Name()
                 searchreg = await self.config.member(author).Region()
-                passed = True
         if type(search) is discord.Member:
             reg = await self.config.member(search).Name()
             if reg == "None":
                 await ctx.send(">>> Unregistered member. \nThey can register with `!!league setname <name>`")
-                passed = False
             else:
                 searchreg = await self.config.member(search).Region()
                 search = reg
-                passed = True
-        #if passed is True:
         if str(search) == "None":
             await ctx.send(f"Well horseshit, that summoner doesn't exist \n({search}. I mean, it does, but it's not you or actually anyone you're looking for)")
         else:
             await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
-        #else:
-        #    await ctx.send(f"Passcheck is `False` (s={search})")
 
     def cog_unload(self):
         self.lib.cog_unload()
