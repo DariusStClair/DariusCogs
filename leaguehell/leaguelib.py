@@ -43,9 +43,6 @@ class Leaguelib:
         self.cdragon_champ = "https://cdn.communitydragon.org/{}/champion/"
         self.cdragon_champ_squareurl = "{}/square.png"
         self.cdragon_champ_dataurl = "{}/data"
-    
-    def cog_unload(self):
-        self._sess.detach()
 
     async def __unload(self):
         asyncio.get_event_loop().create_task(self._sess.close())

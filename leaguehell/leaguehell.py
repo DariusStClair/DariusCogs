@@ -826,6 +826,8 @@ class Leaguehell(commands.Cog):
 
     #def cog_unload(self):
     #    self.bot.loop.create_task(self.sess.close())
+    def cog_unload(self):
+        self.lib._sess.detach()
 
-    #__del__ = cog_unload
+    __del__ = cog_unload
     #    asyncio.get_event_loop().create_task(self.session.close())
