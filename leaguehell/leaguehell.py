@@ -650,7 +650,7 @@ class Leaguehell(commands.Cog):
         chemoji = await self.lib.champ_emoji(name)
         await ctx.send(chemoji)
 
-    @checks.is_owner()
+    #@checks.is_owner()
     @commands.command(name="testshit")
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
