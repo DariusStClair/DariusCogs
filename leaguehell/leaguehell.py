@@ -692,7 +692,7 @@ class Leaguehell(commands.Cog):
                 passed = True
         #if passed is True:
         if str(search) == "None":
-            await ctx.send(f"Well this sucks, that summoner doesn't exist \n({search}")
+            await ctx.send(f"Well horseshit, that summoner doesn't exist \n({search}. I mean, it does, but it's not you.)")
         else:
             await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
         #else:
