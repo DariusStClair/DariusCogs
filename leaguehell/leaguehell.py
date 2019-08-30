@@ -675,7 +675,7 @@ class Leaguehell(commands.Cog):
                 search = reg
                 passed = True
         else:
-            if len(search.split()) > 1:
+            if type(search) is str and len(search.split()) > 1:
                 searchlast = search.split()[-1]
                 searchlastl = searchlast.lower()
                 searchlastc = searchlast.upper()
