@@ -474,5 +474,5 @@ class Leaguelib:
         rj = await self.get(rq)
         return rj
 
-    def cog_unload(self):
-        self.bot.loop.create_task(self.session.close())
+    def __unload(self):
+        asyncio.get_event_loop().create_task(self._session.close())
