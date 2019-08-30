@@ -41,4 +41,6 @@ class Handler:
                 if name in v:
                     return k
         return "Error"
-        
+    
+    def cog_unload(self):
+        self.bot.loop.create_task(self.session.close())

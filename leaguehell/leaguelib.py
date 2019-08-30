@@ -473,3 +473,6 @@ class Leaguelib:
         rq = self.url.format(self.srvs[xreg]) + self.shard_data + apistr
         rj = await self.get(rq)
         return rj
+
+    def cog_unload(self):
+        self.bot.loop.create_task(self.session.close())
