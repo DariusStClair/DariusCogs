@@ -655,7 +655,14 @@ class Leaguehell(commands.Cog):
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
         searchreg = "eune"
-        if type(search) is str:
+        if type(search) is discord.Member:
+            reg = await self.config.member(search).Name()
+            if reg == "None":
+                await ctx.send(">>> Unregistered member. \nThey can register with `!!league setname <name>`")
+            else:
+                searchreg = await self.config.member(search).Region()
+                search = reg
+        else:
             if str(search) == "None":
                 await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
             elif str(search) != "None":
@@ -670,13 +677,6 @@ class Leaguehell(commands.Cog):
             else:
                 search = await self.config.member(author).Name()
                 searchreg = await self.config.member(author).Region()
-        if type(search) is discord.Member:
-            reg = await self.config.member(search).Name()
-            if reg == "None":
-                await ctx.send(">>> Unregistered member. \nThey can register with `!!league setname <name>`")
-            else:
-                searchreg = await self.config.member(search).Region()
-                search = reg
         if str(search) == "None":
             await ctx.send(f"Well horseshit, that summoner doesn't exist \n({search}. I mean, it does, but it's not you or actually anyone you're looking for)")
         else:
