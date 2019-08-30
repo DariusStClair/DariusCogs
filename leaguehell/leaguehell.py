@@ -744,6 +744,7 @@ class Leaguehell(commands.Cog):
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
         searchreg = "eune"
+        passed = False
         if not search:
             if self.config.member(author).Name() == "None":
                 await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
@@ -751,6 +752,7 @@ class Leaguehell(commands.Cog):
             else:
                 search = await self.config.member(author).Name()
                 searchreg = await self.config.member(author).Region()
+                passed = True
         if type(search) is discord.Member:
             reg = await self.config.member(search).Name()
             if reg == "None":
@@ -759,6 +761,7 @@ class Leaguehell(commands.Cog):
             else:
                 searchreg = await self.config.member(search).Region()
                 search = reg
+                passed = True
         else:
             if len(search.split()) > 1:
                 searchlast = search.split()[-1]
@@ -770,10 +773,10 @@ class Leaguehell(commands.Cog):
                     searchreg = self.servers[searchlastl]
                     searchcut = search.rsplit(" ", 1)[0]
                     search = searchcut
+                    passed = True
                 else:
                     await ctx.send(f">>>`Search last` **NOT** in selfchecks!")
-            else:
-                pass
+                    passed = True
         if passed is True:
             await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
         else:
