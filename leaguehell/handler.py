@@ -5,6 +5,7 @@ from math import floor, ceil
 import datetime
 import discord
 import re
+from typing import Union
 # Red stuffs
 from redbot.core import checks, Config, bank, commands
 
