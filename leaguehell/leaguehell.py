@@ -656,7 +656,7 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         searchreg = "eune"
         passed = False
-        if not search:
+        if search == None:
             if self.config.member(author).Name() == "None":
                 await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
                 passed = False
@@ -678,15 +678,15 @@ class Leaguehell(commands.Cog):
                 searchlast = search.split()[-1]
                 searchlastl = searchlast.lower()
                 searchlastc = searchlast.upper()
-                await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
+                #await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
                 if searchlastc in self.regchecks:
-                    await ctx.send(f">>>`Search last` in selfchecks!")
+                    #await ctx.send(f">>>`Search last` in selfchecks!")
                     searchreg = self.servers[searchlastl]
                     searchcut = search.rsplit(" ", 1)[0]
                     search = searchcut
                     passed = True
                 else:
-                    await ctx.send(f">>>`Search last` **NOT** in selfchecks!")
+                    #await ctx.send(f">>>`Search last` **NOT** in selfchecks!")
                     passed = True
         if passed is True:
             await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
