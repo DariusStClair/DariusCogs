@@ -45,7 +45,7 @@ class Leaguelib:
         self.cdragon_champ_dataurl = "{}/data"
     
     def cog_unload(self):
-        self._sess.detach()
+        self.__unload()
 
     async def __unload(self):
         asyncio.get_event_loop().create_task(self._sess.close())
@@ -476,6 +476,3 @@ class Leaguelib:
         rq = self.url.format(self.srvs[xreg]) + self.shard_data + apistr
         rj = await self.get(rq)
         return rj
-
-    #def __unload(self):
-    #    asyncio.get_event_loop().create_task(self._sess.close())

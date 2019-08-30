@@ -130,18 +130,6 @@ class Leaguehell(commands.Cog):
         em.add_field(name=u'\u200b', value=u'\u200b'f"**{aname}**")
         em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"))
         await ctx.send(embed=em)
-        #await ctx.send(box(text=aname, lang="ruby"))
-
-    #######################
-    # League Name subgroup
-    #######################
-    #@league.group()
-    #async def name(self, ctx, user: discord.Member=None):
-    #    author = ctx.author
-    #    if not user:
-    #        tar = author
-    #    
-    # 
 
     @league.command(pass_context=True, no_pm=True)
     async def setname(self, ctx, name, user: discord.Member=None):
@@ -341,7 +329,6 @@ class Leaguehell(commands.Cog):
             chtitle = await self.lib.get_champ_title(str(i["championId"]))
             chico = str(await self.lib.ddragon_champico(str(i["championId"])))
             csplash = str(await self.lib.ddragon_champsplash(str(i["championId"])))
-            #cload = str(await self.lib.ddragon_champsloading(str(i["championId"])))
             clvl = i["championLevel"]
             cpoints = i["championPoints"]
             cchest = i["chestGranted"]
@@ -352,8 +339,6 @@ class Leaguehell(commands.Cog):
             cmtokens = i["tokensEarned"]
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
-            #em.set_thumbnail(url=cload)
-            #emdesc = f"__**{chname}**__ \n\nAt **{cpoints}** points."
             emdesc = f"**{cpoints}** points."
             em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
             em.description = emdesc
@@ -372,24 +357,13 @@ class Leaguehell(commands.Cog):
     @league.command(name="rankedold")
     async def rankedold(self, ctx, name=None, xreg=None):
         """/gonna set help when I can/"""
-        #try:
-        #    not_mumbojumbo_anymore_biatch = other_dict[this_dict["queueType"]]
-        #except KeyError:
-        #    await ctx.send("ABORT MISSION! I REPEAT! ABORT MISSION!")
-        #    return
         author = ctx.author
-        #guild = ctx.guild
         if not xreg:
             if not self.config.member(author).Region():
                 await ctx.send_help()
                 return
             else:
                 xreg = await self.config.member(author).Region()
-        #if name is discord.Member:
-        #    if not self.config.member(author).Name():
-        #        await ctx.send_help()
-        #    else:
-        #        name = await self.config.member(name).Name()
         if not name:
             if not self.config.member(author).Name():
                 await ctx.send_help()
@@ -500,29 +474,6 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="champlist")
     async def champlist(self, ctx):
-        #author = ctx.author
-        #allmembers = await self.config.all_members()
-        #resp = ["> So:\n"]
-        #if name is None:
-        #    tar = await self.config.member(author).Name()
-        #    resp.append(f"> No name, get author's from conf ({tar})")
-        #else:
-        #    try:
-        #        tar = await self.config.member(user).Name()
-        #        resp.append(f"> Name is in allmembers, get it from conf ({tar})")
-        #    except:
-        #        tar = name
-        #        resp.append(f"> User ain't in allmembers and isn't the author, target is {tar}")
-        #if not xreg:
-        #    xreg = "eune"
-        #    resp.append(f"> No xreg, defaults ({xreg})")
-        #for i in resp:
-        #    await ctx.send(i)
-        #    asyncio.sleep(0.2)
-        #
-        #
-        #champico = await self.lib.cdragon_champ_square(name)
-        #await ctx.send(file=discord.File(champico, '{}.png'.format(name)))
         clist = []
         champid = await self.lib.get_champlist()
         npages = len(champid)
@@ -546,25 +497,8 @@ class Leaguehell(commands.Cog):
     @commands.command(name="champ")
     async def champ(self, ctx, *, name):
         author = ctx.author
-        #guilds = [612586360473124865, 612586558528290837, 612586640413818881, 612586727726383104]
-        #chkey = await self.lib.get_champid(name)
-        #await ctx.send(chkey)
         data = await self.lib.cdragon_champ_data(name)
         if data != "Error":
-            #list1 = ["Alistar", "Amumu", "Anivia", "Annie", "Ashe", "Blitzcrank", "Caitlyn", "ChoGath", "Corki", "DrMundo", "Evelynn", "Fiddlesticks", "Galio", "Gangplank", "Irelia", "Janna", "Jax", "Karma", "Karthus", "Kassadin", "Kayle", "LeBlanc", "MasterYi", "MissFortune", "Morgana", "None", "Nunu", "Olaf", "Rammus", "Ryze", "Shaco", "Singed", "Sion", "Sivir", "Sona", "Soraka", "Swain", "Taric", "Teemo", "Tristana", "Trundle", "Tryndamere", "TwistedFate", "Twitch", "Urgot", "Veigar", "Vladimir", "Warwick", "XinZhao", "Zilean"]
-            #list2 = ["Ahri", "Akali", "Brand", "Cassiopeia", "Draven", "Elise", "Ezrael", "Fiora", "Fizz", "Garen", "Gragas", "Graves", "Heimerdinger", "JarvanIV", "Katarina", "Kennen", "KogMaw", "LeeSin", "Leona", "Lulu", "Lux", "Malphite", "Malzahar", "Maokai", "Mordekaiser", "Nasus", "Nautilus", "Nidalee", "Nocturne", "Orianna", "Pantheon", "Poppy", "Renekton", "Rengar", "Riven", "Rumble", "Sejuani", "Shen", "Shyvana", "Skarner", "Talon", "Udyr", "Varus", "Vayne", "Viktor", "Volibear", "Wukong", "Xerath", "Yorick", "Ziggs"]
-            #list3 = ["Aatrox", "AurelionSol", "Azir", "Bard", "Braum", "Camilee", "Darius", "Diana", "Ekko", "Gnar", "Hecarim", "Illaloi", "Ivern", "Jayce", "Jhin", "Jinx", "KaiSa", "Kalista", "Kayn", "KhaZix", "Kindred", "Kled", "Lissandra", "Lucian", "Nami", "Neeko", "Ornn", "Pyke", "Qiyana", "Quinn", "Rakan", "RekSai", "Sylas", "Syndra", "TahmKench", "Taliyah", "Thresh", "VelKoz", "Vi", "Xayah", "Yasuo", "Yummi", "Zac", "Zed", "Zoe", "Zyra"]
-            #guid1 = 612586360473124865
-            #guid2 = 612586558528290837
-            #guid3 = 612586640413818881
-            #chid = data["id"]
-            #if chid in list1:
-            #    guildid = guid1
-            #if chid in list2:
-            #    guildid = guid2
-            #if chid in list3:
-            #    guildid = guid3
-            #chemoji = get(bot.get_all_emojis(), name="Annie")
             chname = data["name"]
             chtitle = data["title"]
             chbio = data["shortBio"]
@@ -573,21 +507,11 @@ class Leaguehell(commands.Cog):
             chpassivedescrx = data["passive"]["description"]
             chpassivedescr = await self.handle.cleanhtml(chpassivedescrx)
             chroles = data["roles"]
-            #chspells = data["spells"]
             em = discord.Embed(colour=15158332)
             em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
-            #listroles = []
-            #roles = len(chroles)
             allroles = " ".join([str(elem) for elem in chroles])
-            #    for i in listroles:
-            #        allroles = ''.join(listroles[i])
             em.add_field(name="Roles:", value=f"{allroles}")
-            #for i in range(4):
-                #spell = chspells[i]
-                #hotkey = str(spell["spellkey"]).upper()
-                #spname = spell["name"]
             emdesc = f"{chname}, {chtitle} \n{chbio}"
-            #emoji = discord.utils.get(guild.emojis, name=f"{chid}")
             em.add_field(name="Emoji test:", value=f"__/chemoji-placeholder/__", inline=False)
             em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}", inline=False)
             em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: \obsolete\ | {vversion}")
@@ -597,7 +521,6 @@ class Leaguehell(commands.Cog):
             em.description = emdesc
             em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         await ctx.send(embed=em)
-        #await ctx.send(len(data["spells"]))
 
     @league.command(name="status")
     async def status(self, ctx, xreg=None):
@@ -684,7 +607,6 @@ class Leaguehell(commands.Cog):
         icostr = str(await self.lib.summ_icon(name, xreg))
         champs = await self.lib.get_champ_masteries(name, xreg)
         cpage = 0
-        #tpages = 10
         for i in champs:
             cpage += 1
             if cpage >= 11:
@@ -692,9 +614,6 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             chname = await self.lib.get_champ_name(str(i["championId"]))
             chtitle = await self.lib.get_champ_title(str(i["championId"]))
-            #chico = str(await self.lib.ddragon_champico(str(i["championId"])))
-            #csplash = str(await self.lib.ddragon_champsplash(str(i["championId"])))
-            #cload = str(await self.lib.ddragon_champsloading(str(i["championId"])))
             clvl = i["championLevel"]
             cpoints = i["championPoints"]
             cchest = i["chestGranted"]
@@ -705,8 +624,6 @@ class Leaguehell(commands.Cog):
             cmtokens = i["tokensEarned"]
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
-            #em.set_thumbnail(url=cload)
-            #emdesc = f"__**{chname}**__ \n\nAt **{cpoints}** points."
             emdesc = f"**{cpoints}** points."
             em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
             em.description = emdesc
@@ -715,18 +632,12 @@ class Leaguehell(commands.Cog):
             em.add_field(name=f"Level **{clvl}**", value=f"**{cmtokens}** tokens.", inline=True)
             em.add_field(name="Chest granted?", value=f"**{chest}**", inline=True)
             em.add_field(name="Last played:", value=f"**{cmlp}**", inline=True)
-            #em.add_field(name="Default splash art", value=f"[Click here to view]({csplash})", inline=True)
             await asyncio.sleep(0.3)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
     @checks.is_owner()
     @commands.command(name="leaguetestname")
     async def leaguetestname(self, ctx, name: discord.Member=None):
-        #if "#" in name:
-        #    test = await self.handle.search_leaguename(name)
-        #    await ctx.send(test)
-        #else:
-        #    await ctx.send("> # not found")
         test = await self.handle.search_leaguename(name)
         if test == "Error":
             await ctx.send("> Name not found or some shit")
@@ -782,52 +693,7 @@ class Leaguehell(commands.Cog):
         else:
             await ctx.send("Passcheck is `False`")
 
-
-    #@checks.is_owner()
-    #@league.command(name="history")
-    #async def history(self, ctx, name, xreg):
-    #    """I mean. If I'm reading the help on my own command..."""
-    #    author = ctx.author
-    #    if not xreg:
-    #        xreg = "eune"
-    #    #icostr = str(await self.lib.summ_icon(name, xreg))
-    #    clist = []
-    #    cpage = 0
-    #    hstry = await self.lib.get_history(name, xreg)
-    #    #propername = await self.lib.get_prname(name, xreg)
-    #    #em = discord.Embed(colour=15158332)
-    #    #em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-    #    #em.description = (f"**{propername}**'s shit:")
-    #    for i in hstry:
-    #        cpage += 1
-    #        if cpage >= 11:
-    #            break
-    #        em = discord.Embed(colour=15158332)
-    #        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-    #        champ = hstry[i]["champ"]
-    #        try:
-    #            role = hstry[i]["role"]
-    #        except:
-    #            role = "n/a (r)"
-    #        try:
-    #            lane = hstry[i]["lane"]
-    #        except:
-    #            lane = "n/a (l)"
-    #        duration = hstry[i]["Duration"]
-    #        gamemode = hstry[i]["Gamemode"]
-    #        result = hstry[i]["result"]
-    #        kda = hstry[i]["kda"]
-    #        gold = hstry[i]["gold"]
-    #        em.description = (f"**{gamemode}** | {duration} min")
-    #        em.add_field(name=(f"{champ} | r: {role} / l: {lane}"), value=(f"**{result}**\n{kda} | {gold}"), inline=False)
-    #        clist.append(em)
-    #        await asyncio.sleep(0.5)
-    #    await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
-
-    #def cog_unload(self):
-    #    self.bot.loop.create_task(self.sess.close())
     def cog_unload(self):
         self.lib.cog_unload()
 
     __del__ = cog_unload
-    #    asyncio.get_event_loop().create_task(self.session.close())
