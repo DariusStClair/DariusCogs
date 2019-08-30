@@ -657,10 +657,26 @@ class Leaguehell(commands.Cog):
         searchreg = "eune"
         passed = False
         if type(search) is str:
-            search = await self.config.member(author).Name()
             if search == "None":
                 await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
                 passed = False
+            elif search != "None":
+                if len(search.split()) > 1:
+                    searchlast = search.split()[-1]
+                    searchlastl = searchlast.lower()
+                    searchlastc = searchlast.upper()
+                    #await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
+                    if searchlastc in self.regchecks:
+                        #await ctx.send(f">>>`Search last` in selfchecks!")
+                        searchreg = self.servers[searchlastl]
+                        searchcut = search.rsplit(" ", 1)[0]
+                        search = searchcut
+                        passed = True
+                    else:
+                        #await ctx.send(f">>>`Search last` **NOT** in selfchecks!")
+                        passed = True
+                else:
+                    pass
             else:
                 search = await self.config.member(author).Name()
                 searchreg = await self.config.member(author).Region()
@@ -674,21 +690,6 @@ class Leaguehell(commands.Cog):
                 searchreg = await self.config.member(search).Region()
                 search = reg
                 passed = True
-        else:
-            if type(search) is str and len(search.split()) > 1:
-                searchlast = search.split()[-1]
-                searchlastl = searchlast.lower()
-                searchlastc = searchlast.upper()
-                #await ctx.send(f">>> Searchlast: {searchlast} \nl/{searchlastl}")
-                if searchlastc in self.regchecks:
-                    #await ctx.send(f">>>`Search last` in selfchecks!")
-                    searchreg = self.servers[searchlastl]
-                    searchcut = search.rsplit(" ", 1)[0]
-                    search = searchcut
-                    passed = True
-                else:
-                    #await ctx.send(f">>>`Search last` **NOT** in selfchecks!")
-                    passed = True
         if passed is True:
             await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
         else:
