@@ -658,7 +658,7 @@ class Leaguehell(commands.Cog):
         if type(search) is discord.Member:
             reg = await self.config.member(search).Name()
             if str(reg) == "None":
-                await ctx.send(">>> Unregistered member. \nThey can register with `!!league setname <name>`")
+                await ctx.send(">>> Unregistered member. \nThey can register with: \n`!!league setname <name>`")
                 return
             else:
                 searchreg = await self.config.member(search).Region()
