@@ -743,7 +743,7 @@ class Leaguehell(commands.Cog):
     @commands.command(name="testshit")
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
-        done = False
+        searchreg = "eune"
         if not search:
             if not self.config.member(author).Name():
                 await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
@@ -770,7 +770,6 @@ class Leaguehell(commands.Cog):
                     searchcut = search.rsplit(" ", 1)[0]
                     search = searchcut
                 else:
-                    searchreg = "eune"
                     await ctx.send(f">>>`Search last` **NOT** in selfchecks!")
             else:
                 pass
