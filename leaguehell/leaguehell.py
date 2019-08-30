@@ -656,7 +656,7 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         searchreg = "eune"
         passed = False
-        if type(search) is str and search == "None":
+        if type(search) is str:
             if self.config.member(author).Name() == "None":
                 await ctx.send(f">>> Whoa, {author}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
                 passed = False
@@ -691,7 +691,7 @@ class Leaguehell(commands.Cog):
         if passed is True:
             await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
         else:
-            await ctx.send(f"Passcheck is `False` (s={search}")
+            await ctx.send(f"Passcheck is `False` (s={search})")
 
     def cog_unload(self):
         self.lib.cog_unload()
