@@ -758,6 +758,7 @@ class Leaguehell(commands.Cog):
                 return
             else:
                 searchreg = await self.config.member(search).Region()
+                search = reg
         else:
             if len(search.split()) > 1:
                 searchlast = search.split()[-1]
