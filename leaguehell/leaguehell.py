@@ -657,7 +657,7 @@ class Leaguehell(commands.Cog):
         searchreg = "eune"
         if type(search) is discord.Member:
             reg = await self.config.member(search).Name()
-            if reg == "None":
+            if str(reg) == "None":
                 await ctx.send(">>> Unregistered member. \nThey can register with `!!league setname <name>`")
                 return
             else:
@@ -680,7 +680,7 @@ class Leaguehell(commands.Cog):
                 search = await self.config.member(author).Name()
                 searchreg = await self.config.member(author).Region()
         if str(search) == "None":
-            await ctx.send(f"Well horseshit, that summoner doesn't exist \n({search}. I mean, it does, but it's not you or actually anyone you're looking for)")
+            await ctx.send(f"Well horseshit, that person hasn't set their league name.")
         else:
             await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
 
