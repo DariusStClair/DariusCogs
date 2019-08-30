@@ -825,5 +825,7 @@ class Leaguehell(commands.Cog):
     #    await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
 
     def cog_unload(self):
-        self.lib.__unload()
+        self.bot.loop.create_task(self.session.close())
+
+    __del__ = cog_unload
     #    asyncio.get_event_loop().create_task(self.session.close())

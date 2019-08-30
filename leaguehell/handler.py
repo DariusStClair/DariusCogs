@@ -42,5 +42,5 @@ class Handler:
                     return k
         return "Error"
     
-    def cog_unload(self):
-        self.bot.loop.create_task(self.session.close())
+    #def cog_unload(self):
+    #    self.bot.loop.create_task(self.session.close())
