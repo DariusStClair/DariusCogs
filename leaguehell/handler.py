@@ -13,7 +13,7 @@ class Handler:
     def __init__(self, bot):
         self.bot = bot
         self.config = Config.get_conf(self, identifier=690430666, force_registration=True)
-        self.config = Config.get_conf
+        #self.config = Config.get_conf
         self.regchecks = ["EUNE", "EUW", "NA", "BR", "JP", "KR", "LAN", "OCE", "TR", "RU", "PBE"]
         self.servers = {
             "eune": "eun1",
