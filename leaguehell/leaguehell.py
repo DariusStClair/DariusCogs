@@ -638,7 +638,7 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @commands.command(name="leaguetestname")
     async def leaguetestname(self, ctx, name: discord.Member=None):
-        test = await self.handle.search_leaguename(name)
+        test = await self.handle.get_leaguename(name)
         if test == "Error":
             await ctx.send("> Name not found or some shit")
         else:
