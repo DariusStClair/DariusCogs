@@ -665,8 +665,11 @@ class Leaguehell(commands.Cog):
                 search = reg
         else:
             if str(search) == "None":
-                await ctx.send(f">>> Whoa, {author.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
-                return
+                search = await self.config.member(author).Name()
+                searchreg = await self.config.member(author).Region()
+                if str(search) == "None":
+                    await ctx.send(f">>> Whoa, {author.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
+                    return
             elif str(search) != "None":
                 if len(search.split()) > 1:
                     searchlast = search.split()[-1]
