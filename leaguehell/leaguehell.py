@@ -823,3 +823,6 @@ class Leaguehell(commands.Cog):
     #        clist.append(em)
     #        await asyncio.sleep(0.5)
     #    await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
+
+    def cog_unload(self):
+        self.bot.loop.create_task(self.session.close())
