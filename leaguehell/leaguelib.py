@@ -45,7 +45,7 @@ class Leaguelib:
         self.cdragon_champ_dataurl = "{}/data"
 
     async def __unload(self):
-        self._sess.detach()
+        asyncio.get_event_loop().create_task(self._sess.close())
 
     async def _getapi(self):
         if not self.api:
