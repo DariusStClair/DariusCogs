@@ -73,6 +73,42 @@ class Leaguehell(commands.Cog):
         re = await self.config.member(name).Name()
         return re
 
+    async def findshit(self, ctx, author, *, search: Union[discord.Member, str] = None):
+        #re = {"nick": "None", "region": "eune"}
+        ugherror = ">>> \nError"
+        if type(search) is discord.Member:
+            reg = await self.config.member(search).Name()
+            if str(reg) == "None":
+                err_register = ">>> Unregistered member. \nThey can register with: \n`!!league setname <name>`"
+                return ugherror, err_register
+            else:
+                searchreg = await self.config.member(search).Region()
+                search = reg
+        else:
+            if str(search) == "None":
+                search = await self.config.member(author).Name()
+                searchreg = await self.config.member(author).Region()
+                if str(search) == "None":
+                    err_regauthor = ">>> Whoa, {author.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`"
+                    return ugherror, err_regauthor
+            elif str(search) != "None":
+                if len(search.split()) > 1:
+                    searchlast = search.split()[-1]
+                    searchlastl = searchlast.lower()
+                    searchlastc = searchlast.upper()
+                    if searchlastc in self.regchecks:
+                        searchreg = self.servers[searchlastl]
+                        searchcut = search.rsplit(" ", 1)[0]
+                        search = searchcut
+            else:
+                search = await self.config.member(author).Name()
+                searchreg = await self.config.member(author).Region()
+        if str(search) == "None":
+            err_horseshit = ">>> Well horseshit, that person hasn't set their league name."
+            return ugherror, err_horseshit
+        else:
+            return search, searchreg
+
     @checks.is_owner()
     @commands.command(name="leagueapi")
     async def leagueapi(self, ctx, *, key):
@@ -686,7 +722,7 @@ class Leaguehell(commands.Cog):
         #    await ctx.send(f"Well horseshit, that person hasn't set their league name.")
         #else:
         #    await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
-        saerch, searchreg = await self.handle.lookup(author, search)
+        saerch, searchreg = await self.testshit(author, search)
         await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
 
     def cog_unload(self):
