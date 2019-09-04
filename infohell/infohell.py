@@ -174,7 +174,8 @@ class Infohell(commands.Cog):
         avembed.set_footer(text="Powered by HELL")
         await ctx.send(embed=avembed)
 
-    @commands.command(1, 10, commands.BucketType.guild)
+    @commands.command()
+    @commands.cooldown(1, 10, commands.BucketType.guild)
     async def nofucks(self, ctx):
         user = ctx.author
         if user.is_avatar_animated():
