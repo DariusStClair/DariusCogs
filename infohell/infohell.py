@@ -173,3 +173,23 @@ class Infohell(commands.Cog):
         avembed.set_image(url=avstr)
         avembed.set_footer(text="Powered by HELL")
         await ctx.send(embed=avembed)
+
+    @commands.command(1, 10, commands.BucketType.guild)
+    async def nofucks(self, ctx):
+        user = ctx.author
+        if user.is_avatar_animated():
+            av = user.avatar_url_as(format="gif")
+        else:
+            av = user.avatar_url_as(format="png")
+        dnname = user.display_name
+        avembed = discord.Embed(colour=15158332)
+        av = user.avatar_url
+        avstr = str(av)
+        img = "https://perpetualabsurdity.files.wordpress.com/2015/12/6npyrf2.jpg"
+        avdesc = (f"**Behold! The field in which I grow my fucks.**\n\n**Lay thine eyes upon it and thou shalt see that it is barren.**")
+        avembed.description = avdesc
+        avembed.url = img
+        avembed.set_image(url=img)
+        em.set_author(name=f"{dnname}", url=f"{avstr}", icon_url=f"{avstr}")
+        avembed.set_footer(text=f"Powered by HELL")
+        await ctx.send(embed=em)
