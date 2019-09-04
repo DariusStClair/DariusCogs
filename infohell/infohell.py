@@ -183,14 +183,14 @@ class Infohell(commands.Cog):
         else:
             av = user.avatar_url_as(format="png")
         dnname = user.display_name
-        avembed = discord.Embed(colour=15158332)
+        em = discord.Embed(colour=15158332)
         av = user.avatar_url
         avstr = str(av)
         img = "https://perpetualabsurdity.files.wordpress.com/2015/12/6npyrf2.jpg"
         avdesc = (f"**Behold! The field in which I grow my fucks.**\n\n**Lay thine eyes upon it and thou shalt see that it is barren.**")
-        avembed.description = avdesc
-        avembed.url = img
-        avembed.set_image(url=img)
+        em.description = avdesc
+        em.url = img
+        em.set_image(url=img)
         em.set_author(name=f"{dnname}", url=f"{avstr}", icon_url=f"{avstr}")
         avembed.set_footer(text=f"Powered by HELL")
         await ctx.send(embed=em)
