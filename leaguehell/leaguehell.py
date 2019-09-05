@@ -73,7 +73,7 @@ class Leaguehell(commands.Cog):
         re = await self.config.member(name).Name()
         return re
 
-    async def findshit(self, authorname, search: Union[discord.Member, str] = None):
+    async def findshit(self, authorname, search):
         #re = {"nick": "None", "region": "eune"}
         ugherror = ">>> \nError \n"
         if type(search) is discord.Member:
