@@ -75,7 +75,7 @@ class Leaguehell(commands.Cog):
 
     async def findshit(self, author, *, search: Union[discord.Member, str] = None):
         #re = {"nick": "None", "region": "eune"}
-        ugherror = ">>> \nError"
+        ugherror = ">>> \nError \n"
         if type(search) is discord.Member:
             reg = await self.config.member(search).Name()
             if str(reg) == "None":
@@ -722,7 +722,7 @@ class Leaguehell(commands.Cog):
         #    await ctx.send(f"Well horseshit, that person hasn't set their league name.")
         #else:
         #    await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
-        saerch, searchreg = await self.testshit(author, search)
+        saerch, searchreg = await self.findshit(author, search)
         await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
 
     def cog_unload(self):
