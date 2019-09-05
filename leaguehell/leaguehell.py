@@ -73,7 +73,7 @@ class Leaguehell(commands.Cog):
         re = await self.config.member(name).Name()
         return re
 
-    async def findshit(self, author, *, search: Union[discord.Member, str] = None):
+    async def findshit(self, authorname, search: Union[discord.Member, str] = None):
         #re = {"nick": "None", "region": "eune"}
         ugherror = ">>> \nError \n"
         if type(search) is discord.Member:
@@ -86,8 +86,8 @@ class Leaguehell(commands.Cog):
                 search = reg
         else:
             if str(search) == "None":
-                search = await self.config.member(author).Name()
-                searchreg = await self.config.member(author).Region()
+                search = await self.config.member(authorname).Name()
+                searchreg = await self.config.member(authorname).Region()
                 if str(search) == "None":
                     err_regauthor = ">>> Whoa, {author.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`"
                     return ugherror, err_regauthor
@@ -101,8 +101,8 @@ class Leaguehell(commands.Cog):
                         searchcut = search.rsplit(" ", 1)[0]
                         search = searchcut
             else:
-                search = await self.config.member(author).Name()
-                searchreg = await self.config.member(author).Region()
+                search = await self.config.member(authorname).Name()
+                searchreg = await self.config.member(authorname).Region()
         if str(search) == "None":
             err_horseshit = ">>> Well horseshit, that person hasn't set their league name."
             return ugherror, err_horseshit
@@ -722,9 +722,9 @@ class Leaguehell(commands.Cog):
         #    await ctx.send(f"Well horseshit, that person hasn't set their league name.")
         #else:
         #    await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
-        await ctx.send(f">>> {search} is arg1;\n{author} is arg2")
-        #saerch, searchreg = await self.findshit(author, search)
-        #await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
+        #await ctx.send(f">>> {search} is arg1;\n{author} is arg2")
+        saerch, searchreg = await self.findshit(author, search)
+        await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
 
     def cog_unload(self):
         self.lib.cog_unload()
