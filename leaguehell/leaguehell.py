@@ -722,8 +722,9 @@ class Leaguehell(commands.Cog):
         #    await ctx.send(f"Well horseshit, that person hasn't set their league name.")
         #else:
         #    await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
-        saerch, searchreg = await self.findshit(author, search)
-        await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
+        await ctx.send(f">>> {search} is arg1;\n{author} is arg2")
+        #saerch, searchreg = await self.findshit(author, search)
+        #await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
 
     def cog_unload(self):
         self.lib.cog_unload()
