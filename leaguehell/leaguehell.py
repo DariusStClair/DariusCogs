@@ -722,7 +722,7 @@ class Leaguehell(commands.Cog):
         #else:
         #    await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
         #await ctx.send(f">>> {search} is arg1;\n{author} is arg2")
-        saerch, searchreg = await self.findshit(author, search)
+        saerch, searchreg = await self.findshit(guild, author, search)
         await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
 
     def cog_unload(self):
