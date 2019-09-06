@@ -1,5 +1,6 @@
 # Ugh I gotta start using notes and shit
 import discord
+from discord
 from discord.utils import get
 # Red stuffs
 from redbot.core import checks, Config, bank, commands
@@ -73,7 +74,7 @@ class Leaguehell(commands.Cog):
         re = await self.config.member(name).Name()
         return re
 
-    async def findshit(self, authorname, search):
+    async def findshit(self, guild, authorname, search):
         #re = {"nick": "None", "region": "eune"}
         searchname = "None"
         ugherror = ">>> \nError \n"
@@ -82,8 +83,9 @@ class Leaguehell(commands.Cog):
             searchreg = await self.config.member(search).Region()
         else:
             if str(search) == "None":
-                searchname = await self.config.member(authorname).Name()
-                searchreg = await self.config.member(authorname).Region()
+                searchauthor = await guild.get_member_named(authorname)
+                searchname = await self.config.member(searchauthor).Name()
+                searchreg = await self.config.member(searchauthor).Region()
                 if str(searchname) == "None":
                     err_regauthor = ">>> Whoa, {authorname.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`"
                     return ugherror, err_regauthor
@@ -97,8 +99,9 @@ class Leaguehell(commands.Cog):
                         searchcut = search.rsplit(" ", 1)[0]
                         search = searchcut
             else:
-                searchname = await self.config.member(authorname).Name()
-                searchreg = await self.config.member(authorname).Region()
+                searchauthor = await guild.get_member_named(authorname)
+                searchname = await self.config.member(searchauthor).Name()
+                searchreg = await self.config.member(searchauthor).Region()
         if str(searchname) == "None":
             err_horseshit = ">>> Well horseshit, that person hasn't set their league name."
             return ugherror, err_horseshit
@@ -686,6 +689,7 @@ class Leaguehell(commands.Cog):
     @commands.command(name="testshit")
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
+        guild = ctx.guild
         #searchreg = "eune"
         #if type(search) is discord.Member:
         #    reg = await self.config.member(search).Name()
