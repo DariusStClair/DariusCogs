@@ -1,6 +1,5 @@
 # Ugh I gotta start using notes and shit
 import discord
-from discord
 from discord.utils import get
 # Red stuffs
 from redbot.core import checks, Config, bank, commands
