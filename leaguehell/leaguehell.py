@@ -73,23 +73,19 @@ class Leaguehell(commands.Cog):
         re = await self.config.member(name).Name()
         return re
 
-    async def findshit(self, authorname, *, search):
+    async def findshit(self, authorname, search):
         #re = {"nick": "None", "region": "eune"}
+        searchname = "None"
         ugherror = ">>> \nError \n"
         if type(search) is discord.Member:
-            reg = await self.config.member(search).Name()
-            if str(reg) == "None":
-                err_register = ">>> Unregistered member. \nThey can register with: \n`!!league setname <name>`"
-                return ugherror, err_register
-            else:
-                searchreg = await self.config.member(search).Region()
-                search = reg
+            searchname = await self.config.member(search).Name()
+            searchreg = await self.config.member(search).Region()
         else:
             if str(search) == "None":
-                search = await self.config.member(authorname).Name()
+                searchname = await self.config.member(authorname).Name()
                 searchreg = await self.config.member(authorname).Region()
-                if str(search) == "None":
-                    err_regauthor = ">>> Whoa, {author.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`"
+                if str(searchname) == "None":
+                    err_regauthor = ">>> Whoa, {authorname.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`"
                     return ugherror, err_regauthor
             elif str(search) != "None":
                 if len(search.split()) > 1:
@@ -101,9 +97,9 @@ class Leaguehell(commands.Cog):
                         searchcut = search.rsplit(" ", 1)[0]
                         search = searchcut
             else:
-                search = await self.config.member(authorname).Name()
+                searchname = await self.config.member(authorname).Name()
                 searchreg = await self.config.member(authorname).Region()
-        if str(search) == "None":
+        if str(searchname) == "None":
             err_horseshit = ">>> Well horseshit, that person hasn't set their league name."
             return ugherror, err_horseshit
         else:
