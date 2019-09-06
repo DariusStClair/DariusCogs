@@ -80,11 +80,13 @@ class Leaguehell(commands.Cog):
         if type(search) is discord.Member:
             searchname = await self.config.member(search).Name()
             searchreg = await self.config.member(search).Region()
+            return search, searchreg
         else:
             if str(search) == "None":
                 searchauthor = await guild.get_member_named(authorname)
                 searchname = await self.config.member(searchauthor).Name()
                 searchreg = await self.config.member(searchauthor).Region()
+                return search, searchreg
                 if str(searchname) == "None":
                     err_regauthor = ">>> Whoa, {authorname.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`"
                     return ugherror, err_regauthor
@@ -101,6 +103,7 @@ class Leaguehell(commands.Cog):
                 searchauthor = await guild.get_member_named(authorname)
                 searchname = await self.config.member(searchauthor).Name()
                 searchreg = await self.config.member(searchauthor).Region()
+                return search, searchreg
         if str(searchname) == "None":
             err_horseshit = ">>> Well horseshit, that person hasn't set their league name."
             return ugherror, err_horseshit
