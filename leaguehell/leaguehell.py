@@ -715,13 +715,13 @@ class Leaguehell(commands.Cog):
     @commands.command(name="testshit")
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
+        searchreg = "eun1"
+        if str(search) is "None":
+            search, searchreg = await self.findshit_member(author)
         if type(search) is discord.Member:
             search, searchreg = await self.findshit_member(search)
         if type(search) is str:
-            if str(search) is "None":
-                search, searchreg = await self.findshit_member(author)
-            else:
-                search, searchreg = await self.findshit_string(search)
+            search, searchreg = await self.findshit_string(search)
         await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
 
     def cog_unload(self):
