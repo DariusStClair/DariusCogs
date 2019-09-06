@@ -110,6 +110,30 @@ class Leaguehell(commands.Cog):
         else:
             return search, searchreg
 
+    async def findshit_member(self, search):
+        searchname = await self.config.member(search).Name()
+        searchreg = await self.config.member(search).Region()
+        if searchname == "None":
+            return "Error", "Error"
+        else:
+            return searchname, searchreg
+
+    async def findshit_string(self, search):
+        if str(search) != "None":
+            if len(search.split()) > 1:
+                searchlast = search.split()[-1]
+                searchlastl = searchlast.lower()
+                searchlastc = searchlast.upper()
+                if searchlastc in self.regchecks:
+                    searchreg = self.servers[searchlastl]
+                    searchcut = search.rsplit(" ", 1)[0]
+                    searchname = searchcut
+                    return searchname, searchreg
+                else:
+                    searchname = search
+                    searchreg = self.servers["eune"]
+                    return searchname, searchreg
+
     @checks.is_owner()
     @commands.command(name="leagueapi")
     async def leagueapi(self, ctx, *, key):
@@ -691,41 +715,13 @@ class Leaguehell(commands.Cog):
     @commands.command(name="testshit")
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
-        guild = ctx.guild
-        #searchreg = "eune"
-        #if type(search) is discord.Member:
-        #    reg = await self.config.member(search).Name()
-        #    if str(reg) == "None":
-        #        await ctx.send(">>> Unregistered member. \nThey can register with: \n`!!league setname <name>`")
-        #        return
-        #    else:
-        #        searchreg = await self.config.member(search).Region()
-        #        search = reg
-        #else:
-        #    if str(search) == "None":
-        #        search = await self.config.member(author).Name()
-        #        searchreg = await self.config.member(author).Region()
-        #        if str(search) == "None":
-        #            await ctx.send(f">>> Whoa, {author.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`")
-        #            return
-        #    elif str(search) != "None":
-        #        if len(search.split()) > 1:
-        #            searchlast = search.split()[-1]
-        #            searchlastl = searchlast.lower()
-        #            searchlastc = searchlast.upper()
-        #            if searchlastc in self.regchecks:
-        #                searchreg = self.servers[searchlastl]
-        #                searchcut = search.rsplit(" ", 1)[0]
-        #                search = searchcut
-        #    else:
-        #        search = await self.config.member(author).Name()
-        #        searchreg = await self.config.member(author).Region()
-        #if str(search) == "None":
-        #    await ctx.send(f"Well horseshit, that person hasn't set their league name.")
-        #else:
-        #    await ctx.send(f">>> Searched name value is: {search} \nSearched region value is: {searchreg}")
-        #await ctx.send(f">>> {search} is arg1;\n{author} is arg2")
-        saerch, searchreg = await self.findshit(guild, author, search)
+        if type(search) is discord.Member:
+            search, searchreg = await self.findshit_member(search)
+        if type(search) is str:
+            if str(search) is "None":
+                search, searchreg = await self.findshit_member(author)
+            else:
+                search, searchreg = await self.findshit_string(search)
         await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
 
     def cog_unload(self):
