@@ -769,7 +769,7 @@ class Leaguehell(commands.Cog):
         if not opgg:
             em.set_author(name=f"{propername}", icon_url=f"{icostr20}")
         else:
-            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{searchreg}.op.gg/summoner/userName={searchname}", icon_url=f"{icostr20}")
+            em.set_author(name=f"{propername} (op.gg link)", url=f"{opgg}", icon_url=f"{icostr20}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         xregc = searchreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
