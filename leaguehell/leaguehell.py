@@ -73,43 +73,6 @@ class Leaguehell(commands.Cog):
         re = await self.config.member(name).Name()
         return re
 
-    async def findshit(self, guild, authorname, search):
-        #re = {"nick": "None", "region": "eune"}
-        searchname = "None"
-        ugherror = ">>> \nError \n"
-        if type(search) is discord.Member:
-            searchname = await self.config.member(search).Name()
-            searchreg = await self.config.member(search).Region()
-            return search, searchreg
-        else:
-            if str(search) == "None":
-                searchauthor = await guild.get_member_named(authorname)
-                searchname = await self.config.member(searchauthor).Name()
-                searchreg = await self.config.member(searchauthor).Region()
-                return search, searchreg
-                if str(searchname) == "None":
-                    err_regauthor = ">>> Whoa, {authorname.mention}, you haven't registered your league name. \nThat can be done with `!!league setname <name>`"
-                    return ugherror, err_regauthor
-            elif str(search) != "None":
-                if len(search.split()) > 1:
-                    searchlast = search.split()[-1]
-                    searchlastl = searchlast.lower()
-                    searchlastc = searchlast.upper()
-                    if searchlastc in self.regchecks:
-                        searchreg = self.servers[searchlastl]
-                        searchcut = search.rsplit(" ", 1)[0]
-                        search = searchcut
-            else:
-                searchauthor = await guild.get_member_named(authorname)
-                searchname = await self.config.member(searchauthor).Name()
-                searchreg = await self.config.member(searchauthor).Region()
-                return search, searchreg
-        if str(searchname) == "None":
-            err_horseshit = ">>> Well horseshit, that person hasn't set their league name."
-            return ugherror, err_horseshit
-        else:
-            return search, searchreg
-
     async def findshit_member(self, search):
         searchname = await self.config.member(search).Name()
         searchreg = await self.config.member(search).Region()
