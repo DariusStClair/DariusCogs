@@ -17,7 +17,7 @@ from typing import Union
 from .leaguelib import Leaguelib
 from .handler import Handler
 
-vversion = "version: 0.06a"
+vversion = "version: 0.07b"
 allregistered = []
 
 def apikeycheck():
@@ -286,40 +286,32 @@ class Leaguehell(commands.Cog):
     #@checks.is_owner()
     @league.command(name="champs", aliases=["champions"])
     @apikeycheck()
-    async def champs(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
+    async def champs(self, ctx, search: Union[discord.Member, str] = None):
         author = ctx.author
-        if not xreg:
-            if not self.config.member(author).Region():
-                await ctx.send_help()
-                return
+        searchreg = "eune"
+        if not search:
+            searchname, searchreg = await self.findshit_member(author)
+        elif type(search) is discord.Member:
+            searchname, searchreg = await self.findshit_member(search)
+        elif type(search) is str:
+            if len(search.split()) > 1:
+                searchname, searchreg = await self.findshit_string(search)
             else:
-                xreg = await self.config.member(author).Region()
-        if not name:
-            if not self.config.member(author).Name():
-                await ctx.send_help()
-                return
-            else:
-                name = await self.config.member(author).Name()
-        if type(name) is discord.Member:
-            reg = await self.user_lname(name)
-            if reg == "None":
-                return "> No account set"
-            else:
-                name = reg
+                searchname, searchreg = await self.findshit_onestring(search)
         #dnname = usr.display_name
         sumname = str(name).capitalize()
-        summname = await self.lib.get_prname(name, xreg)
+        summname = await self.lib.get_prname(searchname, searchreg)
         if summname == "None":
             await ctx.send("> This user has no account set :(")
             return
         em = discord.Embed(colour=15158332)
-        icostr = str(await self.lib.summ_icon(name, xreg))
-        total = await self.lib.get_mastery(name, xreg)
+        icostr = str(await self.lib.summ_icon(searchname, searchreg))
+        total = await self.lib.get_mastery(searchname, searchreg)
         emdesc = (f"**{sumname}**\nTotal mastery: **{total}**\n**Top 3 champions by mastery**:")
         em.description = emdesc
         em.url = icostr
         em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
-        champs = await self.lib.get_champ_masteries(name, xreg)
+        champs = await self.lib.get_champ_masteries(searchname, searchreg)
         temp = 0
         for i in champs:
             chname = await self.lib.get_champ_name(str(i["championId"]))
@@ -409,127 +401,66 @@ class Leaguehell(commands.Cog):
             em.set_image(url=csplash)
             await asyncio.sleep(0.3)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
-
-
-    @checks.is_owner()
-    @league.command(name="rankedold")
-    async def rankedold(self, ctx, name=None, xreg=None):
-        """/gonna set help when I can/"""
-        author = ctx.author
-        if not xreg:
-            if not self.config.member(author).Region():
-                await ctx.send_help()
-                return
-            else:
-                xreg = await self.config.member(author).Region()
-        if not name:
-            if not self.config.member(author).Name():
-                await ctx.send_help()
-                return
-            else:
-                name = await self.config.member(author).Name()
-        if "#" in name: 
-            reg = await self.handle.search_leaguename(name)
-            if reg == "Error":
-                return "> No account set"
-            else:
-                name = reg
-            #return xreg
-        icostr = str(await self.lib.summ_icon(name, xreg))
-        uhelo = await self.lib.get_ranked(name, xreg)
-        #try:
-        #    opgg = f"https://{xreg}.op.gg/summoner/userName={name}"
-        #except:
-        #    opgg = None
-        propername = await self.lib.get_prname(name, xreg)
-        em = discord.Embed(colour=15158332)
-        try:
-            opggreg = self.opggservers[xreg]
-            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{opggreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
-        except:
-            em.set_author(name=f"{propername}", icon_url=f"{icostr}")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-        xregproper = self.opggservers[xreg]
-        xregc = xregproper.upper()
-        em.description = (f"{xregc} **{propername}** Ranked stats")
-        picon = str(await self.lib.summ_icon(name, xreg))
-        em.set_thumbnail(url=picon)
-        #uhelo = await self.lib.ranked_q(uhelo)
-        for i in uhelo:
-            queuetype = i["queueType"]
-            if queuetype == "Teamfight Tactics":
-                em.add_field(name="**Note:**", value="*Winratio is not really realistic in TFT, as RIOT counts only 1st place for a win (2nd to 8th are all counted as losses).*", inline=False)
-            wins = i["wins"]
-            losses = i["losses"]
-            tier = i["tier"]
-            rank = i["rank"]
-            leaguepnts = i["leaguePoints"]
-            totalgames = int(wins)+int(losses)
-            calcratio = (int(wins)/totalgames)*100
-            ratio = round(calcratio, 2)
-            em.add_field(name=(f"{queuetype}"), value=(f" :white_small_square: **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
-            await asyncio.sleep(0.5)
-        await ctx.send(embed=em)
     
     #@checks.is_owner()
-    @league.command(name="ranked")
-    async def ranked(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
-        author = ctx.author
-        if not xreg:
-            if not self.config.member(author).Region():
-                await ctx.send_help()
-                return
-            else:
-                xreg = await self.config.member(author).Region()
-        if not name:
-            if not self.config.member(author).Name():
-                await ctx.send_help()
-                return
-            else:
-                name = await self.config.member(author).Name()
-        if type(name) is discord.Member:
-            reg = await self.user_lname(name)
-            if reg == "None":
-                return "> No account set"
-            else:
-                name = reg
-        propername = await self.lib.get_prname(name, xreg)
-        if propername == "None":
-            await ctx.send("> This user has no account set :(")
-            return
-        uhelo = await self.lib.get_ranked(name, xreg)
-        try:
-            opgg = f"https://{xreg}.op.gg/summoner/userName={name}"
-        except:
-            opgg = None
-        icostr = str(await self.lib.summ_icon(name, xreg))
-        em = discord.Embed(colour=15158332)
-        if not opgg:
-            em.set_author(name=f"{propername}", icon_url=f"{icostr}")
-        else:
-            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-        xregc = xreg.upper()
-        em.description = (f"{xregc} **{propername}** Ranked stats")
-        picon = str(await self.lib.summ_icon(name, xreg))
-        em.set_thumbnail(url=picon)
-        for i in uhelo:
-            queuetype = i["queueType"]
-            if queuetype == "Teamfight Tactics":
-                em.add_field(name="**Note:**", value="*Winratio is not really realistic in TFT, as RIOT counts only 1st place for a win (2nd to 8th are all counted as losses).*", inline=False)
-            wins = i["wins"]
-            losses = i["losses"]
-            tier = i["tier"]
-            tiermoji = tier.lower()
-            emoji = await self.lib.champ_emoji(str(tiermoji).capitalize())
-            rank = i["rank"]
-            leaguepnts = i["leaguePoints"]
-            totalgames = int(wins)+int(losses)
-            calcratio = (int(wins)/totalgames)*100
-            ratio = round(calcratio, 2)
-            em.add_field(name=(f"{queuetype}"), value=(f" {emoji} **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
-            await asyncio.sleep(0.5)
-        await ctx.send(embed=em)
+    #@league.command(name="ranked")
+    #async def ranked(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
+    #    author = ctx.author
+    #    if not xreg:
+    #        if not self.config.member(author).Region():
+    #            await ctx.send_help()
+    #            return
+    #        else:
+    #            xreg = await self.config.member(author).Region()
+    #    if not name:
+    #        if not self.config.member(author).Name():
+    #            await ctx.send_help()
+    #            return
+    #        else:
+    #            name = await self.config.member(author).Name()
+    #    if type(name) is discord.Member:
+    #        reg = await self.user_lname(name)
+    #        if reg == "None":
+    #            return "> No account set"
+    #        else:
+    #            name = reg
+    #    propername = await self.lib.get_prname(name, xreg)
+    #    if propername == "None":
+    #        await ctx.send("> This user has no account set :(")
+    #        return
+    #    uhelo = await self.lib.get_ranked(name, xreg)
+    #    try:
+    #        opgg = f"https://{xreg}.op.gg/summoner/userName={name}"
+    #    except:
+    #        opgg = None
+    #    icostr = str(await self.lib.summ_icon(name, xreg))
+    #    em = discord.Embed(colour=15158332)
+    #    if not opgg:
+    #        em.set_author(name=f"{propername}", icon_url=f"{icostr}")
+    #    else:
+    #        em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
+    #    em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+    #    xregc = xreg.upper()
+    #    em.description = (f"{xregc} **{propername}** Ranked stats")
+    #    picon = str(await self.lib.summ_icon(name, xreg))
+    #    em.set_thumbnail(url=picon)
+    #    for i in uhelo:
+    #        queuetype = i["queueType"]
+    #        if queuetype == "Teamfight Tactics":
+    #            em.add_field(name="**Note:**", value="*Winratio is not really realistic in TFT, as RIOT counts only 1st place for a win (2nd to 8th are all counted as losses).*", inline=False)
+    #        wins = i["wins"]
+    #        losses = i["losses"]
+    #        tier = i["tier"]
+    #        tiermoji = tier.lower()
+    #        emoji = await self.lib.champ_emoji(str(tiermoji).capitalize())
+    #        rank = i["rank"]
+    #        leaguepnts = i["leaguePoints"]
+    #        totalgames = int(wins)+int(losses)
+    #        calcratio = (int(wins)/totalgames)*100
+    #        ratio = round(calcratio, 2)
+    #        em.add_field(name=(f"{queuetype}"), value=(f" {emoji} **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
+    #        await asyncio.sleep(0.5)
+    #    await ctx.send(embed=em)
 
     @checks.is_owner()
     @commands.command(name="champlist")
@@ -731,8 +662,8 @@ class Leaguehell(commands.Cog):
         await ctx.send(f"Search value: {searchname} \nSearchreg value: {searchreg}")
         await ctx.send("Done.")
 
-    @commands.command(name="rankedtest")
-    async def rankedtest(self, ctx, *, search: Union[discord.Member, str] = None):
+    @commands.command(name="ranked")
+    async def ranked(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
         searchreg = "eune"
         if not search:
