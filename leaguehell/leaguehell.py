@@ -735,6 +735,7 @@ class Leaguehell(commands.Cog):
             search, searchreg = await self.findshit_string(search)
             await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
             return
+        await ctx.send("Done.")
 
     def cog_unload(self):
         self.lib.cog_unload()
