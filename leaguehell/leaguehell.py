@@ -743,7 +743,11 @@ class Leaguehell(commands.Cog):
         elif type(search) is str:
             searchname, searchreg = await self.findshit_string(search)
         await ctx.send(f">>> Attempting: \n{searchname} lookup in: \n{searchreg}")
-        propername = await self.lib.get_prname(searchname, searchreg)
+        try:
+            propername = await self.lib.get_prname(searchname, searchreg)
+        except:
+            await ctx.send("> This user has no account set :(")
+            return
         if propername == "None":
             await ctx.send("> This user has no account set :(")
             return
