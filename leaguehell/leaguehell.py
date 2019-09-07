@@ -66,7 +66,38 @@ class Leaguehell(commands.Cog):
             "oce": "oc1",
             "tr": "tr1",
             "ru": "ru",
-            "pbe": "pbe1"
+            "pbe1": "pbe1",
+            "eune1": "eun1",
+            "euw1": "euw1",
+            "na1": "na1",
+            "br1": "br1",
+            "jp1": "jp1",
+            "la1": "la1",
+            "oc1": "oc1",
+            "tr1": "tr1",
+            "pbe1": "pbe1"
+        }
+        self.opggservers = {
+            "eun1": "eune",
+            "euw1": "euw",
+            "na1": "na",
+            "br1": "br",
+            "jp1": "jp",
+            "kr": "kr",
+            "la1": "lan",
+            "oc1": "oce",
+            "tr1": "tr",
+            "ru": "ru",
+            "pbe1": "pbe",
+            "eune": "eune",
+            "euw": "euw",
+            "na": "na",
+            "br": "br",
+            "jp": "jp",
+            "la": "lan",
+            "oce": "oc",
+            "tr": "tr",
+            "pbe": "pbe"
         }
 
     async def user_lname(self, name: discord.Member=None):
@@ -415,9 +446,11 @@ class Leaguehell(commands.Cog):
         if not opgg:
             em.set_author(name=f"{propername}", icon_url=f"{icostr}")
         else:
+            opggreg = self.opggservers[xreg]
             em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-        xregc = xreg.upper()
+        xregproper = self.opggservers[xreg]
+        xregc = xregproper.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
         picon = str(await self.lib.summ_icon(name, xreg))
         em.set_thumbnail(url=picon)
