@@ -748,7 +748,7 @@ class Leaguehell(commands.Cog):
                 searchname, searchreg = await self.findshit_string(search)
             else:
                 searchname, searchreg = await self.findshit_onestring(search)
-        await ctx.send(f">>> Attempting: \n**{searchname}**\n Looking up in: \n**{searchreg}**")
+        await ctx.send(f">>> Attempting: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
         try:
             propername = await self.lib.get_prname(searchname, searchreg)
         except:
