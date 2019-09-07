@@ -732,6 +732,54 @@ class Leaguehell(commands.Cog):
         await ctx.send(f"Search value: {searchname} \nSearchreg value: {searchreg}")
         await ctx.send("Done.")
 
+    @commands.command(name="rankedtest")
+    async def rankedtest(self, ctx, *, search: Union[discord.Member, str] = None):
+        author = ctx.author
+        searchreg = "eune"
+        if not search:
+            searchname, searchreg = await self.findshit_member(author)
+        elif type(search) is discord.Member:
+            searchname, searchreg = await self.findshit_member(search)
+        elif type(search) is str:
+            searchname, searchreg = await self.findshit_string(search)
+        propername = await self.lib.get_prname(searchname, searchreg)
+        if propername == "None":
+            await ctx.send("> This user has no account set :(")
+            return
+        uhelo = await self.lib.get_ranked(searchname, searchreg)
+        try:
+            opgg = f"https://{searchreg}.op.gg/summoner/userName={searchname}"
+        except:
+            opgg = None
+        icostr = str(await self.lib.summ_icon(searchname, searchreg))
+        em = discord.Embed(colour=15158332)
+        if not opgg:
+            em.set_author(name=f"{propername}", icon_url=f"{icostr}")
+        else:
+            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{searchreg}.op.gg/summoner/userName={searchname}", icon_url=f"{icostr}")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        xregc = searchreg.upper()
+        em.description = (f"{xregc} **{propername}** Ranked stats")
+        picon = str(await self.lib.summ_icon(searchname, searchreg))
+        em.set_thumbnail(url=picon)
+        for i in uhelo:
+            queuetype = i["queueType"]
+            if queuetype == "Teamfight Tactics":
+                em.add_field(name="**Note:**", value="*Winratio is not really realistic in TFT, as RIOT counts only 1st place for a win (2nd to 8th are all counted as losses).*", inline=False)
+            wins = i["wins"]
+            losses = i["losses"]
+            tier = i["tier"]
+            tiermoji = tier.lower()
+            emoji = await self.lib.champ_emoji(str(tiermoji).capitalize())
+            rank = i["rank"]
+            leaguepnts = i["leaguePoints"]
+            totalgames = int(wins)+int(losses)
+            calcratio = (int(wins)/totalgames)*100
+            ratio = round(calcratio, 2)
+            em.add_field(name=(f"{queuetype}"), value=(f" {emoji} **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
+            await asyncio.sleep(0.5)
+        await ctx.send(embed=em)
+
     def cog_unload(self):
         self.lib.cog_unload()
 
