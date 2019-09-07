@@ -299,7 +299,7 @@ class Leaguehell(commands.Cog):
             else:
                 searchname, searchreg = await self.findshit_onestring(search)
         #dnname = usr.display_name
-        sumname = str(name).capitalize()
+        sumname = str(searchname).capitalize()
         summname = await self.lib.get_prname(searchname, searchreg)
         if summname == "None":
             await ctx.send("> This user has no account set :(")
