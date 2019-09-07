@@ -119,24 +119,23 @@ class Leaguehell(commands.Cog):
             return searchname, searchreg
 
     async def findshit_string(self, search):
-        if str(search) != "None":
-            if len(search.split()) > 1:
-                searchlast = search.split()[-1]
-                searchlastl = searchlast.lower()
-                searchlastc = searchlast.upper()
-                if searchlastc in self.regchecks:
-                    searchreg = self.servers[searchlastl]
-                    searchcut = search.rsplit(" ", 1)[0]
-                    searchname = searchcut
-                    return searchname, searchreg
-                else:
-                    searchname = search
-                    searchreg = self.servers["eune"]
-                    return searchname, searchreg
-            if len(search) == 1:
+            searchlast = search.split()[-1]
+            searchlastl = searchlast.lower()
+            searchlastc = searchlast.upper()
+            if searchlastc in self.regchecks:
+                searchreg = self.servers[searchlastl]
+                searchcut = search.rsplit(" ", 1)[0]
+                searchname = searchcut
+                return searchname, searchreg
+            else:
                 searchname = search
                 searchreg = self.servers["eune"]
                 return searchname, searchreg
+
+    async def findshit_onestring(self, search):
+        searchname = search
+        searchreg = self.servers["eune"]
+        return searchname, searchreg
 
     @checks.is_owner()
     @commands.command(name="leagueapi")
@@ -745,7 +744,10 @@ class Leaguehell(commands.Cog):
         elif type(search) is discord.Member:
             searchname, searchreg = await self.findshit_member(search)
         elif type(search) is str:
-            searchname, searchreg = await self.findshit_string(search)
+            if len(search.split()) > 1:
+                searchname, searchreg = await self.findshit_string(search)
+            else:
+                searchname, searchreg = await self.findshit_onestring(search)
         await ctx.send(f">>> Attempting: \n**{searchname}**\n Looking up in: \n**{searchreg}**")
         try:
             propername = await self.lib.get_prname(searchname, searchreg)
