@@ -654,7 +654,7 @@ class Leaguehell(commands.Cog):
         await ctx.send(f"Search value: {searchname} \nSearchreg value: {searchreg}")
         await ctx.send("Done.")
 
-    @commands.command(name="ranked")
+    @league.command(name="ranked")
     async def ranked(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
         searchreg = "eune"
