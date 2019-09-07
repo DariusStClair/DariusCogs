@@ -757,16 +757,18 @@ class Leaguehell(commands.Cog):
         except:
             opgg = None
         icostr = str(await self.lib.summ_icon(searchname, searchreg))
+        icostr20 = icostr.replace(" ", "%20")
         em = discord.Embed(colour=15158332)
         if not opgg:
-            em.set_author(name=f"{propername}", icon_url=f"{icostr}")
+            em.set_author(name=f"{propername}", icon_url=f"{icostr20}")
         else:
-            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{searchreg}.op.gg/summoner/userName={searchname}", icon_url=f"{icostr}")
+            em.set_author(name=f"{propername} (op.gg link)", url=f"https://{searchreg}.op.gg/summoner/userName={searchname}", icon_url=f"{icostr20}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         xregc = searchreg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
         picon = str(await self.lib.summ_icon(searchname, searchreg))
-        em.set_thumbnail(url=picon)
+        picon20 = picon.replace(" ", "%20")
+        em.set_thumbnail(url=picon20)
         for i in uhelo:
             queuetype = i["queueType"]
             if queuetype == "Teamfight Tactics":
