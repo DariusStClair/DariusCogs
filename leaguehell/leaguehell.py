@@ -339,35 +339,27 @@ class Leaguehell(commands.Cog):
     #@checks.is_owner()
     @league.command(name="pchamps", aliases=["pchampions"])
     @apikeycheck()
-    async def pchamps(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
+    async def pchamps(self, ctx, search: Union[discord.Member, str] = None):
         author = ctx.author
-        if not xreg:
-            if not self.config.member(author).Region():
-                await ctx.send_help()
-                return
+        searchreg = "eune"
+        if not search:
+            searchname, searchreg = await self.findshit_member(author)
+        elif type(search) is discord.Member:
+            searchname, searchreg = await self.findshit_member(search)
+        elif type(search) is str:
+            if len(search.split()) > 1:
+                searchname, searchreg = await self.findshit_string(search)
             else:
-                xreg = await self.config.member(author).Region()
-        if not name:
-            if not self.config.member(author).Name():
-                await ctx.send_help()
-                return
-            else:
-                name = await self.config.member(author).Name()
-        if type(name) is discord.Member:
-            reg = await self.user_lname(name)
-            if reg == "None":
-                return "> No account set"
-            else:
-                name = reg
-        sumname = await self.lib.get_prname(name, xreg)
+                searchname, searchreg = await self.findshit_onestring(search)
+        sumname = await self.lib.get_prname(searchname, searchreg)
         if sumname == "None":
             await ctx.send("> This user has no account set :(")
             return
-        icostr = str(await self.lib.summ_icon(name, xreg))
+        icostr = str(await self.lib.summ_icon(searchname, searchreg))
         clist = []
         #dnname = usr.display_name
-        total = await self.lib.get_mastery(name, xreg)
-        champs = await self.lib.get_champ_masteries(name, xreg)
+        total = await self.lib.get_mastery(searchname, searchreg)
+        champs = await self.lib.get_champ_masteries(searchname, searchreg)
         cpage = 0
         #tpages = 10
         for i in champs:
