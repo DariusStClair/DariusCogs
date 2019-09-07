@@ -671,7 +671,7 @@ class Leaguehell(commands.Cog):
                 searchname, searchreg = await self.findshit_string(search)
             else:
                 searchname, searchreg = await self.findshit_onestring(search)
-        await ctx.send(f">>> Attempting: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
+        message = await ctx.send(f">>> Working... \nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
         try:
             propername = await self.lib.get_prname(searchname, searchreg)
         except:
@@ -717,7 +717,7 @@ class Leaguehell(commands.Cog):
             ratio = round(calcratio, 2)
             em.add_field(name=(f"{queuetype}"), value=(f" {emoji} **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
             await asyncio.sleep(0.5)
-        await ctx.send(embed=em)
+        await message.edit(embed=em)
 
     def cog_unload(self):
         self.lib.cog_unload()
