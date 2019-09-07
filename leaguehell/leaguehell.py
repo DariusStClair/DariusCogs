@@ -17,7 +17,7 @@ from typing import Union
 from .leaguelib import Leaguelib
 from .handler import Handler
 
-vversion = "version: 0.05b"
+vversion = "version: 0.06a"
 allregistered = []
 
 def apikeycheck():
