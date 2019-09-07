@@ -756,9 +756,10 @@ class Leaguehell(commands.Cog):
         uhelo = await self.lib.get_ranked(searchname, searchreg)
         if " " in searchname:
             searchnamegg = searchname.replace(" ", "+")
-            opgg = f"https://{searchreg}.op.gg/summoner/userName={searchnamegg}"
+            searchreggg = self.opggservers[searchreg]
+            opgg = f"https://{searchreggg}.op.gg/summoner/userName={searchnamegg}"
         else:
-            opgg = f"https://{searchreg}.op.gg/summoner/userName={searchname}"
+            opgg = f"https://{searchreggg}.op.gg/summoner/userName={searchnamegg}"
         icostr = str(await self.lib.summ_icon(searchname, searchreg))
         icostr20 = icostr.replace(" ", "%20")
         em = discord.Embed(colour=15158332)
@@ -767,7 +768,8 @@ class Leaguehell(commands.Cog):
         else:
             em.set_author(name=f"{propername} (op.gg link)", url=f"{opgg}", icon_url=f"{icostr20}")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-        xregc = searchreg.upper()
+        xreggg = self.opggservers[searchreg]
+        xregc = xreggg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
         picon = str(await self.lib.summ_icon(searchname, searchreg))
         picon20 = picon.replace(" ", "%20")
