@@ -129,10 +129,10 @@ class Leaguehell(commands.Cog):
                     searchcut = search.rsplit(" ", 1)[0]
                     searchname = searchcut
                     return searchname, searchreg
-                else:
-                    searchname = search
-                    searchreg = self.servers["eune"]
-                    return searchname, searchreg
+            else:
+                searchname = search
+                searchreg = self.servers["eune"]
+                return searchname, searchreg
 
     @checks.is_owner()
     @commands.command(name="leagueapi")
