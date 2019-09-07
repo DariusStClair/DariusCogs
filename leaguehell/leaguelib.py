@@ -31,7 +31,16 @@ class Leaguelib:
             "oce": "oc1",
             "tr": "tr1",
             "ru": "ru",
-            "pbe": "pbe1"
+            "pbe": "pbe1",
+            "eun1": "eun1",
+            "euw1": "euw1",
+            "na1": "na1",
+            "br1": "br1",
+            "jp1": "jp1",
+            "la1": "la1",
+            "oc1": "oc1",
+            "tr1": "tr1",
+            "pbe1": "pbe1"
         }
         # Rito api / ddragon
         self.summ_name = "/lol/summoner/v4/summoners/by-name/{}"
