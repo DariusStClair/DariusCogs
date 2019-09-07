@@ -129,7 +129,11 @@ class Leaguehell(commands.Cog):
                     searchcut = search.rsplit(" ", 1)[0]
                     searchname = searchcut
                     return searchname, searchreg
-            else:
+                else:
+                    searchname = search
+                    searchreg = self.servers["eune"]
+                    return searchname, searchreg
+            if len(search) == 1:
                 searchname = search
                 searchreg = self.servers["eune"]
                 return searchname, searchreg
