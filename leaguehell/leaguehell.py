@@ -671,7 +671,10 @@ class Leaguehell(commands.Cog):
                 searchname, searchreg = await self.findshit_string(search)
             else:
                 searchname, searchreg = await self.findshit_onestring(search)
-        message = await ctx.send(f">>> Working... \nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
+        em = discord.Embed(colour=15158332)
+        em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        message = await ctx.send(embed=em)
         try:
             propername = await self.lib.get_prname(searchname, searchreg)
         except:
@@ -689,7 +692,6 @@ class Leaguehell(commands.Cog):
             opgg = f"https://{searchreggg}.op.gg/summoner/userName={searchname}"
         icostr = str(await self.lib.summ_icon(searchname, searchreg))
         icostr20 = icostr.replace(" ", "%20")
-        em = discord.Embed(colour=15158332)
         if not opgg:
             em.set_author(name=f"{propername}", icon_url=f"{icostr20}")
         else:
