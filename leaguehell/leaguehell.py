@@ -305,6 +305,12 @@ class Leaguehell(commands.Cog):
             await ctx.send("> This user has no account set :(")
             return
         em = discord.Embed(colour=15158332)
+        veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
+        em.set_thumbnail(url=veigar)
+        em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        message = await ctx.send(embed=em)
+        em = discord.Embed(colour=15158332)
         icostr = str(await self.lib.summ_icon(searchname, searchreg))
         total = await self.lib.get_mastery(searchname, searchreg)
         emdesc = (f"**{sumname}**\nTotal mastery: **{total}**\n**Top 3 champions by mastery**:")
@@ -332,7 +338,7 @@ class Leaguehell(commands.Cog):
             if temp >= 3:
                 break
             await asyncio.sleep(0.5)
-        await ctx.send(embed=em)
+        await message.edit(embed=em)
         # End of one embed
 
     # Paginated mastery
@@ -481,6 +487,12 @@ class Leaguehell(commands.Cog):
     async def champ(self, ctx, *, name):
         author = ctx.author
         data = await self.lib.cdragon_champ_data(name)
+        em = discord.Embed(colour=15158332)
+        veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
+        em.set_thumbnail(url=veigar)
+        em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        message = await ctx.send(embed=em)
         if data != "Error":
             chname = data["name"]
             chtitle = data["title"]
@@ -503,7 +515,7 @@ class Leaguehell(commands.Cog):
             emdesc = "**Invalid champ**"
             em.description = emdesc
             em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-        await ctx.send(embed=em)
+        await message.edit(embed=em)
 
     @league.command(name="status")
     async def status(self, ctx, xreg=None):
