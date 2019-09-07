@@ -723,7 +723,7 @@ class Leaguehell(commands.Cog):
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
         searchreg = "eun1"
-        if str(search) is "None":
+        if not search:
             searchname, searchreg = await self.findshit_member(author)
         elif type(search) is discord.Member:
             searchname, searchreg = await self.findshit_member(search)
