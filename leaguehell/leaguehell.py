@@ -681,9 +681,9 @@ class Leaguehell(commands.Cog):
             await ctx.send("> This user has no account set :(")
             return
         uhelo = await self.lib.get_ranked(searchname, searchreg)
+        searchreggg = self.opggservers[searchreg]
         if " " in searchname:
             searchnamegg = searchname.replace(" ", "+")
-            searchreggg = self.opggservers[searchreg]
             opgg = f"https://{searchreggg}.op.gg/summoner/userName={searchnamegg}"
         else:
             opgg = f"https://{searchreggg}.op.gg/summoner/userName={searchnamegg}"
