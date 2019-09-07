@@ -11,7 +11,12 @@ class Leaguelib:
         self.url = "https://{}.api.riotgames.com"
         self.bot = bot
         self.api = None
+        #"cache" things?
         self.champs = None
+        self.champs_splash = None
+        self.champs_ico = None
+        self.champs_load = None
+        #/"cache" things?
         self.cdragon = None
         self.imgs = None
         self._sess = aiohttp.ClientSession()
@@ -228,6 +233,8 @@ class Leaguelib:
             temp = "LeBlanc"
         if temp == "Tahm kench":
             temp = "TahmKench"
+        if temp == "Khazix":
+            temp = "KhaZix"
         return temp
 
     async def champ_sanitize_name(self, chnametemp):
@@ -251,6 +258,8 @@ class Leaguelib:
             temp = "LeBlanc"
         if temp == "Tahm kench":
             temp = "TahmKench"
+        if temp == "Khazix":
+            temp = "KhaZix"
         return temp
 
     async def summ_icon(self, name, xreg):
