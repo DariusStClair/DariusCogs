@@ -686,7 +686,7 @@ class Leaguehell(commands.Cog):
             searchnamegg = searchname.replace(" ", "+")
             opgg = f"https://{searchreggg}.op.gg/summoner/userName={searchnamegg}"
         else:
-            opgg = f"https://{searchreggg}.op.gg/summoner/userName={searchnamegg}"
+            opgg = f"https://{searchreggg}.op.gg/summoner/userName={searchname}"
         icostr = str(await self.lib.summ_icon(searchname, searchreg))
         icostr20 = icostr.replace(" ", "%20")
         em = discord.Embed(colour=15158332)
