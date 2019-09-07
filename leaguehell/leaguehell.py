@@ -711,6 +711,13 @@ class Leaguehell(commands.Cog):
         chemoji = await self.lib.champ_emoji(name)
         await ctx.send(chemoji)
 
+    @checks.is_owner()
+    @commands.command(name="testelo")
+    async def testelo(self, ctx, *, search: Union[discord.Member, str] = None):
+        author = ctx.author
+        #WIP
+        
+
     #@checks.is_owner()
     @commands.command(name="testshit")
     async def testshit(self, ctx, *, search: Union[discord.Member, str] = None):
@@ -718,11 +725,16 @@ class Leaguehell(commands.Cog):
         searchreg = "eun1"
         if str(search) is "None":
             search, searchreg = await self.findshit_member(author)
+            await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
+            return
         if type(search) is discord.Member:
             search, searchreg = await self.findshit_member(search)
+            await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
+            return
         if type(search) is str:
             search, searchreg = await self.findshit_string(search)
-        await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
+            await ctx.send(f"Search value: {search} \nSearchreg value: {searchreg}")
+            return
 
     def cog_unload(self):
         self.lib.cog_unload()
