@@ -758,10 +758,11 @@ class Leaguehell(commands.Cog):
             await ctx.send("> This user has no account set :(")
             return
         uhelo = await self.lib.get_ranked(searchname, searchreg)
-        try:
+        if " " in searchname:
+            searchnamegg = searchname.replace(" ", "+")
+            opgg = f"https://{searchreg}.op.gg/summoner/userName={searchnamegg}"
+        else:
             opgg = f"https://{searchreg}.op.gg/summoner/userName={searchname}"
-        except:
-            opgg = None
         icostr = str(await self.lib.summ_icon(searchname, searchreg))
         icostr20 = icostr.replace(" ", "%20")
         em = discord.Embed(colour=15158332)
