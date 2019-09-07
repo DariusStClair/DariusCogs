@@ -672,7 +672,7 @@ class Leaguehell(commands.Cog):
             else:
                 searchname, searchreg = await self.findshit_onestring(search)
         em = discord.Embed(colour=15158332)
-        veigar = "https://66.media.tumblr.com/85c287b552693f778c4b32980ae27acc/tumblr_on1g2lljht1tnb6cko1_400.gif""
+        veigar = "https://66.media.tumblr.com/85c287b552693f778c4b32980ae27acc/tumblr_on1g2lljht1tnb6cko1_400.gif"
         em.set_thumbnail(url=veigar)
         em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
