@@ -746,7 +746,7 @@ class Leaguehell(commands.Cog):
         try:
             propername = await self.lib.get_prname(searchname, searchreg)
         except:
-            await ctx.send("> This user has no account set :(")
+            await ctx.send("> Can't find that summoner or some shit")
             return
         if propername == "None":
             await ctx.send("> This user has no account set :(")
