@@ -16,6 +16,7 @@ from typing import Union
 # League stuffs
 from .leaguelib import Leaguelib
 from .handler import Handler
+from .datalib import Datalib
 
 vversion = "version: 0.07b"
 allregistered = []
@@ -42,6 +43,7 @@ class Leaguehell(commands.Cog):
         self.bot = bot
         self.lib = Leaguelib(bot)
         self.handle = Handler(bot)
+        self.data = Datalib(bot)
         default_global = {"leagueapikey": None}
         default_member = {
             "Name": None,
@@ -55,50 +57,10 @@ class Leaguehell(commands.Cog):
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
         self.regchecks = ["EUNE", "EUW", "NA", "BR", "JP", "KR", "LAN", "OCE", "TR", "RU", "PBE"]
-        self.servers = {
-            "eune": "eun1",
-            "euw": "euw1",
-            "na": "na1",
-            "br": "br1",
-            "jp": "jp1",
-            "kr": "kr",
-            "lan": "la1",
-            "oce": "oc1",
-            "tr": "tr1",
-            "ru": "ru",
-            "pbe1": "pbe1",
-            "eune1": "eun1",
-            "euw1": "euw1",
-            "na1": "na1",
-            "br1": "br1",
-            "jp1": "jp1",
-            "la1": "la1",
-            "oc1": "oc1",
-            "tr1": "tr1",
-            "pbe1": "pbe1"
-        }
-        self.opggservers = {
-            "eun1": "eune",
-            "euw1": "euw",
-            "na1": "na",
-            "br1": "br",
-            "jp1": "jp",
-            "kr": "kr",
-            "la1": "lan",
-            "oc1": "oce",
-            "tr1": "tr",
-            "ru": "ru",
-            "pbe1": "pbe",
-            "eune": "eune",
-            "euw": "euw",
-            "na": "na",
-            "br": "br",
-            "jp": "jp",
-            "la": "lan",
-            "oce": "oc",
-            "tr": "tr",
-            "pbe": "pbe"
-        }
+        self.servers = self.data.SERVERS
+        self.opggservers = self.data.OPGGSERVERS
+        self.gametypes = self.data.GAMETYPES
+        self.gamemodes = self.data.GAMEMODES
 
     async def user_lname(self, name: discord.Member=None):
         re = await self.config.member(name).Name()
