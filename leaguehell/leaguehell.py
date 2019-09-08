@@ -651,6 +651,29 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         #WIP
         
+    @checks.is_owner()
+    @league.command(name="now")
+    async def now(self, ctx, *, search: Union[discord.Member, str] = None):
+        author = ctx.author
+        searchreg = "eune"
+        if not search:
+            searchname, searchreg = await self.findshit_member(author)
+        elif type(search) is discord.Member:
+            searchname, searchreg = await self.findshit_member(search)
+        elif type(search) is str:
+            if " " in search:
+                searchname, searchreg = await self.findshit_string(search)
+            else:
+                searchname, searchreg = await self.findshit_onestring(search)
+        em = discord.Embed(colour=15158332)
+        veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
+        em.set_thumbnail(url=veigar)
+        em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        message = await ctx.send(embed=em)
+        res = await self.lib.game_info(searchname, searchreg)
+        em.description = (f"{res}")
+        await message.edit(embed=em)
 
     #@checks.is_owner()
     @commands.command(name="testshit")
