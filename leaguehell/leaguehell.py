@@ -651,6 +651,13 @@ class Leaguehell(commands.Cog):
         await ctx.send(f"Search value: {searchname} \nSearchreg value: {searchreg}")
         await ctx.send("Done.")
 
+    @league.command(name="versions")
+    async def versions(self, ctx):
+        author = ctx.author
+        cogver = vversion
+        ddragonver = await self.lib.get_patch()
+        await ctx.send(f">>> Current Leaguehell version: **{cogver}**\nCurrent CDN version: **{ddragonver}**")
+
     @league.command(name="ranked")
     async def ranked(self, ctx, *, search: Union[discord.Member, str] = None):
         author = ctx.author
