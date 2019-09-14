@@ -661,9 +661,24 @@ class Leaguehell(commands.Cog):
     @commands.command(name="freerotation")
     async def freerotation(self, ctx):
         author = ctx.author
+        em = discord.Embed(colour=15158332)
+        veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
+        em.set_thumbnail(url=veigar)
+        em.description = (f"*Working...")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        message = await ctx.send(embed=em)
         searchreg = await self.config.member(author).Region()
         rall = await self.lib.champ_rotation(searchreg)
-        await ctx.send(rall)
+        newlevel = rall["maxNewPlayerLevel"]
+        freeids = rall["freeChampionIds"]
+        newfreeids = rall["freeChampionIdsForNewPlayers"]
+        em.description = (f"Current free champions (for players above level {newlevel}:")
+        row = 0
+        for i in freeids:
+            row = row + i
+            champid = freeids[row]
+            em.add_field(name=f"Champ id: {champid}", value=f"Stuff will go in here", inline=False)                
+        await message.edit(embed=em)
 
     @league.command(name="ranked")
     async def ranked(self, ctx, *, search: Union[discord.Member, str] = None):
