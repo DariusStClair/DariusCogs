@@ -53,6 +53,7 @@ class Leaguelib:
         self.matchlist_acc = "/lol/match/v4/matchlists/by-account/{}"
         self.ranked_test = "/lol/league/v4/entries/by-summoner/{}"
         self.shard_data = "/lol/status/v3/shard-data"
+        self.rotations = "/lol/platform/v3/champion-rotations"
         # Community Dragon (cdragon)
         self.cdragon_champ = "https://cdn.communitydragon.org/{}/champion/"
         self.cdragon_champ_squareurl = "{}/square.png"
@@ -201,6 +202,11 @@ class Leaguelib:
             return rj
         else:
             return "Error"
+
+    async def champ_rotation(self, xreg):
+        rq = self.url.format(self.srvs[xreg]) + self.rotations + apistr
+        rj = await self.get(rq)
+        return rq
 
     async def ddragon_champsplash(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
