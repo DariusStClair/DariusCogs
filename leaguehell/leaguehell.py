@@ -675,8 +675,7 @@ class Leaguehell(commands.Cog):
         em.description = (f"Current free champions (for players above level {newlevel}:")
         row = 0
         for i in freeids:
-            row = row + int(i)
-            champid = freeids[row]
+            champid = freeids[i]
             row += 1
             em.add_field(name=f"Champ id: {champid}", value=f"Stuff will go in here", inline=False)                
         await message.edit(embed=em)
