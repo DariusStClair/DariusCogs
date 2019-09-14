@@ -669,14 +669,15 @@ class Leaguehell(commands.Cog):
         message = await ctx.send(embed=em)
         searchreg = await self.config.member(author).Region()
         rall = await self.lib.champ_rotation(searchreg)
-        newlevel = rall["maxNewPlayerLevel"]
-        freeids = rall["freeChampionIds"]
-        newfreeids = rall["freeChampionIdsForNewPlayers"]
+        newlevel = rall[2]
+        freeids = rall[0]
+        newfreeids = rall[1]
         em.description = (f"Current free champions (for players above level {newlevel}:")
         row = 0
         for i in freeids:
             row = row + i
             champid = freeids[row]
+            row += 1
             em.add_field(name=f"Champ id: {champid}", value=f"Stuff will go in here", inline=False)                
         await message.edit(embed=em)
 
