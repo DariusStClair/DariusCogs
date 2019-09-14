@@ -204,6 +204,7 @@ class Leaguelib:
             return "Error"
 
     async def champ_rotation(self, xreg):
+        apistr = await self.apistr()
         rq = self.url.format(self.srvs[xreg]) + self.rotations + apistr
         rj = await self.get(rq)
         return rq
