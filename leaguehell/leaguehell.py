@@ -672,12 +672,12 @@ class Leaguehell(commands.Cog):
         newlevel = rall[2]
         freeids = rall[0]
         newfreeids = rall[1]
-        em.description = (f"Current free champions (for players above level {newlevel}:")
-        row = 0
-        for i in freeids:
-            champid = freeids[row]
-            row += 1
-            em.add_field(name=f"Champ id: {champid}", value=f"Stuff will go in here", inline=False)                
+        em.description = (f"{freeids}")
+        #row = 0
+        #for i in freeids:
+        #    champid = freeids[row]
+        #    row += 1
+        #    em.add_field(name=f"Champ id: {champid}", value=f"Stuff will go in here", inline=False)                
         await message.edit(embed=em)
 
     @league.command(name="ranked")
