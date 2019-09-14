@@ -658,8 +658,8 @@ class Leaguehell(commands.Cog):
         ddragonver = await self.lib.get_patch()
         await ctx.send(f">>> Current Leaguehell version: **{cogver}**\nCurrent CDN version: **{ddragonver}**")
 
-    @league.command(name="rotation")
-    async def rotation(self, ctx):
+    @commands.command(name="freerotation")
+    async def freerotation(self, ctx):
         author = ctx.author
         searchreg = await self.config.member(author).Region()
         rall = await self.lib.champ_rotation(searchreg)
