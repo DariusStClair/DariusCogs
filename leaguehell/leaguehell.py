@@ -669,10 +669,11 @@ class Leaguehell(commands.Cog):
         message = await ctx.send(embed=em)
         searchreg = await self.config.member(author).Region()
         rall = await self.lib.champ_rotation(searchreg)
-        newlevel = rall[2]
-        freeids = rall[0]
-        newfreeids = rall[1]
-        em.description = (f"{freeids}")
+        clist = []
+        for i in rall:
+            for j in i:
+                clist.append(j)
+        em.description = (f"{clist}")
         #row = 0
         #for i in freeids:
         #    champid = freeids[row]
