@@ -207,7 +207,7 @@ class Leaguelib:
         apistr = await self.apistr()
         rq = self.url.format(self.srvs[xreg]) + self.rotations + apistr
         rj = await self.get(rq)
-        return rq
+        return rj
 
     async def ddragon_champsplash(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
