@@ -669,7 +669,7 @@ class Leaguehell(commands.Cog):
         message = await ctx.send(embed=em)
         searchreg = await self.config.member(author).Region()
         rall = await self.lib.champ_rotation(searchreg)
-        clist = []
+        clist = ["Shrug"]
         for shit, stuff in rall.items():
             em.add_field(name=f"{stuff}", value=f"{shit}")
         em.description = (f"{clist}")
