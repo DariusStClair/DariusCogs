@@ -672,14 +672,14 @@ class Leaguehell(commands.Cog):
         clist = ["Shrug"]
         elist = []
         for shit, stuff in rall.items():
-            if stuff != "maxNewPlayerLevel":
-                for i in stuff:
-                    tempchamp = await self.lib.champ_name_sanitized(i)
-                    tempmoji = await self.lib.champ_emoji(tempchamp)
-                    elist.append(tempmoji)
-                em.add_field(name=f"{shit}", value=f"{elist}")
-            else:
-                em.add_field(name=f"Max new player level:", value=f"{stuff}")
+            #if stuff != "maxNewPlayerLevel":
+            #    tempchamp = await self.lib.champ_name_sanitized(stuff)
+            #    tempmoji = await self.lib.champ_emoji(tempchamp)
+            #    elist.append(tempmoji)
+            #    em.add_field(name=f"{shit}", value=f"{elist}")
+            #else:
+            #    em.add_field(name=f"Max new player level:", value=f"{stuff}")
+            em.add_field(name=f"{stuff}", value=f"{shit}")
         em.description = (f"{clist}")
         #row = 0
         #for i in freeids:
