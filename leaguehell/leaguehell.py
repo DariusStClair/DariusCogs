@@ -683,12 +683,13 @@ class Leaguehell(commands.Cog):
                 if shit != "freeChampionIdsForNewPlayers":
                     length = len(stuff)
                     for i in range(length):
-                        #tempchamp = await self.lib.champ_name_sanitized(stuff)
-                        #tempmoji = await self.lib.champ_emoji(tempchamp)
-                        await ctx.send(stuff[i])
+                        tempchamp = await self.lib.champ_name_sanitized(stuff[i])
+                        tempmoji = await self.lib.champ_emoji(tempchamp)
+                        tempchampname = await self.lib.get_champ_name(stuff[i])
+                        champ = tempmoji + " " + tempchampname
+                        elist.append(champ)
                         asyncio.sleep(0.5)
-                        #elist.append(tempmoji)
-                    #em.add_field(name=f"{shit}", value=f"{elist}", inline=False)
+                    em.add_field(name=f"{shit}", value=f"{elist}", inline=False)
         em.description = (f"Max new player level is **10**.")
         #row = 0
         #for i in freeids:
