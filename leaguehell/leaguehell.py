@@ -690,7 +690,7 @@ class Leaguehell(commands.Cog):
                         spacemoji = await self.lib.champ_emoji("space")
                         asyncio.sleep(0.5)
                         champ = tempmoji + spacemoji
-                        elist.append(tempchamp)
+                        elist.append(champid)
                     em.add_field(name=f"{shit}", value=f"{elist}", inline=False)
         em.description = (f"Max new player level is **10**.")
         #row = 0
