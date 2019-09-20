@@ -679,7 +679,7 @@ class Leaguehell(commands.Cog):
             #    em.add_field(name=f"{shit}", value=f"{elist}")
             #else:
             #    em.add_field(name=f"Max new player level:", value=f"{stuff}")
-            em.add_field(name=f"{stuff}", value=f"{shit}")
+            em.add_field(name=f"{shit}", value=f"{stuff}", inline=False)
         em.description = (f"{clist}")
         #row = 0
         #for i in freeids:
