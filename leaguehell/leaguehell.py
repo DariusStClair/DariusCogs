@@ -684,8 +684,10 @@ class Leaguehell(commands.Cog):
                 for i in range(length):
                     tempchamp = await self.lib.champ_name_sanitized(stuff)
                     tempmoji = await self.lib.champ_emoji(tempchamp)
-                    elist.append(tempmoji)
-                em.add_field(name=f"{shit}", value=f"{elist}", inline=False)
+                    await ctx.send(tempmoji)
+                    asyncio.sleep(0.5)
+                    #elist.append(tempmoji)
+                #em.add_field(name=f"{shit}", value=f"{elist}", inline=False)
         em.description = (f"Max new player level is **10**.")
         #row = 0
         #for i in freeids:
