@@ -683,9 +683,10 @@ class Leaguehell(commands.Cog):
                 if shit != "freeChampionIdsForNewPlayers":
                     length = len(stuff)
                     for i in range(length):
-                        tempchamp = await self.lib.champ_name_sanitized(stuff[i])
+                        champid = int(stuff[i])
+                        tempchamp = await self.lib.champ_name_sanitized(champid)
                         tempmoji = await self.lib.champ_emoji(tempchamp)
-                        tempchampname = await self.lib.get_champ_name(stuff[i])
+                        tempchampname = await self.lib.get_champ_name(champid)
                         spacemoji = await self.lib.champ_emoji("space")
                         asyncio.sleep(0.5)
                         champ = tempmoji + spacemoji
