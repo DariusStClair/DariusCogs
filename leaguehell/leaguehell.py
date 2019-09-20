@@ -671,8 +671,7 @@ class Leaguehell(commands.Cog):
         rall = await self.lib.champ_rotation(searchreg)
         clist = []
         for shit, stuff in rall.items():
-            for ugh in stuff:
-                clist.append(ugh)
+            clist.append(shit)
         em.description = (f"{clist}")
         #row = 0
         #for i in freeids:
