@@ -684,7 +684,7 @@ class Leaguehell(commands.Cog):
                     length = len(stuff)
                     for i in range(length):
                         champid = int(stuff[i])
-                        champname = await self.lib.get_champ_name(champid)
+                        champname = await self.lib.get_champ_title(champid)
                         tempchamp = await self.lib.champ_name_sanitized(champid)
                         tempmoji = await self.lib.champ_emoji(tempchamp)
                         tempchampname = await self.lib.get_champ_name(champid)
