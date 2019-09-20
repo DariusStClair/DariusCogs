@@ -670,7 +670,7 @@ class Leaguehell(commands.Cog):
         searchreg = await self.config.member(author).Region()
         rall = await self.lib.champ_rotation(searchreg)
         clist = []
-        for shit, stuff in rall.iteritems():
+        for shit, stuff in rall.items():
             for ugh in stuff:
                 clist.append(ugh)
         em.description = (f"{clist}")
