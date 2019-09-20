@@ -685,7 +685,7 @@ class Leaguehell(commands.Cog):
                     for i in range(length):
                         #tempchamp = await self.lib.champ_name_sanitized(stuff)
                         #tempmoji = await self.lib.champ_emoji(tempchamp)
-                        await ctx.send(i)
+                        await ctx.send(stuff[i])
                         asyncio.sleep(0.5)
                         #elist.append(tempmoji)
                     #em.add_field(name=f"{shit}", value=f"{elist}", inline=False)
