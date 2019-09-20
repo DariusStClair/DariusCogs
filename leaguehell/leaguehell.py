@@ -670,8 +670,16 @@ class Leaguehell(commands.Cog):
         searchreg = await self.config.member(author).Region()
         rall = await self.lib.champ_rotation(searchreg)
         clist = ["Shrug"]
+        elist = []
         for shit, stuff in rall.items():
-            em.add_field(name=f"{stuff}", value=f"{shit}")
+            if stuff != "maxNewPlayerLevel":
+                for i in stuff:
+                    tempchamp = await self.lib.champ_name_sanitized(i)
+                    tempmoji = await self.lib.champ_emoji(tempchamp)
+                    elist.append(tempmoji)
+                em.add_field(name=f"{shit}", value=f"{elist}")
+            else:
+                em.add_field(name=f"Max new player level:", value=f"{stuff}")
         em.description = (f"{clist}")
         #row = 0
         #for i in freeids:
