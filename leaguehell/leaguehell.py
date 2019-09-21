@@ -652,7 +652,7 @@ class Leaguehell(commands.Cog):
                 clist.append(f"{chemoji}{spacer}\n{spacer}\n")
                 number = 0
         maikati = " ".join(str(z) for z in clist)
-        em.description = (f"Max new player level is **10**.\n*(players below that level get a different rotation)*\n\n{maikati}")
+        em.description = (f"**Current free rotation**\nMax new player level is **10**.\n*(players below that level get a different rotation)*\n\n{maikati}")
         await message.edit(embed=em)
 
     @league.command(name="ranked")
