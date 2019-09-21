@@ -253,6 +253,8 @@ class Leaguelib:
             temp = "KhaZix"
         if temp == "Xin zhao":
             temp = "XinZhao"
+        if temp == "Wukong":
+            temp = "MonkeyKing"
         return temp
 
     async def champ_sanitize_name(self, chnametemp):
@@ -280,6 +282,8 @@ class Leaguelib:
             temp = "KhaZix"
         if temp == "Xin zhao":
             temp = "XinZhao"
+        if temp == "Wukong":
+            temp = "MonkeyKing"
         return temp
 
     async def summ_icon(self, name, xreg):
