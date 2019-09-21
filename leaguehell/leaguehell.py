@@ -645,10 +645,10 @@ class Leaguehell(commands.Cog):
             chemoji = await self.lib.champ_emoji(chnamesn)
             spacer = await self.lib.champ_emoji("space")
             number += 1
-            if number < 3:
-                clist.append(f"{chemoji}{spacer}{chname}{spacer}")
-            if number == 3:
-                clist.append(f"{chemoji}{spacer}{chname}{spacer}\n")
+            if number < 5:
+                clist.append(f"{chemoji}{spacer}")
+            if number == 5:
+                clist.append(f"{chemoji}{spacer}\n{spacer}\n")
                 number = 0
             #temp = rotation[i]
             #clist.append(temp)
