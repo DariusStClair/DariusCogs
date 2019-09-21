@@ -653,7 +653,7 @@ class Leaguehell(commands.Cog):
             #temp = rotation[i]
             #clist.append(temp)
         maikati = " ".join(str(z) for z in clist)
-        em.description = (f"Max new player level is **10**.\n\n\n{maikati}")
+        em.description = (f"Max new player level is **10**.\n*(players below that level get a different rotation)\n\n{maikati}")
         #row = 0
         #for i in freeids:
         #    champid = freeids[row]
