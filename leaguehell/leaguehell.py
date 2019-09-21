@@ -389,66 +389,6 @@ class Leaguehell(commands.Cog):
             await asyncio.sleep(0.3)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
     
-    #@checks.is_owner()
-    #@league.command(name="ranked")
-    #async def ranked(self, ctx, name: Union[discord.Member, str] = None, xreg=None):
-    #    author = ctx.author
-    #    if not xreg:
-    #        if not self.config.member(author).Region():
-    #            await ctx.send_help()
-    #            return
-    #        else:
-    #            xreg = await self.config.member(author).Region()
-    #    if not name:
-    #        if not self.config.member(author).Name():
-    #            await ctx.send_help()
-    #            return
-    #        else:
-    #            name = await self.config.member(author).Name()
-    #    if type(name) is discord.Member:
-    #        reg = await self.user_lname(name)
-    #        if reg == "None":
-    #            return "> No account set"
-    #        else:
-    #            name = reg
-    #    propername = await self.lib.get_prname(name, xreg)
-    #    if propername == "None":
-    #        await ctx.send("> This user has no account set :(")
-    #        return
-    #    uhelo = await self.lib.get_ranked(name, xreg)
-    #    try:
-    #        opgg = f"https://{xreg}.op.gg/summoner/userName={name}"
-    #    except:
-    #        opgg = None
-    #    icostr = str(await self.lib.summ_icon(name, xreg))
-    #    em = discord.Embed(colour=15158332)
-    #    if not opgg:
-    #        em.set_author(name=f"{propername}", icon_url=f"{icostr}")
-    #    else:
-    #        em.set_author(name=f"{propername} (op.gg link)", url=f"https://{xreg}.op.gg/summoner/userName={name}", icon_url=f"{icostr}")
-    #    em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
-    #    xregc = xreg.upper()
-    #    em.description = (f"{xregc} **{propername}** Ranked stats")
-    #    picon = str(await self.lib.summ_icon(name, xreg))
-    #    em.set_thumbnail(url=picon)
-    #    for i in uhelo:
-    #        queuetype = i["queueType"]
-    #        if queuetype == "Teamfight Tactics":
-    #            em.add_field(name="**Note:**", value="*Winratio is not really realistic in TFT, as RIOT counts only 1st place for a win (2nd to 8th are all counted as losses).*", inline=False)
-    #        wins = i["wins"]
-    #        losses = i["losses"]
-    #        tier = i["tier"]
-    #        tiermoji = tier.lower()
-    #        emoji = await self.lib.champ_emoji(str(tiermoji).capitalize())
-    #        rank = i["rank"]
-    #        leaguepnts = i["leaguePoints"]
-    #        totalgames = int(wins)+int(losses)
-    #        calcratio = (int(wins)/totalgames)*100
-    #        ratio = round(calcratio, 2)
-    #        em.add_field(name=(f"{queuetype}"), value=(f" {emoji} **{tier}** {rank} \n :white_small_square: **{leaguepnts}** LP \n :white_small_square: Wins/losses: **{wins}**/**{losses}** \n  :white_small_square: **{totalgames}** total games, **{ratio}%** winrate"), inline=False)
-    #        await asyncio.sleep(0.5)
-    #    await ctx.send(embed=em)
-
     @checks.is_owner()
     @commands.command(name="champlist")
     async def champlist(self, ctx):
@@ -720,7 +660,8 @@ class Leaguehell(commands.Cog):
                         champ = tempmoji + spacemoji
                         elist.append(champname)
                     em.add_field(name=f"{shit}", value=f"{elist}", inline=False)
-        em.description = (f"Max new player level is **10**.")
+        maikati = rall.items()
+        em.description = (f"Max new player level is **10**.\n{maikati}")
         #row = 0
         #for i in freeids:
         #    champid = freeids[row]
