@@ -171,9 +171,7 @@ class Leaguelib:
         apistr = await self.apistr()
         xreg = "eune"
         rq = self.url.format(self.srvs[xreg]) + self.rotations + apistr
-        rlist = await self.get(rq)
-        rqsorted = rlist.sort()
-        self.freerotation = rqsorted
+        self.freerotation = await self.get(rq)
 
     async def champ_rotation(self):
         if self.freerotation is None:
