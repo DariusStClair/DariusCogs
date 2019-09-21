@@ -251,7 +251,7 @@ class Leaguelib:
             temp = "TahmKench"
         if temp == "Khazix":
             temp = "KhaZix"
-        if temp == "Xinzhao":
+        if temp == "Xin zhao":
             temp = "XinZhao"
         return temp
 
@@ -278,7 +278,7 @@ class Leaguelib:
             temp = "TahmKench"
         if temp == "Khazix":
             temp = "KhaZix"
-        if temp == "Xinzhao":
+        if temp == "Xin zhao":
             temp = "XinZhao"
         return temp
 
