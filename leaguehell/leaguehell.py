@@ -154,7 +154,8 @@ class Leaguehell(commands.Cog):
             em.description = emdesc
             em.add_field(name=f'**{propername}** ({areg})', value=u'\u200b')
         else:
-            em.set_thumbnail(url=icostr)
+            veigarq = "https://66.media.tumblr.com/098fef7a648679a31f25e33362b2602c/tumblr_on1g2lljht1tnb6cko3_250.gif"
+            em.set_thumbnail(url=veigarq)
             emdesc = (f"Welp, that user doesn't have an account set")
             em.description = emdesc
         await message.edit(embed=em)
