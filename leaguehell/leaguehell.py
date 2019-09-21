@@ -639,7 +639,7 @@ class Leaguehell(commands.Cog):
         rotation = await self.lib.champ_rotation()
         clist = []
         for i in range(len(rotation)):
-            chname = await self.lib.get_champ_name(rotation[i])
+            chname = await self.lib.get_champ_name(str(rotation[i]))
             chnamesn = await self.lib.champ_sanitize_name(chname)
             chemoji = await self.lib.champ_emoji(chnamesn)
             spacer = await self.lib.champ_emoji("space")
