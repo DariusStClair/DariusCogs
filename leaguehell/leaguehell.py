@@ -500,7 +500,8 @@ class Leaguehell(commands.Cog):
 
     @checks.is_owner()
     @league.command(name="champid")
-    async def champid(self, ctx, *, champ: int):
+    async def champid(self, ctx, champ: str):
+        lookupname = "For some reason this wasn't changed wtf"
         lookupname = await self.lib.get_champ_name(champ)
         await ctx.send(lookupname)
         await ctx.send("Done.")
