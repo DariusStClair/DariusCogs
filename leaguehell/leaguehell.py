@@ -161,15 +161,13 @@ class Leaguehell(commands.Cog):
         await message.edit(embed=em)
 
     @league.command(pass_context=True, no_pm=True)
-    async def setname(self, ctx, user: discord.Member=None, *, name):
+    async def setname(self, ctx, user: Union[discord.Member, str] = None, *, name):
         """Set your league nickname. \n\n`[user]` is an optional parameter for Moderators to set other people's nicknames."""
         server = ctx.guild
         author = ctx.author
         tar = None
         checkmod = await self.handle.check_modadmin(author)
-        if not user:
-            tar = author
-        else:
+        if isinstance(user, discord.Member):
             if checkmod is True:
                 tar = user
             else:
@@ -178,6 +176,9 @@ class Leaguehell(commands.Cog):
                 else:
                     await ctx.send("> You can't set other people's nicknames")
                     return
+        if isinstance(user, str):
+            tar = author
+            name = user + " " + name
         #await ctx.send(f"> __**DEBUG**__ \nTar is set to {tar}\nCaller is {author}\nCheck is {checkmod}\nVar is set to {name}")
         #try:
         db = await self.config.guild(server).db()
