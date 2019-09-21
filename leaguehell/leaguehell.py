@@ -637,11 +637,13 @@ class Leaguehell(commands.Cog):
         rotation = await self.lib.champ_rotation()
         clist = []
         for i in rotation:
-            chname = await self.lib.get_champ_name(rotation[i])
-            chnamesn = await self.lib.champ_sanitize_name(chname)
-            chemoji = await self.lib.champ_emoji(chnamesn)
-            spacer = await self.lib.champ_emoji("space")
-            clist.append(f"{chemoji} {spacer}")
+            #chname = await self.lib.get_champ_name(rotation[i])
+            #chnamesn = await self.lib.champ_sanitize_name(chname)
+            #chemoji = await self.lib.champ_emoji(chnamesn)
+            #spacer = await self.lib.champ_emoji("space")
+            #clist.append(f"{chemoji} {spacer}")
+            temp = rotation[i]
+            clist.append(temp)
         maikati = " ".join(str(z) for z in clist)
         em.description = (f"Max new player level is **10**.\n\n\n{maikati}")
         #row = 0
