@@ -13,6 +13,7 @@ class Leaguelib:
         self.api = None
         #"cache" things?
         self.champs = None
+        self.freerotation = None
         self.champs_splash = None
         self.champs_ico = None
         self.champs_load = None
@@ -166,6 +167,22 @@ class Leaguelib:
         rq = f"http://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/champion.json"
         self.champs = await self.get(rq)
 
+    async def upd_champ_rotation(self):
+        apistr = await self.apistr()
+        xreg = "eune"
+        rq = self.url.format(self.srvs[xreg]) + self.rotations + apistr
+        self.freerotation = await self.get(rq)
+
+    async def champ_rotation(self, xreg):
+        if self.freerotation is None:
+            await self.upd_champ_rotation()
+        xreg = "eune"
+        rotation = self.freerotation["freeChampionIds"]
+        #for i in rotation:
+        #    chname = await self.get_champ_name()
+        return rotation
+        
+
     async def ddragon_icon(self, pid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
         version = await self.get_patch()
@@ -202,12 +219,6 @@ class Leaguelib:
             return rj
         else:
             return "Error"
-
-    async def champ_rotation(self, xreg):
-        apistr = await self.apistr()
-        rq = self.url.format(self.srvs[xreg]) + self.rotations + apistr
-        rj = await self.get(rq)
-        return rj
 
     async def ddragon_champsplash(self, champid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"

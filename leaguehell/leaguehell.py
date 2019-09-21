@@ -634,34 +634,7 @@ class Leaguehell(commands.Cog):
         em.description = (f"*Working...")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         message = await ctx.send(embed=em)
-        searchreg = await self.config.member(author).Region()
-        rall = await self.lib.champ_rotation(searchreg)
-        clist = ["Shrug"]
-        elist = []
-        for shit, stuff in rall.items():
-            #if stuff != "maxNewPlayerLevel":
-            #    tempchamp = await self.lib.champ_name_sanitized(stuff)
-            #    tempmoji = await self.lib.champ_emoji(tempchamp)
-            #    elist.append(tempmoji)
-            #    em.add_field(name=f"{shit}", value=f"{elist}")
-            #else:
-            #    em.add_field(name=f"Max new player level:", value=f"{stuff}")
-            if shit != "maxNewPlayerLevel":
-                if shit != "freeChampionIdsForNewPlayers":
-                    length = len(stuff)
-                    for i in range(length):
-                        champid = int(stuff[i])
-                        champname = await self.lib.get_champ_title(champid)
-                        tempchamp = await self.lib.champ_name_sanitized(champid)
-                        tempmoji = await self.lib.champ_emoji(tempchamp)
-                        tempchampname = await self.lib.get_champ_name(champid)
-                        spacemoji = await self.lib.champ_emoji("space")
-                        asyncio.sleep(0.5)
-                        champ = tempmoji + spacemoji
-                        elist.append(champid)
-                    sendthis = " ".join(map(str, elist))
-                    em.add_field(name=f"{shit}", value=f"{sendthis}", inline=False)
-        maikati = rall.items()
+        maikati = await self.lib.champ_rotation()
         em.description = (f"Max new player level is **10**.\n{maikati}")
         #row = 0
         #for i in freeids:
