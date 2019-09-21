@@ -634,8 +634,16 @@ class Leaguehell(commands.Cog):
         em.description = (f"*Working...")
         em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
         message = await ctx.send(embed=em)
-        maikati = await self.lib.champ_rotation()
-        em.description = (f"Max new player level is **10**.\n{maikati}")
+        rotation = await self.lib.champ_rotation()
+        clist = []
+        for i in rotation:
+            chname = await self.lib.get_champ_name(rotation[i])
+            chnamesn = await self.lib.champ_sanitize_name(chname)
+            chemoji = await self.lib.champ_emoji(chnamesn)
+            spacer = await self.lib.champ_emoji("space")
+            clist.append(f"{chemoji} {spacer}")
+        maikati = " ".join(str(z) for z in clist)
+        em.description = (f"Max new player level is **10**.\n\n\n{maikati}")
         #row = 0
         #for i in freeids:
         #    champid = freeids[row]
