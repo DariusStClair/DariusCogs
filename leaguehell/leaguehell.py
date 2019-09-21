@@ -146,7 +146,7 @@ class Leaguehell(commands.Cog):
         message = await ctx.send(embed=em)
         aname = await self.config.member(user).Name()
         areg = await self.config.member(user).Region()
-        if aname != None:
+        if aname != "None":
             propername = await self.lib.get_prname(aname, areg)
             icostr = str(await self.lib.summ_icon(aname, areg))
             em.set_thumbnail(url=icostr)
