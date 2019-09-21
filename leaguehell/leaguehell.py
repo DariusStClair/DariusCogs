@@ -146,7 +146,7 @@ class Leaguehell(commands.Cog):
         message = await ctx.send(embed=em)
         aname = await self.config.member(user).Name()
         areg = await self.config.member(user).Region()
-        if aname.lower() == "none":
+        if aname is None:
             veigarq = "https://66.media.tumblr.com/098fef7a648679a31f25e33362b2602c/tumblr_on1g2lljht1tnb6cko3_250.gif"
             em.set_thumbnail(url=veigarq)
             emdesc = (f"Welp, that user doesn't have an account set")
