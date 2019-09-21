@@ -501,10 +501,10 @@ class Leaguehell(commands.Cog):
     @checks.is_owner()
     @league.command(name="champid")
     async def champid(self, ctx, *, champ: Union[str, int] = None):
-        if type(name) is str:
+        if type(champ) is str:
             await ctx.send("You gotta use the champion ID mate.")
-        if type(name) is int:
-            lookupname = await self.lib.get_champ_name(name)
+        if type(champ) is int:
+            lookupname = await self.lib.get_champ_name(champ)
             await ctx.send(lookupname)
         await ctx.send("Done.")
     
