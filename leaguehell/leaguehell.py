@@ -18,8 +18,9 @@ from .leaguelib import Leaguelib
 from .handler import Handler
 from .datalib import Datalib
 
-vversion = "version: 0.07c"
+vversion = "version: 0.08a"
 allregistered = []
+deffooter = f"Powered by HELL | {vversion}"
 
 def apikeycheck():
     async def predicate(ctx):
@@ -142,7 +143,7 @@ class Leaguehell(commands.Cog):
         veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
         em.set_thumbnail(url=veigar)
         em.description = (f"*Working...*\n\n")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        em.set_footer(text=f"Requested by {author} | {deffooter}")
         message = await ctx.send(embed=em)
         aname = await self.config.member(user).Name()
         areg = await self.config.member(user).Region()
@@ -170,14 +171,14 @@ class Leaguehell(commands.Cog):
         if "@" in name or "#" in name:
             data = discord.Embed(colour=0xff0000)
             data.add_field(name=f"Nah mate, you gotta do like:", value=f"**!!league setname <whatever nickname>** (without the brackets)\nDon't tag anyone.")
-            data.set_footer(text=f"An attempt was made by {author} | Powered by HELL | {vversion}")
+            data.set_footer(text=f"An attempt was made by {author} | {deffooter}")
             await ctx.send(embed=data)
             return
         if tar.id in db:
             await self.config.member(tar).Name.set(name)
             data = discord.Embed(colour=0xff0000)
             data.add_field(name=f"**{tar}**'s nickname has been changed to:", value=f"**{name}**")
-            data.set_footer(text=f"Powered by HELL | {vversion}")
+            data.set_footer(text=f"{deffooter}")
             await ctx.send(embed=data)
         else:
             db.append(tar.id)
@@ -185,7 +186,7 @@ class Leaguehell(commands.Cog):
             await self.config.member(tar).Name.set(name)
             data = discord.Embed(colour=0xff0000)
             data.add_field(name=f"**{tar}**'s nickname has been changed to:", value=f"**{name}**")
-            data.set_footer(text=f"Powered by HELL | {vversion}")
+            data.set_footer(text=f"{deffooter}")
             await ctx.send(embed=data)
 
     @league.command(pass_context=True, no_pm=True)
@@ -197,7 +198,7 @@ class Leaguehell(commands.Cog):
         if user is None:
             data = discord.Embed(colour=0xff0000)
             data.add_field(name=f"Nah mate, you gotta do like:", value=f"**!!league modname @someone <whatever nickname>** (without the brackets)")
-            data.set_footer(text=f"An attempt was made by {author} | Powered by HELL | {vversion}")
+            data.set_footer(text=f"An attempt was made by {author} | {deffooter}")
             await ctx.send(embed=data)
             return
         db = await self.config.guild(server).db()
@@ -205,7 +206,7 @@ class Leaguehell(commands.Cog):
             await self.config.member(user).Name.set(name)
             data = discord.Embed(colour=0xff0000)
             data.add_field(name=f"**{user}**'s nickname has been changed to:", value=f"**{name}**")
-            data.set_footer(text=f"Change issued by {author} | Powered by HELL | {vversion}")
+            data.set_footer(text=f"Change issued by {author} | {deffooter}")
             await ctx.send(embed=data)
         else:
             db.append(user.id)
@@ -213,7 +214,7 @@ class Leaguehell(commands.Cog):
             await self.config.member(user).Name.set(name)
             data = discord.Embed(colour=0xff0000)
             data.add_field(name=f"**{user}**'s nickname has been changed to:", value=f"**{name}**")
-            data.set_footer(text=f"Change issued by {author} | Powered by HELL | {vversion}")
+            data.set_footer(text=f"Change issued by {author} | {deffooter}")
             await ctx.send(embed=data)
 
     @league.command(pass_context=True, no_pm=True, name="setreg", aliases=["setregion"])
@@ -243,7 +244,7 @@ class Leaguehell(commands.Cog):
                 await self.config.member(tar).Region.set(reglow)
                 data = discord.Embed(colour=0xff0000)
                 data.add_field(name=f"**{tar}**'s region has been changed to **{regup}**", value=f"Issued by {author}")
-                data.set_footer(text=f"Powered by HELL | {vversion}")
+                data.set_footer(text=f"{deffooter}")
                 await ctx.send(embed=data)
             else:
                 regup = reg.upper()
@@ -253,14 +254,14 @@ class Leaguehell(commands.Cog):
                 await self.config.member(tar).Region.set(reglow)
                 data = discord.Embed(colour=0xff0000)
                 data.add_field(name=f"**{tar}**'s nickname has been changed to **{regup}**", value=f"Issued by {author}")
-                data.set_footer(text=f"Powered by HELL | {vversion}")
+                data.set_footer(text=f"{deffooter}")
                 await ctx.send(embed=data)
         else:
             regup = reg.upper()
             reglow = reg.lower()
             data = discord.Embed(colour=0xff0000)
             data.add_field(name=f"**{regup}** is not a valid region.", value=f"Valid regions are: \n{regchecks}")
-            data.set_footer(text=f"Powered by HELL | {vversion}")
+            data.set_footer(text=f"{deffooter}")
             await ctx.send(embed=data)
 
 
@@ -305,7 +306,7 @@ class Leaguehell(commands.Cog):
         emdesc = (f"**{sumname}**\nTotal mastery: **{total}**\n**Top 3 champions by mastery**:")
         em.description = emdesc
         em.url = icostr
-        em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
+        em.set_footer(text=(f"Requested by {author} | {deffooter}"), icon_url=icostr)
         champs = await self.lib.get_champ_masteries(searchname, searchreg)
         temp = 0
         for i in champs:
@@ -377,7 +378,7 @@ class Leaguehell(commands.Cog):
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
             emdesc = f"**{cpoints}** points."
-            em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
+            em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Requested by {author} | {deffooter}"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
             em.set_author(name=f"{chname}, {chtitle}", url=f"{chico}", icon_url=f"{chico}")
@@ -406,7 +407,7 @@ class Leaguehell(commands.Cog):
             em = discord.Embed(colour=15158332)
             emdesc = f"**{thing1}** / ID: {thing3}."
             em.add_field(name=f"Key: {thing2}, {thing4}", value=f"{thing5}")
-            em.set_footer(text=(f"Page {cpage}/{npages} | Powered by HELL | {vversion}"))
+            em.set_footer(text=(f"Page {cpage}/{npages} | {deffooter}"))
             em.description = emdesc
             clist.append(em)
         await menu(ctx, pages=clist, timeout=30, controls=DEFAULT_CONTROLS)
@@ -420,7 +421,7 @@ class Leaguehell(commands.Cog):
         veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
         em.set_thumbnail(url=veigar)
         em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        em.set_footer(text=f"Requested by {author} | {deffooter}")
         message = await ctx.send(embed=em)
         if data != "Error":
             chname = data["name"]
@@ -438,12 +439,12 @@ class Leaguehell(commands.Cog):
             emdesc = f"{chname}, {chtitle} \n{chbio}"
             em.add_field(name="Emoji test:", value=f"__/chemoji-placeholder/__", inline=False)
             em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}", inline=False)
-            em.set_footer(text=f"Powered by HELL | Requested by {author} | ChampionID: \obsolete\ | {vversion}")
+            em.set_footer(text=f"Requested by {author} | ChampionID: \obsolete\ | {deffooter}")
         else:
             em = discord.Embed(colour=15158332)
             emdesc = "**Invalid champ**"
             em.description = emdesc
-            em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+            em.set_footer(text=f"Requested by {author} | {deffooter}")
         await message.edit(embed=em)
 
     @league.command(name="status")
@@ -465,7 +466,7 @@ class Leaguehell(commands.Cog):
         srvcs = rq["services"]
         em = discord.Embed(colour=15158332)
         em.set_author(name=f"Server status for {region} at {hostname}")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        em.set_footer(text=f"Requested by {author} | {deffooter}")
         for i in srvcs:
             status = str(i["status"]).capitalize()
             emojistatus = status.lower()
@@ -551,7 +552,7 @@ class Leaguehell(commands.Cog):
             cmlpunix = (i["lastPlayTime"]/1000)
             cmlp = datetime.datetime.fromtimestamp(cmlpunix).strftime('%Y-%m-%d')
             emdesc = f"**{cpoints}** points."
-            em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Powered by HELL | Requested by {author} | {vversion}"), icon_url=icostr)
+            em.set_footer(text=(f"Page {cpage}/10 | Total mastery: {total} | Requested by {author} | {deffooter}"), icon_url=icostr)
             em.description = emdesc
             clist.append(em)
             em.set_author(name=f"{chname}, {chtitle}")
@@ -600,7 +601,7 @@ class Leaguehell(commands.Cog):
         veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
         em.set_thumbnail(url=veigar)
         em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        em.set_footer(text=f"Requested by {author} | {deffooter}")
         message = await ctx.send(embed=em)
         res = await self.lib.game_info(searchname, searchreg)
         em.description = (f"{res}")
@@ -634,7 +635,7 @@ class Leaguehell(commands.Cog):
         veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
         em.set_thumbnail(url=veigar)
         em.description = (f"*Working...")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        em.set_footer(text=f"Requested by {author} | {deffooter}")
         message = await ctx.send(embed=em)
         rotation = await self.lib.champ_rotation()
         clist = []
@@ -675,7 +676,7 @@ class Leaguehell(commands.Cog):
         veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
         em.set_thumbnail(url=veigar)
         em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        em.set_footer(text=f"Requested by {author} | {deffooter}")
         message = await ctx.send(embed=em)
         try:
             propername = await self.lib.get_prname(searchname, searchreg)
@@ -698,7 +699,7 @@ class Leaguehell(commands.Cog):
             em.set_author(name=f"{propername}", icon_url=f"{icostr20}")
         else:
             em.set_author(name=f"{propername} (op.gg link)", url=f"{opgg}", icon_url=f"{icostr20}")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        em.set_footer(text=f"Requested by {author} | {deffooter}")
         xreggg = self.opggservers[searchreg]
         xregc = xreggg.upper()
         em.description = (f"{xregc} **{propername}** Ranked stats")
