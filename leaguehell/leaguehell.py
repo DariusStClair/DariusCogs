@@ -638,12 +638,18 @@ class Leaguehell(commands.Cog):
         message = await ctx.send(embed=em)
         rotation = await self.lib.champ_rotation()
         clist = []
+        number = 0
         for i in range(len(rotation)):
             chname = await self.lib.get_champ_name(str(rotation[i]))
             chnamesn = await self.lib.champ_sanitize_name(chname)
             chemoji = await self.lib.champ_emoji(chnamesn)
             spacer = await self.lib.champ_emoji("space")
-            clist.append(f"{chemoji}{spacer}{chname}{spacer}")
+            number += 1
+            if number < 3:
+                clist.append(f"{chemoji}{spacer}{chname}{spacer}")
+            if number == 3:
+                clist.append(f"{chemoji}{spacer}{chname}{spacer}\n")
+                number = 0
             #temp = rotation[i]
             #clist.append(temp)
         maikati = " ".join(str(z) for z in clist)
