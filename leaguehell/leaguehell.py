@@ -630,6 +630,7 @@ class Leaguehell(commands.Cog):
 
     @commands.command(name="freerotation")
     async def freerotation(self, ctx):
+        """Provides current free champion rotation."""
         author = ctx.author
         em = discord.Embed(colour=15158332)
         veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
