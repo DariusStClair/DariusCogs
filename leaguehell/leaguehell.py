@@ -167,7 +167,7 @@ class Leaguehell(commands.Cog):
         tar = ctx.author
         author = tar
         db = await self.config.guild(server).db()
-        if "@" in name:
+        if "@" in name or "#" in name:
             data = discord.Embed(colour=0xff0000)
             data.add_field(name=f"Nah mate, you gotta do like:", value=f"**!!league setname <whatever nickname>** (without the brackets)\nDon't tag anyone.")
             data.set_footer(text=f"An attempt was made by {author} | Powered by HELL | {vversion}")
