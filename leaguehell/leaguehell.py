@@ -138,18 +138,26 @@ class Leaguehell(commands.Cog):
         author = ctx.author
         if not user:
             user = ctx.author
-        if user.is_avatar_animated():
-            av = user.avatar_url_as(format="gif")
-        else:
-            av = user.avatar_url_as(format="png")
-        aname = await self.config.member(user).Name()
         em = discord.Embed(colour=15158332)
-        em.set_thumbnail(url=av)
-        emdesc = (f"**{user}**'s summoner name:")
-        em.description = emdesc
-        em.add_field(name=u'\u200b', value=u'\u200b'f"**{aname}**")
-        em.set_footer(text=(f"Powered by HELL | Requested by {author} | {vversion}"))
-        await ctx.send(embed=em)
+        veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
+        em.set_thumbnail(url=veigar)
+        em.description = (f"*Working...*\n\n")
+        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        message = await ctx.send(embed=em)
+        aname = await self.config.member(user).Name()
+        areg = await self.config.member(user).Region()
+        if aname != None:
+            propername = await self.lib.get_prname(aname, areg)
+            icostr = str(await self.lib.summ_icon(aname, areg))
+            em.set_thumbnail(url=icostr)
+            emdesc = (f"**{propername}**'s summoner name(s):")
+            em.description = emdesc
+            em.add_field(name=u'**{propername}**', value=u'\u200b'f"(**{areg}**)")
+        else:
+            em.set_thumbnail(url=icostr)
+            emdesc = (f"Welp, that user doesn't have an account set")
+            em.description = emdesc
+        await message.edit(embed=em)
 
     @league.command(pass_context=True, no_pm=True)
     async def setname(self, ctx, name, user: discord.Member=None):
@@ -698,7 +706,7 @@ class Leaguehell(commands.Cog):
         #for i in freeids:
         #    champid = freeids[row]
         #    row += 1
-        #    em.add_field(name=f"Champ id: {champid}", value=f"Stuff will go in here", inline=False)                
+        #    em.add_field(name=f"Champ id: {champid}", value=f"Stuff will go in here", inline=False)
         await message.edit(embed=em)
 
     @league.command(name="ranked")
