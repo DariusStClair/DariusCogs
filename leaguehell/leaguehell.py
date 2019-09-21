@@ -497,7 +497,8 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leaguepatch")
     async def leaguepatch(self, ctx):
         cpatch = await self.lib.get_patch()
-        await ctx.send(box(cpatch))
+        lhversion = vversion
+        await ctx.send(box(f"Current game: version {cpatch}\nLeaguehell: {vversion}\n"))
 
     @checks.is_owner()
     @league.command(name="champid")
