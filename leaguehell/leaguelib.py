@@ -173,10 +173,9 @@ class Leaguelib:
         rq = self.url.format(self.srvs[xreg]) + self.rotations + apistr
         self.freerotation = await self.get(rq)
 
-    async def champ_rotation(self, xreg):
+    async def champ_rotation(self):
         if self.freerotation is None:
             await self.upd_champ_rotation()
-        xreg = "eune"
         rotation = self.freerotation["freeChampionIds"]
         #for i in rotation:
         #    chname = await self.get_champ_name()
