@@ -165,7 +165,14 @@ class Leaguehell(commands.Cog):
         """Set your league nickname."""
         server = ctx.guild
         tar = ctx.author
+        author = tar
         db = await self.config.guild(server).db()
+        if "@" in name:
+            data = discord.Embed(colour=0xff0000)
+            data.add_field(name=f"Nah mate, you gotta do like:", value=f"**!!league setname <whatever nickname>** (without the brackets)\nDon't tag anyone.")
+            data.set_footer(text=f"An attempt was made by {author} | Powered by HELL | {vversion}")
+            await ctx.send(embed=data)
+            return
         if tar.id in db:
             await self.config.member(tar).Name.set(name)
             data = discord.Embed(colour=0xff0000)
@@ -191,6 +198,7 @@ class Leaguehell(commands.Cog):
             data = discord.Embed(colour=0xff0000)
             data.add_field(name=f"Nah mate, you gotta do like:", value=f"**!!league modname @someone <whatever nickname>** (without the brackets)")
             data.set_footer(text=f"An attempt was made by {author} | Powered by HELL | {vversion}")
+            await ctx.send(embed=data)
             return
         db = await self.config.guild(server).db()
         if user.id in db:
