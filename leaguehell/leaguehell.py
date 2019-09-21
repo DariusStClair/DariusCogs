@@ -183,10 +183,15 @@ class Leaguehell(commands.Cog):
 
     @league.command(pass_context=True, no_pm=True)
     @checks.admin_or_permissions(manage_roles=True)
-    async def modname(self, ctx, user=discord.Member, *, name):
+    async def modname(self, ctx, user: discord.Member = None, *, name):
         """Set someone else's league nickname."""
         server = ctx.guild
         author = ctx.author
+        if user is None:
+            data = discord.Embed(colour=0xff0000)
+            data.add_field(name=f"Nah mate, you gotta do like:", value=f"**!!league modname @someone <whatever nickname>** (without the brackets)")
+            data.set_footer(text=f"An attempt was made by {author} | Powered by HELL | {vversion}")
+            return
         db = await self.config.guild(server).db()
         if user.id in db:
             await self.config.member(user).Name.set(name)
