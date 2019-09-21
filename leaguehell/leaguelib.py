@@ -180,7 +180,6 @@ class Leaguelib:
         #for i in rotation:
         #    chname = await self.get_champ_name()
         return rotation
-        
 
     async def ddragon_icon(self, pid):
         #ddragonv = "https://ddragon.leagueoflegends.com/api/versions.json"
