@@ -636,7 +636,7 @@ class Leaguehell(commands.Cog):
         message = await ctx.send(embed=em)
         rotation = await self.lib.champ_rotation()
         clist = []
-        for i in rotation:
+        for i in range(len(rotation)):
             #chname = await self.lib.get_champ_name(rotation[i])
             #chnamesn = await self.lib.champ_sanitize_name(chname)
             #chemoji = await self.lib.champ_emoji(chnamesn)
