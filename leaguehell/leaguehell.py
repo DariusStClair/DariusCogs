@@ -150,9 +150,9 @@ class Leaguehell(commands.Cog):
             propername = await self.lib.get_prname(aname, areg)
             icostr = str(await self.lib.summ_icon(aname, areg))
             em.set_thumbnail(url=icostr)
-            emdesc = (f"**{propername}**'s summoner name(s):")
+            emdesc = (f"**{user}**'s summoner name(s):")
             em.description = emdesc
-            em.add_field(name=u'**{propername}**', value=u'\u200b'f"(**{areg}**)")
+            em.add_field(name=f'**{propername}**', value=u'\u200b'f"(**{areg}**)")
         else:
             em.set_thumbnail(url=icostr)
             emdesc = (f"Welp, that user doesn't have an account set")
