@@ -659,7 +659,8 @@ class Leaguehell(commands.Cog):
                         asyncio.sleep(0.5)
                         champ = tempmoji + spacemoji
                         elist.append(champid)
-                    em.add_field(name=f"{shit}", value=f"{elist}", inline=False)
+                    sendthis = " ".join(map(str, elist))
+                    em.add_field(name=f"{shit}", value=f"{sendthis}", inline=False)
         maikati = rall.items()
         em.description = (f"Max new player level is **10**.\n{maikati}")
         #row = 0
