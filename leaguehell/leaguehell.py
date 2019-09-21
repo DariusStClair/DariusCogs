@@ -650,15 +650,8 @@ class Leaguehell(commands.Cog):
             if number == 5:
                 clist.append(f"{chemoji}{spacer}\n{spacer}\n")
                 number = 0
-            #temp = rotation[i]
-            #clist.append(temp)
         maikati = " ".join(str(z) for z in clist)
-        em.description = (f"Max new player level is **10**.\n*(players below that level get a different rotation)\n\n{maikati}")
-        #row = 0
-        #for i in freeids:
-        #    champid = freeids[row]
-        #    row += 1
-        #    em.add_field(name=f"Champ id: {champid}", value=f"Stuff will go in here", inline=False)
+        em.description = (f"Max new player level is **10**.\n*(players below that level get a different rotation)*\n\n{maikati}")
         await message.edit(embed=em)
 
     @league.command(name="ranked")
