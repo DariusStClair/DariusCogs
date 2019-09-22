@@ -48,7 +48,16 @@ class Leaguehell(commands.Cog):
         default_global = {"leagueapikey": None}
         default_member = {
             "Name": None,
+            "Name2": None,
+            "Name3": None,
+            "Name4": None,
+            "Name5": None,
             "Region": "eune",
+            "Region2": None,
+            "Region3": None,
+            "Region4": None,
+            "Region5": None,
+            "Multiple": False
         }
         default_guild = {
             "db": []
@@ -107,33 +116,6 @@ class Leaguehell(commands.Cog):
         """Check / update the things in your profile"""
         pass
 
-    # Drophere db gg
-    @checks.is_owner()
-    @league.command(pass_context=True, no_pm=True)
-    async def drophere(self, ctx):
-        server = ctx.guild
-        db = await self.config.guild(server).db()
-        #await ctx.send(box(text=db, lang="py"))
-        asyncio.sleep(1)
-        #ugh = await self.config.member().Name
-        tlist = []
-        temp = 0
-        for i in db:
-            #lookupuser = discord.utils.get(ctx.guild.members, id=i)
-            lookupuser = self.bot.get_user(i)
-            #lookupnick = await self.config.member(lookupuser[])
-            #await ctx.send(box(text=i, lang="py"))
-            if lookupuser:
-                tlist.append(lookupuser)
-            else:
-                pass
-            asyncio.sleep(1)
-            temp += 1
-            if temp >= 10:
-                break
-        asyncio.sleep(1)
-        await ctx.send(box(text=tlist, lang="py"))
-
     @league.command(pass_context=True, no_pm=True)
     async def name(self, ctx, user: discord.Member=None):
         author = ctx.author
@@ -159,6 +141,46 @@ class Leaguehell(commands.Cog):
             emdesc = (f"**{user}**'s summoner name(s):")
             em.description = emdesc
             em.add_field(name=f'**{propername}** ({areg})', value=u'\u200b')
+        await message.edit(embed=em)
+
+    @league.command(pass_context=True, no_pm=True)
+    async def names(self, ctx, user: discord.Member=None):
+        author = ctx.author
+        if not user:
+            user = ctx.author
+        em = discord.Embed(colour=15158332)
+        veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
+        em.set_thumbnail(url=veigar)
+        em.description = (f"*Working...*\n\n")
+        em.set_footer(text=f"Requested by {author} | {deffooter}")
+        message = await ctx.send(embed=em)
+        aname = await self.config.member(user).Name()
+        areg = await self.config.member(user).Region()
+        multinames = await self.config.member(user).Multiple()
+        if multinames is True:
+            extrn = []
+            for i in range(5):
+                extrname = await self.config.member(user).Name + i + ()
+                extrreg = await self.config.member(user).Region + i + ()
+                if extrname is None:
+                    break
+                extrn.append(f"Alts: **{extrname}** *({extrreg})*\n")
+        if aname is None:
+            veigarq = "https://66.media.tumblr.com/098fef7a648679a31f25e33362b2602c/tumblr_on1g2lljht1tnb6cko3_250.gif"
+            em.set_thumbnail(url=veigarq)
+            emdesc = (f"Welp, that user doesn't have an account set")
+            em.description = emdesc
+        else:
+            propername = await self.lib.get_prname(aname, areg)
+            icostr = str(await self.lib.summ_icon(aname, areg))
+            em.set_thumbnail(url=icostr)
+            emdesc = (f"**{user}**'s summoner name(s):")
+            em.description = emdesc
+            em.add_field(name=f'[Main]: **{propername}** ({areg})', value=u'\u200b')
+            if multinames is True:
+                for i in range(len(extrn)):
+                    altnames = " ".join(str(meh) for meh in extrn)
+                    em.add_field(name=f"[Alts]:", value=f"{altnames}")
         await message.edit(embed=em)
 
     @league.command(pass_context=True, no_pm=True)
