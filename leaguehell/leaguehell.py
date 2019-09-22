@@ -193,7 +193,7 @@ class Leaguehell(commands.Cog):
         checkmulti = await self.config.member(author).Multiple()
         currentaccs = await self.config.member(author).CurrentAccs()
         if author.id in db:
-            if currentaccs < maxaccs:
+            if currentaccs < self.maxaccs:
                 await ctx.send(f">>> Alrighty {author.mention}, so what's your summoner name?\n*(your next message will be set as nickname)*")
                 def check(m):
                     return m.author == ctx.author
