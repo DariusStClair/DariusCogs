@@ -194,7 +194,7 @@ class Leaguehell(commands.Cog):
             await ctx.send(f">>> {author.mention}\nOkay, going to set **{msgname.content}**.\nBut before that, which region is this in?")
             try:
                 msgreg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
-                checkreg = msgreg.content.lower().strip()
+                checkreg = msgreg.content.upper().strip()
                 if checkreg in self.regchecks:
                     await ctx.send(f">>> Alright {author.mention}, setting alt **{msgname.content}** in **{msgreg.content}**.\nNoice.")
                 else:
