@@ -159,6 +159,7 @@ class Leaguehell(commands.Cog):
         aname = await self.config.member(user).Name()
         areg = await self.config.member(user).Region()
         caccs = await self.config.member(user).CurrentAccs()
+        await ctx.send(f"Caccs value is **{caccs}**")
         if caccs >= 2:
             extrn = []
             num = 1
