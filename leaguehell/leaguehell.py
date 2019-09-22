@@ -192,17 +192,17 @@ class Leaguehell(commands.Cog):
             return m.author == ctx.author
         try:
             msgname = await ctx.bot.wait_for("message", timeout=15.0, check=check)
-            await ctx.send(f">>> {author}\nOkay, going to set **{msgname}**.\nBut before that, which region is this in?")
+            await ctx.send(f">>> {author.mention}\nOkay, going to set **{msgname.content}**.\nBut before that, which region is this in?")
             try:
                 msgreg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
                 if msgreg.content.lower().strip() in predreg:
-                    await ctx.send(f">>> Alright {author}, setting alt **{msgname}** in **{msgreg}**.\nNoice.")
+                    await ctx.send(f">>> Alright {author.mention}, setting alt **{msgname.content}** in **{msgreg.content}**.\nNoice.")
                 else:
-                    await ctx.send(f">>> Well **\"{msgreg}\"** ain\'t a valid region.\nFeel free to start over.")
+                    await ctx.send(f">>> Well **\"{msgreg.content}\"** ain\'t a valid region.\nFeel free to start over.")
             except asyncio.TimeoutError:
-                await ctx.send(f">>> Yo {author} ain't nobody got time to wait mate, wtf")
+                await ctx.send(f">>> Yo {author.mention} ain't nobody got time to wait mate, wtf")
         except asyncio.TimeoutError:
-            await ctx.send(f">>> I guess you gave up on that idea, {author}.")
+            await ctx.send(f">>> I guess you gave up on that idea, {author.mention}.")
 
     @league.command(pass_context=True, no_pm=True)
     async def setname(self, ctx, *, name):
