@@ -184,6 +184,27 @@ class Leaguehell(commands.Cog):
         await message.edit(embed=em)
 
     @league.command(pass_context=True, no_pm=True)
+    async def addname(self, ctx):
+        author = ctx.author
+        predreg = self.regchecks
+        await ctx.send(f">>> Alrighty, so what's your summoner name?\n*(your next message will be set as nickname)*")
+        def check(m):
+            return m.author == ctx.author
+        try:
+            msgname = await ctx.bot.wait_for("message", timeout=15.0, check=check)
+            await ctx.send(f">>> {author}\nOkay, going to set **{msgname}**.\nBut before that, which region is this in?")
+            try:
+                msgreg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
+                if msgreg.content.lower().strip() in predreg:
+                    await ctx.send(f">>> Alright {author}, setting alt **{msgname}** in **{msgreg}**.\nNoice.")
+                else:
+                    await ctx.send(f">>> Well **\"{msgreg}\"** ain\'t a valid region.\nFeel free to start over.")
+            except asyncio.TimeoutError:
+                await ctx.send(f">>> Yo {author} ain't nobody got time to wait mate, wtf")
+        except asyncio.TimeoutError:
+            await ctx.send(f">>> I guess you gave up on that idea, {author}.")
+
+    @league.command(pass_context=True, no_pm=True)
     async def setname(self, ctx, *, name):
         """Set your league nickname."""
         server = ctx.guild
