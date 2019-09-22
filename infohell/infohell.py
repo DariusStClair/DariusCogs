@@ -70,7 +70,11 @@ class Infohell(commands.Cog):
     @commands.command(name="meow", no_pm=True)
     @commands.cooldown(1, 15, commands.BucketType.guild)
     async def meow(self, ctx):
-        await ctx.send(file=discord.File(random.choice(self.randomfuckingcat), "zemimeow.gif"))
+        randomimg = str(random.choice(self.randomfuckingcat))
+        em = discord.Embed(colour=15158332)
+        em.set_footer(text=f"Powered by HELL | There kiddo, have fun")
+        em.set_image(url=randomimg)
+        await ctx.send(embed=em)
         
     @checks.admin_or_permissions(administrator=True)
     @commands.command(name="infowipe", no_pm=True)
