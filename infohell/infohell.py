@@ -26,7 +26,7 @@ class Infohell(commands.Cog):
         self.config = Config.get_conf(self, identifier=690830666, force_registration=True)
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
-        self.randomfuckingcat = {
+        self.randomfuckingcat = [
             "https://cdn.discordapp.com/attachments/610443480493457408/625244252699361280/1.gif",
             "https://cdn.discordapp.com/attachments/610443480493457408/625244253911646228/2.gif",
             "https://cdn.discordapp.com/attachments/610443480493457408/625244255870255104/3.gif",
@@ -34,7 +34,7 @@ class Infohell(commands.Cog):
             "https://cdn.discordapp.com/attachments/610443480493457408/625244258676375562/5.gif",
             "https://cdn.discordapp.com/attachments/610443480493457408/625244260945494017/6.gif",
             "https://cdn.discordapp.com/attachments/610443480493457408/625244263411875851/7.gif"
-        }
+        ]
     
     @commands.command(name="infohell", no_pm=True)
     async def infohell(self, ctx, user : discord.Member=None):
