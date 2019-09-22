@@ -158,7 +158,15 @@ class Leaguehell(commands.Cog):
         message = await ctx.send(embed=em)
         aname = await self.config.member(user).Name()
         areg = await self.config.member(user).Region()
-        multinames = await self.config.member(user).Multiple()
+        caccs = await self.config.member(user).CurrentAccs()
+        multinames = False
+        if caccs is 1:
+            multinames = False
+        elif caccs is 0:
+            emdesc = (f"Welp, that user doesn't have an account set")
+            em.description = emdesc
+        else:
+            multinames = True
         if multinames is True:
             extrn = []
             for i in range(5):
