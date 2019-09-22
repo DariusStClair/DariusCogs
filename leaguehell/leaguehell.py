@@ -57,7 +57,8 @@ class Leaguehell(commands.Cog):
             "Region3": None,
             "Region4": None,
             "Region5": None,
-            "Multiple": False
+            "Multiple": False,
+            "CurrentAccs": 0
         }
         default_guild = {
             "db": []
@@ -67,6 +68,7 @@ class Leaguehell(commands.Cog):
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
         self.regchecks = ["EUNE", "EUW", "NA", "BR", "JP", "KR", "LAN", "OCE", "TR", "RU", "PBE"]
+        self.maxaccs = 5
         self.servers = self.data.SERVERS
         self.opggservers = self.data.OPGGSERVERS
         self.gametypes = self.data.GAMETYPES
@@ -186,23 +188,33 @@ class Leaguehell(commands.Cog):
     @league.command(pass_context=True, no_pm=True)
     async def addname(self, ctx):
         author = ctx.author
-        await ctx.send(f">>> Alrighty {author.mention}, so what's your summoner name?\n*(your next message will be set as nickname)*")
-        def check(m):
-            return m.author == ctx.author
-        try:
-            msgname = await ctx.bot.wait_for("message", timeout=15.0, check=check)
-            await ctx.send(f">>> {author.mention}\nOkay, going to set **{msgname.content}**.\nBut before that, which region is this in?")
-            try:
-                msgreg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
-                checkreg = msgreg.content.upper().strip()
-                if checkreg in self.regchecks:
-                    await ctx.send(f">>> Alright {author.mention}, setting alt **{msgname.content}** in **{msgreg.content}**.\nNoice.")
-                else:
-                    await ctx.send(f">>> Well **\"{msgreg.content}\"** ain\'t a valid region.\nFeel free to start over.")
-            except asyncio.TimeoutError:
-                await ctx.send(f">>> Yo {author.mention} ain't nobody got time to wait mate, wtf")
-        except asyncio.TimeoutError:
-            await ctx.send(f">>> I guess you gave up on that idea, {author.mention}.")
+        server = ctx.guild
+        db = await self.config.guild(server).db()
+        checkmulti = await self.config.member(author).Multiple()
+        currentaccs = await self.config.member(author).CurrentAccs()
+        if author.id in db:
+            if currentaccs < maxaccs:
+                await ctx.send(f">>> Alrighty {author.mention}, so what's your summoner name?\n*(your next message will be set as nickname)*")
+                def check(m):
+                    return m.author == ctx.author
+                try:
+                    msgname = await ctx.bot.wait_for("message", timeout=15.0, check=check)
+                    await ctx.send(f">>> {author.mention}\nOkay, going to set **{msgname.content}**.\nBut before that, which region is this in?")
+                    try:
+                        msgreg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
+                        checkreg = msgreg.content.upper().strip()
+                        if checkreg in self.regchecks:
+                            await ctx.send(f">>> Alright {author.mention}, setting alt **{msgname.content}** in **{msgreg.content}**.\nNoice.")
+                        else:
+                            await ctx.send(f">>> Well **\"{msgreg.content}\"** ain\'t a valid region.\nFeel free to start over.")
+                    except asyncio.TimeoutError:
+                        await ctx.send(f">>> Yo {author.mention} ain't nobody got time to wait mate, wtf")
+                except asyncio.TimeoutError:
+                    await ctx.send(f">>> I guess you gave up on that idea, {author.mention}.")
+            else:
+                await ctx.send(f">>> Sorry {author.mention}, you can have up to 5 accounts only.\nAlso there's no command to remove accounts now so goof fucking luck in esports.")
+        else:
+            await ctx.send(f"Since you don't have a main name this will set it, but right now that doesn't work because fuck you that's why.")
 
     @league.command(pass_context=True, no_pm=True)
     async def setname(self, ctx, *, name):
