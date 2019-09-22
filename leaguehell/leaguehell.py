@@ -181,7 +181,7 @@ class Leaguehell(commands.Cog):
             emdesc = (f"**{user}**'s summoner name(s):")
             em.description = emdesc
             em.add_field(name=f"[Main]:", value=f"**{propername}** ({areg})")
-            if multinames is True:
+            if caccs >= 2:
                 for i in range(len(extrn)):
                     altnames = " ".join(str(meh) for meh in extrn)
                     em.add_field(name=f"[Alts]:", value=f"{altnames}")
