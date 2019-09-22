@@ -169,12 +169,14 @@ class Leaguehell(commands.Cog):
             multinames = True
         if multinames is True:
             extrn = []
-            for i in range(5):
-                extrname = await self.config.member(user).Name + i + ()
-                extrreg = await self.config.member(user).Region + i + ()
+            num = 1
+            for i in range(4):
+                num += 1
+                extrname = await self.config.member(user).Name + num + ()
+                extrreg = await self.config.member(user).Region + num + ()
                 if extrname is None:
                     break
-                extrn.append(f"[{i}]: **{extrname}** *({extrreg})*\n")
+                extrn.append(f"[{num}]: **{extrname}** *({extrreg})*\n")
         if aname is None:
             veigarq = "https://66.media.tumblr.com/098fef7a648679a31f25e33362b2602c/tumblr_on1g2lljht1tnb6cko3_250.gif"
             em.set_thumbnail(url=veigarq)
