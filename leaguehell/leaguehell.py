@@ -164,7 +164,7 @@ class Leaguehell(commands.Cog):
                 extrreg = await self.config.member(user).Region + i + ()
                 if extrname is None:
                     break
-                extrn.append(f"Alts: **{extrname}** *({extrreg})*\n")
+                extrn.append(f"[{i}]: **{extrname}** *({extrreg})*\n")
         if aname is None:
             veigarq = "https://66.media.tumblr.com/098fef7a648679a31f25e33362b2602c/tumblr_on1g2lljht1tnb6cko3_250.gif"
             em.set_thumbnail(url=veigarq)
@@ -176,7 +176,7 @@ class Leaguehell(commands.Cog):
             em.set_thumbnail(url=icostr)
             emdesc = (f"**{user}**'s summoner name(s):")
             em.description = emdesc
-            em.add_field(name=f'[Main]: **{propername}** ({areg})', value=u'\u200b')
+            em.add_field(name=f"[Main]:", value=f"**{propername}** ({areg})")
             if multinames is True:
                 for i in range(len(extrn)):
                     altnames = " ".join(str(meh) for meh in extrn)
