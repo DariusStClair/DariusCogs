@@ -186,7 +186,7 @@ class Leaguehell(commands.Cog):
     @league.command(pass_context=True, no_pm=True)
     async def addname(self, ctx):
         author = ctx.author
-        await ctx.send(f">>> Alrighty, so what's your summoner name?\n*(your next message will be set as nickname)*")
+        await ctx.send(f">>> Alrighty {author.mention}, so what's your summoner name?\n*(your next message will be set as nickname)*")
         def check(m):
             return m.author == ctx.author
         try:
