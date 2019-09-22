@@ -186,7 +186,6 @@ class Leaguehell(commands.Cog):
     @league.command(pass_context=True, no_pm=True)
     async def addname(self, ctx):
         author = ctx.author
-        predreg = self.regchecks
         await ctx.send(f">>> Alrighty, so what's your summoner name?\n*(your next message will be set as nickname)*")
         def check(m):
             return m.author == ctx.author
@@ -195,7 +194,8 @@ class Leaguehell(commands.Cog):
             await ctx.send(f">>> {author.mention}\nOkay, going to set **{msgname.content}**.\nBut before that, which region is this in?")
             try:
                 msgreg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
-                if msgreg.content.lower().strip() in predreg:
+                checkreg = msgreg.content.lower().strip()
+                if checkreg in self.regchecks:
                     await ctx.send(f">>> Alright {author.mention}, setting alt **{msgname.content}** in **{msgreg.content}**.\nNoice.")
                 else:
                     await ctx.send(f">>> Well **\"{msgreg.content}\"** ain\'t a valid region.\nFeel free to start over.")
