@@ -164,8 +164,8 @@ class Leaguehell(commands.Cog):
             num = 1
             for i in range(4):
                 num += 1
-                extrname = await self.config.member(user).Name + num + ()
-                extrreg = await self.config.member(user).Region + num + ()
+                extrname = await self.config.member(user).get_raw(f"Name" + {num} + "()")
+                extrreg = await self.config.member(user).get_raw(f"Region" + {num} + "()")
                 if extrname is None:
                     break
                 extrn.append(f"[{num}]: **{extrname}** *({extrreg})*\n")
