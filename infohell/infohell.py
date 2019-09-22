@@ -26,6 +26,15 @@ class Infohell(commands.Cog):
         self.config = Config.get_conf(self, identifier=690830666, force_registration=True)
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
+        self.randomfuckingcat = {
+            "https://cdn.discordapp.com/attachments/610443480493457408/625244252699361280/1.gif",
+            "https://cdn.discordapp.com/attachments/610443480493457408/625244253911646228/2.gif",
+            "https://cdn.discordapp.com/attachments/610443480493457408/625244255870255104/3.gif",
+            "https://cdn.discordapp.com/attachments/610443480493457408/625244256910442496/4.gif",
+            "https://cdn.discordapp.com/attachments/610443480493457408/625244258676375562/5.gif",
+            "https://cdn.discordapp.com/attachments/610443480493457408/625244260945494017/6.gif",
+            "https://cdn.discordapp.com/attachments/610443480493457408/625244263411875851/7.gif"
+        }
     
     @commands.command(name="infohell", no_pm=True)
     async def infohell(self, ctx, user : discord.Member=None):
@@ -58,81 +67,10 @@ class Infohell(commands.Cog):
             await ctx.send(embed=data)
 
             
-    #@commands.group(name="iupdate", no_pm=True)
-    #async def iupdate(self, ctx):
-    #    """Update the things in your profile"""
-    #    pass
-    #
-    #@iupdate.command(pass_context=True, no_pm=True)
-    #async def about(self, ctx, *, about):
-    #    """Tell us about yourself. Or type in some bullshit, I don't care"""
-    #    
-    #    server = ctx.guild
-    #    user = ctx.author
-    #    db = await self.config.guild(server).db()
-    #    
-    #    if user.id in db:
-    #        await self.config.member(user).About.set(about)
-    #        data = discord.Embed(colour=0xff0000)
-    #        data.add_field(name="Wooooo",value="You have updated your About Me: \n\n'**{}**'".format(about))
-    #        await ctx.send(embed=data)
-    #    else:
-    #        db.append(user.id)
-    #        await self.config.guild(server).db.set(db)
-    #        await self.config.member(user).About.set(about)
-    #        data = discord.Embed(colour=0xff0000)
-    #        data.add_field(name="Wooooo",value="You have updated your About Me: \n\n'**{}**'".format(about))
-    #        await ctx.send(embed=data)
-    #
-    #@iupdate.command(pass_context=True, no_pm=True)
-    #async def lolname(self, ctx, *, ignleague):
-    #    """Set your league name so you can show it to others with !!infohell. You know, cause of those symbols and shit. Looking at you, Mυfasa"""
-    #    
-    #    server = ctx.guild
-    #    user = ctx.message.author
-    #    db = await self.config.guild(server).db()
-    #
-    #    if user.id in db:
-    #        await self.config.member(user).League.set(ignleague)
-    #        data = discord.Embed(colour=0xff0000)
-    #        data.add_field(name="Wooooooo",value="You have set your League name to: \n\n'**{}**".format(ignleague))
-    #        await ctx.send(embed=data)
-    #    else:
-    #        db.append(user.id)
-    #        await self.config.guild(server).db.set(db)
-    #        name = str(user)
-    #        name = " a.k.a. ".join((name, user.nick)) if user.nick else name
-    #        await self.config.member(user).League.set(ignleague)
-    #        data = discord.Embed(colour=0xff0000)
-    #        data.add_field(name="Wooooooo",value="You have set your League name to: \n\n'**{}**".format(ignleague))
-    #        await ctx.send(embed=data)
-    #
-    #@commands.command(name="lolname", no_pm=True)
-    #async def _lolname(self, ctx, user : discord.Member=None):
-    #    """Outputs user's League nickname, if set with `!!update lolname`"""
-    #    
-    #    server = ctx.guild
-    #    db = await self.config.guild(server).db()
-    #    user = user if user else ctx.author
-    #    name = str(user.display_name)
-    #    userdata = await self.config.member(user).all()
-    #    loluser = userdata['League']
-    #    lolimg = ("http://www.macupdate.com/images/icons256/47210.png")
-    #    data = discord.Embed(description="Summoner name:", colour=0xff0000)
-    #    if user.id in db:
-    #        aname = "'s ".join((name, "info"))
-    #        data.set_author(name=aname, url=user.avatar_url)
-    #        data.set_thumbnail(url=lolimg)
-    #        data.add_field(name=(f"\n{loluser}"), value=u'\u200b')
-    #        await ctx.send(embed=data)
-    #    else:
-    #        db.append(user.id)
-    #        await self.config.guild(server).db.set(db)
-    #        aname = "'s ".join((name, "info"))
-    #        data.set_author(name=aname, url=user.avatar_url)
-    #        data.set_thumbnail(url=lolimg)
-    #        data.add_field(name=(f"\n{loluser}"), value=u'\u200b')
-    #        await ctx.send(embed=data)
+    @commands.command(name="meow", no_pm=True)
+    @commands.cooldown(1, 15, commands.BucketType.guild)
+    async def meow(self, ctx):
+        await ctx.send(file=discord.File(random.choice(self.randomfuckingcat), "zemimeow.gif"))
         
     @checks.admin_or_permissions(administrator=True)
     @commands.command(name="infowipe", no_pm=True)
