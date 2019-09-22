@@ -159,15 +159,7 @@ class Leaguehell(commands.Cog):
         aname = await self.config.member(user).Name()
         areg = await self.config.member(user).Region()
         caccs = await self.config.member(user).CurrentAccs()
-        multinames = False
-        if caccs is 1:
-            multinames = False
-        elif caccs is 0:
-            emdesc = (f"Welp, that user doesn't have an account set")
-            em.description = emdesc
-        else:
-            multinames = True
-        if multinames is True:
+        if caccs >= 2:
             extrn = []
             num = 1
             for i in range(4):
