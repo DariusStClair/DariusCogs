@@ -478,7 +478,7 @@ class Leaguehell(commands.Cog):
         em = discord.Embed(colour=15158332)
         veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
         em.set_thumbnail(url=veigar)
-        em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
+        em.description = (f"*Working...*\n\nLooking for: \n**{name}**")
         em.set_footer(text=f"Requested by {author} | {deffooter}")
         message = await ctx.send(embed=em)
         if data != "Error":
@@ -497,7 +497,7 @@ class Leaguehell(commands.Cog):
             emdesc = f"{chname}, {chtitle} \n{chbio}"
             em.add_field(name="Emoji test:", value=f"__/chemoji-placeholder/__", inline=False)
             em.add_field(name=f"Passive: **{chpassivename}**", value=f"{chpassivedescr}", inline=False)
-            em.set_footer(text=f"Requested by {author} | ChampionID: \obsolete\ | {deffooter}")
+            em.set_footer(text=f"Requested by {author} | !ChampionID: is now obsolete! | {deffooter}")
         else:
             em = discord.Embed(colour=15158332)
             emdesc = "**Invalid champ**"
@@ -555,7 +555,6 @@ class Leaguehell(commands.Cog):
     @commands.command(name="leaguepatch")
     async def leaguepatch(self, ctx):
         cpatch = await self.lib.get_patch()
-        lhversion = vversion
         await ctx.send(box(f"Current game version: {cpatch}\nLeaguehell {vversion}\n"))
 
     @checks.is_owner()
