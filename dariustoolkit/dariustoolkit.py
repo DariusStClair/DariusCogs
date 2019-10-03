@@ -114,7 +114,7 @@ class Dariustoolkit(commands.Cog):
         emoji_fill = await self._emoji("vg_fill")
         emoji_csgo = await self._emoji("CSGOlogo")
         emoji_fortnite = await self._emoji("si_fortnite")
-        emoji_mc = await self._emoji("ARE HELP NQKOI OMG :D")
+        emoji_mc = await self._emoji("minecraft")
         emoji_pubg = await self._emoji("si_pubg")
         emoji_wc3 = await self._emoji("wc3")
         emoji_wow = await self._emoji("WoW")
