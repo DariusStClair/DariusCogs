@@ -8,7 +8,7 @@ from redbot.core.utils.chat_formatting import bold, box, inline
 
 footer = "Powered by HELL"
 
-class Hvhtools(commands.Cog):
+class Dariustoolkit(commands.Cog):
     """Tools for a few communities"""
 
     def __init__(self, bot):
