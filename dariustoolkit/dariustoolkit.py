@@ -88,13 +88,12 @@ class Dariustoolkit(commands.Cog):
         embed.set_footer(text=footer)
         await ctx.send (embed=embed)
 
-    @checks.is_admin_or_superior()
+    @checks.guildowner()
     @commands.group(autohelp=True)
     async def vg(self, ctx):
         """Various tools for VG"""
         pass
 
-    @checks.is_admin_or_superior()
     @hvh.command()
     async def assignroles(self, ctx):
         """Embeds the the assign roles list"""
