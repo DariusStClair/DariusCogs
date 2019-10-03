@@ -15,7 +15,7 @@ class Dariustoolkit(commands.Cog):
         self.bot = bot
 
     async def _emoji(self, name):
-        emoji = "<:None:612702016094863518>"
+        emoji = "<:blank:438114864003809290>"
         for n_ in self.bot.emojis:
             if n_.name == name:
                 emoji = f"<:{n_.name}:{n_.id}>"
