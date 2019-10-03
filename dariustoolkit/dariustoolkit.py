@@ -15,7 +15,7 @@ class Dariustoolkit(commands.Cog):
         self.bot = bot
 
     async def _emoji(self, name):
-        emoji = "<:blank:438114864003809290>"
+        emoji = "<:blank_empty:595739688237662210>"
         for n_ in self.bot.emojis:
             if n_.name == name:
                 emoji = f"<:{n_.name}:{n_.id}>"
@@ -120,7 +120,7 @@ class Dariustoolkit(commands.Cog):
         emoji_wc3 = await self._emoji("wc3")
         emoji_wow = await self._emoji("WoW")
         emoji_tft = await self._emoji("tft_icon")
-        emoji_blank = await self._emoji("blank")
+        emoji_blank = await self._emoji("blank_empty")
         emen = discord.Embed(colour=15158332, description="Реактнете със съответното емоджи за да получите/премахнете съответната роля.")
         emen.add_field(name="Изберете регион (или два)", value=f"EUNE - {emoji_eune}{emoji_blank}EUW - {emoji_euw}{emoji_blank}", inline=True)
         emen.add_field(name="Изберете предпочитаните ви роли", value=f"Top - {emoji_top}{emoji_blank}Jungle - {emoji_jungle}{emoji_blank}Mid - {emoji_mid}{emoji_blank}\nADC - {emoji_adc}{emoji_blank}Support - {emoji_supp}{emoji_blank}Fill - {emoji_fill}{emoji_blank}", inline=True)
