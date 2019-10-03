@@ -105,7 +105,7 @@ class Dariustoolkit(commands.Cog):
     async def assignroles(self, ctx):
         """Embeds the the assign roles list"""
         emoji_eune = await self._emoji("vg_eune")
-        emoji_euw = await self._emoji("vg_eune")
+        emoji_euw = await self._emoji("vg_euw")
         emoji_top = await self._emoji("vg_top")
         emoji_jungle = await self._emoji("vg_jungle")
         emoji_mid = await self._emoji("vg_mid")
@@ -120,7 +120,7 @@ class Dariustoolkit(commands.Cog):
         emoji_wow = await self._emoji("WoW")
         emoji_tft = await self._emoji("tft_icon")
         emoji_blank = await self._emoji("blank_empty")
-        emen = discord.Embed(colour=15158332, description="Реактнете със съответното емоджи за да получите/премахнете съответната роля.\nМожете да използвате например `@EUNE @Support` в <#451075658013999106> за да пингнете хората, с тези роли.\nСъщо така в <#440434633390292993> можете да получите роли за съответните ви дивизии, така че по-лесно да бъдете намирани за ранкед игри.")
+        emen = discord.Embed(colour=15158332, description="**__Реактнете със съответното емоджи за да получите/премахнете съответната роля.__**\nМожете да използвате например `@EUNE @Support` в <#451075658013999106> за да пингнете хората, с тези роли.\nСъщо така в <#440434633390292993> можете да получите роли за съответните ви дивизии, така че по-лесно да бъдете намирани за ранкед игри.")
         emen.add_field(name="Изберете регион (или два):", value=f"EUNE - {emoji_eune}{emoji_blank}EUW - {emoji_euw}{emoji_blank}", inline=True)
         emen.add_field(name="Изберете предпочитаните ви роли:", value=f"Top - {emoji_top}{emoji_blank}Jungle - {emoji_jungle}{emoji_blank}Mid - {emoji_mid}{emoji_blank}\nADC - {emoji_adc}{emoji_blank}Support - {emoji_supp}{emoji_blank}Fill - {emoji_fill}{emoji_blank}", inline=True)
         emen.add_field(name="Изберете игрите, които играете:", value=f"CS:GO - {emoji_csgo}{emoji_blank}Fortnite - {emoji_fortnite}{emoji_blank}Minecraft - {emoji_mc}{emoji_blank}", inline=False)
