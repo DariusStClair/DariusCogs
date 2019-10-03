@@ -94,25 +94,32 @@ class Dariustoolkit(commands.Cog):
         """Various tools for VG"""
         pass
 
+    async def _emoji(self, name):
+        for n_ in self.bot.emojis:
+            if n_.name == name:
+                emoji = f"<:{n_.name}:{n_.id}>"
+        return emoji
+
     @vg.command()
     async def assignroles(self, ctx):
         """Embeds the the assign roles list"""
-        emoji_eune = "<:vg_eune:452893495921737728>"
-        emoji_euw = "<:vg_euw:452893505778483201> "
-        emoji_top = "<:vg_top:452893972688404491> "
-        emoji_jungle = "<:vg_jungle:452893985107869737> "
-        emoji_mid = "<:vg_mid:452893993219391509> "
-        emoji_adc = "<:vg_adc:452894007509385216> "
-        emoji_supp = "<:vg_supp:452895441961615383> "
-        emoji_fill = "<:vg_fill:452893957215485953> "
-        emoji_csgo = "<:CSGOlogo:534489391557509141> "
-        emoji_fortnite = "<:si_fortnite:550324854532866088> "
-        emoji_mc = "<:minecraft:513431092834074625> "
-        emoji_pubg = "<:si_pubg:550324853836611585> "
-        emoji_wc3 = "<:wc3:629302335880822814> "
-        emoji_wow = "<:WoW:534489368228921354>"
-        emoji_tft = "<:tft_icon:594189213222699009>"
-        emoji_blank = "<:blank:438114864003809290>"
+        
+        emoji_eune = await self.emoji("vg_eune")
+        emoji_euw = await self.emoji("vg_eune")
+        emoji_top = await self.emoji("vg_top")
+        emoji_jungle = await self.emoji("vg_jungle")
+        emoji_mid = await self.emoji("vg_mid")
+        emoji_adc = await self.emoji("vg_adc")
+        emoji_supp = await self.emoji("vg_supp")
+        emoji_fill = await self.emoji("vg_fill")
+        emoji_csgo = await self.emoji("CSGOlogo")
+        emoji_fortnite = await self.emoji("si_fortnite")
+        emoji_mc = await self.emoji("minecraft")
+        emoji_pubg = await self.emoji("si_pubg")
+        emoji_wc3 = await self.emoji("wc3")
+        emoji_wow = await self.emoji("WoW")
+        emoji_tft = await self.emoji("tft_icon")
+        emoji_blank = await self.emoji("blank")
         emen = discord.Embed(colour=15158332, description="Реактнете със съответното емоджи за да получите/премахнете съответната роля.")
         emen.add_field(name="Изберете регион (или два)", value=f"EUNE - {emoji_eune}{emoji_blank}EUW - {emoji_euw}{emoji_blank}", inline=True)
         emen.add_field(name="Изберете предпочитаните ви роли", value=f"Top - {emoji_top}{emoji_blank}Jungle - {emoji_jungle}{emoji_blank}Mid - {emoji_mid}{emoji_blank}\nADC - {emoji_adc}{emoji_blank}Support - {emoji_supp}{emoji_blank}Fill - {emoji_fill}{emoji_blank}", inline=True)
