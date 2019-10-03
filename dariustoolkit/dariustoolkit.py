@@ -14,6 +14,12 @@ class Dariustoolkit(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    async def _emoji(self, name):
+        for n_ in self.bot.emojis:
+            if n_.name == name:
+                emoji = f"<:{n_.name}:{n_.id}>"
+        return emoji
+
     @checks.guildowner()
     @commands.group(autohelp=True)
     async def hvh(self, ctx):
@@ -94,32 +100,26 @@ class Dariustoolkit(commands.Cog):
         """Various tools for VG"""
         pass
 
-    async def _emoji(self, name):
-        for n_ in self.bot.emojis:
-            if n_.name == name:
-                emoji = f"<:{n_.name}:{n_.id}>"
-        return emoji
-
     @vg.command()
     async def assignroles(self, ctx):
         """Embeds the the assign roles list"""
         
-        emoji_eune = await self.emoji("vg_eune")
-        emoji_euw = await self.emoji("vg_eune")
-        emoji_top = await self.emoji("vg_top")
-        emoji_jungle = await self.emoji("vg_jungle")
-        emoji_mid = await self.emoji("vg_mid")
-        emoji_adc = await self.emoji("vg_adc")
-        emoji_supp = await self.emoji("vg_supp")
-        emoji_fill = await self.emoji("vg_fill")
-        emoji_csgo = await self.emoji("CSGOlogo")
-        emoji_fortnite = await self.emoji("si_fortnite")
-        emoji_mc = await self.emoji("minecraft")
-        emoji_pubg = await self.emoji("si_pubg")
-        emoji_wc3 = await self.emoji("wc3")
-        emoji_wow = await self.emoji("WoW")
-        emoji_tft = await self.emoji("tft_icon")
-        emoji_blank = await self.emoji("blank")
+        emoji_eune = await self._emoji("vg_eune")
+        emoji_euw = await self._emoji("vg_eune")
+        emoji_top = await self._emoji("vg_top")
+        emoji_jungle = await self._emoji("vg_jungle")
+        emoji_mid = await self._emoji("vg_mid")
+        emoji_adc = await self._emoji("vg_adc")
+        emoji_supp = await self._emoji("vg_supp")
+        emoji_fill = await self._emoji("vg_fill")
+        emoji_csgo = await self._emoji("CSGOlogo")
+        emoji_fortnite = await self._emoji("si_fortnite")
+        emoji_mc = await self._emoji("minecraft")
+        emoji_pubg = await self._emoji("si_pubg")
+        emoji_wc3 = await self._emoji("wc3")
+        emoji_wow = await self._emoji("WoW")
+        emoji_tft = await self._emoji("tft_icon")
+        emoji_blank = await self._emoji("blank")
         emen = discord.Embed(colour=15158332, description="Реактнете със съответното емоджи за да получите/премахнете съответната роля.")
         emen.add_field(name="Изберете регион (или два)", value=f"EUNE - {emoji_eune}{emoji_blank}EUW - {emoji_euw}{emoji_blank}", inline=True)
         emen.add_field(name="Изберете предпочитаните ви роли", value=f"Top - {emoji_top}{emoji_blank}Jungle - {emoji_jungle}{emoji_blank}Mid - {emoji_mid}{emoji_blank}\nADC - {emoji_adc}{emoji_blank}Support - {emoji_supp}{emoji_blank}Fill - {emoji_fill}{emoji_blank}", inline=True)
