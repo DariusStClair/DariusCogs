@@ -94,7 +94,7 @@ class Dariustoolkit(commands.Cog):
         """Various tools for VG"""
         pass
 
-    @hvh.command()
+    @vg.command()
     async def assignroles(self, ctx):
         """Embeds the the assign roles list"""
         emoji_eune = "<:vg_eune:452893495921737728>"
