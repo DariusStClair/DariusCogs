@@ -104,6 +104,8 @@ class Infohell(commands.Cog):
             av = user.avatar_url_as(format="gif")
         else:
             av = user.avatar_url_as(format="png")
+        if user.id == 492098885649563658:
+            await ctx.send("Oh, that's me!")
         dnname = user.display_name
         dcolor = user.colour
         avembed = discord.Embed(colour=15158332)
