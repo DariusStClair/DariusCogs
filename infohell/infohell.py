@@ -106,7 +106,6 @@ class Infohell(commands.Cog):
         else:
             av = user.avatar_url_as(format="png")
         if user.id == 492098885649563658:
-            check = await self._checknsfw()
             if ctx.message.channel.is_nsfw():
                 footer = self.dfooter
                 avstr = "https://cdn.discordapp.com/attachments/631951277697269766/631995861026734119/slaanesh_by_baklaher_d7dvohn-fullview.png"
