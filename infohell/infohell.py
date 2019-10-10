@@ -16,7 +16,7 @@ class Infohell(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.dfooter("Powered by Entropy")
+        self.dfooter = "Powered by Entropy"
         default_member = {
             "League": None,
             "About": None,
