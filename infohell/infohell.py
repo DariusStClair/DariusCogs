@@ -107,7 +107,7 @@ class Infohell(commands.Cog):
         if user.id == 492098885649563658:
             await ctx.send("Oh, that's me!")
         dnname = user.display_name
-        dcolor = user.colour
+        dcolor = user.colour()
         avembed = discord.Embed(colour=15158332)
         av = user.avatar_url
         avstr = str(av)
