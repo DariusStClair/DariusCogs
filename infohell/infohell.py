@@ -16,6 +16,7 @@ class Infohell(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.dfooter("Powered by Entropy")
         default_member = {
             "League": None,
             "About": None,
@@ -26,7 +27,6 @@ class Infohell(commands.Cog):
         self.config = Config.get_conf(self, identifier=690830666, force_registration=True)
         self.config.register_guild(**default_guild)
         self.config.register_member(**default_member)
-        self.dfooter("Powered by Entropy")
         self.randomfuckingcat = [
             "https://cdn.discordapp.com/attachments/610443480493457408/625244252699361280/1.gif",
             "https://cdn.discordapp.com/attachments/610443480493457408/625244253911646228/2.gif",
