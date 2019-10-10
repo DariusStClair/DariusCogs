@@ -37,7 +37,7 @@ class Infohell(commands.Cog):
             "https://cdn.discordapp.com/attachments/610443480493457408/625244263411875851/7.gif"
         ]
     
-    async def _checknsfw(self, ctx):
+    async def _checknsfw(ctx):
         if ctx.message.channel.is_nsfw():
             return True
         else:
