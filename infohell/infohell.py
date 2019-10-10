@@ -36,12 +36,6 @@ class Infohell(commands.Cog):
             "https://cdn.discordapp.com/attachments/610443480493457408/625244260945494017/6.gif",
             "https://cdn.discordapp.com/attachments/610443480493457408/625244263411875851/7.gif"
         ]
-    
-    async def _checknsfw(ctx):
-        if ctx.message.channel.is_nsfw():
-            return True
-        else:
-            return False
 
     @commands.command(name="infohell", no_pm=True)
     async def infohell(self, ctx, user : discord.Member=None):
@@ -113,7 +107,7 @@ class Infohell(commands.Cog):
             av = user.avatar_url_as(format="png")
         if user.id == 492098885649563658:
             check = await self._checknsfw()
-            if check is True:
+            if ctx.message.channel.is_nsfw():
                 footer = self.dfooter
                 avstr = "https://cdn.discordapp.com/attachments/631951277697269766/631995861026734119/slaanesh_by_baklaher_d7dvohn-fullview.png"
                 avembed = discord.Embed(colour=15158332)
