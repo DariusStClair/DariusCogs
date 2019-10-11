@@ -110,13 +110,20 @@ class Infohell(commands.Cog):
                 footer = self.dfooter
                 avstr = "https://cdn.discordapp.com/attachments/631951277697269766/631995861026734119/slaanesh_by_baklaher_d7dvohn-fullview.png"
                 avembed = discord.Embed(colour=15158332)
-                avembed.description = "Well now, my avatar (in full) is below. Credits to baklaher on DeviantArt."
+                avembed.description = "Well now, my avatar (in full) is below. \nCredits to **baklaher** on DeviantArt."
                 avembed.url = avstr
                 avembed.set_image(url=avstr)
                 avembed.set_footer(text=f"{footer}")
                 await ctx.send(embed=avembed)
             else:
-                await ctx.send("> I can only show my avatar in a NSFW channel.")
+                footer = self.dfooter
+                avstr = str(user.avatar_url_as(format="png"))
+                avembed = discord.Embed(colour=15158332)
+                avembed.description = "Well now, my avatar is below. \n**However since this __isn't__ a NSFW channel it's just what you usually see in discord.**\n**To view the full version please check it in a channel marked as NSFW.**\nCredits to **baklaher** on DeviantArt."
+                avembed.url = avstr
+                avembed.set_image(url=avstr)
+                avembed.set_footer(text=f"{footer}")
+                await ctx.send(embed=avembed)
         else:
             footer = self.dfooter
             dnname = user.display_name
