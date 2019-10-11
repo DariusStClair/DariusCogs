@@ -20,7 +20,7 @@ from .datalib import Datalib
 
 vversion = "version: 0.08a"
 allregistered = []
-deffooter = f"Powered by HELL | {vversion}"
+deffooter = f"Powered by Entropy | {vversion}"
 
 def apikeycheck():
     async def predicate(ctx):
@@ -38,7 +38,7 @@ def apikeycheck():
     return commands.check(predicate)
 
 class Leaguehell(commands.Cog):
-    """The (__very unfinished__) Hell League Cog"""
+    """The (__very unfinished__) Entropy League Cog"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -356,7 +356,7 @@ class Leaguehell(commands.Cog):
         veigar = "https://66.media.tumblr.com/a06904a426c8400efb27d274dff48944/tumblr_on1g2lljht1tnb6cko2_250.gif"
         em.set_thumbnail(url=veigar)
         em.description = (f"*Working...*\n\nLooking for: \n**{searchname}**\nLooking up in: \n**{searchreg}**")
-        em.set_footer(text=f"Powered by HELL | Requested by {author} | {vversion}")
+        em.set_footer(text=f"Powered by Entropy | Requested by {author} | {vversion}")
         message = await ctx.send(embed=em)
         em = discord.Embed(colour=15158332)
         icostr = str(await self.lib.summ_icon(searchname, searchreg))
