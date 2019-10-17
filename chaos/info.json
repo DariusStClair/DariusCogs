@@ -1,0 +1,10 @@
+{
+    "author" : "Darius#0069",
+    "install_msg" : "idk what the fuck are you doing",
+    "name" : "Dariustoolkit",
+    "short" : "Dariustoolkit",
+    "description" : "Might describe this once it's an actual thing",
+    "disabled" : false,
+    "tags" : ["wip"],
+    "min_python_version": [3, 7, 0]
+}
