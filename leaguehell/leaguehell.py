@@ -281,7 +281,7 @@ class Leaguehell(commands.Cog):
         server = ctx.guild
         author = ctx.author
         tar = None
-        regchecks = ["EUNE", "EUW", "NA"]
+        regchecks = ["EUNE", "EUW", "NA", "BR"]
         checkmod = await self.handle.check_modadmin(author)
         if not user:
             tar = author
