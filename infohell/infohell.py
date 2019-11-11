@@ -15,6 +15,7 @@ class Infohell(commands.Cog):
     """The info Cog for Hell"""
 
     def __init__(self, bot):
+        bot.remove_command(avatar)
         self.bot = bot
         self.dfooter = "Powered by Entropy"
         default_member = {
@@ -99,6 +100,7 @@ class Infohell(commands.Cog):
     @commands.command()
     async def avatar(self, ctx, *, user: discord.User=None):
         """Provides user's avatar, name, nickname and role color."""
+        
         if user is None:
             user = ctx.author
         if user.is_avatar_animated():
