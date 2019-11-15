@@ -137,9 +137,18 @@ class Dariustoolkit(commands.Cog):
     @commands.command(name="vc", no_pm=True)
     @commands.cooldown(1, 15, commands.BucketType.guild)
     async def vc(self, ctx):
+        p_names = ["Alfa", "Beta", "Gamma", "Delta", "Epsilon", "Vafli", "Putkimaini", "Lyutenitsa", "GoldenRetriever", "Omega", "ugh whatever"]
+        p_numbers = [" I ARE VC WE ALO VC??", " VC VC VC VC", " VC!!!", " VC???", " so yeah, move on", " POWERFUL STRONG FORCE!!!", " x84", " - done.", "-0000000000001", "-93", ", I think", "!!!1!!!1!!!", "_?????!??", " and shit", " - i4i1kjng", " 9301", " v1.3", " v0.83a", "_TJ019tujUJJUERJg", "-PP22", "69.420", "3.35"]
+        p_name = random.choice(p_names)
+        p_number = random.choice(p_numbers)
+        randprotocol = p_name + p_number
         rand_fast = await self._randshit(1)
         rand_slow = await self._randshit(3)
         em = discord.Embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**")
         em.set_footer(text="Powered by Entropy | VC ANYONE?! | VC????? | VC!!!!!!1!!!!1!!!")
-        await ctx.send(embed=em)
+        thingy = await ctx.send(embed=em)
+        asyncio.sleep(rand_slow)
+        em = discord.Embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**\nInitialization sequence [ ]\nAnnoying sequence [ ]\nFinaliziation sequence [ ]")
+        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"/loading")
+        await thingy.edit(embed=em)
 
