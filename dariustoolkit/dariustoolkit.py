@@ -150,7 +150,7 @@ class Dariustoolkit(commands.Cog):
         p_numbers = [" I ARE VC WE ALO VC??", " VC VC VC VC", " VC!!!", " VC???", " so yeah, move on", " POWERFUL STRONG FORCE!!!", " x84", " - 984.1804", "-0000000000001", "-93", ", I think", "!!!1!!!1!!!", "_?????!??", " and shit", " - i4i1kjng", " 9301", " v1.3", " v0.83a", "_TJ019tujUJJUERJg", "-PP22", "69.420", "3.35"]
         p_name = random.choice(p_names)
         p_number = random.choice(p_numbers)
-        randprotocol = p_name + p_number
+        randprotocol = f"**{p_name}**" + f"**{p_number}**"
         em = discord.Embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**")
         em.set_footer(text="Powered by Entropy | VC ANYONE?! | VC????? | VC!!!!!!1!!!!1!!!")
         thingy = await ctx.send(embed=em)
@@ -233,7 +233,8 @@ class Dariustoolkit(commands.Cog):
         randtar = []
         for i in range(1, maxt):
             asyncio.sleep(wait)
-            randtar.append = await self._randmemb(guild)
+            randmember = await self._randmemb(guild)
+            randtar.append(randmember)
             em.add_field(name=f"*Target 1:*", value=f"**{randtar[i]}**", inline=False)
             await thingy.edit(embed=em)
 
