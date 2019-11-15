@@ -30,6 +30,10 @@ class Dariustoolkit(commands.Cog):
     async def _randshitslow(self, int):
         r = random.uniform(1.5, int)
         return r
+    
+    async def _randshitslower(self, int):
+        r = random.uniform(5, int)
+        return r
 
     async def _randmemb(self, guild):
         r = random.choice(guild.members)
@@ -238,7 +242,8 @@ class Dariustoolkit(commands.Cog):
             targetn = i + 1
             em.add_field(name=f"*Target {targetn}:*", value=f"**{randtar[step]}**", inline=False)
             step += 1
-            waitz = await self._randshitslow(6)
+            waitz = await self._randshitslow(10)
+            await ctx.send(waitz)
             asyncio.sleep(waitz)
             await thingy.edit(embed=em)
 
