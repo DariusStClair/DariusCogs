@@ -31,7 +31,7 @@ class Dariustoolkit(commands.Cog):
         r = random.uniform(1.5, int)
         return r
 
-    async def _randmemb(self, ctx):
+    async def _randmemb(self, guild):
         r = random.choice(guild.members)
         return r
 
@@ -145,6 +145,7 @@ class Dariustoolkit(commands.Cog):
     @commands.command(name="vc", no_pm=True)
     @commands.cooldown(1, 15, commands.BucketType.guild)
     async def vc(self, ctx):
+        guild = ctx.guild
         p_names = ["Alfa", "Beta", "Gamma", "Delta", "Epsilon", "Vafli", "Putkimaini", "Lyutenitsa", "GoldenRetriever", "Omega", "ugh whatever"]
         p_numbers = [" I ARE VC WE ALO VC??", " VC VC VC VC", " VC!!!", " VC???", " so yeah, move on", " POWERFUL STRONG FORCE!!!", " x84", " - 984.1804", "-0000000000001", "-93", ", I think", "!!!1!!!1!!!", "_?????!??", " and shit", " - i4i1kjng", " 9301", " v1.3", " v0.83a", "_TJ019tujUJJUERJg", "-PP22", "69.420", "3.35"]
         p_name = random.choice(p_names)
@@ -224,18 +225,18 @@ class Dariustoolkit(commands.Cog):
         randtar4 = randtar1
         em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!", inline=False)
         em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓▓ 100%] ESTABLISHED!", inline=False)
-        em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.\nTarget 1: **{randtar1}**\nTarget 2: **{randtar2}\nTarget 3: **{randtar3}**\nTarget 4: **{randtar4}**", inline=False)
+        em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.\nTarget 1: **{randtar1}**\nTarget 2: **{randtar2}**\nTarget 3: **{randtar3}**\nTarget 4: **{randtar4}**", inline=False)
         await thingy.edit(embed=em)
         ### pick 1
         wait = await self._randshitslow(4)
         asyncio.sleep(wait)
         em.clear_fields()
-        randtar1 = await self._randmemb(ctx)
+        randtar1 = await self._randmemb(guild)
         randtar2 = "Searching..."
         randtar3 = randtar2
         randtar4 = randtar3
         em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!", inline=False)
         em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓▓ 100%] ESTABLISHED!", inline=False)
-        em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.\nTarget 1: **{randtar1}**\nTarget 2: **{randtar2}\nTarget 3: **{randtar3}**\nTarget 4: **{randtar4}**", inline=False)
+        em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.\nTarget 1: **{randtar1}**\nTarget 2: **{randtar2}**\nTarget 3: **{randtar3}**\nTarget 4: **{randtar4}**", inline=False)
         await thingy.edit(embed=em)
 
