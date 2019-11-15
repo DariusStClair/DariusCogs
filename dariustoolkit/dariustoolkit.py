@@ -235,8 +235,10 @@ class Dariustoolkit(commands.Cog):
         for i in range(0, maxt):
             randmember = await self._randmemb(guild)
             randtar.append(randmember)
-            em.add_field(name=f"*Target {i}:*", value=f"**{randtar[step]}**", inline=False)
+            targetn = i + 1
+            em.add_field(name=f"*Target {targetn}:*", value=f"**{randtar[step]}**", inline=False)
             step += 1
-            asyncio.sleep(wait)
+            waitz = await self._randshitslow(6)
+            asyncio.sleep(waitz)
             await thingy.edit(embed=em)
 
