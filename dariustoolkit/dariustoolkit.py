@@ -225,18 +225,15 @@ class Dariustoolkit(commands.Cog):
         randtar4 = randtar1
         em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!", inline=False)
         em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓▓ 100%] ESTABLISHED!", inline=False)
-        em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.\nTarget 1: **{randtar1}**\nTarget 2: **{randtar2}**\nTarget 3: **{randtar3}**\nTarget 4: **{randtar4}**", inline=False)
+        em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.", inline=False)
         await thingy.edit(embed=em)
-        ### pick 1
+        ### picks
         wait = await self._randshitslow(4)
-        asyncio.sleep(wait)
-        em.clear_fields()
-        randtar1 = await self._randmemb(guild)
-        randtar2 = "Searching..."
-        randtar3 = randtar2
-        randtar4 = randtar3
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!", inline=False)
-        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓▓ 100%] ESTABLISHED!", inline=False)
-        em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.\nTarget 1: **{randtar1}**\nTarget 2: **{randtar2}**\nTarget 3: **{randtar3}**\nTarget 4: **{randtar4}**", inline=False)
-        await thingy.edit(embed=em)
+        maxt = 4
+        randtar = []
+        for i in range(1, maxt):
+            asyncio.sleep(wait)
+            randtar.append = await self._randmemb(guild)
+            em.add_field(name=f"*Target 1:*", value=f"**{randtar[i]}**", inline=False)
+            await thingy.edit(embed=em)
 
