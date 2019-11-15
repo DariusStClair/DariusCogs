@@ -139,7 +139,7 @@ class Dariustoolkit(commands.Cog):
     async def vc(self, ctx):
         rand_fast = await self._randshit(1)
         rand_slow = await self._randshit(3)
-        em = discord.embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**")
-        em.set_footer("Powered by Entropy | VC ANYONE?! | VC????? | VC!!!!!!1!!!!1!!!")
+        em = discord.Embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**")
+        em.set_footer(text="Powered by Entropy | VC ANYONE?! | VC????? | VC!!!!!!1!!!!1!!!")
         await ctx.send(embed=em)
 
