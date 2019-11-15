@@ -137,8 +137,9 @@ class Dariustoolkit(commands.Cog):
     @commands.command(name="vc", no_pm=True)
     @commands.cooldown(1, 15, commands.BucketType.guild)
     async def vc(self, ctx):
-        times = 4
-        for i in range(0, times):
-            randomtest = await self._randshit(1)
-            await ctx.send(f">>> Randomtest {i}: {randomtest}")
-        await ctx.send(">>> Done.")
+        rand_fast = await self._randshit(1)
+        rand_slow = await self._randshit(3)
+        em = discord.embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**")
+        em.set_footer("Powered by Entropy | VC ANYONE?! | VC????? | VC!!!!!!1!!!!1!!!")
+        await ctx.send(embed=em)
+
