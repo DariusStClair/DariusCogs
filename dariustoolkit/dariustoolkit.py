@@ -27,6 +27,10 @@ class Dariustoolkit(commands.Cog):
         r = random.uniform(0.3, int)
         return r
 
+    async def _randshitslow(self, int):
+        r = random.uniform(1.5, int)
+        return r
+
     @checks.guildowner()
     @commands.group(autohelp=True)
     async def hvh(self, ctx):
@@ -138,7 +142,7 @@ class Dariustoolkit(commands.Cog):
     @commands.cooldown(1, 15, commands.BucketType.guild)
     async def vc(self, ctx):
         p_names = ["Alfa", "Beta", "Gamma", "Delta", "Epsilon", "Vafli", "Putkimaini", "Lyutenitsa", "GoldenRetriever", "Omega", "ugh whatever"]
-        p_numbers = [" I ARE VC WE ALO VC??", " VC VC VC VC", " VC!!!", " VC???", " so yeah, move on", " POWERFUL STRONG FORCE!!!", " x84", " - done.", "-0000000000001", "-93", ", I think", "!!!1!!!1!!!", "_?????!??", " and shit", " - i4i1kjng", " 9301", " v1.3", " v0.83a", "_TJ019tujUJJUERJg", "-PP22", "69.420", "3.35"]
+        p_numbers = [" I ARE VC WE ALO VC??", " VC VC VC VC", " VC!!!", " VC???", " so yeah, move on", " POWERFUL STRONG FORCE!!!", " x84", " - 984.1804", "-0000000000001", "-93", ", I think", "!!!1!!!1!!!", "_?????!??", " and shit", " - i4i1kjng", " 9301", " v1.3", " v0.83a", "_TJ019tujUJJUERJg", "-PP22", "69.420", "3.35"]
         p_name = random.choice(p_names)
         p_number = random.choice(p_numbers)
         randprotocol = p_name + p_number
@@ -163,5 +167,42 @@ class Dariustoolkit(commands.Cog):
         rand_fast = await self._randshit(3)
         asyncio.sleep(rand_fast)
         em.clear_fields()
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"/loading . . . done!")
+        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!")
+        await thingy.edit(embed=em)
+        # protocol shit
+        wait = await self._randshitslow(3)
+        asyncio.sleep(wait)
+        em.clear_fields()
+        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!")
+        em.add_field(name=f"Connection to VC:", value=f"[░░░░░░░░░░  0%]")
+        await thingy.edit(embed=em)
+        wait = await self._randshitslow(2)
+        asyncio.sleep(wait)
+        em.clear_fields()
+        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!")
+        em.add_field(name=f"Connection to VC:", value=f"[▓▓░░░░░░░░ 18%]")
+        await thingy.edit(embed=em)
+        wait = await self._randshitslow(5)
+        asyncio.sleep(wait)
+        em.clear_fields()
+        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!")
+        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓░░░░░ 43%]")
+        await thingy.edit(embed=em)
+        wait = await self._randshitslow(4)
+        asyncio.sleep(wait)
+        em.clear_fields()
+        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!")
+        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓░░░ 74%]")
+        await thingy.edit(embed=em)
+        wait = await self._randshitslow(3)
+        asyncio.sleep(wait)
+        em.clear_fields()
+        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!")
+        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓░ 95%]")
+        await thingy.edit(embed=em)
+        wait = await self._randshitslow(2)
+        asyncio.sleep(wait)
+        em.clear_fields()
+        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!")
+        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓▓100%] ESTABLISHED!")
         await thingy.edit(embed=em)
