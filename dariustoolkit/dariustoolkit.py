@@ -5,6 +5,8 @@ from discord import Message, message
 from redbot.core import checks, Config, commands
 from redbot.core.utils.chat_formatting import bold, box, inline
 # Libs
+import random
+import asyncio
 
 footer = "Powered by HELL"
 
@@ -20,6 +22,10 @@ class Dariustoolkit(commands.Cog):
             if n_.name == name:
                 emoji = f"<:{n_.name}:{n_.id}>"
         return emoji
+
+    async def _randshit(self, int):
+        r = random.uniform(0.3, int)
+        return r
 
     @checks.guildowner()
     @commands.group(autohelp=True)
@@ -127,3 +133,12 @@ class Dariustoolkit(commands.Cog):
         emen.add_field(name=u'\u200b', value=f"{emoji_pubg}{emoji_blank}PUBG\n{emoji_wc3}{emoji_blank}WarCraft III\n{emoji_wow}{emoji_blank}WoW\n", inline=True)
         emen.set_footer(text=footer)
         await ctx.send(embed=emen)
+
+    @commands.command(name="vc", no_pm=True)
+    @commands.cooldown(1, 15, commands.BucketType.guild)
+    async def vc(self, ctx):
+        times = 4
+        for i in range(0, times):
+            randomtest = await self._randshit(1)
+            await ctx.send(f">>> Randomtest {i}: {randomtest}")
+        await ctx.send(">>> Done.")
