@@ -31,6 +31,10 @@ class Dariustoolkit(commands.Cog):
         r = random.uniform(1.5, int)
         return r
 
+    async def _randmemb(self, ctx):
+        r = random.choice(guild.members)
+        return r
+
     @checks.guildowner()
     @commands.group(autohelp=True)
     async def hvh(self, ctx):
@@ -222,3 +226,16 @@ class Dariustoolkit(commands.Cog):
         em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓▓ 100%] ESTABLISHED!", inline=False)
         em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.\nTarget 1: **{randtar1}**\nTarget 2: **{randtar2}\nTarget 3: **{randtar3}**\nTarget 4: **{randtar4}**", inline=False)
         await thingy.edit(embed=em)
+        ### pick 1
+        wait = await self._randshitslow(4)
+        asyncio.sleep(wait)
+        em.clear_fields()
+        randtar1 = await self._randmemb(ctx)
+        randtar2 = "Searching..."
+        randtar3 = randtar2
+        randtar4 = randtar3
+        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"Loading . . . done!", inline=False)
+        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓▓ 100%] ESTABLISHED!", inline=False)
+        em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.\nTarget 1: **{randtar1}**\nTarget 2: **{randtar2}\nTarget 3: **{randtar3}**\nTarget 4: **{randtar4}**", inline=False)
+        await thingy.edit(embed=em)
+

@@ -15,7 +15,8 @@ class Infohell(commands.Cog):
     """The info Cog for Hell"""
 
     def __init__(self, bot):
-        bot.remove_command("avatar")
+        if bot.get_command("avatar"):
+            bot.remove_command("avatar")
         self.bot = bot
         self.dfooter = "Powered by Entropy"
         default_member = {
