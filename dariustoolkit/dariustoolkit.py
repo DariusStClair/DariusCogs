@@ -229,7 +229,7 @@ class Dariustoolkit(commands.Cog):
         await thingy.edit(embed=em)
         ### picks
         wait = await self._randshitslow(4)
-        maxt = 4
+        maxt = 5
         randtar = []
         step = 0
         for i in range(0, maxt):
