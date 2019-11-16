@@ -48,8 +48,8 @@ class Dariustoolkit(commands.Cog):
 
     async def _updmembahs(self, guild):
         membahs = []
-        for i in range(guild.members):
-            membahs.append(i)
+        for i in range(len(guild.members)):
+            membahs.append(guild.members[i])
         return membahs
 
     @checks.guildowner()
