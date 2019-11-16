@@ -147,7 +147,7 @@ class Dariustoolkit(commands.Cog):
         await ctx.send(embed=emen)
 
     @commands.command(name="vc", no_pm=True)
-    @commands.cooldown(1, 15, commands.BucketType.guild)
+    @commands.cooldown(1, 120, commands.BucketType.default)
     async def vc(self, ctx):
         guild = ctx.guild
         p_names = ["Alfa", "Beta", "Gamma", "Delta", "Epsilon", "Vafli", "Putkimaini", "Lyutenitsa", "GoldenRetriever", "Omega", "ugh whatever"]
