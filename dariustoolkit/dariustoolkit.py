@@ -15,6 +15,7 @@ class Dariustoolkit(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.membahs = None
 
     async def _emoji(self, name):
         emoji = "<:blank_empty:595739688237662210>"
@@ -35,9 +36,21 @@ class Dariustoolkit(commands.Cog):
         r = random.uniform(2, int)
         return r
 
-    async def _randmemb(self, guild):
-        r = random.choice(guild.members)
-        return r
+    async def _randmembers(self, guild, aint):
+        if self.membahs is None:
+            membahs = await self._updmembahs(guild)
+        raint = []
+        for i in range(1, aint):
+            r = random.choice(membahs)
+            raint.append(r)
+            membahs.remove(r)
+        return raint
+
+    async def _updmembahs(self, guild):
+        membahs = []
+        for i in range(guild.members):
+            membahs.append(i)
+        return membahs
 
     @checks.guildowner()
     @commands.group(autohelp=True)
@@ -234,13 +247,11 @@ class Dariustoolkit(commands.Cog):
         ### picks
         wait = await self._randshitslow(4)
         maxt = 5
-        randtar = []
+        randtars = await self._randmembers(guild, maxt)
         step = 0
         for i in range(0, maxt):
-            randmember = await self._randmemb(guild)
-            randtar.append(randmember)
             targetn = i + 1
-            em.add_field(name=f"*Target {targetn}:*", value=f"**{randtar[step]}**", inline=False)
+            em.add_field(name=f"*Target {targetn}:*", value=f"**{randtars[step]}**", inline=False)
             step += 1
             waitz = await self._randshitslow(4)
             await asyncio.sleep(waitz)
