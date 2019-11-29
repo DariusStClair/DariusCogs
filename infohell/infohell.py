@@ -159,5 +159,5 @@ class Infohell(commands.Cog):
         em.url = img
         em.set_image(url=img)
         em.set_author(name=f"{dnname}", url=f"{avstr}", icon_url=f"{avstr}")
-        em.set_footer(text=f"Powered by HELL")
+        em.set_footer(text=f"Powered by Entropy")
         await ctx.send(embed=em)
