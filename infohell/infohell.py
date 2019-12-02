@@ -134,7 +134,7 @@ class Infohell(commands.Cog):
             avembed = discord.Embed(colour=15158332)
             av = user.avatar_url
             avstr = str(av)
-            avdesc = (f"[Click view it your in browser]({avstr}) \n\nUsername: {user}\nNickname: {dnname}\nRole color: {dcolor}")
+            avdesc = (f"[Click here to view it in your browser]({avstr}) \n\nUsername: {user}\nNickname: {dnname}\nRole color: {dcolor}")
             avembed.description = avdesc
             avembed.url = avstr
             avembed.set_image(url=avstr)
