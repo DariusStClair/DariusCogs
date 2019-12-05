@@ -45,7 +45,7 @@ class Hslib:
             return self.headers
     
     async def _rq(self, rq):
-        headers = await self._updheaders
+        headers = await self._updheaders()
         async with self._session.get(rq, headers=headers) as r:
             return await r.json()
 
