@@ -13,7 +13,7 @@ class Hslib:
         self.rurl = "https://omgvamp-hearthstone-v1.p.rapidapi.com"
         self.rapi = None
         self.rkey = None
-        self.searchcardname = "/cards/search/{}"
+        self.cardsearch = "/cards/search/{}"
         self.card = "/cards/{}"
         self.hsinfo = "/info"
         self.headers = {
@@ -54,4 +54,9 @@ class Hslib:
         rj = await self._rq(rq)
         return rj
 
-            
+    async def _searchcard(self, name):
+        rq = self.rurl + self.cardsearch.format(name)
+        rj = await self._rq(rq)
+        return rj
+
+
