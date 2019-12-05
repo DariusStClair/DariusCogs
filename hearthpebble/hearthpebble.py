@@ -33,12 +33,12 @@ def apikeycheck():
             raise commands.ReactionsCheckFailure(message="I got no permissions to add reactions")
     return commands.check(predicate)
 
-class Leaguehell(commands.Cog):
+class Hearthpebble(commands.Cog):
     """Yet another shitty Hearthstone Cog"""
 
     def __init__(self, bot):
         self.bot = bot
-        self.lib = Handler(bot)
+        self.lib = Hslib(bot)
         default_global = {"hsapikey": None}
         self.config = Config.get_conf(self, identifier=698731666, force_registration=True)
         self.config.register_global(**default_global)
