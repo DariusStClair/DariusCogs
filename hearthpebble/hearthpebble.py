@@ -45,7 +45,7 @@ class Hearthpebble(commands.Cog):
 
     @checks.is_owner()
     @commands.command(name="hsapikey")
-    async def leagueapi(self, ctx, *, key):
+    async def hsapikey(self, ctx, *, key):
         """Set a key to use the Hearthpebble commands"""
         await self.bot.db.api_tokens.set_raw("hsapikey", value={'hsapikey': key})
         await ctx.send(">>> Easy.")
