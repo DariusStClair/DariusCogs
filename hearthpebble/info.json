@@ -1,0 +1,10 @@
+{
+    "author" : ["Darius#0069"],
+    "install_msg" : "I mean that's like very bad and work in progress, you shouldn't really be installing it",
+    "name" : "Hearthpebble",
+    "short" : "Hearthpebble",
+    "description" : "A (future) Hearthstone info cog",
+    "disabled" : false,
+    "tags" : ["warcraft", "hearthstone"],
+    "min_python_version": [3, 7, 0]
+}
