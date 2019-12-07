@@ -269,7 +269,6 @@ class Dariustoolkit(commands.Cog):
         guild = ctx.guild
         if chan is None:
             chan = ctx.channel
-        descr = '''Temp stuff \n\n\nyep\nyemp\nasdfghgh'''
         emptyf = u'\u200b'
         v1 = '''__***1. Правила за всички гласови канали***__
 
@@ -283,9 +282,9 @@ class Dariustoolkit(commands.Cog):
 
 **1.3.** Обидите, провокациите към администрацията са забранени. 
 ```yaml
-Наказание - Mute за 120 минути```
+Наказание - Mute за 120 минути```'''
 
-__***2. Правила за всички текстови канали***__
+        v2 = '''***2. Правила за всички текстови канали***__
 
 **2.1.** Неспазването на темите за чат е забранено.
 
@@ -300,7 +299,7 @@ __***2. Правила за всички текстови канали***__
 **2.5.** Забранено е да се споменават всички свързани роли без причина. Честото споменаване на ролите също е забранено.
 ```yaml
 Наказание Mute за 120 минути + Warn```'''
-        v2 = '''__***3. Забрани за конкретни действия***__
+        v3 = '''__***3. Забрани за конкретни действия***__
 
 **3.1.** Търговската дейност на сървъра е забранена, ако нямате изрично разрешение от <@&641724084862058516>.
 ```yaml
@@ -322,7 +321,7 @@ __***2. Правила за всички текстови канали***__
 ```yaml
 Наказание - по преценка на администрацията```
 '''
-        v3 = '''__***4. Бележки***__
+        v4 = '''__***4. Бележки***__
 
 **4.1.** Правилата могат да се актуализират и допълват без предупреждение.
 
@@ -343,11 +342,14 @@ __*Видове наказания*__
         em1 = discord.Embed(colour=0x36393f, description=v1)
         em2 = discord.Embed(colour=0x36393f, description=v2)
         em3 = discord.Embed(colour=0x36393f, description=v3)
-        em3.set_footer(text=footer)
+        em4 = discord.Embed(colour=0x36393f, description=v4)
+        em4.set_footer(text=footer)
         await ctx.send(embed=em1)
         asyncio.sleep(2)
         await ctx.send(embed=em2)
         asyncio.sleep(2)
         await ctx.send(embed=em3)
+        asyncio.sleep(2)
+        await ctx.send(embed=em4)
         asyncio.sleep(1)
         await ctx.send(">>> **Done.**\n*(you can delete this message)*")
