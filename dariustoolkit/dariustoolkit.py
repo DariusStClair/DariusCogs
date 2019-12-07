@@ -270,8 +270,8 @@ class Dariustoolkit(commands.Cog):
         if chan is None:
             chan = ctx.channel
         descr = '''Temp stuff \n\n\nyep\nyemp\nasdfghgh'''
-        f1 = '''***1. Правила за всички гласови канали***'''
-        v1 = '''
+        emptyf = u'\u200b'
+        v1 = '''***1. Правила за всички гласови канали***
 **1.1.** Забранени силни, досадни звуци, викове, voice changers (както и всякакъв вид пречене на нормална комуникация).
 Наказание - Mute за 240 минути + Warn
 
@@ -293,8 +293,7 @@ class Dariustoolkit(commands.Cog):
 
 **2.5.** Забранено е да се споменават всички свързани роли без причина. Честото споменаване на ролите също е забранено.
 Наказание Mute за 120 минути + Warn'''
-        f2 = '''***3. Забрани за конкретни действия***'''
-        v2 = '''
+        v2 = '''***3. Забрани за конкретни действия***
 **3.1.** Търговската дейност на сървъра е забранена, ако нямате изрично разрешение от <@641724084862058516>.
 Наказание - по преценка на администрацията
 
@@ -310,8 +309,7 @@ class Dariustoolkit(commands.Cog):
 **3.5.** Оспорването на действията на администрацията е забранено.
 Наказание - по преценка на администрацията
 '''
-        f3 = '''***4. Бележки***'''
-        v3 = '''
+        v3 = '''***4. Бележки***
 
 **3.6.** Правилата могат да се актуализират и допълват без предупреждение.
 
@@ -333,9 +331,9 @@ class Dariustoolkit(commands.Cog):
         f4 = '''**Оплакваите се на <@641721261612859433>, <@641721675167301642>, <@641721930457808946>**'''
         v4 = '''зззззззззззззззззззззззз'''
         em = discord.Embed(colour=0x36393f, description=descr)
-        em.add_field(name=f1, value=v1)
-        em.add_field(name=f2, value=v2)
-        em.add_field(name=f3, value=v3)
-        em.add_field(name=f4, value=v4)
+        em.add_field(name=emptyf, value=v1, inline=False)
+        em.add_field(name=emptyf, value=v2, inline=False)
+        em.add_field(name=emptyf, value=v3, inline=False)
+        em.add_field(name=f4, value=v4, inline=False)
         em.set_footer(text=footer)
         await ctx.send(embed=em)
