@@ -333,5 +333,9 @@ class Dariustoolkit(commands.Cog):
         f4 = '''**Оплакваите се на <@641721261612859433>, <@641721675167301642>, <@641721930457808946>**'''
         v4 = '''зззззззззззззззззззззззз'''
         em = discord.Embed(colour=0x36393f, description=descr)
+        em.add_field(name=f1, value=v1)
+        em.add_field(name=f2, value=v2)
+        em.add_field(name=f3, value=v3)
+        em.add_field(name=f4, value=v4)
         em.set_footer(text=footer)
         await ctx.send(embed=em)
