@@ -331,8 +331,7 @@ __*Видове наказания*__
 
 **__Можете да обжалвате наказанието пред всеки от Модераторите, Control или Associate.__**'''
         f4 = '''**Оплакваите се на <@641721261612859433>, <@641721675167301642>, <@641721930457808946>**'''
-        em = discord.Embed(colour=0x36393f, description=emptyf)
-        em.add_field(name=emptyf, value=v1, inline=False)
+        em = discord.Embed(colour=0x36393f, description=v1)
         em.add_field(name=emptyf, value=v2, inline=False)
         em.add_field(name=emptyf, value=v3, inline=False)
         em.add_field(name=f4, value=emptyf, inline=False)
