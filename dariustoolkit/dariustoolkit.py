@@ -338,19 +338,16 @@ __*Видове наказания*__
 
 <@&652864798467293184> - Наказанието забранява достъпа до всички текстови и гласови канали.
 
-**__Можете да обжалвате наказанието пред всеки от Модераторите, Control или Associate.__**'''
-        f4 = '''**Оплакваите се на <@&641721261612859433>, <@&641721675167301642>, <@&641721930457808946>**'''
+**__Можете да обжалвате наказанието пред всеки от Модераторите, Control или Associate.__**\n
+**При проблеми с <@&641721930457808946>, <@&641721675167301642> или <@&641721261612859433> се обръщайте към <@&641724084862058516>.**'''
         em1 = discord.Embed(colour=0x36393f, description=v1)
         em2 = discord.Embed(colour=0x36393f, description=v2)
         em3 = discord.Embed(colour=0x36393f, description=v3)
-        em4 = discord.Embed(colour=0x36393f, description=f4)
-        em4.set_footer(text=footer)
+        em3.set_footer(text=footer)
         await ctx.send(embed=em1)
         asyncio.sleep(2)
         await ctx.send(embed=em2)
         asyncio.sleep(2)
         await ctx.send(embed=em3)
-        asyncio.sleep(2)
-        await ctx.send(embed=em4)
-        asyncio.sleep(2)
+        asyncio.sleep(1)
         await ctx.send(">>> **Done.**\n*(you can delete this message)*")
