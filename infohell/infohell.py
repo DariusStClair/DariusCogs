@@ -12,7 +12,7 @@ import random
 import calendar
 
 class Infohell(commands.Cog):
-    """The info Cog for Hell"""
+    """The info Cog for that used to be for Hell"""
 
     def __init__(self, bot):
         if bot.get_command("avatar"):
@@ -75,7 +75,7 @@ class Infohell(commands.Cog):
     async def meow(self, ctx):
         randomimg = str(random.choice(self.randomfuckingcat))
         em = discord.Embed(colour=15158332)
-        em.set_footer(text=f"Powered by HELL | There kiddo, have fun")
+        em.set_footer(text=f"Powered by Entropy | There kiddo, have fun")
         em.set_image(url=randomimg)
         await ctx.send(embed=em)
         
