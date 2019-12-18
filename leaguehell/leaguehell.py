@@ -342,7 +342,11 @@ class Leaguehell(commands.Cog):
         elif type(search) is discord.Member:
             searchname, searchreg = await self.findshit_member(search)
         elif type(search) is str:
-            if len(search.split()) > 1:
+            #if len(search.split()) > 1:
+            #    searchname, searchreg = await self.findshit_string(search)
+            #else:
+            #    searchname, searchreg = await self.findshit_onestring(search)
+            if " " in search:
                 searchname, searchreg = await self.findshit_string(search)
             else:
                 searchname, searchreg = await self.findshit_onestring(search)
