@@ -374,7 +374,7 @@ __*Видове наказания*__
             chan = channel
         message = await chan.fetch_message(msg)
         try:
-            ru = message.reactions.users()
+            ru = message.reactions.users().flatten()
         except AttributeError:
             return await ctx.send("> Well that failed. `(1)`")
         resp = ru
