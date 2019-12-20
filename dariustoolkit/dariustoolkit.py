@@ -54,9 +54,6 @@ class Dariustoolkit(commands.Cog):
             membahs.append(guild.members[i])
         return membahs
 
-    def check(m):
-            return da.author == ctx.author
-
     @checks.guildowner()
     @commands.group(autohelp=True)
     async def hvh(self, ctx):
@@ -449,6 +446,8 @@ __*Видове наказания*__
         em = discord.Embed(colour=0x36393f, description="**Are you sure you want to get the explanation to the thing? (answer with yes/no)**")
         em.set_footer(text=f"Waiting for reply | {footer}")
         thingy = await ctx.send(embed=em)
+        def check(m):
+            return da.author == ctx.author
         try:
             msg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
             if msg.content.lower().strip() in answ:
