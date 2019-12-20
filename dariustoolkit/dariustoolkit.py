@@ -371,10 +371,10 @@ __*Видове наказания*__
             chan = ctx.channel
         else:
             chan = channel
-        message = await chan.get_message(msg)
+        message = await chan.fetch_message(msg)
         try:
-            ru = next(filter(lambda x: x.emoji == '\U0001F44D', msg.reactions), None)
-            rd = next(filter(lambda x: x.emoji == '\U0001F44E', msg.reactions), None)
+            ru = next(filter(lambda x: x.emoji == '\U0001F44D', message.reactions), None)
+            rd = next(filter(lambda x: x.emoji == '\U0001F44E', message.reactions), None)
         except AttributeError:
             return await ctx.send("> Well that failed. `(1)`")
         tusers = await ru.users().flatten()
