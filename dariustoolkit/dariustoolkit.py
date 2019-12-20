@@ -392,7 +392,8 @@ __*Видове наказания*__
         #times = 15
         thingy = await ctx.send(embed=em)
         for i in range(1, 15, 1):
-            em.add_field(name=f"{i}", value=f"**{thethings[i]}**", inline=False)
+            stuffs = str(i)
+            em.add_field(name=f"{stuffs}", value=f"**{thethings[stuffs]}**", inline=False)
             asyncio.sleep(3)
             await thingy.edit(embed=em)
         em.description = "**Okay, I'm done.**"
