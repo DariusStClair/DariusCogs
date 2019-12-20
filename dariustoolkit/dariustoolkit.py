@@ -8,7 +8,7 @@ from redbot.core.utils.chat_formatting import bold, box, inline
 import random
 import asyncio
 from PIL import Image
-
+import numpy
 
 footer = "Powered by Entropy"
 
@@ -381,13 +381,13 @@ __*Видове наказания*__
         if ru is None:
             tusers = "Zero."
         else:
-            tusers = await ru.users()
+            tusers = await ru.users().flatten()
             for i in len(tusers):
                 tup = ', '.join(tusers.name(i))
         if rd is None:
             tdsers = "Zero."
         else:
-            tdsers = await rd.users()
+            tdsers = await rd.users().flatten()
             for i in len(tdsers):
                 tup = ', '.join(tdsers.name(i))
         resp = f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
