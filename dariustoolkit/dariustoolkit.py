@@ -455,10 +455,10 @@ __*Видове наказания*__
                 em.description = f"**Okay.\n{thethings}**"
                 em.set_footer(text=f"Done. | {footer}")
             else:
-                em.description = "**Welp, alrite.**""
+                em.description = "**Welp, alrite.**"
                 em.set_footer(text=f"Done. | {footer}")
         except asyncio.TimeoutError:
-            em.description = "**Apparently not.**""
+            em.description = "**Apparently not.**"
             em.set_footer(text=f"Done. | {footer}")
             await thingy.edit(embed=em)
         em.set_footer(text=f"Done. | {footer}")
