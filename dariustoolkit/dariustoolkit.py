@@ -391,7 +391,7 @@ __*Видове наказания*__
         em = discord.Embed(colour=0x36393f, description="**Okay, let me do my thing.**")
         #times = 15
         thingy = await ctx.send(embed=em)
-        for i in range(1, 15, 1):
+        for i in range(1, 16, 1):
             stuffs = str(i)
             em.add_field(name=f"{stuffs}", value=f"**{thethings[stuffs]}**", inline=False)
             asyncio.sleep(3)
