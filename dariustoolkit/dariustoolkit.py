@@ -408,21 +408,7 @@ __*Видове наказания*__
             "1": "The number in front of the right parenthesis is to indicate the episode number",
             "2": "The numbers afterwards are to show the letter number",
             "3": "The brackets indicate the end of words"
-            "4": """Tourist Trapped: WELCOME TO GRAVITY FALLS
-Gobblewonker: NEXT WEEK: RETURN TO BUTT ISLAND
-Headhunters: HE’S STILL IN THE VENTS
-Inconveniencing: ONWARDS AOSHIMA
-Manliness: MR. CAESARIAN WILL BE OUT NEXT WEEK. MR. ATBASH WILL SUBSTITUTE
-Time Traveler: NOT H.G WELLS APPROVED
-Fight Fighters: SORRY, DIPPER, BUT YOUR WENDY IS IN ANOTHER CASTLE
-Little Dipper: THE INVISIBLE WIZARD IS WATCHING
-Summerween: BROUGHT TO YOU BY HOMEWORK: THE CANDY
-Boss Mabel: HEAVY IS THE HEAD THAT WEARS THE FEZ
-Bottomless Pit!: NEXT UP: FOOTBOT TWO: GRUNKLE’S GREVENGE
-Deep End: VIVAN LOS PATOS DE LA PISCINA
-Carpet Diem: BUT WHO STOLE THE CAPERS
-Boyz Crazy: HAPPY NOW, ARIEL
-Gideon Rises: SEARCH FOR THE BLINDEYE"""
+            "4": "Tourist Trapped: WELCOME TO GRAVITY FALLS\nGobblewonker: NEXT WEEK: RETURN TO BUTT ISLAND\nHeadhunters: HE’S STILL IN THE VENTS\nInconveniencing: ONWARDS AOSHIMA\nManliness: MR. CAESARIAN WILL BE OUT NEXT WEEK. MR. ATBASH WILL SUBSTITUTE\nTime Traveler: NOT H.G WELLS APPROVED\nFight Fighters: SORRY, DIPPER, BUT YOUR WENDY IS IN ANOTHER CASTLE\nLittle Dipper: THE INVISIBLE WIZARD IS WATCHING\nSummerween: BROUGHT TO YOU BY HOMEWORK: THE CANDY\nBoss Mabel: HEAVY IS THE HEAD THAT WEARS THE FEZ\nBottomless Pit!: NEXT UP: FOOTBOT TWO: GRUNKLE’S GREVENGE\nDeep End: VIVAN LOS PATOS DE LA PISCINA\nCarpet Diem: BUT WHO STOLE THE CAPERS\nBoyz Crazy: HAPPY NOW, ARIEL\nGideon Rises: SEARCH FOR THE BLINDEYE"
         }
         em = discord.Embed(colour=0x36393f, description="**Okay, let me do my thing.**")
         em.set_footer(text=f"Still working... | {footer}")
