@@ -7,6 +7,7 @@ from redbot.core.utils.chat_formatting import bold, box, inline
 # Libs
 import random
 import asyncio
+from PIL import Image
 
 footer = "Powered by Entropy"
 
@@ -353,3 +354,32 @@ __*Видове наказания*__
         await ctx.send(embed=em4)
         asyncio.sleep(1)
         await ctx.send(">>> **Done.**\n*(you can delete this message)*")
+
+    @commands.command()
+    async def atest(self, ctx, *, user: discord.User=None):
+        """baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah"""
+        if user is None:
+            user = ctx.author
+        if user.is_avatar_animated():
+            av = user.avatar_url_as(format="gif")
+        else:
+            av = user.avatar_url_as(format="png")
+
+    @commands.command()
+    async def thumbs(self, ctx, msg: int = None, channel: discord.TextChannel = None):
+        if channel is None:
+            chan = ctx.channel
+        else:
+            chan = channel
+        message = await chan.get_message(msg)
+        try:
+	        ru = next(filter(lambda x: x.emoji == '\U0001F44D', msg.reactions), None)
+            rd = next(filter(lambda x: x.emoji == '\U0001F44E', msg.reactions), None)
+	    except AttributeError:
+	        return await ctx.send("> Well that failed. `(1)`")
+	    tusers = await ru.users().flatten()
+        tdsers = await rd.users().flatten()
+        tup = ', '.join(tusers)
+        tdown ', '.join(tdsers)
+        # This will break if it's over 2k characters!
+        await ctx.send(f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.')
