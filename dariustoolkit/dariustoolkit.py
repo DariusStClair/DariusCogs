@@ -374,21 +374,9 @@ __*Видове наказания*__
             chan = channel
         message = await chan.fetch_message(msg)
         try:
-            ru = next(filter(lambda x: x.emoji == '\U0001F44D', message.reactions), None)
-            rd = next(filter(lambda x: x.emoji == '\U0001F44E', message.reactions), None)
+            ru = message.reactions
         except AttributeError:
             return await ctx.send("> Well that failed. `(1)`")
-        if ru is None:
-            tup = "Zero"
-        else:
-            tusers = await ru.users().flatten()
-            #tup = ', '.join(str(tusers))
-            tup = "".join(str(tusers))
-        if rd is None:
-            tdown = "Zero"
-        else:
-            tusers = await ru.users().flatten()
-            #tdown = ', '.join(str(tdsers))
-            tup = "".join(str(tusers))
-        resp = f'>>> Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
+        resp = ru
+        #resp = f'>>> Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
         await ctx.send(resp)
