@@ -395,13 +395,50 @@ __*Видове наказания*__
         thingy = await ctx.send(embed=em)
         for i in range(1, 17, 1):
             stuffs = str(i)
-            em.add_field(name=f"{stuffs}", value=f"**{thethings[stuffs]}**", inline=False)
-            asyncio.sleep(3)
+            em.add_field(name=f"Step {stuffs}:", value=f"**{thethings[stuffs]}**", inline=False)
+            await asyncio.sleep(1)
             await thingy.edit(embed=em)
         em.description = "**Okay, I'm done.**"
         em.set_footer(text=f"Done. | {footer}")
         await thingy.edit(embed=em)
 
+    @blindsociety.command()
+    async def decipherepisodes(self, ctx):
+        thethings = {
+            "1": "The number in front of the right parenthesis is to indicate the episode number",
+            "2": "The numbers afterwards are to show the letter number",
+            "3": "The brackets indicate the end of words"
+            "4": """Tourist Trapped: WELCOME TO GRAVITY FALLS
+Gobblewonker: NEXT WEEK: RETURN TO BUTT ISLAND
+Headhunters: HE’S STILL IN THE VENTS
+Inconveniencing: ONWARDS AOSHIMA
+Manliness: MR. CAESARIAN WILL BE OUT NEXT WEEK. MR. ATBASH WILL SUBSTITUTE
+Time Traveler: NOT H.G WELLS APPROVED
+Fight Fighters: SORRY, DIPPER, BUT YOUR WENDY IS IN ANOTHER CASTLE
+Little Dipper: THE INVISIBLE WIZARD IS WATCHING
+Summerween: BROUGHT TO YOU BY HOMEWORK: THE CANDY
+Boss Mabel: HEAVY IS THE HEAD THAT WEARS THE FEZ
+Bottomless Pit!: NEXT UP: FOOTBOT TWO: GRUNKLE’S GREVENGE
+Deep End: VIVAN LOS PATOS DE LA PISCINA
+Carpet Diem: BUT WHO STOLE THE CAPERS
+Boyz Crazy: HAPPY NOW, ARIEL
+Gideon Rises: SEARCH FOR THE BLINDEYE"""
+        }
+        em = discord.Embed(colour=0x36393f, description="**Okay, let me do my thing.**")
+        em.set_footer(text=f"Still working... | {footer}")
+        thingy = await ctx.send(embed=em)
+        for i in range(1, 5, 1):
+            stuffs = str(i)
+            if i =< 3:
+                em.add_field(name=f"Step {stuffs}:", value=f"**{thethings[stuffs]}**", inline=False)
+            if i == 4:
+                em.add_field(name=f"Here's a list for convenience:", value=f"**{thethings[stuffs]}**", inline=False)
+            await asyncio.sleep(0.5)
+            await thingy.edit(embed=em)
+        em.description = "**Okay, I'm done.**"
+        em.set_footer(text=f"Done. | {footer}")
+        await thingy.edit(embed=em)
+    
     @commands.command()
     async def thumbs(self, ctx, msg: int, channel: discord.TextChannel = None):
         if channel is None:
