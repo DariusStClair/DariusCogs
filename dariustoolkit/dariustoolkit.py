@@ -54,6 +54,9 @@ class Dariustoolkit(commands.Cog):
             membahs.append(guild.members[i])
         return membahs
 
+    def check(m):
+            return da.author == ctx.author
+
     @checks.guildowner()
     @commands.group(autohelp=True)
     async def hvh(self, ctx):
@@ -449,7 +452,7 @@ __*Видове наказания*__
         try:
             msg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
             if msg.content.lower().strip() in answ:
-                em.description = f"**Okay.\n{thethings}**""
+                em.description = f"**Okay.\n{thethings}**"
                 em.set_footer(text=f"Done. | {footer}")
             else:
                 em.description = "**Welp, alrite.**""
