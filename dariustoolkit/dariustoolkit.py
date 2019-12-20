@@ -428,21 +428,21 @@ __*Видове наказания*__
     @blindsociety.command()
     async def solvedepisodes(self, ctx):
         answ = ("yes", "y", "ye", "yea", "yeah", "yesh", "sure", "yep", "da", "ok", "k", "okay")
-        thethings = """*1) 14]*\n Tourist Trapped: WELCOME TO GRAVITY FALLS. = **I**
-*[2) 5, 24]*\n Gobblewonker: NEXT WEEK: RETURN TO BUTT ISLAND. = **WA**
-*3) 3]*\n Headhunters: HE’S STILL IN THE VENTS. = **S**
-*[5) 7, 9]*\n Inconveniencing: ONWARDS AOSHIMA! = **SO**
-*[6) 33, 40, 46*\n Manliness: MR. CAESARIAN WILL BE OUT NEXT WEEK. MR. ATBASH WILL SUBSTITUTE. = **BLI**
-*9) 1, 18]*\n Time Traveler: NOT H.G WELLS APPROVED. = **ND**
-*[10) 32, 33][39*\n Fight Fighters: SORRY, DIPPER, BUT YOUR WENDY IS IN ANOTHER CASTLE. = **HE L**
-*11) 4, 12, 18]*\n Little Dipper: THE INVISIBLE WIZARD IS WATCHING. = **IED**
-*[12) 8, 9][17, 18]*\n Summerween: BROUGHT TO YOU BY HOMEWORK: THE CANDY = **TO ME**
-*[13) 8, 9, 10][14, 17, 22*\n Boss Mabel: HEAVY IS THE HEAD THAT WEARS THE FEZ. = **THE DAR**
-*14) 21, 30, 32*\n Bottomless Pit!: NEXT UP: FOOTBOT TWO: GRUNKLE’S GREVENGE = **KNE**
-*15) 13, 20][22*\n Deep End: VIVAN LOS PATOS DE LA PISCINA. = **SS I**
-*16) 20]*\n Carpet Diem: BUT WHO STOLE THE CAPERS? = **S**
-*[17) 6, 12*\n Boyz Crazy: HAPPY NOW, ARIEL? = **NE**
-*20) 3, 4]*\n Gideon Rises: SEARCH FOR THE BLINDEYE = **AR**"""
+        thethings = """*1) 14]*\n"Tourist Trapped: WELCOME TO GRAVITY FALLS" *is:*\n **I**
+\n\n*[2) 5, 24]*\n"Gobblewonker: NEXT WEEK: RETURN TO BUTT ISLAND" *is:*\n **WA**
+\n\n*3) 3]*\n"Headhunters: HE’S STILL IN THE VENTS" *is:*\n **S**
+\n\n*[5) 7, 9]*\n"Inconveniencing: ONWARDS AOSHIMA" *is:*\n **SO**
+\n\n*[6) 33, 40, 46*\n"Manliness: MR. CAESARIAN WILL BE OUT NEXT WEEK. MR. ATBASH WILL SUBSTITUTE" *is:*\n **BLI**
+\n\n*9) 1, 18]*\n"Time Traveler: NOT H.G WELLS APPROVED" *is:*\n **ND**
+\n\n*[10) 32, 33][39*\n"Fight Fighters: SORRY, DIPPER, BUT YOUR WENDY IS IN ANOTHER CASTLE" *is:*\n **HE L**
+\n\n*11) 4, 12, 18]*\n"Little Dipper: THE INVISIBLE WIZARD IS WATCHING" *is:*\n **IED**
+\n\n*[12) 8, 9][17, 18]*\n"Summerween: BROUGHT TO YOU BY HOMEWORK: THE CANDY" *is:*\n **TO ME**
+\n\n*[13) 8, 9, 10][14, 17, 22*\n"Boss Mabel: HEAVY IS THE HEAD THAT WEARS THE FEZ" *is:*\n **THE DAR**
+\n\n*14) 21, 30, 32*\n"Bottomless Pit!: NEXT UP: FOOTBOT TWO: GRUNKLE’S GREVENGE" *is:*\n **KNE**
+\n\n*15) 13, 20][22*\n"Deep End: VIVAN LOS PATOS DE LA PISCINA" *is:*\n **SS I**
+\n\n*16) 20]*\n"Carpet Diem: BUT WHO STOLE THE CAPERS" *is:*\n **S**
+\n\n*[17) 6, 12*\n"Boyz Crazy: HAPPY NOW, ARIEL" *is:*\n **NE**
+\n\n*20) 3, 4]*\n"Gideon Rises: SEARCH FOR THE BLINDEYE" *is:*\n **AR**"""
         em = discord.Embed(colour=0x36393f, description="**Are you sure you want to get the explanation to the thing? (answer with yes/no)**")
         em.set_footer(text=f"Waiting for reply | {footer}")
         thingy = await ctx.send(embed=em)
@@ -462,6 +462,8 @@ __*Видове наказания*__
             await thingy.edit(embed=em)
         em.set_footer(text=f"Done. | {footer}")
         await thingy.edit(embed=em)
+        await asyncio.sleep(10)
+        await ctx.send(">>> So, the whole thing is:\n**I WAS SO BLIND HE LIED TO ME THE DARKNESS IS NEAR.**")
     
     @commands.command()
     async def thumbs(self, ctx, msg: int, channel: discord.TextChannel = None):
