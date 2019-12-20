@@ -379,16 +379,16 @@ __*Видове наказания*__
         except AttributeError:
             return await ctx.send("> Well that failed. `(1)`")
         if ru is None:
-            tup = "Zero."
+            tup = "Zero"
         else:
             tusers = await ru.users().flatten()
             #tup = ', '.join(str(tusers))
             tup = "".join(str(tusers))
         if rd is None:
-            tdown = "Zero."
+            tdown = "Zero"
         else:
-            tdsers = rd.users()
+            tusers = await ru.users().flatten()
             #tdown = ', '.join(str(tdsers))
-            tdown = tdsers
-        resp = f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
+            tup = "".join(str(tusers))
+        resp = f'>>> Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
         await ctx.send(resp)
