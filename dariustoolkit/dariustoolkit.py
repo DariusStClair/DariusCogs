@@ -373,13 +373,13 @@ __*Видове наказания*__
             chan = channel
         message = await chan.get_message(msg)
         try:
-	        ru = next(filter(lambda x: x.emoji == '\U0001F44D', msg.reactions), None)
+            ru = next(filter(lambda x: x.emoji == '\U0001F44D', msg.reactions), None)
             rd = next(filter(lambda x: x.emoji == '\U0001F44E', msg.reactions), None)
-	    except AttributeError:
-	        return await ctx.send("> Well that failed. `(1)`")
-	    tusers = await ru.users().flatten()
+        except AttributeError:
+            return await ctx.send("> Well that failed. `(1)`")
+        tusers = await ru.users().flatten()
         tdsers = await rd.users().flatten()
         tup = ', '.join(tusers)
-        tdown ', '.join(tdsers)
+        tdown = ', '.join(tdsers)
         # This will break if it's over 2k characters!
         await ctx.send(f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.')
