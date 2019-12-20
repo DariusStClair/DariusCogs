@@ -388,7 +388,15 @@ __*Видове наказания*__
                     "13": "16) 20]",
                     "14": "[17) 6, 12",
                     "15": "20) 3, 4]"}
-        await ctx.send(len(thethings))
+        em = discord.Embed(colour=0x36393f, description="**Okay, let me do my thing.**")
+        times = 15
+        thingy = await ctx.send(embed=em)
+        for i in range(1, 15, 1):
+            em.add_field(f"{i}", value=f"**{thethings[i]}**")
+            asyncio.sleep(3)
+            await thingy.edit(embed=em)
+        em.description = "**Okay, I'm done.**"
+        await thingy.edit(embed=em)
 
     @commands.command()
     async def thumbs(self, ctx, msg: int, channel: discord.TextChannel = None):
