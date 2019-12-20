@@ -375,11 +375,12 @@ __*Видове наказания*__
         try:
             ru = next(filter(lambda x: x.emoji == '\U0001F44D', message.reactions), None)
             rd = next(filter(lambda x: x.emoji == '\U0001F44E', message.reactions), None)
+            tusers = await ru.users().flatten()
+            tdsers = await rd.users().flatten()
+            tup = ', '.join(tusers)
+            tdown = ', '.join(tdsers)
+            resp = f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
         except AttributeError:
-            return await ctx.send("> Well that failed. `(1)`")
-        tusers = await ru.users().flatten()
-        tdsers = await rd.users().flatten()
-        tup = ', '.join(tusers)
-        tdown = ', '.join(tdsers)
-        # This will break if it's over 2k characters!
-        await ctx.send(f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.')
+            resp = "> Well that failed. `(1)`"
+            return resp
+        await ctx.send(resp)
