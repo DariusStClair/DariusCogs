@@ -378,8 +378,14 @@ __*Видове наказания*__
             rd = next(filter(lambda x: x.emoji == '\U0001F44E', message.reactions), None)
         except AttributeError:
             return await ctx.send("> Well that failed. `(1)`")
-        tusers = await ru.users().flatten()
-        tdsers = await rd.users().flatten()
+        if ru is None:
+            tusers = "Zero."
+        else:
+            tusers = await ru.users().flatten()
+        if rd is None:
+            tdsers = "Zero."
+        else:
+            tdsers = await rd.users().flatten()
         tup = ', '.join(tusers)
         tdown = ', '.join(tdsers)
         resp = f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
