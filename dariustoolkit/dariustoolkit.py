@@ -382,13 +382,11 @@ __*Видове наказания*__
             tusers = "Zero."
         else:
             tusers = await ru.users().flatten()
-            for i in len(tusers):
-                tup = ', '.join(tusers.name(i))
+            tup = ', '.join(tusers)
         if rd is None:
             tdsers = "Zero."
         else:
             tdsers = await rd.users().flatten()
-            for i in len(tdsers):
-                tup = ', '.join(tdsers.name(i))
+            tup = ', '.join(tdsers)
         resp = f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
         await ctx.send(resp)
