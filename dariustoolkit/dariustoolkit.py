@@ -424,6 +424,42 @@ __*Видове наказания*__
         em.description = "**Okay, I'm done.**"
         em.set_footer(text=f"Done. | {footer}")
         await thingy.edit(embed=em)
+
+    @blindsociety.command()
+    async def solvedepisodes(self, ctx):
+        answ = ("yes", "y", "ye", "yea", "yeah", "yesh", "sure", "yep", "da", "ok", "k", "okay")
+        thethings = """*1) 14]*\n Tourist Trapped: WELCOME TO GRAVITY FALLS. = **I**
+*[2) 5, 24]* \n Gobblewonker: NEXT WEEK: RETURN TO BUTT ISLAND. = **WA**
+*3) 3]*\n Headhunters: HE’S STILL IN THE VENTS. = **S**
+*[5) 7, 9]*\n Inconveniencing: ONWARDS AOSHIMA! = **SO**
+*[6) 33, 40, 46*\n Manliness: MR. CAESARIAN WILL BE OUT NEXT WEEK. MR. ATBASH WILL SUBSTITUTE. = **BLI**
+*9) 1, 18]*\n Time Traveler: NOT H.G WELLS APPROVED. = **ND**
+*[10) 32, 33][39*\n Fight Fighters: SORRY, DIPPER, BUT YOUR WENDY IS IN ANOTHER CASTLE. = **HE L**
+*11) 4, 12, 18]*\n Little Dipper: THE INVISIBLE WIZARD IS WATCHING. = **IED**
+*[12) 8, 9][17, 18]*\n Summerween: BROUGHT TO YOU BY HOMEWORK: THE CANDY = **TO ME**
+*[13) 8, 9, 10][14, 17, 22*\n Boss Mabel: HEAVY IS THE HEAD THAT WEARS THE FEZ. = **THE DAR**
+*14) 21, 30, 32*\n Bottomless Pit!: NEXT UP: FOOTBOT TWO: GRUNKLE’S GREVENGE = **KNE**
+*15) 13, 20][22*\n Deep End: VIVAN LOS PATOS DE LA PISCINA. = **SS I**
+*16) 20]*\n Carpet Diem: BUT WHO STOLE THE CAPERS? = **S**
+*[17) 6, 12*\n Boyz Crazy: HAPPY NOW, ARIEL? = **NE**
+*20) 3, 4]*\n Gideon Rises: SEARCH FOR THE BLINDEYE = **AR**"""
+        em = discord.Embed(colour=0x36393f, description="**Are you sure you want to get the explanation to the thing? (answer with yes/no)**")
+        em.set_footer(text=f"Waiting for reply | {footer}")
+        thingy = await ctx.send(embed=em)
+        try:
+            msg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
+            if msg.content.lower().strip() in answ:
+                em.description = f"**Okay.\n{thethings}**""
+                em.set_footer(text=f"Done. | {footer}")
+            else:
+                em.description = "**Welp, alrite.**""
+                em.set_footer(text=f"Done. | {footer}")
+        except asyncio.TimeoutError:
+            em.description = "**Apparently not.**""
+            em.set_footer(text=f"Done. | {footer}")
+            await thingy.edit(embed=em)
+        em.set_footer(text=f"Done. | {footer}")
+        await thingy.edit(embed=em)
     
     @commands.command()
     async def thumbs(self, ctx, msg: int, channel: discord.TextChannel = None):
