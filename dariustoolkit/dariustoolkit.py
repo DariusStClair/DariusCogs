@@ -373,11 +373,10 @@ __*Видове наказания*__
         else:
             chan = channel
         message = await chan.fetch_message(msg)
-        try:
-            ru = message.reactions
-            resp = await ru.users().flatten()
-        except AttributeError:
-            resp = "> Well that failed. `(1)`"
-            return resp
+        ru = message.reactions
+        resp = await ru.users().flatten()
+        #except AttributeError:
+        #    resp = "> Well that failed. `(1)`"
+        #    return await ctx.send(resp)
         #resp = f'>>> Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
         await ctx.send(resp)
