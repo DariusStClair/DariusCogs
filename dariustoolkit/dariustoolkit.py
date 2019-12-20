@@ -387,6 +387,6 @@ __*Видове наказания*__
             tdsers = "Zero."
         else:
             tdsers = await rd.users().flatten()
-            tup = ', '.join(str(tdsers))
+            tdown = ', '.join(str(tdsers))
         resp = f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
         await ctx.send(resp)
