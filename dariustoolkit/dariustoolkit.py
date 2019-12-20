@@ -366,7 +366,7 @@ __*Видове наказания*__
             av = user.avatar_url_as(format="png")
 
     @commands.command()
-    async def thumbs(self, ctx, msg: int = None, channel: discord.TextChannel = None):
+    async def thumbs(self, ctx, msg: int, channel: discord.TextChannel = None):
         if channel is None:
             chan = ctx.channel
         else:
