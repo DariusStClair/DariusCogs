@@ -375,7 +375,7 @@ __*Видове наказания*__
         message = await chan.fetch_message(msg)
         try:
             ru = message.reactions()
-            resp = await ru.users().flatten()
+            resp = await ru.users.flatten()
         except AttributeError:
             resp = "> Well that failed. `(1)`"
             return resp
