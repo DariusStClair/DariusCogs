@@ -429,7 +429,7 @@ __*Видове наказания*__
     async def solvedepisodes(self, ctx):
         answ = ("yes", "y", "ye", "yea", "yeah", "yesh", "sure", "yep", "da", "ok", "k", "okay")
         thethings = """*1) 14]*\n Tourist Trapped: WELCOME TO GRAVITY FALLS. = **I**
-*[2) 5, 24]* \n Gobblewonker: NEXT WEEK: RETURN TO BUTT ISLAND. = **WA**
+*[2) 5, 24]*\n Gobblewonker: NEXT WEEK: RETURN TO BUTT ISLAND. = **WA**
 *3) 3]*\n Headhunters: HE’S STILL IN THE VENTS. = **S**
 *[5) 7, 9]*\n Inconveniencing: ONWARDS AOSHIMA! = **SO**
 *[6) 33, 40, 46*\n Manliness: MR. CAESARIAN WILL BE OUT NEXT WEEK. MR. ATBASH WILL SUBSTITUTE. = **BLI**
@@ -451,7 +451,7 @@ __*Видове наказания*__
         try:
             msg = await ctx.bot.wait_for("message", timeout=15.0, check=check)
             if msg.content.lower().strip() in answ:
-                em.description = f"**Okay.\n{thethings}**"
+                em.description = f"**Okay.**\n{thethings}"
                 em.set_footer(text=f"Done. | {footer}")
             else:
                 em.description = "**Welp, alrite.**"
