@@ -9,6 +9,7 @@ import random
 import asyncio
 from PIL import Image
 
+
 footer = "Powered by Entropy"
 
 class Dariustoolkit(commands.Cog):
@@ -375,12 +376,11 @@ __*Видове наказания*__
         try:
             ru = next(filter(lambda x: x.emoji == '\U0001F44D', message.reactions), None)
             rd = next(filter(lambda x: x.emoji == '\U0001F44E', message.reactions), None)
-            tusers = await ru.users().flatten()
-            tdsers = await rd.users().flatten()
-            tup = ', '.join(tusers)
-            tdown = ', '.join(tdsers)
-            resp = f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
         except AttributeError:
-            resp = "> Well that failed. `(1)`"
-            return resp
+            return await ctx.send("> Well that failed. `(1)`")
+        tusers = await ru.users().flatten()
+        tdsers = await rd.users().flatten()
+        tup = ', '.join(tusers)
+        tdown = ', '.join(tdsers)
+        resp = f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
         await ctx.send(resp)
