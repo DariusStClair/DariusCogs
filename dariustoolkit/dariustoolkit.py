@@ -381,9 +381,9 @@ __*Видове наказания*__
         if ru is None:
             tup = "Zero."
         else:
-            tusers = ru.users()
+            tusers = ru.users().flatten()
             #tup = ', '.join(str(tusers))
-            tup = tusers.flatten()
+            tup = tusers
         if rd is None:
             tdown = "Zero."
         else:
