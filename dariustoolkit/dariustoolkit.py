@@ -381,14 +381,14 @@ __*Видове наказания*__
         if ru is None:
             tup = "Zero."
         else:
-            tusers = await ru.users().flatten()
+            tusers = ru.users()
             #tup = ', '.join(str(tusers))
-            tup = ru
+            tup = tusers
         if rd is None:
             tdown = "Zero."
         else:
-            tdsers = await rd.users().flatten()
+            tdsers = rd.users()
             #tdown = ', '.join(str(tdsers))
-            tdown = rd
+            tdown = tdsers
         resp = f'Users that reacted with:\n 👍\n{tup}.\n\nUsers that reacted with:\n 👎\n{tdown}.'
         await ctx.send(resp)
