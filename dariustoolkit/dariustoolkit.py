@@ -387,11 +387,12 @@ __*Видове наказания*__
                     "12": "15) 13, 20][22",
                     "13": "16) 20]",
                     "14": "[17) 6, 12",
-                    "15": "20) 3, 4]"}
+                    "15": "20) 3, 4]",
+                    "16": "There isn't actually episode 16. The whole thing is:\n1) 14]\n[2) 5, 24] \n3) 3]\n[5) 7, 9]\n[6) 33, 40, 46\n9) 1, 18]\n[10) 32, 33][39\n11) 4, 12, 18]\n[12) 8, 9][17, 18]\n[13) 8, 9, 10][14, 17, 22\n14) 21, 30, 32\n15) 13, 20][22\n16) 20]\n[17) 6, 12\n20) 3, 4]"}
         em = discord.Embed(colour=0x36393f, description="**Okay, let me do my thing.**")
         #times = 15
         thingy = await ctx.send(embed=em)
-        for i in range(1, 16, 1):
+        for i in range(1, 17, 1):
             stuffs = str(i)
             em.add_field(name=f"{stuffs}", value=f"**{thethings[stuffs]}**", inline=False)
             asyncio.sleep(3)
