@@ -415,7 +415,7 @@ __*Видове наказания*__
         thingy = await ctx.send(embed=em)
         for i in range(1, 5, 1):
             stuffs = str(i)
-            if i =< 3:
+            if i <= 3:
                 em.add_field(name=f"Step {stuffs}:", value=f"**{thethings[stuffs]}**", inline=False)
             if i == 4:
                 em.add_field(name=f"Here's a list for convenience:", value=f"**{thethings[stuffs]}**", inline=False)
