@@ -366,6 +366,30 @@ __*Видове наказания*__
         else:
             av = user.avatar_url_as(format="png")
 
+    @commands.group(autohelp=True)
+    async def blindsociety(self, ctx):
+        """Myeah"""
+        pass
+
+    @blindsociety.command()
+    async def episodenames(self, ctx):
+        thethings = {"1": "1) 14]",
+                    "2": "[2) 5, 24]",
+                    "3": "3) 3]",
+                    "4": "[5) 7, 9]",
+                    "5": "[6) 33, 40, 46",
+                    "6": "9) 1, 18]",
+                    "7": "[10) 32, 33][39",
+                    "8": "11) 4, 12, 18]",
+                    "9": "[12) 8, 9][17, 18]",
+                    "10": "[13) 8, 9, 10][14, 17, 22",
+                    "11": "14) 21, 30, 32",
+                    "12": "15) 13, 20][22",
+                    "13": "16) 20]",
+                    "14": "[17) 6, 12",
+                    "15": "20) 3, 4]"}
+        await ctx.send(len(thethings))
+
     @commands.command()
     async def thumbs(self, ctx, msg: int, channel: discord.TextChannel = None):
         if channel is None:
@@ -373,7 +397,7 @@ __*Видове наказания*__
         else:
             chan = channel
         message = await chan.fetch_message(msg)
-        ru = message.reactions
+        ru = message.reactions.users
         resp = await ru.users().flatten()
         #except AttributeError:
         #    resp = "> Well that failed. `(1)`"
