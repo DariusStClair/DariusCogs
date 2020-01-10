@@ -110,7 +110,7 @@ class Infohell(commands.Cog):
         avembed = discord.Embed(colour=15158332)
         footer = self.dfooter
         avembed.set_footer(text=f"{footer}")
-        avembed.set_author(athrn, url=athrav, icon_url=athrav)
+        avembed.set_author(name=athrn, url=athrav, icon_url=athrav)
         if user is None:
             user = ctx.author
         if user.is_avatar_animated():
