@@ -101,7 +101,16 @@ class Infohell(commands.Cog):
     @commands.command()
     async def avatar(self, ctx, *, user: discord.User=None):
         """Provides user's avatar, name, nickname and role color."""
-        
+        athr = ctx.author
+        athrn = ctx.author.name
+        if athr.is_avatar_animated():
+            athrav = athr.avatar_url_as(format="gif")
+        else:
+            athrav = athr.avatar_url_as(format="png")
+        avembed = discord.Embed(colour=15158332)
+        footer = self.dfooter
+        avembed.set_footer(text=f"{footer}")
+        avembed.set_author(athrn, url=athrav, icon_url=athrav)
         if user is None:
             user = ctx.author
         if user.is_avatar_animated():
@@ -110,36 +119,22 @@ class Infohell(commands.Cog):
             av = user.avatar_url_as(format="png")
         if user.id == 492098885649563658:
             if ctx.message.channel.is_nsfw():
-                footer = self.dfooter
                 avstr = "https://cdn.discordapp.com/attachments/631951277697269766/631995861026734119/slaanesh_by_baklaher_d7dvohn-fullview.png"
-                avembed = discord.Embed(colour=15158332)
-                avembed.description = "Well now, my avatar (in full) is below. \nCredits to **baklaher** on DeviantArt."
+                avdesc = "My avatar, in all its glory, is below. \nCredits to **baklaher** on DeviantArt."
                 avembed.url = avstr
-                avembed.set_image(url=avstr)
-                avembed.set_footer(text=f"{footer}")
-                await ctx.send(embed=avembed)
             else:
-                footer = self.dfooter
                 avstr = str(user.avatar_url_as(format="png"))
-                avembed = discord.Embed(colour=15158332)
-                avembed.description = "Well now, my avatar is below. \n**However since this __isn't__ a NSFW channel it's just what you usually see in discord.**\n**To view the full version please check it in a channel marked as NSFW.**\nCredits to **baklaher** on DeviantArt."
+                avdesc = "Here's my avatar. \n**However since this __isn't__ a NSFW channel it's just what you usually see in discord.**\n**To view the full version please check it in a channel marked as NSFW.**\nCredits to **baklaher** on DeviantArt."
                 avembed.url = avstr
-                avembed.set_image(url=avstr)
-                avembed.set_footer(text=f"{footer}")
-                await ctx.send(embed=avembed)
         else:
-            footer = self.dfooter
             dnname = user.display_name
             dcolor = user.colour
-            avembed = discord.Embed(colour=15158332)
-            av = user.avatar_url
             avstr = str(av)
             avdesc = (f"[Click here to view it in your browser]({avstr}) \n\nUsername: {user}\nNickname: {dnname}\nRole color: {dcolor}")
-            avembed.description = avdesc
-            avembed.url = avstr
-            avembed.set_image(url=avstr)
-            avembed.set_footer(text=f"{footer}")
-            await ctx.send(embed=avembed)
+        avembed.description = avdesc
+        avembed.url = avstr
+        avembed.set_image(url=avstr)
+        await ctx.send(embed=avembed)
 
     @commands.command()
     @commands.cooldown(1, 10, commands.BucketType.guild)
