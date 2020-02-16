@@ -162,7 +162,7 @@ class Dariustoolkit(commands.Cog):
         await ctx.send(embed=emen)
 
     @commands.command(name="vc", no_pm=True)
-    @commands.cooldown(1, 120, commands.BucketType.default)
+    @commands.cooldown(1, 300, commands.BucketType.default)
     async def vc(self, ctx):
         guild = ctx.guild
         p_names = ["Alfa", "Beta", "Gamma", "Delta", "Epsilon", "Vafli", "Putkimaini", "Lyutenitsa", "GoldenRetriever", "Omega", "ugh whatever"]
@@ -236,7 +236,7 @@ class Dariustoolkit(commands.Cog):
             await msg.edit(embed=em)
             numbah += 1
             await asyncio.sleep(random.randint(2, 4))
-        await ctx.send("> gl in esports")
+        await ctx.send("> Protocol {} completed. Enjoy yourselves and shit.".format(randprotocol))
 
     @checks.guildowner()
     @commands.group(autohelp=True)
