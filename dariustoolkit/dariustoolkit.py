@@ -170,94 +170,73 @@ class Dariustoolkit(commands.Cog):
         p_name = random.choice(p_names)
         p_number = random.choice(p_numbers)
         randprotocol = f"**{p_name}" + f"{p_number}**"
+        seq1 = {
+            0: "Initialting protocol: {}\n⁣Loading",
+            1: "Initialting protocol: {}\nLoading .",
+            2: "Initialting protocol: {}\n⁣Loading . . ",
+            3: "Initialting protocol: {}\n⁣Loading . . . done!"
+        }
+        seq2 = {
+            0: "Connection to VC:\n[░░░░░░░░░░   0%]",
+            1: "Connection to VC:\n[▓░░░░░░░░░  {}%]",
+            2: "Connection to VC:\n[▓▓▓░░░░░░░  {}%]",
+            3: "Connection to VC:\n[▓▓▓▓░░░░░░  {}%]",
+            4: "Connection to VC:\n[▓▓▓▓▓░░░░░  {}%]",
+            5: "Connection to VC:\n[▓▓▓▓▓▓░░░░  {}%]",
+            6: "Connection to VC:\n[▓▓▓▓▓▓▓░░░  {}%]",
+            7: "Connection to VC:\n[▓▓▓▓▓▓▓▓░░  {}%]",
+            8: "Connection to VC:\n[▓▓▓▓▓▓▓▓▓░  {}%]",
+            9: "Connection to VC:\n[▓▓▓▓▓▓▓▓▓▓ 100%] ESTABLISHED!\n**Commencing annoyance of random people!**"
+        }
         em = discord.Embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**")
         em.set_footer(text="Powered by Entropy | VC ANYONE?! | VC????? | VC!!!!!!1!!!!1!!!")
-        thingy = await ctx.send(embed=em)
-        rand_slow = await self._randshit(3)
-        await asyncio.sleep(rand_slow)
-        em = discord.Embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**\n\n")
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading", inline=False)
-        await thingy.edit(embed=em)
-        rand_fast = await self._randshit(1)
-        await asyncio.sleep(rand_fast)
-        em.clear_fields()
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . ", inline=False)
-        await thingy.edit(embed=em)
-        rand_fast = await self._randshit(2)
-        await asyncio.sleep(rand_fast)
-        em.clear_fields()
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . . ", inline=False)
-        await thingy.edit(embed=em)
-        rand_fast = await self._randshit(3)
-        await asyncio.sleep(rand_fast)
-        em.clear_fields()
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . . . done!", inline=False)
-        await thingy.edit(embed=em)
-        # protocol shit
-        wait = await self._randshitslow(3)
-        await asyncio.sleep(wait)
-        em.clear_fields()
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . . . done!", inline=False)
-        em.add_field(name=f"Connection to VC:", value=f"[░░░░░░░░░░   0%]", inline=False)
-        await thingy.edit(embed=em)
-        wait = await self._randshitslow(2)
-        await asyncio.sleep(wait)
-        em.clear_fields()
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . . . done!", inline=False)
-        randnumb = random.randint(10, 20)
-        em.add_field(name=f"Connection to VC:", value=f"[▓▓░░░░░░░░  {randnumb}%]", inline=False)
-        await thingy.edit(embed=em)
-        wait = await self._randshitslow(5)
-        await asyncio.sleep(wait)
-        em.clear_fields()
-        randnumb = random.randint(40, 49)
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . . . done!", inline=False)
-        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓░░░░░  {randnumb}%]", inline=False)
-        await thingy.edit(embed=em)
-        wait = await self._randshitslow(4)
-        await asyncio.sleep(wait)
-        em.clear_fields()
-        randnumb = random.randint(55, 69)
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . . . done!", inline=False)
-        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓░░░  {randnumb}%]", inline=False)
-        await thingy.edit(embed=em)
-        wait = await self._randshitslow(3)
-        await asyncio.sleep(wait)
-        em.clear_fields()
-        randnumb = random.randint(88, 99)
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . . . done!", inline=False)
-        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓░  {randnumb}%]", inline=False)
-        await thingy.edit(embed=em)
-        wait = await self._randshitslow(2)
-        await asyncio.sleep(wait)
-        em.clear_fields()
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . . . done!", inline=False)
-        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓▓ 100%] ESTABLISHED!", inline=False)
-        await thingy.edit(embed=em)
-        ###
-        wait = await self._randshitslow(2)
-        await asyncio.sleep(wait)
-        em.clear_fields()
-        randtar1 = "Searching..."
-        randtar2 = randtar1
-        randtar3 = randtar1
-        randtar4 = randtar1
-        em.add_field(name=f"Initialting protocol: {randprotocol}", value=f"⁣                    ⁣Loading . . . done!", inline=False)
-        em.add_field(name=f"Connection to VC:", value=f"[▓▓▓▓▓▓▓▓▓▓ 100%] ESTABLISHED!", inline=False)
-        em.add_field(name=f"\n**Commencing annoyance of random people!**", value=f"But I'm not gonna tag them, you do that.", inline=False)
-        await thingy.edit(embed=em)
-        ### picks
-        wait = await self._randshitslow(4)
-        maxt = 5
-        randtars = await self._randmembers(guild, maxt)
-        step = 0
-        for i in range(0, maxt):
-            targetn = i + 1
-            em.add_field(name=f"*Target {targetn}:*", value=f"**{randtars[step]}**", inline=False)
-            step += 1
-            waitz = await self._randshitslow(4)
-            await asyncio.sleep(waitz)
-            await thingy.edit(embed=em)
+        msg = await ctx.send(embed = em)
+        n = 0
+        k = 0
+        for i in range(len(seq1)):
+            em = discord.Embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**")
+            em.set_footer(text="Powered by Entropy | VC ANYONE?! | VC????? | VC!!!!!!1!!!!1!!!")
+            em.add_field(name="Working", value=seq1[n].format(randprotocol), inline=False)
+            await asyncio.sleep(2)
+            n += 1
+            await msg.edit(embed=em)
+        await asyncio.sleep(10)
+        for i in range(len(seq2)):
+            randint1 = k * 10
+            randint2 = k * 10 + 10
+            if k == 9:
+                randint = 100
+            else:
+                randint = random.randint(randint1, randint2)
+            em = discord.Embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**\nWorking\nInitializing protocol: **{}**\nLoading . . . done!".format(randprotocol))
+            em.set_footer(text="Powered by Entropy | VC ANYONE?! | VC????? | VC!!!!!!1!!!!1!!!")
+            em.add_field(name="Establishing communications", value=seq2[k].format(randint), inline=False)
+            k += 1
+            await asyncio.sleep(random.randint(2, 4))
+            await msg.edit(embed=em)
+        await asyncio.sleep(2)
+        rmembers = []
+        numbah = 0
+        nmembers = 6
+        while numbah < nmembers:
+            rchoice = random.choice([x for x in guild.members])
+            if rchoice not in rmembers:
+                rmembers.append(rchoice)
+                numbah += 1
+        chosen = ', '.join([str(zzz) for zzz in rmembers])
+        numbah = 0
+        randint100 = 100
+        em = discord.Embed(colour=0x36393f, description="**Dido2 VC Mode activated!!!1!**\nWorking\nInitializing protocol: **{}**\nLoading . . . done!".format(randprotocol))
+        em.set_footer(text="Powered by Entropy | VC ANYONE?! | VC????? | VC!!!!!!1!!!!1!!!")
+        em.add_field(name="Establishing communications", value=seq2[9].format(randint100), inline=False)
+        em.add_field(name="Chosen targets can be found below.", value="Note that I'm not going to ping them, do that yourself", inline=False)
+        while numbah < nmembers: 
+            tarnum = numbah + 1
+            em.add_field(name="Target #{}:".format(tarnum), value="**{}**".format(rmembers[numbah]), inline=True)
+            await msg.edit(embed=em)
+            numbah += 1
+            await asyncio.sleep(random.randint(2, 4))
+        await ctx.send("> gl in esports")
 
     @checks.guildowner()
     @commands.group(autohelp=True)
