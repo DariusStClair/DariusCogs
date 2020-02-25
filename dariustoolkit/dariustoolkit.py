@@ -59,9 +59,8 @@ class Dariustoolkit(commands.Cog):
     @commands.is_owner()
     async def updr(self, ctx, cog_name: InstalledCog = None):
         ctx.assume_yes = True
-        cog_update_command = bot.get_cog("Downloader")._cog_update
+        cog_update_command = self.bot.get_cog("Downloader")._cog_update
         await ctx.invoke(cog_update_command, cog_name)
-
 
     @checks.guildowner()
     @commands.group(autohelp=True)
