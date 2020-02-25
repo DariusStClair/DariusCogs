@@ -5,6 +5,7 @@ from discord import Message, message
 from redbot.core import checks, Config, commands
 from redbot.core.utils.chat_formatting import bold, box, inline
 from redbot.cogs.downloader.converters import InstalledCog
+from redbot.cogs.downloader import Downloader
 # Libs
 import random
 import asyncio
@@ -59,7 +60,8 @@ class Dariustoolkit(commands.Cog):
     @commands.is_owner()
     async def updr(self, ctx, cog_name: InstalledCog = None):
         ctx.assume_yes = True
-        cog_update_command = self.bot.get_cog("Downloader")._cog_update
+        cog_update_command = self.bot.downloader._cog_update()
+        # cog_update_command = self.bot.get_cog("Downloader")._cog_update
         await ctx.invoke(cog_update_command, cog_name)
 
     @checks.guildowner()
