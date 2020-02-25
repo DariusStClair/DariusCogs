@@ -3,7 +3,8 @@ import discord
 # Red
 from discord import Message, message
 from redbot.core import checks, Config, commands
-from redbot.core.utils.chat_formatting import bold, box, inline
+from redbot.core.utils.chat_formatting import bold, box, inline, pagify
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.cogs.downloader.converters import InstalledCog
 from redbot.cogs.downloader import Downloader
 # Libs
@@ -11,6 +12,7 @@ import random
 import asyncio
 from PIL import Image
 import numpy
+import inspect
 
 footer = "Powered by Entropy"
 
@@ -62,6 +64,29 @@ class Dariustoolkit(commands.Cog):
         ctx.assume_yes = True
         cog_update_command = self.bot.get_cog("Downloader")._cog_update
         await ctx.invoke(cog_update_command, cog_name)
+
+    @commands.command()
+    @checks.is_owner()
+    async def getsource(self, ctx, *, cmd: str):
+        """
+        Get the source code of a command
+        Credits to Nesroht
+        """
+        cmd = self.bot.get_command(cmd)
+        if cmd is None:
+            await ctx.send("> That command doesn't seem to exist.")
+            return
+        source_code = inspect.getsource(cmd.callback)
+        tmpp = []
+        p = []
+        for page in pagify(source_code, escape_mass_mentions=True, page_length=1900):
+            tmpp.append("```py\n" + str(page).replace("```", "``") + "```")
+        maxi = len(tmpp)
+        i = 1
+        for page in tmpp:
+            p.append(f"Page {i}/{maxi}\n" + page)
+            i += 1
+        await menu(ctx, p, controls=DEFAULT_CONTROLS)
 
     @checks.guildowner()
     @commands.group(autohelp=True)
