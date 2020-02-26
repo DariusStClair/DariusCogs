@@ -15,7 +15,7 @@ import inspect
 
 footer = "Powered by Entropy"
 
-class Dariustoolkit(commands.Cog):
+class DariusToolkit(commands.Cog):
     """Tools for a few communities"""
 
     def __init__(self, bot):
