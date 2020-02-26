@@ -1,4 +1,4 @@
-from .dariustoolkit import Dariustoolkit
+from .dariustoolkit import DariusToolkit
 
 def setup(bot):
-    bot.add_cog(Dariustoolkit(bot))
+    bot.add_cog(DariusToolkit(bot))
