@@ -60,6 +60,7 @@ class DariusToolkit(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def updreload(self, ctx: commands.Context):
+        """Updates installed cogs and reloads the loaded ones automatically."""
         ctx.assume_yes = True
         cog_upd_command = self.bot.get_cog("Downloader")._cog_update
         await ctx.invoke(cog_upd_command)
@@ -90,6 +91,10 @@ class DariusToolkit(commands.Cog):
     @commands.command(name="vc", no_pm=True)
     @commands.cooldown(1, 300, commands.BucketType.default)
     async def vc(self, ctx):
+        """
+        A Dido2 joke command.\n
+        You most certainly don't need this.
+        """
         guild = ctx.guild
         p_names = ["Alfa", "Beta", "Gamma", "Delta", "Epsilon", "Vafli", "Putkimaini", "Lyutenitsa", "GoldenRetriever", "Omega", "ugh whatever"]
         p_numbers = [" I ARE VC WE ALO VC??", " VC VC VC VC", " VC!!!", " VC???", " so yeah, move on", " POWERFUL STRONG FORCE!!!", " x84", " - 984.1804", "-0000000000001", "-93", ", I think", "!!!1!!!1!!!", "_?????!??", " and shit", " - i4i1kjng", " 9301", " v1.3", " v0.83a", "_TJ019tujUJJUERJg", "-PP22", "/69.420", ".3.35"]
@@ -263,7 +268,7 @@ __*Видове наказания*__
 
     @commands.group(autohelp=True)
     async def blindsociety(self, ctx):
-        """Myeah"""
+        """You don't need this."""
         pass
 
     @blindsociety.command()
