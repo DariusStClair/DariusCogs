@@ -1,9 +1,9 @@
 {
     "author" : ["Darius"],
-    "install_msg" : "Brao we",
+    "install_msg" : "You shouldn't install this. It's broken right now.",
     "name" : "Leaguehell",
-    "short" : "League Hell",
-    "description" : "League Hell",
+    "short" : "Leaguehell",
+    "description" : "You shouldn't install this. It's broken right now.",
     "disabled" : false,
     "tags" : ["profile"],
     "min_python_version": [3, 7, 0]

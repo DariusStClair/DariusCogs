@@ -1,9 +1,9 @@
 {
     "author" : ["Inspired by the account cog from Malarne"],
-    "install_msg" : "Brao we",
+    "install_msg" : "idk why would you install this",
     "name" : "Infohell",
-    "short" : "Saves account info",
-    "description" : "Dunno if that's gonna work tho",
+    "short" : "Infohell",
+    "description" : "Tools for the Hell server",
     "disabled" : false,
     "tags" : ["profile"],
     "min_python_version": [3, 7, 0]
