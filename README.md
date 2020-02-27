@@ -13,11 +13,10 @@ My (shitty) cogs for Red, which is a damn piece of art, backed by a splendid com
 To Do
 -----
 - [ ] Add more breeds to doggos
-- [ ] Bring the Utility cog to life /To-do lists; Ping-me on events/
-- [ ] League cog, eventually
-- [x] HVH Community toolbox
-- [x] Hell Toolbox
-- [ ] Hearthstone cog, eventually
+- [ ] League cog; Won't work on latest Red, I've completely stopped playing the game.
+- [x] HVH Community tools / not needed anymore
+- [x] Hell Toolbox / not needed anymore
+- [ ] Hearthstone cog; Currently functional, requires an API key from [here](https://rapidapi.com/omgvamp/api/hearthstone).
 - [x] Dog pictures
 
 Credits
