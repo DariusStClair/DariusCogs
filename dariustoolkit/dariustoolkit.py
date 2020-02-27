@@ -90,6 +90,7 @@ class DariusToolkit(commands.Cog):
 
     @commands.command(name="vc", no_pm=True)
     @commands.cooldown(1, 300, commands.BucketType.default)
+    @commands.guild_only()
     async def vc(self, ctx):
         """
         A Dido2 joke command.\n
