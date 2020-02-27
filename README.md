@@ -5,19 +5,18 @@ My (shitty) cogs for Red, which is a damn piece of art, backed by a splendid com
 
 | Cog           | What does it do        | Works? |
 | ------------- |:----------------------:| :-----:|
-| doggos        | Posts different doggos. Also thanks to Eslyium (Eslyium#1949) and Yukirin (Yukirin#0048) for their Animals thingy |  Kinda, needs more breeds |
-| hvhtools | Community-specific, you don't need that. | Yep |
-| infohell | Community-specific, you don't need that either. | Nah |
+| dariustoolkit | Like mostly useless stuffs | uh... |
+| doggos        | Posts different doggos. Also thanks to Eslyium (Eslyium#1949) and Yukirin (Yukirin#0048) for their Animals thingy. |  Kinda, needs more breeds |
+| hearthpebble | Hearthstone cards lookup. Requires and API key. | Yep |
+| infohell | Community-specific, abandoned. | Nah |
+| leaguehell | Currently broken. | Nah |
 | oldgods | Throws quotes from Warcraft's Old Gods, idk why would you want that but oh well. | Yep |
 
-To Do
+
+More info
 -----
-- [ ] Add more breeds to doggos
 - [ ] League cog; Won't work on latest Red, I've completely stopped playing the game.
-- [x] HVH Community tools / not needed anymore
-- [x] Hell Toolbox / not needed anymore
 - [ ] Hearthstone cog; Currently functional, requires an API key from [here](https://rapidapi.com/omgvamp/api/hearthstone).
-- [x] Dog pictures
 
 Credits
 =======
