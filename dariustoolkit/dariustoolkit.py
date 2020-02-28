@@ -62,8 +62,8 @@ class DariusToolkit(commands.Cog):
     async def updreload(self, ctx: commands.Context):
         """Updates installed cogs and reloads the loaded ones automatically."""
         ctx.assume_yes = True
-        cog_update_command = ctx.bot.get_command("cog update")
-        if cog_update_command is None:
+        cog_upd_command = ctx.bot.get_command("cog update")
+        if cog_upd_command is None:
             await ctx.send("Welp, that ain't gonna happen. \nYou need to `{}load downloader` first.".format(ctx.prefix))
         else:
             await ctx.invoke(cog_upd_command)
