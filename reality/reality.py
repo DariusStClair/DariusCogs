@@ -30,6 +30,11 @@ class Reality(commands.Cog):
         self._memeh = "https://meme-api.herokuapp.com/"
         self.bot.remove_command("ping")
 
+    @commands.command()
+    async def ping(self, ctx):
+        realitycheck = ctx.bot.get_command("reality check")
+        await ctx.invoke(realitycheck)
+
     @commands.group(name="void", aliases=["v"], no_pm=True)
     @commands.is_owner()
     async def voidgroup(self, ctx):
