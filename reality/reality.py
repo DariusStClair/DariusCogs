@@ -28,6 +28,7 @@ class Reality(commands.Cog):
         self._config.register_user(**self.default_user_settings)
         self._version = "1.00.0"
         self._memeh = "https://meme-api.herokuapp.com/"
+        self.bot.remove_command("ping")
 
     @commands.group(name="void", aliases=["v"], no_pm=True)
     @commands.is_owner()
@@ -119,8 +120,8 @@ class Reality(commands.Cog):
         em = discord.Embed(colour=0x36393f, description="{}".format(repl), set_footer="Powered By Entropy")
         em.add_field(name="Discord responded in:", value=box("{} ms".format(latency)), inline=False)
         em.add_field(name="Calculating typing:", value=box("{}".format(tping)), inline=False)
-        msg = await ctx.send(embed=em)
         before = time.monotonic()
+        msg = await ctx.send(embed=em)
         tlatency = (time.monotonic() - before) * 1000
         em = discord.Embed(colour=0x36393f, description="{}".format(repl), set_footer="Powered By Entropy")
         em.add_field(name="Discord responded in:", value=box("{} ms".format(latency)), inline=False)
