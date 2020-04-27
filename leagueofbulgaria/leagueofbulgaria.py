@@ -14,7 +14,7 @@ class Leagueofbulgaria(commands.Cog):
     Some shite
     """
     __author__ = ["Darius"]
-    __version__ = "0.0.1"
+    __version__ = "0.0.2"
 
     def __init__(self, bot):
         self.bot = bot
@@ -47,7 +47,7 @@ class Leagueofbulgaria(commands.Cog):
     @checks.is_owner()
     @lob.command(name="dropdb")
     async def dropdb(self, ctx):
-        """Erase the entire DB"""
+        """[Owner] Erase the entire DB"""
         await self.conf.clear_all_members()
         await self.conf.clear_all_guilds()
         await ctx.send("> Welp, all the data is now gone, gj {}".format(ctx.author.mention))
@@ -55,6 +55,7 @@ class Leagueofbulgaria(commands.Cog):
     @checks.is_owner()
     @lob.command(name="db")
     async def senddb(self, ctx):
+        """[Owner] Изпраща текстов файл с базата данни"""
         fp = BytesIO()
         file = None
         author = ctx.author
@@ -79,6 +80,7 @@ class Leagueofbulgaria(commands.Cog):
     @checks.is_owner()
     @lob.command(name="testid")
     async def testid(self, ctx, userid: int):
+        """[Owner] zzz"""
         memb = await self._getmember(guild=ctx.guild, search=userid)
         em = discord.Embed(color=ctx.author.colour)
         if memb:
@@ -92,6 +94,7 @@ class Leagueofbulgaria(commands.Cog):
     @commands.guild_only()
     @lob.command(name="check", aliases=["checks", "exists", "added"])
     async def check(self, ctx, user: discord.Member = None):
+        """Проверява дали някой потребител е в базата данни"""
         author = ctx.author
         server = ctx.guild
         db = await self.conf.guild(server).db()
@@ -169,7 +172,7 @@ class Leagueofbulgaria(commands.Cog):
     @lob.command(name="list", aliases=["lst", "show", "all", "showall"])
     async def listdb(self, ctx):
         """
-        ще напиша нещо като не ме мързи
+        Предоставя лист с всички потребители в базата данни до момента.
         """
         author = ctx.author
         server = ctx.guild
