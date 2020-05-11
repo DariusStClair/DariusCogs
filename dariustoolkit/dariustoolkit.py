@@ -62,6 +62,7 @@ class DariusToolkit(commands.Cog):
     async def updreload(self, ctx: commands.Context):
         """
         Updates installed cogs and reloads the loaded ones automatically.
+        More testing, why are you even reading this
         """
         ctx.assume_yes = True
         cog_upd_command = ctx.bot.get_command("cog update")
