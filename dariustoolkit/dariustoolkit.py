@@ -60,7 +60,9 @@ class DariusToolkit(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def updreload(self, ctx: commands.Context):
-        """Updates installed cogs and reloads the loaded ones automatically."""
+        """
+        Updates installed cogs and reloads the loaded ones automatically.
+        """
         ctx.assume_yes = True
         cog_upd_command = ctx.bot.get_command("cog update")
         if cog_upd_command is None:
