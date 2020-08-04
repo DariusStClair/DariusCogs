@@ -1,0 +1,13 @@
+{
+    "author": [
+        "Darius St.Clair (Darius#9947)"
+    ],
+    "install_msg": "These cogs are probably borked.",
+    "name": "Darius Cogs",
+    "short": "A bunch of tools or utilities that I wanted/needed.",
+    "description": "A bunch of tools or utilities that I wanted/needed. If you don't know what a thing is you probably don't need it.",
+    "tags": [
+        "Utility",
+        "Fun"
+    ]
+}
