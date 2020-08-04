@@ -1,10 +1,12 @@
 {
-    "author" : ["Inspired by the account cog from Malarne"],
+    "author" : ["Darius#9947", "Inspired by the account cog from Malarne"],
     "install_msg" : "idk why would you install this",
     "name" : "Infohell",
     "short" : "Infohell",
     "description" : "Tools for the Hell server",
     "disabled" : false,
     "tags" : ["profile"],
-    "min_python_version": [3, 7, 0]
+    "hidden": true,
+    "min_bot_version": "3.3.10",
+    "min_python_version": [3, 8, 1]
 }

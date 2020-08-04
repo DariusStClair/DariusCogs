@@ -1,10 +1,12 @@
 {
-    "author" : ["Darius#0069"],
+    "author" : ["Darius#9947"],
     "install_msg" : "idk what the fuck are you doing",
     "name" : "Dariustoolkit",
     "short" : "Dariustoolkit",
-    "description" : "Tools for a few servers",
+    "description" : "Some tools",
     "disabled" : false,
     "tags" : ["tools"],
-    "min_python_version": [3, 7, 0]
+    "hidden": false,
+    "min_bot_version": "3.3.10",
+    "min_python_version": [3, 8, 1]
 }

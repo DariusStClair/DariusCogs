@@ -1,10 +1,12 @@
 {
-    "author" : ["Darius"],
+    "author" : ["DarDarius#9947ius"],
     "install_msg" : "You shouldn't install this. It's broken right now.",
     "name" : "Leaguehell",
     "short" : "Leaguehell",
     "description" : "You shouldn't install this. It's broken right now.",
     "disabled" : false,
     "tags" : ["profile"],
-    "min_python_version": [3, 7, 0]
+    "hidden": true,
+    "min_bot_version": "3.3.10",
+    "min_python_version": [3, 8, 1]
 }

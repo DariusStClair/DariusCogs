@@ -1,10 +1,12 @@
 {
-    "author" : ["Darius"],
+    "author" : ["Darius#9947"],
     "install_msg" : "I mean I highly doubt you'd need that outside of the server it's written for, but oh well.",
     "name" : "Leagueofbulgaria",
     "short" : "Leagueofbulgaria",
     "description" : "You shouldn't install this. It's for a specific server.",
     "disabled" : false,
     "tags" : ["tools"],
-    "min_python_version": [3, 8, 0]
+    "hidden": true,
+    "min_bot_version": "3.3.10",
+    "min_python_version": [3, 8, 1]
 }
