@@ -58,6 +58,7 @@ class DariusToolkit(commands.Cog):
         return membahs
 
     @commands.command()
+    @commands.max_concurrency(1)
     @commands.is_owner()
     async def updreload(self, ctx: commands.Context):
         """Updates installed cogs and reloads the loaded ones automatically."""
