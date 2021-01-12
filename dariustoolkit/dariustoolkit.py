@@ -12,6 +12,7 @@ import random
 import asyncio
 from PIL import Image
 import inspect
+from tabulate import tabulate
 
 footer = "Powered by Entropy"
 
@@ -56,6 +57,20 @@ class DariusToolkit(commands.Cog):
         for i in range(len(guild.members)):
             membahs.append(guild.members[i])
         return membahs
+    
+    @commands.command(name="timeforbullshit", aliases=["doihavetime"])
+    async def timeforbullshit(self, ctx: commands.Context):
+        if ctx.invoked_with == "doihavetime":
+            title = "Does {} have time for your bullshit?".format(ctx.author.name)
+        else:
+            title = "Do I have time for your bullshit?"
+        stuff = (["", "", "no", "", ""],
+        ["", "no", "", "no", ""],
+        ["no", "", "\_", "", "no"],
+        ["", "no", "", "no", ""],
+        ["", "", "no", "", ""])
+        em = discord.Embed(title=title, description=box(tabulate(stuff, tablefmt="plain")))
+        await ctx.send(embed=em)
 
     @commands.command()
     @commands.max_concurrency(1)
